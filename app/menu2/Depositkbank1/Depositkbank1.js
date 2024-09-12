@@ -226,7 +226,7 @@ function updateDisplay() {
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
         // Draw text with custom styles
-        drawText(ctx, `${datetime}`, 63.4, 45.8,22.50, 'SF Thonburi', '#ffffff', '600', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${datetime}`, 63.4, 45.8,22.50, 'SFThonburiSemiBold', '#ffffff', 'left', 1.5, 3, 0, 0, 800, 0);
         
         //1
         let textColor1 = '#45c2b1';
