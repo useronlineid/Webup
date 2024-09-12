@@ -1,15 +1,14 @@
 const users = {
-    max168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },  // 8 ชั่วโมง
-    luck001: { password: '123456', duration: 60 * 60 * 1000, maxSessions: 1 },   // 1 ชั่วโมง
-    pass899: { password: '899899', duration: 60 * 480 * 1000, maxSessions: 1 },   // 8 ชั่วโมง
-    admin168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง
-    god168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง
-    eqxjdg: { password: 'eqxjdg1999', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง
-    admin99: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง
+    max168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },  // 8 ชั่วโมง // ห้อง 4
+    luck001: { password: '123456', duration: 60 * 60 * 1000, maxSessions: 1 },   // 1 ชัวโมง // มีมี่
+    pass899: { password: '899899', duration: 60 * 480 * 1000, maxSessions: 1 },   // 1 ชั่วโมง // ปอน
+    admin168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // แจ็ค
+    god168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // ซัง
+    eqxjdg: { password: 'eqxjdg1999', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // โต
+    admin99: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8ต ชั่วโมง // พี่น้ำ
     dx: { password: '164626', duration: 60 * 2880 * 1000, maxSessions: 10 }   // ไม่จำกัดเวลา, ไม่จำกัดจำนวนคน
+    
 };
-
-let isSubmenu8Unlocked = false;
 
 function login() {
     const username = document.getElementById('username').value;
@@ -43,8 +42,8 @@ function login() {
         localStorage.setItem('duration', duration);
         document.getElementById('login').classList.add('hidden');
         document.getElementById('menu').classList.remove('hidden');
-        updateTimeLeft();
-        checkSession();
+        updateTimeLeft(); // Update the time left display
+        checkSession(); // Start checking the session
     } else {
         alert('รหัสผ่านไม่ถูกต้อง');
     }
@@ -52,22 +51,17 @@ function login() {
 
 function showSubMenu(subMenuId) {
     document.getElementById('menu').classList.add('hidden');
-    document.querySelectorAll('.sub-menu').forEach(subMenu => subMenu.classList.add('hidden'));
-
-    if (subMenuId === 'submenu8') {
-        if (isSubmenu8Unlocked) {
-            document.getElementById('submenu8').classList.remove('hidden');
-        } else {
-            document.getElementById('submenu8-password').classList.remove('hidden');
-        }
-    } else {
-        document.getElementById(subMenuId).classList.remove('hidden');
-    }
+    document.querySelectorAll('.sub-menu').forEach(subMenu => {
+        subMenu.classList.add('hidden');
+    });
+    document.getElementById(subMenuId).classList.remove('hidden');
 }
 
 function backToMenu() {
     document.getElementById('menu').classList.remove('hidden');
-    document.querySelectorAll('.sub-menu').forEach(subMenu => subMenu.classList.add('hidden'));
+    document.querySelectorAll('.sub-menu').forEach(subMenu => {
+        subMenu.classList.add('hidden');
+    });
 }
 
 function logout() {
@@ -82,7 +76,9 @@ function logout() {
     localStorage.removeItem('username');
     localStorage.removeItem('duration');
     document.getElementById('menu').classList.add('hidden');
-    document.querySelectorAll('.sub-menu').forEach(subMenu => subMenu.classList.add('hidden'));
+    document.querySelectorAll('.sub-menu').forEach(subMenu => {
+        subMenu.classList.add('hidden');
+    });
     document.getElementById('login').classList.remove('hidden');
 }
 
@@ -107,39 +103,6 @@ function checkSession() {
     setInterval(updateTimeLeft, 1000);
 }
 
-function validatePassword() {
-    const password = document.getElementById('submenu8-pass').value;
-    const errorElement = document.getElementById('password-error');
-
-    if (password === '164626') {
-        document.getElementById('submenu8').classList.remove('hidden');
-        document.getElementById('submenu8-password').classList.add('hidden');
-        isSubmenu8Unlocked = true;
-    } else {
-        errorElement.classList.remove('hidden');
-        setTimeout(() => {
-            errorElement.classList.add('hidden');
-            document.getElementById('submenu8-pass').value = '';
-        }, 2000);
-    }
-}
-
-function checkLoginStatus() {
-    const username = localStorage.getItem('username');
-    const loginTime = localStorage.getItem('loginTime');
-    const duration = localStorage.getItem('duration');
-
-    if (!username || !loginTime || !duration) {
-        window.location.href = "login.html";
-    } else {
-        const currentTime = new Date().getTime();
-        if (currentTime >= parseInt(loginTime, 10) + parseInt(duration, 10)) {
-            logout();
-            window.location.href = "login.html";
-        }
-    }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     const loginTime = localStorage.getItem('loginTime');
     const duration = localStorage.getItem('duration');
@@ -155,29 +118,52 @@ document.addEventListener('DOMContentLoaded', () => {
             logout();
         }
     }
+});
 
-    document.getElementById('submenu8-pass').addEventListener('input', function() {
-        const password = this.value;
-        const errorElement = document.getElementById('password-error');
+// ตัวแปรเพื่อเก็บสถานะการเข้าสู่ระบบสำเร็จสำหรับ submenu8
+let isSubmenu8Unlocked = false;
 
-        if (password.length === 6) {
-            if (password === '164626') {
-                document.getElementById('submenu8').classList.remove('hidden');
-                document.getElementById('submenu8-password').classList.add('hidden');
-                isSubmenu8Unlocked = true;
-            } else {
-                errorElement.classList.remove('hidden');
-                setTimeout(() => {
-                    errorElement.classList.add('hidden');
-                    this.value = '';
-                }, 2000);
-            }
-        } else if (password.length > 6) {
+document.getElementById('submenu8-pass').addEventListener('input', function() {
+    const password = this.value;
+    const errorElement = document.getElementById('password-error');
+
+    if (password.length === 6) {
+        if (password === '164626') {
+            document.getElementById('submenu8').classList.remove('hidden');
+            document.getElementById('submenu8-password').classList.add('hidden');
+            isSubmenu8Unlocked = true; // ตั้งสถานะเป็นเข้าระบบสำเร็จ
+        } else {
             errorElement.classList.remove('hidden');
             setTimeout(() => {
                 errorElement.classList.add('hidden');
                 this.value = '';
             }, 2000);
         }
-    });
+    } else if (password.length > 6) {
+        errorElement.classList.remove('hidden');
+        setTimeout(() => {
+            errorElement.classList.add('hidden');
+            this.value = '';
+        }, 2000);
+    }
 });
+
+function showSubMenu(submenuId) {
+    document.getElementById('menu').classList.add('hidden');
+    document.querySelectorAll('.sub-menu').forEach(submenu => submenu.classList.add('hidden'));
+
+    if (submenuId === 'submenu8') {
+        if (isSubmenu8Unlocked) {
+            document.getElementById('submenu8').classList.remove('hidden');
+        } else {
+            document.getElementById('submenu8-password').classList.remove('hidden');
+        }
+    } else {
+        document.getElementById(submenuId).classList.remove('hidden');
+    }
+}
+
+function backToMenu() {
+    document.querySelectorAll('.sub-menu').forEach(submenu => submenu.classList.add('hidden'));
+    document.getElementById('menu').classList.remove('hidden');
+}
