@@ -139,46 +139,46 @@ function updateDisplay() {
     let bankLogoUrl = '';
     switch (bank) {
         case 'ธนาคารกสิกรไทย':
-            bankLogoUrl = '/assets/image/logo/KBANK.png';
+            bankLogoUrl = '../assets/image/logo/KBANK.png';
             break;
         case 'ธนาคารกรุงไทย':
-            bankLogoUrl = '/assets/image/logo/KTB.png';
+            bankLogoUrl = '../assets/image/logo/KTB.png';
             break;
         case 'ธนาคารกรุงเทพ':
-            bankLogoUrl = '/assets/image/logo/BBL.png';
+            bankLogoUrl = '../assets/image/logo/BBL.png';
             break;
         case 'ธนาคารไทยพาณิชย์':
-            bankLogoUrl = '/assets/image/logo/SCB.png';
+            bankLogoUrl = '../assets/image/logo/SCB.png';
             break;
         case 'ธนาคารกรุงศรีอยุธยา':
-            bankLogoUrl = '/assets/image/logo/BAY.png';
+            bankLogoUrl = '../assets/image/logo/BAY.png';
             break;
         case 'ธนาคารทหารไทยธนชาต':
-            bankLogoUrl = '/assets/image/logo/TTB1.png';
+            bankLogoUrl = '../assets/image/logo/TTB1.png';
             break;
         case 'ธนาคารออมสิน':
-            bankLogoUrl = '/assets/image/logo/O3.png';
+            bankLogoUrl = '../assets/image/logo/O3.png';
             break;
         case 'ธ.ก.ส.':
-            bankLogoUrl = '/assets/image/logo/T.png';
+            bankLogoUrl = '../assets/image/logo/T.png';
             break;
         case 'ธนาคารอาคารสงเคราะห์':
-            bankLogoUrl = '/assets/image/logo/C.png';
+            bankLogoUrl = '../assets/image/logo/C.png';
             break;
         case 'ธนาคารเกียรตินาคินภัทร':
-            bankLogoUrl = '/assets/image/logo/K.png';
+            bankLogoUrl = '../assets/image/logo/K.png';
             break;
         case 'ธนาคารซีไอเอ็มบีไทย':
-            bankLogoUrl = '/assets/image/logo/CIMB.png';
+            bankLogoUrl = '../assets/image/logo/CIMB.png';
             break;
         case 'ธนาคารยูโอบี':
-            bankLogoUrl = '/assets/image/logo/UOB.png';
+            bankLogoUrl = '../assets/image/logo/UOB.png';
             break;
         case 'ธนาคารแลนด์ แอนด์ เฮาส์':
-            bankLogoUrl = '/assets/image/logo/LHBANK.png';
+            bankLogoUrl = '../assets/image/logo/LHBANK.png';
             break;
         case 'ธนาคารไอซีบีซี':
-            bankLogoUrl = '/assets/image/logo/ICBC.png';
+            bankLogoUrl = '../assets/image/logo/ICBC.png';
             break;
     }
     
@@ -191,7 +191,7 @@ function updateDisplay() {
     
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '/assets/image/bs/O1T.jpg';
+    backgroundImage.src = '../assets/image/bs/O1T.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -223,7 +223,7 @@ function updateDisplay() {
             
             drawText(ctx, `${AideMemoire}`, 149.2, 753.1,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
 
-            drawImage(ctx, '/assets/image/logo/O3.png', 66,376, 71, 71);  
+            drawImage(ctx, '../assets/image/logo/O3.png', 66,376, 71, 71);  
         
           
             // Draw the selected image
