@@ -1,13 +1,12 @@
 const users = {
-    max168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },  // 8 ชั่วโมง // ห้อง 4
-    luck001: { password: '123456', duration: 60 * 60 * 1000, maxSessions: 1 },   // 1 ชัวโมง // มีมี่
-    pass899: { password: '899899', duration: 60 * 480 * 1000, maxSessions: 1 },   // 1 ชั่วโมง // ปอน
-    admin168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // แจ็ค
-    god168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // ซัง
-    eqxjdg: { password: 'eqxjdg1999', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // โต
-    admin99: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8ต ชั่วโมง // พี่น้ำ
-    dx: { password: '164626', duration: 60 * 2880 * 1000, maxSessions: 10 }   // ไม่จำกัดเวลา, ไม่จำกัดจำนวนคน
-    
+    max168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },  // 8 ชั่วโมง
+    luck001: { password: '123456', duration: 60 * 60 * 1000, maxSessions: 1 },   // 1 ชั่วโมง
+    pass899: { password: '899899', duration: 60 * 480 * 1000, maxSessions: 1 },  // 8 ชั่วโมง
+    admin168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 }, // 8 ชั่วโมง
+    god168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง
+    eqxjdg: { password: 'eqxjdg1999', duration: 60 * 480 * 1000, maxSessions: 10 }, // 8 ชั่วโมง
+    admin99: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง
+    dx: { password: '164626', duration: 60 * 2880 * 1000, maxSessions: 10 }  // ไม่จำกัดเวลา, ไม่จำกัดจำนวนคน
 };
 
 function login() {
@@ -18,12 +17,12 @@ function login() {
         const sessions = JSON.parse(localStorage.getItem('sessions')) || {};
         const currentTime = new Date().getTime();
 
-        // Remove expired sessions
+        // ลบ session ที่หมดเวลาออก
         Object.keys(sessions).forEach(user => {
             sessions[user] = sessions[user].filter(session => session + users[user].duration > currentTime);
         });
 
-        // Check if max sessions exceeded
+        // ตรวจสอบว่าจำนวน session เกินจำนวนที่อนุญาตหรือไม่
         if (sessions[username] && sessions[username].length >= users[username].maxSessions) {
             alert(`ยูสเซอร์ ${username} มีการเข้าสู่ระบบเต็มจำนวนแล้ว`);
             return;
@@ -32,7 +31,7 @@ function login() {
         const loginTime = new Date().getTime();
         const duration = users[username].duration;
 
-        // Add new session
+        // เพิ่ม session ใหม่
         if (!sessions[username]) sessions[username] = [];
         sessions[username].push(loginTime);
 
@@ -42,14 +41,15 @@ function login() {
         localStorage.setItem('duration', duration);
         document.getElementById('login').classList.add('hidden');
         document.getElementById('menu').classList.remove('hidden');
-        updateTimeLeft(); // Update the time left display
-        checkSession(); // Start checking the session
+        updateTimeLeft(); // อัพเดทเวลาที่เหลือ
+        checkSession(); // เริ่มการตรวจสอบ session
     } else {
         alert('รหัสผ่านไม่ถูกต้อง');
     }
 }
 
 function showSubMenu(subMenuId) {
+    if (!checkAccess()) return;
     document.getElementById('menu').classList.add('hidden');
     document.querySelectorAll('.sub-menu').forEach(subMenu => {
         subMenu.classList.add('hidden');
@@ -103,6 +103,7 @@ function checkSession() {
     setInterval(updateTimeLeft, 1000);
 }
 
+// ตรวจสอบสถานะการเข้าสู่ระบบเมื่อโหลดหน้า
 document.addEventListener('DOMContentLoaded', () => {
     const loginTime = localStorage.getItem('loginTime');
     const duration = localStorage.getItem('duration');
@@ -117,13 +118,50 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             logout();
         }
+    } else {
+        redirectToLogin();
     }
 });
 
-// ตัวแปรเพื่อเก็บสถานะการเข้าสู่ระบบสำเร็จสำหรับ submenu8
+function redirectToLogin() {
+    alert('คุณต้องเข้าสู่ระบบก่อนเข้าถึงเนื้อหานี้');
+    document.getElementById('login').classList.remove('hidden');
+    document.getElementById('menu').classList.add('hidden');
+    document.querySelectorAll('.sub-menu').forEach(subMenu => {
+        subMenu.classList.add('hidden');
+    });
+}
+
+function checkAccess() {
+    const loginTime = localStorage.getItem('loginTime');
+    const duration = localStorage.getItem('duration');
+    const username = localStorage.getItem('username');
+
+    if (!loginTime || !duration || !username) {
+        redirectToLogin();
+        return false;
+    }
+
+    const currentTime = new Date().getTime();
+    if (currentTime >= parseInt(loginTime, 10) + parseInt(duration, 10)) {
+        logout();
+        return false;
+    }
+
+    return true;
+}
+
+// ป้องกันการเข้าลิงก์โดยตรง
+window.addEventListener('load', function () {
+    if (!checkAccess()) {
+        redirectToLogin();
+    }
+});
+
+// ตัวแปรสถานะการปลดล็อกเมนูลับ 8
 let isSubmenu8Unlocked = false;
 
-document.getElementById('submenu8-pass').addEventListener('input', function() {
+document.getElementById('submenu8-pass').addEventListener('input', function () {
     const password = this.value;
     const errorElement = document.getElementById('password-error');
 
@@ -131,7 +169,7 @@ document.getElementById('submenu8-pass').addEventListener('input', function() {
         if (password === '164626') {
             document.getElementById('submenu8').classList.remove('hidden');
             document.getElementById('submenu8-password').classList.add('hidden');
-            isSubmenu8Unlocked = true; // ตั้งสถานะเป็นเข้าระบบสำเร็จ
+            isSubmenu8Unlocked = true; // ปลดล็อกเมนู 8
         } else {
             errorElement.classList.remove('hidden');
             setTimeout(() => {
@@ -147,23 +185,3 @@ document.getElementById('submenu8-pass').addEventListener('input', function() {
         }, 2000);
     }
 });
-
-function showSubMenu(submenuId) {
-    document.getElementById('menu').classList.add('hidden');
-    document.querySelectorAll('.sub-menu').forEach(submenu => submenu.classList.add('hidden'));
-
-    if (submenuId === 'submenu8') {
-        if (isSubmenu8Unlocked) {
-            document.getElementById('submenu8').classList.remove('hidden');
-        } else {
-            document.getElementById('submenu8-password').classList.remove('hidden');
-        }
-    } else {
-        document.getElementById(submenuId).classList.remove('hidden');
-    }
-}
-
-function backToMenu() {
-    document.querySelectorAll('.sub-menu').forEach(submenu => submenu.classList.add('hidden'));
-    document.getElementById('menu').classList.remove('hidden');
-}
