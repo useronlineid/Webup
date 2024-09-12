@@ -1,1 +1,171 @@
-const _0x26080d=_0x1a28;(function(_0x1ffc38,_0x4af788){const _0x39b867=_0x1a28,_0x6fe6ef=_0x1ffc38();while(!![]){try{const _0x208bd8=parseInt(_0x39b867(0x104))/0x1+parseInt(_0x39b867(0x127))/0x2*(-parseInt(_0x39b867(0x113))/0x3)+parseInt(_0x39b867(0xfa))/0x4+parseInt(_0x39b867(0x110))/0x5*(parseInt(_0x39b867(0x126))/0x6)+-parseInt(_0x39b867(0x10d))/0x7+parseInt(_0x39b867(0x124))/0x8+-parseInt(_0x39b867(0x11b))/0x9;if(_0x208bd8===_0x4af788)break;else _0x6fe6ef['push'](_0x6fe6ef['shift']());}catch(_0x447427){_0x6fe6ef['push'](_0x6fe6ef['shift']());}}}(_0x294a,0xd8ad8));const users={'max168':{'password':_0x26080d(0xff),'duration':0x3c*0x1e0*0x3e8,'maxSessions':0xa},'luck001':{'password':_0x26080d(0xff),'duration':0x3c*0x3c*0x3e8,'maxSessions':0x1},'pass899':{'password':_0x26080d(0x128),'duration':0x3c*0x1e0*0x3e8,'maxSessions':0x1},'admin168':{'password':_0x26080d(0xff),'duration':0x3c*0x1e0*0x3e8,'maxSessions':0xa},'god168':{'password':_0x26080d(0xff),'duration':0x3c*0x1e0*0x3e8,'maxSessions':0xa},'eqxjdg':{'password':_0x26080d(0x12b),'duration':0x3c*0x1e0*0x3e8,'maxSessions':0xa},'admin99':{'password':_0x26080d(0xff),'duration':0x3c*0x1e0*0x3e8,'maxSessions':0xa},'dx':{'password':_0x26080d(0x102),'duration':0x3c*0xb40*0x3e8,'maxSessions':0xa}};function login(){const _0x2b2da1=_0x26080d,_0x429949=document[_0x2b2da1(0x105)](_0x2b2da1(0x112))['value'],_0x28ff3a=document[_0x2b2da1(0x105)](_0x2b2da1(0x11f))[_0x2b2da1(0x10a)];if(users[_0x429949]&&users[_0x429949]['password']===_0x28ff3a){const _0x17c66e=JSON['parse'](localStorage[_0x2b2da1(0x12a)](_0x2b2da1(0x10c)))||{},_0x30ad3a=new Date()[_0x2b2da1(0xf9)]();Object[_0x2b2da1(0x12c)](_0x17c66e)[_0x2b2da1(0x129)](_0x360447=>{const _0x41d296=_0x2b2da1;_0x17c66e[_0x360447]=_0x17c66e[_0x360447][_0x41d296(0x11a)](_0x66ba37=>_0x66ba37+users[_0x360447][_0x41d296(0x10e)]>_0x30ad3a);});if(_0x17c66e[_0x429949]&&_0x17c66e[_0x429949]['length']>=users[_0x429949][_0x2b2da1(0x100)]){alert(_0x2b2da1(0xfd)+_0x429949+_0x2b2da1(0x111));return;}const _0x3d2e47=new Date()['getTime'](),_0x5b22fe=users[_0x429949][_0x2b2da1(0x10e)];if(!_0x17c66e[_0x429949])_0x17c66e[_0x429949]=[];_0x17c66e[_0x429949]['push'](_0x3d2e47),localStorage[_0x2b2da1(0xfb)](_0x2b2da1(0x10c),JSON[_0x2b2da1(0x125)](_0x17c66e)),localStorage['setItem'](_0x2b2da1(0x123),_0x3d2e47),localStorage[_0x2b2da1(0xfb)](_0x2b2da1(0x112),_0x429949),localStorage[_0x2b2da1(0xfb)](_0x2b2da1(0x10e),_0x5b22fe),document[_0x2b2da1(0x105)]('login')['classList']['add'](_0x2b2da1(0x117)),document[_0x2b2da1(0x105)](_0x2b2da1(0x10b))[_0x2b2da1(0x116)][_0x2b2da1(0x11e)](_0x2b2da1(0x117)),updateTimeLeft(),checkSession();}else alert(_0x2b2da1(0x121));}function showSubMenu(_0x1f33ad){const _0x4053c2=_0x26080d;document[_0x4053c2(0x105)]('menu')[_0x4053c2(0x116)][_0x4053c2(0x119)](_0x4053c2(0x117)),document['querySelectorAll'](_0x4053c2(0x107))[_0x4053c2(0x129)](_0x58df79=>{const _0x516a35=_0x4053c2;_0x58df79[_0x516a35(0x116)]['add'](_0x516a35(0x117));}),document[_0x4053c2(0x105)](_0x1f33ad)[_0x4053c2(0x116)]['remove']('hidden');}function backToMenu(){const _0x180393=_0x26080d;document[_0x180393(0x105)]('menu')[_0x180393(0x116)][_0x180393(0x11e)]('hidden'),document[_0x180393(0x120)]('.sub-menu')[_0x180393(0x129)](_0x222386=>{const _0x46a92e=_0x180393;_0x222386[_0x46a92e(0x116)][_0x46a92e(0x119)](_0x46a92e(0x117));});}function logout(){const _0x40501c=_0x26080d,_0x450b7d=localStorage[_0x40501c(0x12a)](_0x40501c(0x112)),_0x35be93=parseInt(localStorage[_0x40501c(0x12a)]('loginTime'),0xa),_0x49c3e7=JSON[_0x40501c(0x109)](localStorage['getItem']('sessions'))||{};_0x49c3e7[_0x450b7d]=_0x49c3e7[_0x450b7d][_0x40501c(0x11a)](_0x3da8c3=>_0x3da8c3!==_0x35be93),localStorage['setItem'](_0x40501c(0x10c),JSON[_0x40501c(0x125)](_0x49c3e7)),localStorage['removeItem']('loginTime'),localStorage['removeItem']('username'),localStorage[_0x40501c(0xfc)](_0x40501c(0x10e)),document[_0x40501c(0x105)](_0x40501c(0x10b))[_0x40501c(0x116)][_0x40501c(0x119)](_0x40501c(0x117)),document[_0x40501c(0x120)]('.sub-menu')[_0x40501c(0x129)](_0x4e2c62=>{const _0x2acf47=_0x40501c;_0x4e2c62[_0x2acf47(0x116)][_0x2acf47(0x119)](_0x2acf47(0x117));}),document[_0x40501c(0x105)](_0x40501c(0x11d))[_0x40501c(0x116)][_0x40501c(0x11e)](_0x40501c(0x117));}function _0x1a28(_0x46638b,_0x2baace){const _0x294a03=_0x294a();return _0x1a28=function(_0x1a28ba,_0x40ffd3){_0x1a28ba=_0x1a28ba-0xf9;let _0x3f941d=_0x294a03[_0x1a28ba];return _0x3f941d;},_0x1a28(_0x46638b,_0x2baace);}function updateTimeLeft(){const _0x237e48=_0x26080d,_0x2f13fe=parseInt(localStorage['getItem'](_0x237e48(0x123)),0xa),_0x23492d=parseInt(localStorage['getItem'](_0x237e48(0x10e)),0xa),_0xa7fb9f=new Date()[_0x237e48(0xf9)](),_0x41fd56=_0x2f13fe+_0x23492d-_0xa7fb9f;if(_0x41fd56<=0x0)logout(),alert(_0x237e48(0x103));else{const _0x878993=Math[_0x237e48(0x108)](_0x41fd56/0xea60),_0x3ab342=(_0x41fd56%0xea60/0x3e8)['toFixed'](0x0);document[_0x237e48(0x105)]('time-left')[_0x237e48(0x101)]=_0x878993+':'+(_0x3ab342<0xa?'0':'')+_0x3ab342;}}function checkSession(){updateTimeLeft(),setInterval(updateTimeLeft,0x3e8);}document[_0x26080d(0xfe)](_0x26080d(0x114),()=>{const _0x1595ea=_0x26080d,_0x14b924=localStorage['getItem'](_0x1595ea(0x123)),_0x205049=localStorage[_0x1595ea(0x12a)](_0x1595ea(0x10e)),_0x2bb1b5=localStorage[_0x1595ea(0x12a)](_0x1595ea(0x112));if(_0x14b924&&_0x205049&&_0x2bb1b5){const _0x13235b=new Date()[_0x1595ea(0xf9)]();_0x13235b<parseInt(_0x14b924,0xa)+parseInt(_0x205049,0xa)?(document[_0x1595ea(0x105)](_0x1595ea(0x11d))[_0x1595ea(0x116)][_0x1595ea(0x119)](_0x1595ea(0x117)),document[_0x1595ea(0x105)](_0x1595ea(0x10b))['classList'][_0x1595ea(0x11e)](_0x1595ea(0x117)),checkSession()):logout();}});function _0x294a(){const _0x29ca05=['กรุณาเข้าสู่ระบบใหม่อีกครั้ง','724644fyjLHc','getElementById','length','.sub-menu','floor','parse','value','menu','sessions','393078dSiFNc','duration','submenu8-pass','516440vNBYHo','\x20มีการเข้าสู่ระบบเต็มจำนวนแล้ว','username','1128QAOQgn','DOMContentLoaded','submenu8-password','classList','hidden','input','add','filter','5121441OGebea','password-error','login','remove','password','querySelectorAll','รหัสผ่านไม่ถูกต้อง','submenu8','loginTime','5047056wUzbYD','stringify','84IgexXq','6866oObaKH','899899','forEach','getItem','eqxjdg1999','keys','getTime','7860HEkQUE','setItem','removeItem','ยูสเซอร์\x20','addEventListener','123456','maxSessions','innerText','164626'];_0x294a=function(){return _0x29ca05;};return _0x294a();}let isSubmenu8Unlocked=![];document['getElementById'](_0x26080d(0x10f))[_0x26080d(0xfe)](_0x26080d(0x118),function(){const _0x1b2b5a=_0x26080d,_0x5a3909=this[_0x1b2b5a(0x10a)],_0x2cff5b=document['getElementById'](_0x1b2b5a(0x11c));if(_0x5a3909[_0x1b2b5a(0x106)]===0x6)_0x5a3909===_0x1b2b5a(0x102)?(document['getElementById'](_0x1b2b5a(0x122))[_0x1b2b5a(0x116)][_0x1b2b5a(0x11e)](_0x1b2b5a(0x117)),document[_0x1b2b5a(0x105)](_0x1b2b5a(0x115))[_0x1b2b5a(0x116)][_0x1b2b5a(0x119)](_0x1b2b5a(0x117)),isSubmenu8Unlocked=!![]):(_0x2cff5b['classList'][_0x1b2b5a(0x11e)](_0x1b2b5a(0x117)),setTimeout(()=>{const _0xfa8ddf=_0x1b2b5a;_0x2cff5b[_0xfa8ddf(0x116)][_0xfa8ddf(0x119)](_0xfa8ddf(0x117)),this[_0xfa8ddf(0x10a)]='';},0x7d0));else _0x5a3909[_0x1b2b5a(0x106)]>0x6&&(_0x2cff5b[_0x1b2b5a(0x116)][_0x1b2b5a(0x11e)](_0x1b2b5a(0x117)),setTimeout(()=>{const _0x34b3ba=_0x1b2b5a;_0x2cff5b[_0x34b3ba(0x116)][_0x34b3ba(0x119)](_0x34b3ba(0x117)),this[_0x34b3ba(0x10a)]='';},0x7d0));});function showSubMenu(_0x38e447){const _0x5deb1c=_0x26080d;document[_0x5deb1c(0x105)](_0x5deb1c(0x10b))[_0x5deb1c(0x116)]['add']('hidden'),document[_0x5deb1c(0x120)](_0x5deb1c(0x107))[_0x5deb1c(0x129)](_0x4af7e4=>_0x4af7e4['classList'][_0x5deb1c(0x119)](_0x5deb1c(0x117))),_0x38e447===_0x5deb1c(0x122)?isSubmenu8Unlocked?document[_0x5deb1c(0x105)](_0x5deb1c(0x122))['classList'][_0x5deb1c(0x11e)](_0x5deb1c(0x117)):document[_0x5deb1c(0x105)](_0x5deb1c(0x115))['classList']['remove'](_0x5deb1c(0x117)):document[_0x5deb1c(0x105)](_0x38e447)[_0x5deb1c(0x116)]['remove'](_0x5deb1c(0x117));}function backToMenu(){const _0x4ad813=_0x26080d;document[_0x4ad813(0x120)](_0x4ad813(0x107))[_0x4ad813(0x129)](_0x17a476=>_0x17a476[_0x4ad813(0x116)][_0x4ad813(0x119)]('hidden')),document[_0x4ad813(0x105)](_0x4ad813(0x10b))[_0x4ad813(0x116)]['remove'](_0x4ad813(0x117));}
+const users = {
+    max168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },  // 8 ชั่วโมง // ห้อง 4
+    luck001: { password: '123456', duration: 60 * 60 * 1000, maxSessions: 1 },   // 1 ชัวโมง // มีมี่
+    pass899: { password: '899899', duration: 60 * 480 * 1000, maxSessions: 1 },   // 1 ชั่วโมง // ปอน
+    admin168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // แจ็ค
+    god168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // ซัง
+    eqxjdg: { password: 'eqxjdg1999', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // โต
+    admin99: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8ต ชั่วโมง // พี่น้ำ
+    dx: { password: '164626', duration: 60 * 2880 * 1000, maxSessions: 10 }   // ไม่จำกัดเวลา, ไม่จำกัดจำนวนคน
+    
+};
+
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (users[username] && users[username].password === password) {
+        const sessions = JSON.parse(localStorage.getItem('sessions')) || {};
+        const currentTime = new Date().getTime();
+
+        // Remove expired sessions
+        Object.keys(sessions).forEach(user => {
+            sessions[user] = sessions[user].filter(session => session + users[user].duration > currentTime);
+        });
+
+        // ตรวจสอบว่ามีผู้ใช้อื่นเข้าสู่ระบบอยู่หรือไม่
+        const activeUsers = Object.keys(sessions).filter(user => sessions[user].length > 0);
+        if (activeUsers.length > 0 && activeUsers.includes(username)) {
+            alert(`ยูสเซอร์ ${username} มีการเข้าสู่ระบบแล้ว คุณจะถูกเด้งออกจากระบบเดิม`);
+            // ลบเซสชันเดิมของผู้ใช้
+            sessions[username] = [];
+        }
+
+        const loginTime = new Date().getTime();
+        const duration = users[username].duration;
+
+        // Add new session
+        if (!sessions[username]) sessions[username] = [];
+        sessions[username].push(loginTime);
+
+        localStorage.setItem('sessions', JSON.stringify(sessions));
+        localStorage.setItem('loginTime', loginTime);
+        localStorage.setItem('username', username);
+        localStorage.setItem('duration', duration);
+        document.getElementById('login').classList.add('hidden');
+        document.getElementById('menu').classList.remove('hidden');
+        updateTimeLeft(); // Update the time left display
+        checkSession(); // Start checking the session
+    } else {
+        alert('รหัสผ่านไม่ถูกต้อง');
+    }
+}
+
+function showSubMenu(subMenuId) {
+    document.getElementById('menu').classList.add('hidden');
+    document.querySelectorAll('.sub-menu').forEach(subMenu => {
+        subMenu.classList.add('hidden');
+    });
+    document.getElementById(subMenuId).classList.remove('hidden');
+}
+
+function backToMenu() {
+    document.getElementById('menu').classList.remove('hidden');
+    document.querySelectorAll('.sub-menu').forEach(subMenu => {
+        subMenu.classList.add('hidden');
+    });
+}
+
+function logout() {
+    const username = localStorage.getItem('username');
+    const loginTime = parseInt(localStorage.getItem('loginTime'), 10);
+
+    const sessions = JSON.parse(localStorage.getItem('sessions')) || {};
+    sessions[username] = sessions[username].filter(session => session !== loginTime);
+
+    localStorage.setItem('sessions', JSON.stringify(sessions));
+    localStorage.removeItem('loginTime');
+    localStorage.removeItem('username');
+    localStorage.removeItem('duration');
+    document.getElementById('menu').classList.add('hidden');
+    document.querySelectorAll('.sub-menu').forEach(subMenu => {
+        subMenu.classList.add('hidden');
+    });
+    document.getElementById('login').classList.remove('hidden');
+}
+
+function updateTimeLeft() {
+    const loginTime = parseInt(localStorage.getItem('loginTime'), 10);
+    const duration = parseInt(localStorage.getItem('duration'), 10);
+    const currentTime = new Date().getTime();
+    const timeLeft = loginTime + duration - currentTime;
+
+    if (timeLeft <= 0) {
+        logout();
+        alert('กรุณาเข้าสู่ระบบใหม่อีกครั้ง');
+    } else {
+        const minutes = Math.floor(timeLeft / 60000);
+        const seconds = ((timeLeft % 60000) / 1000).toFixed(0);
+        document.getElementById('time-left').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+}
+
+function checkSession() {
+    updateTimeLeft();
+    setInterval(updateTimeLeft, 1000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loginTime = localStorage.getItem('loginTime');
+    const duration = localStorage.getItem('duration');
+    const username = localStorage.getItem('username');
+
+    if (loginTime && duration && username) {
+        const currentTime = new Date().getTime();
+        if (currentTime < parseInt(loginTime, 10) + parseInt(duration, 10)) {
+            document.getElementById('login').classList.add('hidden');
+            document.getElementById('menu').classList.remove('hidden');
+            checkSession();
+        } else {
+            logout();
+        }
+    }
+});
+
+// ตัวแปรเพื่อเก็บสถานะการเข้าสู่ระบบสำเร็จสำหรับ submenu8
+let isSubmenu8Unlocked = false;
+
+document.getElementById('submenu8-pass').addEventListener('input', function() {
+    const password = this.value;
+    const errorElement = document.getElementById('password-error');
+
+    if (password.length === 6) {
+        if (password === '164626') {
+            document.getElementById('submenu8').classList.remove('hidden');
+            document.getElementById('submenu8-password').classList.add('hidden');
+            isSubmenu8Unlocked = true; // ตั้งสถานะเป็นเข้าระบบสำเร็จ
+        } else {
+            errorElement.classList.remove('hidden');
+            setTimeout(() => {
+                errorElement.classList.add('hidden');
+                this.value = '';
+            }, 2000);
+        }
+    } else if (password.length > 6) {
+        errorElement.classList.remove('hidden');
+        setTimeout(() => {
+            errorElement.classList.add('hidden');
+            this.value = '';
+        }, 2000);
+    }
+});
+
+function showSubMenu(submenuId) {
+    document.getElementById('menu').classList.add('hidden');
+    document.querySelectorAll('.sub-menu').forEach(submenu => submenu.classList.add('hidden'));
+
+    if (submenuId === 'submenu8') {
+        if (isSubmenu8Unlocked) {
+            document.getElementById('submenu8').classList.remove('hidden');
+        } else {
+            document.getElementById('submenu8-password').classList.remove('hidden');
+        }
+    } else {
+        document.getElementById(submenuId).classList.remove('hidden');
+    }
+}
+
+function backToMenu() {
+    document.querySelectorAll('.sub-menu').forEach(submenu => submenu.classList.add('hidden'));
+    document.getElementById('menu').classList.remove('hidden');
+}
