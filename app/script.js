@@ -23,12 +23,10 @@ function login() {
             sessions[user] = sessions[user].filter(session => session + users[user].duration > currentTime);
         });
 
-        // ตรวจสอบว่ามีผู้ใช้อื่นเข้าสู่ระบบอยู่หรือไม่
-        const activeUsers = Object.keys(sessions).filter(user => sessions[user].length > 0);
-        if (activeUsers.length > 0 && activeUsers.includes(username)) {
-            alert(`ยูสเซอร์ ${username} มีการเข้าสู่ระบบแล้ว คุณจะถูกเด้งออกจากระบบเดิม`);
-            // ลบเซสชันเดิมของผู้ใช้
-            sessions[username] = [];
+        // Check if max sessions exceeded
+        if (sessions[username] && sessions[username].length >= users[username].maxSessions) {
+            alert(`ยูสเซอร์ ${username} มีการเข้าสู่ระบบเต็มจำนวนแล้ว`);
+            return;
         }
 
         const loginTime = new Date().getTime();
