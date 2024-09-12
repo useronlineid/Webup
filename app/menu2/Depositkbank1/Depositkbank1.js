@@ -214,7 +214,7 @@ function updateDisplay() {
 
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '/assets/image/background-Depositkbank.jpg';
+    backgroundImage.src = './assets/image/bs/background-Depositkbank.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
