@@ -63,7 +63,7 @@ function loadFonts() {
 
 // เรียกใช้ฟังก์ชันเพื่อโหลดฟอนต์หลังจากหน้าเว็บถูกโหลด
 window.onload = function() {
-    
+    setCurrentDateTime();
     // โหลดฟอนต์และอัปเดตการแสดงผล
     loadFonts().then(function() {
         // ใช้ document.fonts.ready เพื่อให้มั่นใจว่าฟอนต์ถูกโหลดทั้งหมด
