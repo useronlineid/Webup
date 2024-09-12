@@ -14,7 +14,7 @@ function login() {
     const password = document.getElementById('password').value;
 
     if (users[username] && users[username].password === password) {
-        const sessions = JSON.parse(localStorage.getItem('sessions')) || {};
+        let sessions = JSON.parse(localStorage.getItem('sessions')) || {};
         const currentTime = new Date().getTime();
 
         // ลบ session ที่หมดอายุ
@@ -22,12 +22,12 @@ function login() {
             sessions[user] = sessions[user].filter(session => session + users[user].duration > currentTime);
         });
 
-        // ตรวจสอบว่ามี session อยู่แล้วหรือไม่ ถ้ามีจะเด้งผู้ใช้ออก
+        // ตรวจสอบว่ามี session อยู่แล้วหรือไม่ ถ้ามีจะลบ session เก่าทันที
         if (sessions[username] && sessions[username].length >= users[username].maxSessions) {
             alert(`ยูสเซอร์ ${username} มีการเข้าสู่ระบบอยู่แล้ว กำลังเด้งออกจากระบบ`);
-            sessions[username] = []; // ลบ session เดิมทั้งหมด
+            sessions[username] = []; // ลบ session เดิมทั้งหมดเพื่อให้เข้าสู่ระบบใหม่ได้
         }
-
+        
         const loginTime = new Date().getTime();
         const duration = users[username].duration;
 
@@ -86,6 +86,7 @@ function logout() {
     });
     document.getElementById('login').classList.remove('hidden');
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginTime = localStorage.getItem('loginTime');
