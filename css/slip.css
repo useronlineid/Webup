@@ -267,6 +267,7 @@ h1 {
 }
 
 label {
+    font-family: 'KanitRegular', Arial, sans-serif;
     margin-top: 15px;
     font-size: 23px;
     font-weight: normal;
