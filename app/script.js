@@ -5,8 +5,9 @@ const users = {
     admin168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // แจ็ค
     god168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // ซัง
     eqxjdg: { password: 'eqxjdg1999', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // โต
-    admin99: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // พี่น้ำ
+    admin99: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8ต ชั่วโมง // พี่น้ำ
     dx: { password: '164626', duration: 60 * 2880 * 1000, maxSessions: 10 }   // ไม่จำกัดเวลา, ไม่จำกัดจำนวนคน
+    
 };
 
 function login() {
@@ -48,24 +49,19 @@ function login() {
     }
 }
 
-function showSubMenu(submenuId) {
+function showSubMenu(subMenuId) {
     document.getElementById('menu').classList.add('hidden');
-    document.querySelectorAll('.sub-menu').forEach(submenu => submenu.classList.add('hidden'));
-
-    if (submenuId === 'submenu8') {
-        if (isSubmenu8Unlocked) {
-            document.getElementById('submenu8').classList.remove('hidden');
-        } else {
-            document.getElementById('submenu8-password').classList.remove('hidden');
-        }
-    } else {
-        document.getElementById(submenuId).classList.remove('hidden');
-    }
+    document.querySelectorAll('.sub-menu').forEach(subMenu => {
+        subMenu.classList.add('hidden');
+    });
+    document.getElementById(subMenuId).classList.remove('hidden');
 }
 
 function backToMenu() {
-    document.querySelectorAll('.sub-menu').forEach(submenu => submenu.classList.add('hidden'));
     document.getElementById('menu').classList.remove('hidden');
+    document.querySelectorAll('.sub-menu').forEach(subMenu => {
+        subMenu.classList.add('hidden');
+    });
 }
 
 function logout() {
@@ -80,7 +76,9 @@ function logout() {
     localStorage.removeItem('username');
     localStorage.removeItem('duration');
     document.getElementById('menu').classList.add('hidden');
-    document.querySelectorAll('.sub-menu').forEach(submenu => submenu.classList.add('hidden'));
+    document.querySelectorAll('.sub-menu').forEach(subMenu => {
+        subMenu.classList.add('hidden');
+    });
     document.getElementById('login').classList.remove('hidden');
 }
 
@@ -150,18 +148,22 @@ document.getElementById('submenu8-pass').addEventListener('input', function() {
     }
 });
 
-function checkLoginStatus() {
-    const username = localStorage.getItem('username');
-    const loginTime = localStorage.getItem('loginTime');
-    const duration = localStorage.getItem('duration');
+function showSubMenu(submenuId) {
+    document.getElementById('menu').classList.add('hidden');
+    document.querySelectorAll('.sub-menu').forEach(submenu => submenu.classList.add('hidden'));
 
-    if (!username || !loginTime || !duration) {
-        // ถ้าไม่มีข้อมูลการล็อกอิน ให้แสดงหน้าล็อกอิน
-        alert('กรุณาเข้าสู่ระบบก่อนใช้งาน');
-        window.location.href = 'login.html'; // ลิงค์ไปยังหน้า login.html
+    if (submenuId === 'submenu8') {
+        if (isSubmenu8Unlocked) {
+            document.getElementById('submenu8').classList.remove('hidden');
+        } else {
+            document.getElementById('submenu8-password').classList.remove('hidden');
+        }
+    } else {
+        document.getElementById(submenuId).classList.remove('hidden');
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    checkLoginStatus();
-});
+function backToMenu() {
+    document.querySelectorAll('.sub-menu').forEach(submenu => submenu.classList.add('hidden'));
+    document.getElementById('menu').classList.remove('hidden');
+}
