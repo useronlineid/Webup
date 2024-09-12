@@ -63,13 +63,16 @@ function loadFonts() {
 
 // เรียกใช้ฟังก์ชันเพื่อโหลดฟอนต์หลังจากหน้าเว็บถูกโหลด
 window.onload = function() {
-    setCurrentDateTime();
-    updateDisplay(); // แสดงผลทันทีเมื่อหน้าเว็บโหลด
-
+    
+    // โหลดฟอนต์และอัปเดตการแสดงผล
     loadFonts().then(function() {
-        document.fonts.onloadingdone = function() {
-            updateDisplay(); // วาดใหม่ด้วยฟอนต์ที่ถูกต้องเมื่อฟอนต์ถูกโหลดครบแล้ว
-        };
+        // ใช้ document.fonts.ready เพื่อให้มั่นใจว่าฟอนต์ถูกโหลดทั้งหมด
+        document.fonts.ready.then(function() {
+            updateDisplay(); // วาดใหม่ด้วยฟอนต์ที่ถูกต้องหลังจากฟอนต์ถูกโหลดเสร็จ
+        });
+    }).catch(function() {
+        // หากฟอนต์โหลดไม่สำเร็จ จะยังคงแสดงผลได้
+        updateDisplay();
     });
 };
 
