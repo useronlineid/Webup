@@ -5,7 +5,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-image: url('https://github.com/useronlineid/webapp/blob/main/A-background.jpg?raw=true'); /* ลิงค์รูปภาพพื้นหลัง */
+    background: linear-gradient(135deg, #4a5a6a, #3a4d5b, #2f3e4c, #263340);
     background-size: cover;
     background-position: center;
     margin: 0;
