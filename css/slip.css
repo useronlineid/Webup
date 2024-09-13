@@ -136,6 +136,29 @@
     src: url('../assets/fonts/Bangkok-Money-Bold.woff') format('woff');
 }
 
+/* TTB-Money */
+@font-face {
+    font-family: 'TTBMoneyRegular';
+    src: url('../assets/fonts/TTB-Money-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'TTBMoneyMedium';
+    src: url('../assets/fonts/TTB-Money-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'TTBMoneySemiBold';
+    src: url('../assets/fonts/TTB-Money-SemiBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'TTBMoneyBold';
+    src: url('../assets/fonts/TTB-Money-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'TTBMoneyExtraBold';
+    src: url('../assets/fonts/TTB-Money-ExtraBold.woff') format('woff');
+}
+
+
 /* THSarabunNew */
 
 @font-face {
