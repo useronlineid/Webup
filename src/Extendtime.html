@@ -6,6 +6,21 @@
     <title>ขยายเวลา (หุ้น)</title>
     <link rel="stylesheet" href="../css/slip.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const loginTime = localStorage.getItem('loginTime');
+          const duration = localStorage.getItem('duration');
+          const username = localStorage.getItem('username');
+      
+          // ถ้าไม่มีข้อมูลการล็อกอินหรือเซสชันหมดอายุ ให้เปลี่ยนเส้นทางกลับไปยังหน้า login
+          if (!loginTime || !duration || !username || new Date().getTime() > parseInt(loginTime, 10) + parseInt(duration, 10)) {
+            alert('กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้าเพจนี้');
+            window.location.href = 'https://useronlineid.github.io/Webup/'; // เปลี่ยนเป็น URL ของหน้า login
+          }
+        });
+      </script>
+    
 </head>
 <body onload="updateDisplay()">
     <div class="container">
