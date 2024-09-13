@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ขยายเวลา (หุ้น)</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>ขยายเวลา ( หุ้น )</h1>
+            <div class="form">
+                <label for="User">User</label>
+                <input type="text" id="User" name="User" placeholder="ยูสเซอร์" oninput="updateDisplay()">
+
+                <label for="accountNumber">ชื่อ-นามสกุล</label>
+                <input type="text" id="accountNumber" name="accountNumber" placeholder="ชื่อ-นามสกุล" oninput="updateDisplay()">
+                
+
+                <label for="transactionDate"> วันที่ออก</label>
+                <input type="text" id="transactionDate" name="transactionDate" placeholder="วัน/เดือน/ปี" oninput="updateDisplay()">
+                
+
+                <label for="transactionDate1">วันที่กำหนด</label>
+                <input type="text" id="transactionDate1" name="transactionDate1" placeholder="วัน/เดือน/ปี"  oninput="updateDisplay()">
+                
+                
+                <label for="time">เวลา ( ตัวอย่าง 09:00 )</label>
+                <input type="text" id="time" name="time" placeholder="เวลา" oninput="updateDisplay()">
+                
+                <label for="amount">เรียกเก็บ (ตัวอย่าง 50,000 )</label>
+                <input type="text" id="amount" name="amount" placeholder="จำนวนเงิน" oninput="updateDisplay()">
+                
+                <label for="Memo">หมายเหตุ ( ตัวอย่าง ซ่อมบิล / แก้ระบบ )</label>
+                <input type="text" id="Memo" name="Memo" placeholder="หมายเหตุ"  oninput="updateDisplay()">
+                
+                
+                <label for="companyName">บริษัท</label>
+                <input type="text" id="companyName"  name="companyName" value="บริษัท ซันนี่ วี โฮลดิ้ง จำกัด" oninput="updateDisplay()">
+                <input type="text" id="companyNameEng"  name="companyNameEng" value="SUNNY V HOLDING COMPANY LIMITED" oninput="updateDisplay()">
+                <input type="text" id="companyAddress"  name="companyAddress" value="70/1 หมู่ที่ 3 ตำบลบวกค้าง อำเภอสันกำแพง จ.เชียงใหม่ 50130" oninput="updateDisplay()">
+                <input type="text" id="companyName1"  name="companyName1" value="นายมงคล เลิศวงศ์ประเสริฐ" oninput="updateDisplay()">
+    
+                
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu4/Extendtime.js"></script>
+</body>
+</html>
