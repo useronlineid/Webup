@@ -118,6 +118,23 @@
     font-family: 'BangkokTime';
     src: url('../assets/fonts/Bangkok-Time.woff') format('woff');
 }
+/* BangkokMoney */
+@font-face {
+    font-family: 'BangkokMoneyRegular';
+    src: url('../assets/fonts/Bangkok-Money-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'BangkokMoneyMedium';
+    src: url('../assets/fonts/Bangkok-Money-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'BangkokMoneySemiBold';
+    src: url('../assets/fonts/Bangkok-Money-SemiBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'BangkokMoneyBold';
+    src: url('../assets/fonts/Bangkok-Money-Bold.woff') format('woff');
+}
 
 /* THSarabunNew */
 
