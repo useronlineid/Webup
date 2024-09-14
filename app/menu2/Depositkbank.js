@@ -65,6 +65,8 @@ function loadFonts() {
 window.onload = function() {
     setCurrentDateTime();
     // โหลดฟอนต์และอัปเดตการแสดงผล
+    updateMonthAndYear(); // อัพเดทเดือนและปีทุกครั้งที่โหลดหน้าเว็บ
+
     loadFonts().then(function() {
         // ใช้ document.fonts.ready เพื่อให้มั่นใจว่าฟอนต์ถูกโหลดทั้งหมด
         document.fonts.ready.then(function() {
@@ -87,6 +89,31 @@ function setCurrentDateTime() {
 function padZero(number) {
     return number < 10 ? '0' + number : number;
 }
+
+//เปลี่ยน monthandyear และ monthmonthyear เป็นว/ด/ปี ปัจจุบัน
+function updateMonthAndYear() {
+    const today = new Date();
+    
+    // ชื่อเดือนแบบเต็มสำหรับ `monthandyear`
+    const shortThaiMonths = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+    
+    // ชื่อเดือนแบบย่อสำหรับ `monthmonthyear`
+    const fullThaiMonths = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+
+    const day = today.getDate(); // แสดงวันโดยไม่ใส่ศูนย์ข้างหน้า
+    const shortMonth = shortThaiMonths[today.getMonth()]; // ชื่อเดือนเต็ม
+    const fullMonth = fullThaiMonths[today.getMonth()]; // ชื่อเดือนย่อ
+    const year = today.getFullYear() + 543; // แปลงปีเป็น พ.ศ.
+
+    // อัพเดทสำหรับ `monthandyear` (รูปแบบ เดือนย่อ ปี)
+    const monthAndYear = `${shortMonth} ${year % 100}`; // ตัดปีให้เหลือแค่สองหลัก
+    document.getElementById('monthandyear').value = monthAndYear;
+
+    // อัพเดทสำหรับ `monthmonthyear` (รูปแบบ วัน เดือนเต็ม ปี โดยไม่มีศูนย์ข้างหน้าในวัน)
+    const monthMonthYear = `${day} ${fullMonth} ${year % 100}`;
+    document.getElementById('monthmonthyear').value = monthMonthYear;
+}
+//
 
 function formatDate(date) {
     const options = { day: 'numeric', month: 'short', year: '2-digit' };
