@@ -311,7 +311,7 @@ function updateDisplay() {
         drawText(ctx, `${monthmonthyear}`, 21.8, 472.1,18.03, 'TTBMoneyMedium', '#747f90', 'left', 1.5, 3, 0, 0, 800, 0);
 
         
-        drawText(ctx, `${choose1}`, 43.3, 534.8,24, 'TTBMoneyBold', '#0f2c5f', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${choose1}`, 43.3, 534.8,24, 'TTBMoneySemiBold', '#0f2c5f', 'left', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${money1}`, 80.0, 534.8,22, 'TTBMoneyBold', textColor1, 'right', 1.5, 3, 0, 0, 800, -0.50);
         drawText(ctx, `${monthmonthyear}, ${time1} น.`, 43.3, 573.4,18.03, 'TTBMoneyMedium', '#747f90', 'left', 1.5, 3, 0, 0, 800, 0);
 
@@ -319,21 +319,21 @@ function updateDisplay() {
         drawText(ctx, `${name1}`, 40.6,  668.7,19.65,'TTBMoneyMedium', '#0f2c5f', 'right', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${bank1}`, 40.6, 705.5,19.65, 'TTBMoneyMedium', '#0f2c5f', 'right', 1.5, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `${choose2}`, 43.3, 813.4,24, 'TTBMoneyBold', '#0f2c5f', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${choose2}`, 43.3, 813.4,24, 'TTBMoneySemiBold', '#0f2c5f', 'left', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${money2}`, 80.0, 813.4,22, 'TTBMoneyBold', textColor2, 'right', 1.5, 3, 0, 0, 800, -0.50);
         drawText(ctx, `${monthmonthyear}, ${time2} น.`, 43.3, 851.3,18.03, 'TTBMoneyMedium', '#747f90', 'left', 1.5, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `${choose3}`, 43.3, 937.2,24, 'TTBMoneyBold', '#0f2c5f', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${choose3}`, 43.3, 937.2,24, 'TTBMoneySemiBold', '#0f2c5f', 'left', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${money3}`, 80.0, 937.2,22, 'TTBMoneyBold', textColor3, 'right', 1.5, 3, 0, 0, 800, -0.50);
         drawText(ctx, `${monthmonthyear}, ${time3} น.`, 43.3, 975.9,18.03, 'TTBMoneyMedium', '#747f90', 'left', 1.5, 3, 0, 0, 800, -0.50);
 
-        drawText(ctx, `${choose4}`, 43.3, 1061.4,24, 'TTBMoneyBold', '#0f2c5f', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${choose4}`, 43.3, 1061.4,24, 'TTBMoneySemiBold', '#0f2c5f', 'left', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${money4}`, 80.0, 1061.4,22, 'TTBMoneyBold', textColor4, 'right', 1.5, 3, 0, 0, 800, -0.50);
         drawText(ctx, `${monthmonthyear}, ${time4} น.`, 43.3, 1100.1,18.03,'TTBMoneyMedium', '#747f90', 'left', 1.5, 3, 0, 0, 800, 0);
 
 
 
-        drawText(ctx, `${choose5}`, 43.3, 1185.3,24, 'TTBMoneyBold', '#0f2c5f', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${choose5}`, 43.3, 1185.3,24, 'TTBMoneySemiBold', '#0f2c5f', 'left', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${money5}`, 80.0, 1185.3,22, 'TTBMoneyBold', textColor5, 'right', 1.5, 3, 0, 0, 800, 0);
         
 
