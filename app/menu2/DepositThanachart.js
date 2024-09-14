@@ -307,7 +307,7 @@ function updateDisplay() {
         }
         
         
-        drawText(ctx, `${monthandyear}`, 34.9, 311,22, 'DXTTBBold', '#0f2c5f', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${monthandyear}`, 36, 311,22, 'DXTTBRegular', '#0f2c5f', 'left', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${monthmonthyear}`, 21.8, 472.1,18.03, 'DXTTBRegular', '#747f90', 'left', 1.5, 3, 0, 0, 800, 0);
 
         
