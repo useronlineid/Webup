@@ -80,7 +80,7 @@
 }
 @font-face {
     font-family: 'KanitMedium';
-    src: url('./assets/fonts/Kanit-Medium.woff') format('woff');
+    src: url('../assets/fonts/Kanit-Medium.woff') format('woff');
 }
 @font-face {
     font-family: 'KanitSemiBold';
@@ -228,7 +228,7 @@
 
 @font-face {
     font-family: 'DXKrungthaiBold';
-    src: url('./assets/fonts/DX-Krungthai-Bold.woff') format('woff');
+    src: url('../assets/fonts/DX-Krungthai-Bold.woff') format('woff');
 }
 
 @font-face {
@@ -238,7 +238,7 @@
 
 @font-face {
     font-family: 'DXKrungthaiRegular';
-    src: url('./assets/fonts/DX-Krungthai-Regular.woff') format('woff');
+    src: url('../assets/fonts/DX-Krungthai-Regular.woff') format('woff');
 }
 @font-face {
     font-family: 'TTBMoney';
