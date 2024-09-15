@@ -32,7 +32,34 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-        
+// ปิดการคลิกขวา
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+
+// ปิดการใช้ Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
+document.addEventListener('keydown', function(e) {
+    if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+        e.preventDefault();
+    }
+});
+
+// ตรวจสอบว่ามีการเปิด Developer Tools หรือไม่
+function detectDevTools() {
+    const before = new Date().getTime();
+    debugger; // หยุดการทำงานของโค้ดเพื่อทดสอบ Developer Tools
+    const after = new Date().getTime();
+
+    // ถ้าช่วงเวลานี้นานกว่าค่าที่กำหนด แสดงว่า DevTools เปิดอยู่
+    if (after - before > 100) {
+        alert('Developer Tools ถูกเปิด!');
+        window.history.back(); // กลับไปยังหน้าก่อนหน้านี้
+    }
+}
+
+// ทำการตรวจสอบทุก ๆ 500 มิลลิวินาที
+setInterval(detectDevTools, 500);
+
 
       </script>
 
