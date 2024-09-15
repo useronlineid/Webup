@@ -20,42 +20,16 @@
           }
         });
 
-// ปิดการคลิกขวา
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault(); 
-});
+      document.addEventListener('contextmenu', function(e) {
+          e.preventDefault(); // ปิดการคลิกขวา
+      });
 
-// ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
-document.addEventListener('keydown', function(e) {
-    if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
-        e.preventDefault();
-    }
-});
-
-// ฟังก์ชันตรวจจับ Developer Tools เปิดหรือไม่
-function detectDevTools(isOpen) {
-    if (isOpen) {
-        // Redirect กลับไปยังหน้าเดิม (เช่น หน้า Home หรือหน้าอื่นๆ)
-        window.location.href = 'https://yourpreviouspage.com'; // เปลี่ยนลิงก์เป็นหน้าที่คุณต้องการ
-    }
-}
-
-// ฟังก์ชันตรวจจับ Developer Tools โดยใช้ console.log
-(function() {
-    let devtools = {open: false};
-    const element = new Image();
-    Object.defineProperty(devtools, 'open', {
-        get: function() {
-            return true;
-        }
-    });
-    setInterval(function() {
-        console.clear();
-        console.log(element);
-        detectDevTools(devtools.open); // เรียกใช้ฟังก์ชันตรวจจับ
-    }, 1000);
-})();
-
+      document.addEventListener('keydown', function(e) {
+          // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
+          if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+              e.preventDefault();
+          }
+      });
 
       </script>
 
