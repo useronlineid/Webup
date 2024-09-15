@@ -31,6 +31,15 @@
           }
       });
 
+        (function() {
+    var threshold = 160; // ความสูงหน้าจอที่ใช้ตรวจจับการเปิด Developer Tools
+
+    setInterval(function() {
+        if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
+            alert("โปรดปิด Developer Tools เพื่อใช้งานเว็บไซต์นี้");
+        }
+    }, 1000); // ตรวจสอบทุกๆ วินาที
+})();
         
       </script>
 
