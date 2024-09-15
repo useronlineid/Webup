@@ -229,7 +229,7 @@ function updateDisplay() {
                 const customImage = new Image();
                 customImage.src = selectedImage;
                 customImage.onload = function() {
-                    ctx.drawImage(customImage, 0, 0, 842, 1200); // Adjust the position and size as needed
+                    ctx.drawImage(customImage, 0, 0, 617, 1280); // Adjust the position and size as needed
                 }
             }
             //ถึงที่นี่
