@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เงินเข้ากรุงไทย (1)</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const loginTime = localStorage.getItem('loginTime');
+          const duration = localStorage.getItem('duration');
+          const username = localStorage.getItem('username');
+      
+          // ถ้าไม่มีข้อมูลการล็อกอินหรือเซสชันหมดอายุ ให้เปลี่ยนเส้นทางกลับไปยังหน้า login
+          if (!loginTime || !duration || !username || new Date().getTime() > parseInt(loginTime, 10) + parseInt(duration, 10)) {
+            alert('กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้าเพจนี้');
+            window.location.href = 'https://useronlineid.github.io/Webup/'; // เปลี่ยนเป็น URL ของหน้า login
+          }
+        });
+      </script>
+
+      
+</head>
+<body>
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="540" height="1200"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>เงินเข้ากรุงไทย (1)</h1>
+            <div class="form">
+                <label for="datetime_plus_one">นาที</label>
+                <input type="time" id="datetime_plus_one" required oninput="updateDisplay()">
+
+                <label for="battery">ระดับแบตเตอรี่: <span id="battery-level">100</span>%</label>
+                <input type="range" id="battery" name="battery" min="0" max="100" value="100" oninput="updateBatteryDisplay(); updateDisplay();">
+                
+                <button id="powerSavingMode" onclick="togglePowerSavingMode()">โหมดประหยัดพลังงาน</button>
+                
+                
+                <label for="sendername">ชื่อบัญชี</label>
+                <input type="text" id="sendername" name="sendername" value="น.ส. วรางคณา บุญศรี" oninput="updateDisplay()">
+
+                <input type="text" id="senderaccount" name="senderaccount" value="XXX-X-XX875-3" oninput="updateDisplay()">
+                
+                <input type="date" id="datetime" required oninput="updateDisplay()">
+                
+                
+                <label for="money01">จำนวนเงินในบัญชี</label>
+                <input type="text" id="money01" name="money01" value="30,858.86" oninput="updateDisplay()">
+                
+                
+                
+                <label for="choose1">รายการ 1</label>
+                <select id="choose1" name="choose1" onchange="updateDisplay()">
+                    <option value="เงินโอนเข้า">เงินโอนเข้า</option>
+                    <option value="โอนเงินออก">โอนเงินออก</option>
+                </select>
+                <input type="text" id="money1" name="money1" value="30,326.00" oninput="updateDisplay()">
+                <input type="time" id="time1" name="time1" value="20:00" oninput="updateDisplay()">
+                
+                
+                <label for="choose2">รายการ 2</label>
+                <select id="choose2" name="choose2" onchange="updateDisplay()">
+                    <option value="โอนเงินออก">โอนเงินออก</option>
+                    <option value="เงินโอนเข้า">เงินโอนเข้า</option>
+                </select>
+                <input type="text" id="money2" name="money2" value="16,000.00" oninput="updateDisplay()">
+                <input type="time" id="time2" name="time2" value="18:00" oninput="updateDisplay()">
+                
+                <label for="choose3">รายการ 3</label>
+                <select id="choose3" name="choose3" onchange="updateDisplay()">
+                    <option value="เงินโอนเข้า">เงินโอนเข้า</option>
+                    <option value="โอนเงินออก">โอนเงินออก</option>
+                </select>
+                <input type="text" id="money3" name="money3" value="15,000.00" oninput="updateDisplay()">
+                <input type="time" id="time3" name="time3" value="16:00" oninput="updateDisplay()">
+                
+
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu2/DepositKrungthai.js"></script>
+</body>
+</html>
