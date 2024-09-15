@@ -20,48 +20,16 @@
           }
         });
 
-// ฟังก์ชันตรวจสอบว่า Developer Tools เปิดอยู่หรือไม่
-function isDevToolsOpen() {
-    var threshold = 160; // กำหนดความสูงที่เป็นไปได้ของหน้าต่าง Developer Tools
-    return window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold;
-}
+      document.addEventListener('contextmenu', function(e) {
+          e.preventDefault(); // ปิดการคลิกขวา
+      });
 
-// ฟังก์ชันบันทึก URL ของหน้าเดิมใน sessionStorage
-function savePreviousPage() {
-    if (!sessionStorage.getItem('previousPage')) {
-        sessionStorage.setItem('previousPage', document.referrer);
-    }
-}
-
-// ฟังก์ชัน redirect กลับไปยังหน้าเดิม
-function redirectToPreviousPage() {
-    var previousPage = sessionStorage.getItem('previousPage');
-    if (previousPage) {
-        window.location.href = previousPage;
-    }
-}
-
-// ตรวจจับการเปิด Developer Tools โดยใช้การตรวจจับขนาดหน้าต่าง
-window.addEventListener('resize', function() {
-    if (isDevToolsOpen()) {
-        redirectToPreviousPage();
-    }
-});
-
-// ปิดการคลิกขวา
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault(); // ปิดการคลิกขวา
-});
-
-// ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
-document.addEventListener('keydown', function(e) {
-    if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
-        e.preventDefault();
-    }
-});
-
-// เรียกฟังก์ชันบันทึก URL ของหน้าเดิมเมื่อโหลดเพจ
-window.onload = savePreviousPage;
+      document.addEventListener('keydown', function(e) {
+          // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
+          if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+              e.preventDefault();
+          }
+      });
 
 
       </script>
