@@ -20,17 +20,46 @@
           }
         });
 
-              document.addEventListener('contextmenu', function(e) {
-          e.preventDefault(); // ปิดการคลิกขวา
-      });
+// ปิดการคลิกขวา
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
 
-      document.addEventListener('keydown', function(e) {
-          // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
-          if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
-              e.preventDefault();
-          }
-      });
+// ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
+document.addEventListener('keydown', function(e) {
+    if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+        e.preventDefault();
+    }
+});
 
+        
+// ฟังก์ชั่นตรวจจับ Developer Tools
+function isDevToolsOpen() {
+    var threshold = 160; // ค่า threshold ขึ้นอยู่กับขนาดของ Developer Tools
+    if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
+        return true;
+    }
+    return false;
+}
+
+// ฟังก์ชั่นตรวจจับการเปิด Developer Tools และเด้งกลับไปยังหน้าเดิม
+function checkDevTools() {
+    if (isDevToolsOpen()) {
+        var previousPage = sessionStorage.getItem('previousPage');
+        if (previousPage) {
+            window.location.href = previousPage; // เด้งกลับไปยังหน้าเดิม
+        } else {
+            window.history.back(); // หรือถ้าไม่มีค่าเก็บไว้ ให้ย้อนกลับไปหน้าก่อนหน้า
+        }
+    }
+}
+
+// เก็บ URL ของหน้าเดิมไว้ก่อนที่จะเปลี่ยนไปหน้าอื่น
+window.onload = function() {
+    var previousPage = document.referrer; // เก็บ URL ของหน้าเดิม
+    sessionStorage.setItem('previousPage', previousPage);
+    setInterval(checkDevTools, 1000); // เช็ค Developer Tools ทุก ๆ วินาที
+};
 
       </script>
 
