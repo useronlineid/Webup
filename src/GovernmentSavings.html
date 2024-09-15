@@ -20,18 +20,28 @@
           }
         });
 
-// ปิดการคลิกขวา
 document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
+    e.preventDefault(); // ปิดการคลิกขวา
 });
 
-// ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
 document.addEventListener('keydown', function(e) {
+    // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
     if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
         e.preventDefault();
     }
 });
 
+// ฟังก์ชันตรวจสอบ Developer Tools
+function detectDevTools() {
+    let threshold = 160; // ความกว้างของ developer tools โดยปกติ
+    if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
+        alert('Developer Tools ถูกเปิดอยู่ คุณจะถูกนำกลับไปที่หน้าก่อนหน้า');
+        window.history.back(); // นำผู้ใช้กลับไปยังหน้าก่อนหน้า
+    }
+}
+
+// เรียกฟังก์ชันตรวจสอบ Developer Tools ทุกๆ 1 วินาที
+setInterval(detectDevTools, 1000);
 
       </script>
 
