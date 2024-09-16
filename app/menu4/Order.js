@@ -155,27 +155,26 @@ function updateDisplay() {
         drawText(ctx, `${Memo} สั่งซื้อใหม่จํานวนเงิน ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท`, 1784.8, 380.5,40.68, 'THSarabunBold', '#000000', 'right',40,3,0,0,2000,0);
         
 
-        drawText(ctx, `จากเหตุการณ์ที่สมาชิกไม่ปฎิบัติตามแผนการสั่งซื้อที่ทางระบบกำหนดไว้
-ทำให้บริษัทได้รับความเสียหาย ทางระบบขอให้สมาชิกทำการสั่งซื้อใหม่เป็นจำนวนเงิน ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท เพื่อสร้างกำไรคืนให้กับพอร์ขของคุณ
-การปฏิบัติตามแผนที่กำหนดมีความสำคัญในการรักษาความสมดุลและเสถียรภาพของระบบ การไม่ปฏิบัติตามทำให้เกิดผลกระทบในวงกว้าง 
-ทั้งต่อสมาชิกท่านอื่นและการดำเนินงานโดยรวม ดังนั้น บริษัทจึงจำเป็นต้องขอให้สมาชิกดำเนินการสั่งซื้อใหม่ จึงต้องทำการซ่อมปรับ X5 
-แต่ระบบให้สมาชิกซ่อมที่ X${x} เท่านั้น แผนการสั่งซื้อใหม่สมาชิกยูสเซอร์ (${user1}) รหัสแผนการสั่งซื้อใหม่หนึ่งแผนสามครั้ง (531264) 
-ทำการสั่งซื้อภายใน 120 นาที ระบุโค้ด${Memo} ดำเนินการ ${amount1} บาท ปรับ X3 เป็นยอด ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท  เมื่อทำการสั่งซื้อเสร็จ 
-สมาชิกสามารถถอนเงินทุน และกำไรได้ทั้งหมดทันที ทาง${appsname} ได้วางเงินประกันความเสี่ยงไว้กับแพลตฟอร์ม 
-หากไม่ได้รับเงินสำรองและค่าตอบแทน ทางเรายินดีคืนเงิน และรับประกันรายได้ที่มั่นคง แผนซ่อมคำสั่งซื้อใหม่ 
+        drawText(ctx, `จากเหตุการณ์ที่สมาชิกไม่ปฎิบัติตามแผนการสั่งซื้อที่ทางระบบกำหนดไว้<br>
+ทำให้บริษัทได้รับความเสียหาย ทางระบบขอให้สมาชิกทำการสั่งซื้อใหม่เป็นจำนวนเงิน ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท เพื่อสร้างกำไรคืนให้กับพอร์ขของคุณ<br>
+การปฏิบัติตามแผนที่กำหนดมีความสำคัญในการรักษาความสมดุลและเสถียรภาพของระบบ การไม่ปฏิบัติตามทำให้เกิดผลกระทบในวงกว้าง <br>
+ทั้งต่อสมาชิกท่านอื่นและการดำเนินงานโดยรวม ดังนั้น บริษัทจึงจำเป็นต้องขอให้สมาชิกดำเนินการสั่งซื้อใหม่ จึงต้องทำการซ่อมปรับ X5 <br>
+แต่ระบบให้สมาชิกซ่อมที่ X${x} เท่านั้น แผนการสั่งซื้อใหม่สมาชิกยูสเซอร์ (${user1}) รหัสแผนการสั่งซื้อใหม่หนึ่งแผนสามครั้ง (531264) <br>
+ทำการสั่งซื้อภายใน 120 นาที ระบุโค้ด${Memo} ดำเนินการ ${amount1} บาท ปรับ X3 เป็นยอด ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท  เมื่อทำการสั่งซื้อเสร็จ<br> 
+สมาชิกสามารถถอนเงินทุน และกำไรได้ทั้งหมดทันที ทาง${appsname} ได้วางเงินประกันความเสี่ยงไว้กับแพลตฟอร์ม <br>
+หากไม่ได้รับเงินสำรองและค่าตอบแทน ทางเรายินดีคืนเงิน และรับประกันรายได้ที่มั่นคง แผนซ่อมคำสั่งซื้อใหม่ <br>
 จะได้รับปังผลกำไรเพิ่ม ${Commission.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท`
         , 120.5, 523.0,40.68, 'THSarabunBold', '#000000', 'left',40,3,0,0,2000,0);
 
 
 
-        drawText(ctx, `หมายเหตุ : หลังจากดำเนินการสั่งซื้อซ่อมแผนทุนเสร็จสิ้นแล้ว ทุนซ่อมและค่าคอมรวม ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}  + ${Commission.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}  = ${total.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท 
+        drawText(ctx, `หมายเหตุ : หลังจากดำเนินการสั่งซื้อซ่อมแผนทุนเสร็จสิ้นแล้ว ทุนซ่อมและค่าคอมรวม ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}  + ${Commission.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}  = ${total.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท<br> 
 จะได้รับคืนเต็มจำนวนโดยไม่มีการหักค่าใช้จ่ายใดๆ สามารถเบิกเงินในระบบทั้งหมดได้ทันทีหลังจากซ่อมเสร็จ `
         , 120.5, 900.8,40.68, 'THSarabunBold', '#000000', 'left',40,3,0,0,2000,0);
         
         
     };
 }
-
 
 function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeight, maxLines, shadowColor, shadowBlur, maxWidth, letterSpacing) {
     
