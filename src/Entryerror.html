@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สั่งซื้อผิดพลาด</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="1906" height="1200"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>สั่งซื้อผิดพลาด</h1>
+            <div class="form">
+                <label for="user1">ยูสเซอร์</label>
+                <input type="text" id="user1" name="user1" value="AM0000" oninput="updateDisplay()">
+                
+                <label for="sendername">ชื่อ</label>
+                <input type="text" id="sendername" name="sendername" value="น.ส. จตุพร พันธ์อินทร์" oninput="updateDisplay()">
+                
+                <label for="datetime">เวลา (hh:mm:ss):</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="amount1">จำนวนเงิน</label>
+                <input type="text" id="amount1" name="amount1" value="16,000.00" oninput="updateDisplay()">
+                
+                <label for="x">จำนวนคูณ</label>
+                <input type="text" id="x" name="x" value="3" oninput="updateDisplay()">
+                
+                <label for="Memo">บันทึกช่วยจำ</label>
+                <input type="text" id="Memo" name="Memo" value="ซ่อมบิล001." oninput="updateDisplay()">
+                <br>
+                <br>
+                <label for="appsname">ชื่อแอพ</label>
+                <input type="text" id="appsname" name="appsname" value="Lorem Ipsum" oninput="updateDisplay()">
+                
+                <label for="newCompanyName">ชื่อบริษัท</label>
+                <input type="text" id="newCompanyName" name="newCompanyName" value="บริษัท ซันนี่ วี โฮลดิ้ง จำกัด" oninput="updateDisplay()">
+                
+                <label for="newCompanyNameEng">ชื่อบริษัทอังกฤษ</label>
+                <input type="text" id="newCompanyNameEng" name="newCompanyNameEng" value="SUNNY V HOLDING COMPANY LIMITED" oninput="updateDisplay()">
+                
+                <label for="newCompanyAddress">ที่อยู่</label>
+                <input type="text" id="newCompanyAddress" name="newCompanyAddress" value="70/1 หมู่ที่ 3 ตำบลบวกค้าง อำเภอสันกำแพง จ.เชียงใหม่ 50130" oninput="updateDisplay()">
+                
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu4/Entryerror.js"></script>
+</body>
+</html>
