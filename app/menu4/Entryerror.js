@@ -64,7 +64,7 @@ function loadFonts() {
         new FontFace('THSarabun', 'url(../assets/fonts/THSarabun.woff)')
     ];
 
-    // โหลดฟอนต์ทั้งหมดและเพิ่มเข้าไปที่ document
+      // โหลดฟอนต์ทั้งหมดและเพิ่มเข้าไปที่ document
     return Promise.all(fonts.map(font => font.load())).then(function(loadedFonts) {
         loadedFonts.forEach(function(font) {
             document.fonts.add(font);
