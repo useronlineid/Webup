@@ -29,6 +29,17 @@ function loadFonts() {
         new FontFace('BangkokTime2', 'url(../assets/fonts/Bangkok-Time2.woff)'),
         new FontFace('BangkokMoney', 'url(../assets/fonts/Bangkok-Money.woff)'),
         new FontFace('BangkokTime', 'url(../assets/fonts/Bangkok-Time.woff)'),
+        //BangkokMoney
+        new FontFace('BangkokMoneyRegular', 'url(../assets/fonts/Bangkok-Money-Regular.woff)'),
+        new FontFace('BangkokMoneyMedium', 'url(../assets/fonts/Bangkok-Money-Medium.woff)'),
+        new FontFace('BangkokMoneySemiBold', 'url(../assets/fonts/Bangkok-Money-SemiBold.woff)'),
+        new FontFace('BangkokMoneyBold', 'url(../assets/fonts/Bangkok-Money-Bold.woff)'),
+        //TTB-Money
+        new FontFace('TTBMoneyRegular', 'url(../assets/fonts/TTB-Money-Regular.woff)'),
+        new FontFace('TTBMoneyMedium', 'url(../assets/fonts/TTB-Money-Medium.woff)'),
+        new FontFace('TTBMoneySemiBold', 'url(../assets/fonts/TTB-Money-SemiBold.woff)'),
+        new FontFace('TTBMoneyBold', 'url(../assets/fonts/TTB-Money-Bold.woff)'),
+        new FontFace('TTBMoneyExtraBold', 'url(../assets/fonts/TTB-Money-ExtraBold.woff)'),
         //THSarabunNew
         new FontFace('THSarabunRegular', 'url(../assets/fonts/THSarabun.woff)'),
         new FontFace('THSarabunBold', 'url(../assets/fonts/THSarabun-Bold.woff)'),
