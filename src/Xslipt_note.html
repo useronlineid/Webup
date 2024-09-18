@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สลิปธนชาต ( บันทึก )</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="714" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>สลิปธนชาต ( บันทึก )</h1>
+            <div class="form">
+                <label for="sendername">ผู้โอน</label>
+                <input type="text" id="sendername" name="sendername" value="น.ส. จตุพร พันธ์อินทร์" oninput="updateDisplay()">
+
+                <input type="text" id="senderaccount" name="senderaccount" value="XXX-X-XX526-1" oninput="updateDisplay()">
+
+                <label for="receivername">ผู้รับโอน</label>
+                <input type="text" id="receivername" name="receivername" value="นาย ประสิทธิ์ ครองสุข" oninput="updateDisplay()">
+
+                <input type="text" id="receiveraccount" name="receiveraccount" value="XXX-X-XX142-6" oninput="updateDisplay()">
+
+                <select id="bank" name="bank" onchange="updateDisplay()">
+                    <option value="KBANK">ธ.กสิกรไทย</option>
+                    <option value="KTB">ธ.กรุงไทย</option>
+                    <option value="BBL">ธ.กรุงเทพ</option>
+                    <option value="SCB">ธ.ไทยพาณิชย์</option>
+                    <option value="BAY">ธ.กรุงศรีอยุธยา</option>
+                    <option value="ttb">ธ.ทหารไทยธนชาต</option>
+                    <option value="GSB">ธ.ออมสิน</option>
+                    <option value="ฺBAAC">ธ.ก.ส.</option>
+                    <option value="GHB">ธ.อาคารสงเคราะห์</option>
+                    <option value="KKP">ธ.เกียรตินาคินภัทร</option>
+                    <option value="CIMB">ธ.ซีไอเอ็มบี</option>
+                    <option value="UOB">ธ.ยูโอบี</option>
+                    <option value="LH BANK">ธ.แลนด์ แอนด์ เฮาส์</option>
+                    <option value="ICBC">ธ.ไอซีบีซี</option>
+                </select>
+
+                <label for="amount11">จำนวนเงิน</label>
+                <input type="text" id="amount11" name="amount11" value="16,000" oninput="updateDisplay()">
+
+                <label for="amountDecimal">หน่วยทศนิยม:</label>
+                <input type="text" id="amountDecimal" name="amountDecimal" value=".00" oninput="updateDisplay()">
+
+                 
+                <label for="datetime">เวลา (hh:mm:ss):</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="AideMemoire">บันทึกช่วยจำ</label>
+                <input type="text" id="AideMemoire" name="AideMemoire" value="รายการงานสุดท้าย." oninput="updateDisplay()">
+                
+                <!-- Add this select element to your form-container in the HTML -->
+                 <label for="imageSelect">เลือกสติ๊กเกอร์</label>
+                   <select id="imageSelect" name="imageSelect" onchange="updateDisplay()">
+                        <option value="../assets/image/st/NO.png?raw=true">เลือกสติ๊กเกอร์</option>
+                        <option value="../assets/image/st/StickerslipTTB1T.png?raw=true">การ์ด</option>
+                        <option value="../assets/image/st/StickerslipTTB2T.png?raw=true">มีอะไรให้</option>
+                        <option value="../assets/image/st/StickerslipTTB3T.png?raw=true">มินิฮาร์ท</option>
+                        <option value="../assets/image/st/StickerslipTTB4T.png?raw=true">สวัสดี</option>
+                        <option value="../assets/image/st/StickerslipTTB5T.png?raw=true">love</option>
+                        <option value="../assets/image/st/StickerslipTTB6T.png?raw=true">ฮัลโหล</option>
+                        <option value="../assets/image/st/StickerslipTTB7T.png?raw=true">มีความสุข</option>
+                        <option value="../assets/image/st/StickerslipTTB8T.png?raw=true">นอนแล้ว</option>
+                        <option value="../assets/image/st/StickerslipTTB9T.png?raw=true">เล่นดนตรี</option>
+                        <option value="../assets/image/st/StickerslipTTB10T.png?raw=true">เขิน</option>
+                        <option value="../assets/image/st/StickerslipTTB11T.png?raw=true">ฉลอง</option>
+                        <option value="../assets/image/st/StickerslipTTB12T.png?raw=true">วันเกิด</option>
+                        <option value="../assets/image/st/StickerslipTTB13T.png?raw=true">ฉลอง</option>
+                        <option value="../assets/image/st/StickerslipTTB14T.png?raw=true">มินิฮาร์ท</option>
+                        <option value="../assets/image/st/StickerslipTTB15T.png?raw=true">เบื่อ</option>
+
+                    </select>
+                    
+                    
+                <label for="QRCode">QRCode</label>
+                <input type="file" id="QRCode" name="QRCode" accept="image/*" onchange="updateDisplay()">
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu2/slipt_note.js"></script>
+</body>
+</html>
