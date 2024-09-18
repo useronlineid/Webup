@@ -169,7 +169,7 @@ function updateDisplay() {
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
         
         // Draw text with custom styles
-        drawText(ctx, `${datetime}`, 63.4, 45.8,22.50, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${datetime}`, 63.4, 45.8,22.50, 'SFThonburiSemiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `4G`, 440.4, 45.0,21.30, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
         drawImage(ctx, '../assets/image/bs/A-signal.png', 404.4, 24.0, 31, 25);  
         
