@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-สลิปกรุงศรี ( บันทึก )</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="594" height="1200"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>สลิปกรุงศรี ( บันทึก )</h1>
+            <div class="form">
+                <label for="sendername">ผู้โอน</label>
+                <input type="text" id="sendername" name="sendername" value="น.ส. วรางคณา บุญศรี" oninput="updateDisplay()">
+
+                <input type="text" id="senderaccount" name="senderaccount" value="XXX-1-05009-X" oninput="updateDisplay()">
+
+                <label for="receivername">ผู้รับโอน</label>
+                <input type="text" id="receivername" name="receivername" value="นาย ประสิทธิ์ ครองสุข" oninput="updateDisplay()">
+
+                <input type="text" id="receiveraccount" name="receiveraccount" value="XXX-9-90142-X" oninput="updateDisplay()">
+
+                <select id="bank" name="bank" onchange="updateDisplay()">
+                    <option value="KBANK">ธ.กสิกรไทย</option>
+                    <option value="KTB">ธ.กรุงไทย</option>
+                    <option value="BBL">ธ.กรุงเทพ</option>
+                    <option value="SCB">ธ.ไทยพาณิชย์</option>
+                    <option value="BAY">ธ.กรุงศรีอยุธยา</option>
+                    <option value="ttb">ธ.ทหารไทยธนชาต</option>
+                    <option value="GSB">ธ.ออมสิน</option>
+                    <option value="ฺBAAC">ธ.ก.ส.</option>
+                    <option value="GHB">ธ.อาคารสงเคราะห์</option>
+                    <option value="KKP">ธ.เกียรตินาคินภัทร</option>
+                    <option value="CIMB">ธ.ซีไอเอ็มบี</option>
+                    <option value="UOB">ธ.ยูโอบี</option>
+                    <option value="LH BANK">ธ.แลนด์ แอนด์ เฮาส์</option>
+                    <option value="ICBC">ธ.ไอซีบีซี</option>
+                </select>
+
+                <label for="amount11">จำนวนเงิน</label>
+                <input type="text" id="amount11" name="amount11" value="16,000.00" oninput="updateDisplay()">
+
+
+                <label for="datetime">เวลา (hh:mm:ss):</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="AideMemoire">บันทึกช่วยจำ</label>
+                <input type="text" id="AideMemoire" name="AideMemoire" value="รายการงานสุดท้าย." oninput="updateDisplay()">
+
+
+                <!-- Add this select element to your form-container in the HTML -->
+                 <label for="imageSelect">เลือกสติ๊กเกอร์</label>
+                   <select id="imageSelect" name="imageSelect" onchange="updateDisplay()">
+                        <option value="../assets/image/st/NO.png?raw=true">เลือกสติ๊กเกอร์</option>
+                        <option value="../assets/image/st/StickerslipBAY16.png?raw=true">Image 1</option>
+                        <option value="../assets/image/st/StickerslipBAY17.png?raw=true">Image 2</option>
+                        <option value="../assets/image/st/StickerslipBAY18.png?raw=true">Image 3</option>
+                        <option value="../assets/image/st/StickerslipBAY19.png?raw=true">Image 4</option>
+                        <option value="../assets/image/st/StickerslipBAY20.png?raw=true">Image 5</option>
+                        <option value="../assets/image/st/StickerslipBAY21.png?raw=true">Image 6</option>
+                        <option value="../assets/image/st/StickerslipBAY22.png?raw=true">Image 7</option>
+                        <option value="../assets/image/st/StickerslipBAY23.png?raw=true">Image 8</option>
+                        <option value="../assets/image/st/StickerslipBAY24.png?raw=true">Image 9</option>
+                        <option value="../assets/image/st/StickerslipBAY25.png?raw=true">Image 10</option>
+                        <option value="../assets/image/st/StickerslipBAY26.png?raw=true">Image 11(ปิดเลข)</option>
+                        <option value="../assets/image/st/StickerslipBAY27.png?raw=true">Image 12(ปิดเลข)</option>
+                        <option value="../assets/image/st/StickerslipBAY28.png?raw=true">Image 13(ปิดเลข)</option>
+                        <option value="../assets/image/st/StickerslipBAY29.png?raw=true">Image 14(ปิดเลข)</option>
+                        <option value="../assets/image/st/StickerslipBAY30.png?raw=true">Image 15(ปิดเลข)</option>
+                    
+                    </select>
+                    
+                    
+                <label for="QRCode">QRCode</label>
+                <input type="file" id="QRCode" name="QRCode" accept="image/*" onchange="updateDisplay()">
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu2/slipbay_note.js"></script>
+</body>
+</html>
