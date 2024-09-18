@@ -212,6 +212,35 @@
     font-family: 'THSarabunNewBoldItalic';
     src: url('../assets/fonts/THSarabunNew-BoldItalic.woff') format('woff');
 }
+/*DBHelvethaicaMonX*/
+@font-face {
+    font-family: 'DBHelvethaicaMonX';
+    src: url('../assets/fonts/DBHelvethaicaMonX.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DBHelvethaicaMonXCond';
+    src: url('../assets/fonts/DBHelvethaicaMonXCond.woff') format('woff');
+}
+@font-face {
+    font-family: 'DBHelvethaicaMonXMed';
+    src: url('../assets/fonts/DBHelvethaicaMonXMed.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DBHelvethaicaMonXMedCond';
+    src: url('../assets/fonts/DBHelvethaicaMonXMedCond.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DBHelvethaicaMonXBold';
+    src: url('../assets/fonts/DBHelvethaicaMonXBd.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DBHelvethaicaMonXBoldCond';
+    src: url('../assets/fonts/DBHelvethaicaMonXBdCond.woff') format('woff');
+}
 /* Other*/
 @font-face {
     font-family: 'DXKrungthaiSemiBold';
