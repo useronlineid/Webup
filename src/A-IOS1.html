@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOS - ( 1 )</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="555" height="1200"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>IOS - ( 1 )</h1>
+            <div class="form">
+                <label for="coin">ผู้โอน</label>
+                <select id="coin" name="coin" onchange="updateDisplay()">
+                    <option value="XAUUSD">XAUUSD</option>
+                    <option value="XAUEUR">XAUEUR</option>
+                    <option value="BTC">BTC</option>
+                    <option value="BCH">BCH</option>
+                    <option value="My wallet">เช็คยอดเงิน</option>
+                    <option value="Withdraw">ถอนเงิน</option>
+                    <option value="Withdraw">ประวันการถอนเงิน</option>
+                    <option value="Orders">ส่งคำสั่ง</option>
+                    <option value="mine">ของฉัน</option>
+                    <option value="อัตราแลกเปลี่ยน">อัตราแลกเปลี่ยน</option>
+                </select>
+
+                <input type="text" id="website" name="website" value="https://loremllpsun.vip" oninput="updateDisplay()">
+
+                <label for="datetime">เวลา (hh:mm):</label>
+                <input type="time" id="datetime" required oninput="updateDisplay()">
+
+                <label for="QRCode">QRCode</label>
+                <div id="QRCode" class="qrcode-drop-area" onpaste="handlePaste(event)">
+                    วางรูปภาพที่นี่
+                </div>
+
+                <label for="battery">ระดับแบตเตอรี่: <span id="battery-level">100</span>%</label>
+                <input type="range" id="battery" name="battery" min="0" max="100" value="100" oninput="updateBatteryDisplay(); updateDisplay();">
+                
+
+
+                <button id="powerSavingMode" onclick="togglePowerSavingMode()">โหมดประหยัดพลังงาน</button>
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu2/A-IOS1.js"></script>
+</body>
+</html>
