@@ -205,7 +205,7 @@ function updateDisplay() {
             ctx.drawImage(bankLogo, 151.5, 625.5, 39, 39); // Adjust position and size as needed
             
             // Draw text with custom styles
-            drawText(ctx, `${formattedDate}, ${formattedTime}`, 285, 333.8,22.00, 'BangkokTime2', '#8a8a8a', 'center', 1.5, 3, 0, 0, 800, -0.50);
+            drawText(ctx, `${formattedDate}, ${formattedTime}`, 285, 333.8,22.50, 'BangkokTime2', '#8a8a8a', 'center', 1.5, 3, 0, 0, 800, -0.50);
 
             drawText(ctx, `${sendername}`, 210.5, 528.0,23.3, 'SukhumvitSetExtraBold', '#101011', 'left', 1.5, 3, 0, 0, 800, 0);
             drawText(ctx, `ธนาคารกรุงเทพ`, 210.5, 588.4,22.0, 'SukhumvitSetSemiBold', '#101011', 'left', 1.5, 2, 0, 0, 500, 0);
