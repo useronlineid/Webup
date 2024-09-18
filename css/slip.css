@@ -157,7 +157,19 @@
     font-family: 'TTBMoneyExtraBold';
     src: url('../assets/fonts/TTB-Money-ExtraBold.woff') format('woff');
 }
-
+/* krungsri */
+@font-face {
+    font-family: 'krungsriRegular';
+    src: url('../assets/fonts/krungsri_con-webfont.woff') format('woff');
+}
+@font-face {
+    font-family: 'krungsriMedium';
+    src: url('../assets/fonts/krungsri_con_med-webfont.woff') format('woff');
+}
+@font-face {
+    font-family: 'krungsriBold';
+    src: url('../assets/fonts/krungsri_con_bol-webfont.woff') format('woff');
+}
 
 /* THSarabunNew */
 
