@@ -83,13 +83,14 @@ function handlePaste(event) {
 }
 
 function updateDisplay() {
-    const User = document.getElementById('User').value || 'xxx-xxx944-0';
-    const accountNumber = document.getElementById('accountNumber').value || '9,168,580.00 บาท';
+    const User = document.getElementById('User').value || '-';
+    const accountNumber = document.getElementById('accountNumber').value || '-';
     const Payeeaccount = document.getElementById('Payeeaccount').value || '-';
     const savings = document.getElementById('savings').value || '-';
     const Dateandtime = document.getElementById('Dateandtime').value || '-';
     const notes = document.getElementById('notes').value || 'บัญชีของผู้กู้ไม่ตรงกับข้อมูลของผู้ยืมกู้ ธนาคารทำการโอนซ้ำหลายรอบ ไม่สามารถโอนเงินเข้าได้ ตามกฎระเบียบของธนาคาร กฎหมายความมั่นคงของกองทุนผู้กู้ ถูกอายัดชั่วคราว';
    
+
 
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
