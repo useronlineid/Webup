@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบสั่งจ่าย SCB</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+
+
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="1270" height="933"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>ใบสั่งจ่าย SCB</h1>
+            <div class="form">
+                <label for="Companyaccount">บัญชีบริษัท</label>
+                <input type="text" id="Companyaccount" name="Companyaccount" value="xxx-xxx944-0" oninput="updateDisplay()">
+
+                <label for="Companymoney">เงินในระบบบริษัท</label>
+                <input type="text" id="Companymoney" name="Companymoney" value="9,168,580.00" oninput="updateDisplay()">
+                
+
+                <label for="accountNumber1">เลขบัญชี-ชื่อนามสกุล</label>
+                <input type="text" id="accountNumber1" name="accountNumber1" placeholder="1234567890 - สมชาย พิมพ์ลง" oninput="updateDisplay()">
+                
+
+                <label for="savings">จำนวนเงินเงินที่สั่งจ่าย</label>
+                <input type="text" id="savings" name="savings" placeholder="ระบุจำนวนเงิน"  oninput="updateDisplay()">
+                
+                
+                <label for="Dateandtime">เวลาสั่งจ่าย</label>
+                <input type="text" id="Dateandtime" name="Dateandtime" placeholder="01/01/2567 10:00:00" oninput="updateDisplay()">
+                
+                <label for="notes">หมายเหตุ <br>ปุ่มสเปคบาร์ ( ให้คำท้ายไปบรรทัดใหม่ )</label>
+                <input type="text" id="notes" name="notes" value="บัญชีของผู้กู้ไม่ตรงกับข้อมูลของผู้ยืมกู้ ธนาคารทำการโอนซ้ำหลายรอบ ไม่สามารถโอนเงินเข้าได้ ตามกฎระเบียบของธนาคาร กฎหมายความมั่นคงของกองทุนผู้กู้ ถูกอายัดชั่วคราว" oninput="updateDisplay()">
+                
+                
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu4/SCB.js"></script>
+</body>
+</html>
