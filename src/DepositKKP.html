@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เงินเข้าเกียรตินาคินภัทร ( 1 )</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="557" height="1200"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>เงินเข้าเกียรตินาคินภัทร ( 1 )</h1>
+            <div class="form">
+                <label for="datetime">เวลา (hh:mm):</label>
+                <input type="time" id="datetime" required oninput="updateDisplay()">
+
+                <label for="battery">ระดับแบตเตอรี่: <span id="battery-level">100</span>%</label>
+                <input type="range" id="battery" name="battery" min="0" max="100" value="100" oninput="updateBatteryDisplay(); updateDisplay();">
+                
+                <button id="powerSavingMode" onclick="togglePowerSavingMode()">โหมดประหยัดพลังงาน</button>
+                
+                
+                <label for="sendername">ชื่อบัญชี</label>
+
+                <input type="text" id="monthmonthyear" name="monthmonthyear" value="1 ส.ค. 67" oninput="updateDisplay()">
+                
+                
+                <label for="money01">จำนวนเงินในบัญชี</label>
+                <input type="text" id="money01" name="money01" value="30,532.14" oninput="updateDisplay()">
+                
+                
+                
+                
+                <label for="choose1">รายการ 1</label>
+                <select id="choose1" name="choose1" onchange="updateDisplay()">
+                    <option value="รับเงินโอน">รับเงินโอน</option>
+                    <option value="ถอนเงิน">ถอนเงิน</option>
+                </select>
+                <input type="text" id="money1" name="money1" value="30,386.00" oninput="updateDisplay()">
+                <input type="time" id="time1" name="time1" value="20:00" oninput="updateDisplay()">
+                
+                <label for="choose2">รายการ 2</label>
+                <select id="choose2" name="choose2" onchange="updateDisplay()">
+                    <option value="ถอนเงิน">ถอนเงิน</option>
+                    <option value="รับเงินโอน">รับเงินโอน</option>
+                </select>
+                <input type="text" id="money2" name="money2" value="16,000.00" oninput="updateDisplay()">
+                <input type="time" id="time2" name="time2" value="18:00" oninput="updateDisplay()">
+                <input type="text" id="remaining2" name="remaining2" value="146.14" oninput="updateDisplay()">
+                
+                
+                <label for="choose3">รายการ 3</label>
+                <select id="choose3" name="choose3" onchange="updateDisplay()">
+                    <option value="รับเงินโอน">รับเงินโอน</option>
+                    <option value="ถอนเงิน">ถอนเงิน</option>
+                </select>
+                <input type="text" id="money3" name="money3" value="15,000.00" oninput="updateDisplay()">
+                
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu2/DepositKKP.js"></script>
+</body>
+</html>
