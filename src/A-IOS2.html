@@ -6,33 +6,43 @@
     <title>IOS - ( 2 )</title>
     <link rel="stylesheet" href="../css/slip.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
-<script>
-    // ตรวจสอบสถานะการเข้าสู่ระบบเมื่อโหลดหน้าเพจ
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // ผู้ใช้ล็อกอินแล้ว แสดงเมนูย่อย
-            document.querySelectorAll('.restricted-link').forEach(link => {
-                link.classList.remove('hidden');
-            });
-        } else {
-            // ผู้ใช้ไม่ได้ล็อกอิน ซ่อนเมนูย่อย
-            document.querySelectorAll('.restricted-link').forEach(link => {
-                link.classList.add('hidden');
-            });
-        }
-    });
+   <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
 
-    // ฟังก์ชันแจ้งเตือนถ้ายังไม่ได้ล็อกอิน
-    function checkLogin(event) {
-        firebase.auth().onAuthStateChanged(function(user) {
+    <script>
+        // Firebase configuration
+        var firebaseConfig = {
+  apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
+  authDomain: "webup-7449a.firebaseapp.com",
+  projectId: "webup-7449a",
+  storageBucket: "webup-7449a.appspot.com",
+  messagingSenderId: "375236615142",
+  appId: "1:375236615142:web:958c73cf5cc7929a901427",
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        const db = firebase.firestore();
+
+        // ฟังก์ชันตรวจสอบสถานะการเข้าสู่ระบบ
+        firebase.auth().onAuthStateChanged(async (user) => {
             if (!user) {
-                // ถ้าไม่ได้ล็อกอิน ให้ป้องกันไม่ให้คลิกเข้าไป และแจ้งเตือน
-                event.preventDefault();
-                alert("กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้านี้");
+                // หากไม่ได้เข้าสู่ระบบ รีไดเรกต์กลับไปยังหน้าเข้าสู่ระบบ
+                window.location.href = 'login.html';
+            } else {
+                // หากเข้าสู่ระบบแล้ว ตรวจสอบสถานะ isLoggedIn ใน Firestore
+                const email = user.email;
+                const userDoc = await db.collection('userSessions').doc(email).get();
+                if (userDoc.exists && !userDoc.data().isLoggedIn) {
+                    // รีไดเรกต์กลับไปยังหน้าเข้าสู่ระบบหาก isLoggedIn ไม่ใช่ true
+                    alert('กรุณาเข้าสู่ระบบใหม่');
+                    window.location.href = 'login.html';
+                }
             }
         });
-    }
-</script>
+    </script>
+</head>
 
 </head>
 <body>
