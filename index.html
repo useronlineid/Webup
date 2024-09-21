@@ -25,12 +25,29 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
+        let userSessionUnsubscribe = null;
+
         // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
-        firebase.auth().onAuthStateChanged(function(user) {
+        firebase.auth().onAuthStateChanged(async function(user) {
             if (user) {
                 // ผู้ใช้ล็อกอินอยู่
-                document.getElementById('login').classList.add('hidden');
-                document.getElementById('menu').classList.remove('hidden');
+                const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
+                if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
+                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions ของผู้ใช้ปัจจุบัน
+                    userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
+                        .onSnapshot((doc) => {
+                            if (doc.exists && !doc.data().isLoggedIn) {
+                                alert('คุณถูกล็อกเอาท์');
+                                logout(false);
+                            }
+                        });
+                    // แสดงเมนู
+                    document.getElementById('login').classList.add('hidden');
+                    document.getElementById('menu').classList.remove('hidden');
+                } else {
+                    // ถ้า isLoggedIn เป็น false ในฐานข้อมูล
+                    await logout(false);
+                }
             } else {
                 // ผู้ใช้ไม่ได้ล็อกอิน
                 document.getElementById('login').classList.remove('hidden');
@@ -45,7 +62,7 @@
 
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(async (userCredential) => {
-                    // อัปเดตสถานะการล็อกอินของผู้ใช้ปัจจุบันใน Firestore
+                    // ตั้งค่า isLoggedIn ของผู้ใช้ปัจจุบันเป็น true
                     await db.collection('userSessions').doc(userCredential.user.uid).set({
                         email: email,
                         isLoggedIn: true
@@ -65,6 +82,10 @@
             const user = firebase.auth().currentUser;
             if (user) {
                 const uid = user.uid;
+                if (userSessionUnsubscribe) {
+                    userSessionUnsubscribe();
+                    userSessionUnsubscribe = null;
+                }
 
                 if (updateSession) {
                     await db.collection('userSessions').doc(uid).update({
