@@ -178,7 +178,7 @@ function updateDisplay() {
             drawText(ctx, `${AideMemoire}`, 224, 1200.7,32, 'KanitRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0);
 
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'KanitRegular', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '../assets/image/logo/KBANK.png', 33, 215.5, 172, 172);  
+            drawImage(ctx, '../assets/image/logo/K-K.png', 33, 215.5, 172, 172);  
         
           
             // Draw the selected image
