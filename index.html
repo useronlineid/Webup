@@ -6,7 +6,6 @@
     <title>Document Management System</title>
     <link rel="stylesheet" href="./css/styles.css">
 
-
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
@@ -14,41 +13,36 @@
     <script>
         // Firebase configuration
         var firebaseConfig = {
-  apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
-  authDomain: "webup-7449a.firebaseapp.com",
-  projectId: "webup-7449a",
-  storageBucket: "webup-7449a.appspot.com",
-  messagingSenderId: "375236615142",
-  appId: "1:375236615142:web:958c73cf5cc7929a901427",
+            apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
+            authDomain: "webup-7449a.firebaseapp.com",
+            projectId: "webup-7449a",
+            storageBucket: "webup-7449a.appspot.com",
+            messagingSenderId: "375236615142",
+            appId: "1:375236615142:web:958c73cf5cc7929a901427",
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+
+        let userDocRef; // ตัวแปรสำหรับเก็บอ้างอิงของเอกสารผู้ใช้
 
         // ฟังก์ชันเข้าสู่ระบบ
         async function login() {
             const email = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // ตรวจสอบสถานะการล็อกอินใน Firestore
-            const userDoc = await db.collection('userSessions').doc(email).get();
-
-            // ถ้าพบว่ามีผู้ใช้ล็อกอินอยู่
-            if (userDoc.exists && userDoc.data().isLoggedIn) {
-                // ทำการบังคับล็อกเอาท์ของผู้ใช้เดิม
-                alert('ผู้ใช้อีเมลนี้มีการล็อกอินอยู่ จะทำการล็อกเอาท์ผู้ใช้นั้น');
-                await db.collection('userSessions').doc(email).update({
-                    isLoggedIn: false
-                });
-            }
-
             // ล็อกอินผู้ใช้ใหม่ผ่าน Firebase Auth
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(async (userCredential) => {
                     // ตั้งค่า isLoggedIn เป็น true ใน Firestore
-                    await db.collection('userSessions').doc(email).set({
+                    userDocRef = db.collection('userSessions').doc(email);
+                    await userDocRef.set({
                         email: email,
                         isLoggedIn: true
                     });
+
+                    // เริ่มฟังการเปลี่ยนแปลงสถานะการล็อกอิน
+                    listenForLogout(email);
+
                     alert('เข้าสู่ระบบสำเร็จ');
                     document.getElementById('login').classList.add('hidden');
                     document.getElementById('menu').classList.remove('hidden');
@@ -58,22 +52,52 @@
                 });
         }
 
+        // ฟังก์ชันฟังการเปลี่ยนแปลงสถานะการล็อกอิน
+        function listenForLogout(email) {
+            userDocRef = db.collection('userSessions').doc(email);
+            userDocRef.onSnapshot((doc) => {
+                if (doc.exists && !doc.data().isLoggedIn) {
+                    // ถ้าสถานะ isLoggedIn เป็น false ให้ล็อกเอาท์ผู้ใช้นี้
+                    firebase.auth().signOut();
+                    alert('บัญชีของคุณถูกล็อกอินจากอุปกรณ์อื่น');
+                    document.getElementById('menu').classList.add('hidden');
+                    document.getElementById('login').classList.remove('hidden');
+                }
+            });
+        }
+
         // ฟังก์ชันออกจากระบบ
         async function logout() {
-            const email = firebase.auth().currentUser.email;
-            await firebase.auth().signOut();
-            
-            // ตั้งค่า isLoggedIn เป็น false ใน Firestore
-            await db.collection('userSessions').doc(email).update({
-                isLoggedIn: false
-            });
+            const user = firebase.auth().currentUser;
+            if (user) {
+                const email = user.email;
+                await firebase.auth().signOut();
 
-            alert('ออกจากระบบสำเร็จ');
-            document.getElementById('menu').classList.add('hidden');
-            document.getElementById('login').classList.remove('hidden');
+                // ตั้งค่า isLoggedIn เป็น false ใน Firestore
+                await db.collection('userSessions').doc(email).update({
+                    isLoggedIn: false
+                });
+
+                alert('ออกจากระบบสำเร็จ');
+                document.getElementById('menu').classList.add('hidden');
+                document.getElementById('login').classList.remove('hidden');
+            }
         }
+
+        // เพิ่มฟังก์ชันสำหรับตรวจสอบสถานะการล็อกอินเมื่อโหลดหน้าเว็บ
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // ผู้ใช้ล็อกอินอยู่
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('menu').classList.remove('hidden');
+                listenForLogout(user.email);
+            } else {
+                // ผู้ใช้ไม่ได้ล็อกอิน
+                document.getElementById('menu').classList.add('hidden');
+                document.getElementById('login').classList.remove('hidden');
+            }
+        });
     </script>
-    
 </head>
 <body>
     <div id="login">
