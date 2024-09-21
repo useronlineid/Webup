@@ -7,16 +7,40 @@
     <link rel="stylesheet" href="../css/slip.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <!-- ป้องกันการแคช -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
 
     <script>
-const _0x29d32b=_0x2201;(function(_0x5ac104,_0x322845){const _0x5ceac6=_0x2201,_0x48f1ab=_0x5ac104();while(!![]){try{const _0x4cbd06=parseInt(_0x5ceac6(0x179))/0x1*(-parseInt(_0x5ceac6(0x17b))/0x2)+-parseInt(_0x5ceac6(0x16a))/0x3*(-parseInt(_0x5ceac6(0x16e))/0x4)+-parseInt(_0x5ceac6(0x171))/0x5*(-parseInt(_0x5ceac6(0x184))/0x6)+parseInt(_0x5ceac6(0x16b))/0x7*(parseInt(_0x5ceac6(0x17f))/0x8)+parseInt(_0x5ceac6(0x174))/0x9+-parseInt(_0x5ceac6(0x17d))/0xa*(-parseInt(_0x5ceac6(0x17c))/0xb)+-parseInt(_0x5ceac6(0x177))/0xc;if(_0x4cbd06===_0x322845)break;else _0x48f1ab['push'](_0x48f1ab['shift']());}catch(_0x3e349f){_0x48f1ab['push'](_0x48f1ab['shift']());}}}(_0x484d,0x89330));function _0x484d(){const _0x4dadfa=['12vZbGqH','collection','กรุณาเข้าสู่ระบบใหม่','5mKAdHN','initializeApp','firestore','9383310zYwrEj','AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg','webup-7449a.firebaseapp.com','40796460SfaMDH','https://webup10.netlify.app/','71626nUESCl','href','6kTPdxN','11zvYUPJ','9592580pgFyVv','userSessions','1848KDbOzH','exists','webup-7449a.appspot.com','email','isLoggedIn','6463026aIUuWr','location','data','auth','doc','700674jiGrFt','12026mEESuN','get','onAuthStateChanged'];_0x484d=function(){return _0x4dadfa;};return _0x484d();}var firebaseConfig={'apiKey':_0x29d32b(0x175),'authDomain':_0x29d32b(0x176),'projectId':'webup-7449a','storageBucket':_0x29d32b(0x181),'messagingSenderId':'375236615142','appId':'1:375236615142:web:958c73cf5cc7929a901427'};firebase[_0x29d32b(0x172)](firebaseConfig);const db=firebase[_0x29d32b(0x173)]();function _0x2201(_0xcce45,_0x30b4cb){const _0x484db5=_0x484d();return _0x2201=function(_0x2201f4,_0x4c21f4){_0x2201f4=_0x2201f4-0x166;let _0x34b2e3=_0x484db5[_0x2201f4];return _0x34b2e3;},_0x2201(_0xcce45,_0x30b4cb);}firebase[_0x29d32b(0x168)]()[_0x29d32b(0x16d)](async _0x4ec81d=>{const _0xc18f30=_0x29d32b;if(!_0x4ec81d)window[_0xc18f30(0x166)][_0xc18f30(0x17a)]=_0xc18f30(0x178);else{const _0xabd877=_0x4ec81d[_0xc18f30(0x182)],_0x9d402d=await db[_0xc18f30(0x16f)](_0xc18f30(0x17e))[_0xc18f30(0x169)](_0xabd877)[_0xc18f30(0x16c)]();_0x9d402d[_0xc18f30(0x180)]&&!_0x9d402d[_0xc18f30(0x167)]()[_0xc18f30(0x183)]&&(alert(_0xc18f30(0x170)),window[_0xc18f30(0x166)][_0xc18f30(0x17a)]=_0xc18f30(0x178));}});
-    </script>
+        // Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
+            authDomain: "webup-7449a.firebaseapp.com",
+            projectId: "webup-7449a",
+            storageBucket: "webup-7449a.appspot.com",
+            messagingSenderId: "375236615142",
+            appId: "1:375236615142:web:958c73cf5cc7929a901427",
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
-    
+        // ตรวจสอบสถานะการล็อกอิน
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // ผู้ใช้ล็อกอินแล้ว สามารถเข้าถึงเนื้อหาในหน้านี้ได้
+            } else {
+                // ผู้ใช้ไม่ได้ล็อกอิน แสดงคำเตือนและปิดหน้าต่าง
+                alert('กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้านี้ หน้าต่างจะถูกปิด');
+                window.close();
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="container">
