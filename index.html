@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+    <!-- ส่วนของ meta และ title คงเดิม -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document Management System</title>
+    <!-- ลิงก์ไปยังไฟล์ CSS -->
     <link rel="stylesheet" href="./css/styles.css">
 
     <!-- Firebase SDK -->
@@ -11,7 +13,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
     <script>
-        // Firebase configuration
+        // Firebase configuration (โปรดแทนที่ด้วยค่าจริงของคุณ)
         var firebaseConfig = {
             apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
             authDomain: "webup-7449a.firebaseapp.com",
@@ -23,22 +25,28 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // ฟังก์ชันสำหรับตรวจสอบสถานะการล็อกอิน
+        // ตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลดขึ้นมา
         firebase.auth().onAuthStateChanged(async function(user) {
             if (user) {
                 const email = user.email;
+
+                // ตรวจสอบสถานะการล็อกอินใน Firestore
                 const userDoc = await db.collection('userSessions').doc(email).get();
-                
+
                 if (userDoc.exists && userDoc.data().isLoggedIn) {
+                    // ผู้ใช้ยังคงอยู่ในระบบ
                     document.getElementById('login').classList.add('hidden');
                     document.getElementById('menu').classList.remove('hidden');
                 } else {
-                    logout();  // ถ้าผู้ใช้ออกจากระบบแล้ว ก็จะทำการล็อกเอาท์
+                    // ผู้ใช้ถูกล็อกเอาท์จากที่อื่น
+                    await firebase.auth().signOut();
+                    document.getElementById('menu').classList.add('hidden');
+                    document.getElementById('login').classList.remove('hidden');
                 }
             } else {
-                // ถ้าผู้ใช้ไม่ได้ล็อกอิน ก็ให้แสดงหน้า login
-                document.getElementById('login').classList.remove('hidden');
+                // ไม่มีผู้ใช้ล็อกอินอยู่
                 document.getElementById('menu').classList.add('hidden');
+                document.getElementById('login').classList.remove('hidden');
             }
         });
 
@@ -50,7 +58,9 @@
             // ตรวจสอบสถานะการล็อกอินใน Firestore
             const userDoc = await db.collection('userSessions').doc(email).get();
 
+            // ถ้าพบว่ามีผู้ใช้ล็อกอินอยู่
             if (userDoc.exists && userDoc.data().isLoggedIn) {
+                // ทำการบังคับล็อกเอาท์ของผู้ใช้เดิม
                 alert('ผู้ใช้อีเมลนี้มีการล็อกอินอยู่ จะทำการล็อกเอาท์ผู้ใช้นั้น');
                 await db.collection('userSessions').doc(email).update({
                     isLoggedIn: false
@@ -60,13 +70,11 @@
             // ล็อกอินผู้ใช้ใหม่ผ่าน Firebase Auth
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(async (userCredential) => {
+                    // ตั้งค่า isLoggedIn เป็น true ใน Firestore
                     await db.collection('userSessions').doc(email).set({
                         email: email,
                         isLoggedIn: true
                     });
-
-                    // บันทึกสถานะการล็อกอินลงใน localStorage
-                    localStorage.setItem('isLoggedIn', true);
                     alert('เข้าสู่ระบบสำเร็จ');
                     document.getElementById('login').classList.add('hidden');
                     document.getElementById('menu').classList.remove('hidden');
@@ -81,27 +89,16 @@
             const email = firebase.auth().currentUser.email;
             await firebase.auth().signOut();
 
-            // อัพเดตสถานะ isLoggedIn ใน Firestore
+            // ตั้งค่า isLoggedIn เป็น false ใน Firestore
             await db.collection('userSessions').doc(email).update({
                 isLoggedIn: false
             });
 
-            // ลบสถานะการล็อกอินจาก localStorage
-            localStorage.removeItem('isLoggedIn');
             alert('ออกจากระบบสำเร็จ');
             document.getElementById('menu').classList.add('hidden');
             document.getElementById('login').classList.remove('hidden');
         }
-
-        // ตรวจสอบ localStorage เพื่อดูว่าผู้ใช้ล็อกอินอยู่หรือไม่
-        window.onload = function() {
-            if (localStorage.getItem('isLoggedIn')) {
-                document.getElementById('login').classList.add('hidden');
-                document.getElementById('menu').classList.remove('hidden');
-            }
-        };
     </script>
-    
 </head>
 <body>
     <div id="login">
