@@ -74,35 +74,6 @@
         }
     </script>
     
-<script>
-    // ตรวจสอบสถานะการเข้าสู่ระบบเมื่อโหลดหน้าเพจ
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // ผู้ใช้ล็อกอินแล้ว แสดงเมนูย่อย
-            document.querySelectorAll('.restricted-link').forEach(link => {
-                link.classList.remove('hidden');
-            });
-        } else {
-            // ผู้ใช้ไม่ได้ล็อกอิน ซ่อนเมนูย่อย
-            document.querySelectorAll('.restricted-link').forEach(link => {
-                link.classList.add('hidden');
-            });
-        }
-    });
-
-    // ฟังก์ชันแจ้งเตือนถ้ายังไม่ได้ล็อกอิน
-    function checkLogin(event) {
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (!user) {
-                // ถ้าไม่ได้ล็อกอิน ให้ป้องกันไม่ให้คลิกเข้าไป และแจ้งเตือน
-                event.preventDefault();
-                alert("กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้านี้");
-            }
-        });
-    }
-</script>
-
-
 </head>
 <body>
     <div id="login">
