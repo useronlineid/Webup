@@ -6,23 +6,26 @@
     <title>IOS - ( 2 )</title>
     <link rel="stylesheet" href="../css/slip.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
-        <script>
-// ฟังก์ชันเพื่อตรวจสอบสถานะการล็อกอิน
-function checkLoginStatus() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn'); // ดึงข้อมูลการล็อกอินจาก Local Storage
+    <script>
+        // ฟังก์ชันเช็คการล็อกอิน
+        function checkLoginStatus() {
+            // เช็คการล็อกอินจาก localStorage หรือ Firebase Auth
+            const isLoggedIn = localStorage.getItem('isLoggedIn'); // แก้ไขตามสถานะการล็อกอินที่ใช้จริง
 
-    if (!isLoggedIn || isLoggedIn !== 'true') {
-        // ถ้าผู้ใช้ยังไม่ได้ล็อกอิน ให้ redirect ไปที่หน้า login
-        window.location.href = 'https://webup10.netlify.app'; // กำหนดเส้นทางไปยังหน้า login
-    }
-}
+            if (!isLoggedIn || isLoggedIn !== 'true') {
+                // ถ้ายังไม่ได้ล็อกอิน ให้เด้งไปหน้า login
+                window.location.href = 'https://webup10.netlify.app'; // ระบุ URL ของหน้า login ที่ถูกต้อง
+            }
+        }
 
-// เรียกใช้ฟังก์ชันเมื่อเพจโหลด
-window.onload = function() {
-    checkLoginStatus();
-};
+        // เรียกใช้ฟังก์ชันเช็คการล็อกอินเมื่อโหลดเพจ
+        window.onload = checkLoginStatus;
 
-</script>
+        // ฟังก์ชันนี้จะล้างข้อมูลล็อกอินออกไปเมื่อรีเฟรช หรือออกจากระบบ
+        window.addEventListener("beforeunload", function () {
+            localStorage.removeItem('isLoggedIn'); // ถ้าใช้ Firebase Auth ไม่ต้องลบออกแบบนี้
+        });
+    </script>
 </head>
 <body>
     <div class="container">
