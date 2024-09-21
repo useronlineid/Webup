@@ -7,18 +7,44 @@
     <link rel="stylesheet" href="../css/slip.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
     <script>
-        // ตรวจสอบสถานะการล็อกอินเมื่อโหลดเพจ
-        window.onload = function() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            console.log('Login status:', isLoggedIn);  // ตรวจสอบสถานะการล็อกอิน
+        // Firebase configuration
+        var firebaseConfig = {
+  apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
+  authDomain: "webup-7449a.firebaseapp.com",
+  projectId: "webup-7449a",
+  storageBucket: "webup-7449a.appspot.com",
+  messagingSenderId: "375236615142",
+  appId: "1:375236615142:web:958c73cf5cc7929a901427",
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
-            // ถ้าไม่มีสถานะการล็อกอินหรือยังไม่ได้ล็อกอิน
-            if (!isLoggedIn || isLoggedIn !== 'true') {
-                // รีไดเร็กต์ไปยังหน้า login
-                alert('ยังไม่ได้เข้าสู่ระบบ! กำลังนำคุณไปที่หน้า login');
-                window.location.href = 'https://webup10.netlify.app';
+        // ฟังก์ชันตรวจสอบการเข้าสู่ระบบ
+        async function checkLoginStatus() {
+            const currentUser = firebase.auth().currentUser;
+            if (currentUser) {
+                // ตรวจสอบสถานะ isLoggedIn จาก Firestore
+                const userDoc = await db.collection('userSessions').doc(currentUser.email).get();
+                if (userDoc.exists && userDoc.data().isLoggedIn) {
+                    console.log('User is logged in');
+                    return;  // อนุญาตให้เข้าเว็บเพจย่อยได้
+                }
             }
+            // ถ้ายังไม่ได้เข้าสู่ระบบ เปลี่ยนเส้นทางไปหน้า login
+            window.location.href = "login.html";
         }
+
+        // ตรวจสอบการเข้าสู่ระบบเมื่อโหลดหน้าเว็บ
+        document.addEventListener('DOMContentLoaded', () => {
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    checkLoginStatus();
+                } else {
+                    // ไม่มีการเข้าสู่ระบบ เปลี่ยนไปที่หน้า login
+                    window.location.href = "https://webup10.netlify.app";
+                }
+            });
+        });
     </script>
 </head>
 <body>
