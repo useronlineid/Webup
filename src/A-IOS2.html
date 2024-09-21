@@ -29,7 +29,7 @@
         firebase.auth().onAuthStateChanged(async (user) => {
             if (!user) {
                 // หากไม่ได้เข้าสู่ระบบ รีไดเรกต์กลับไปยังหน้าเข้าสู่ระบบ
-                window.location.href = 'login.html';
+                window.location.href = 'https://webup10.netlify.app/';
             } else {
                 // หากเข้าสู่ระบบแล้ว ตรวจสอบสถานะ isLoggedIn ใน Firestore
                 const email = user.email;
@@ -37,7 +37,7 @@
                 if (userDoc.exists && !userDoc.data().isLoggedIn) {
                     // รีไดเรกต์กลับไปยังหน้าเข้าสู่ระบบหาก isLoggedIn ไม่ใช่ true
                     alert('กรุณาเข้าสู่ระบบใหม่');
-                    window.location.href = '';
+                    window.location.href = 'https://webup10.netlify.app/';
                 }
             }
         });
