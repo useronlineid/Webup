@@ -35,7 +35,7 @@
                     userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
                         .onSnapshot((doc) => {
                             if (doc.exists && !doc.data().isLoggedIn) {
-                                alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
+                                alert('คุณถูกล็อกเอาท์เนื่องจากมีการออกจากระบบ');
                                 logout(false);
                             }
                         });
@@ -54,46 +54,28 @@
         });
 
         // ฟังก์ชันเข้าสู่ระบบ
-    async function login() {
-        const email = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+        async function login() {
+            const email = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(async (userCredential) => {
-                const userSessionRef = db.collection('userSessions').doc(userCredential.user.uid);
-                const userSessionDoc = await userSessionRef.get();
-
-                if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                    // ผู้ใช้มีการเข้าสู่ระบบจากอุปกรณ์อื่น
-                    const confirmLogout = confirm('บัญชีนี้มีการเข้าสู่ระบบอยู่แล้วจากอุปกรณ์อื่น ต้องการยกเลิกการเข้าสู่ระบบจากอุปกรณ์อื่นหรือไม่?');
-                    if (confirmLogout) {
-                        // ยกเลิกการเข้าสู่ระบบจากอุปกรณ์อื่น
-                        await userSessionRef.update({
-                            isLoggedIn: true
-                        });
-                        alert('เข้าสู่ระบบสำเร็จ และยกเลิกการเข้าสู่ระบบจากอุปกรณ์อื่นแล้ว');
-                        document.getElementById('login').classList.add('hidden');
-                        document.getElementById('menu').classList.remove('hidden');
-                    } else {
-                        // ผู้ใช้ไม่ต้องการยกเลิกการเข้าสู่ระบบจากอุปกรณ์อื่น
-                        await firebase.auth().signOut();
-                        alert('คุณยังคงเข้าสู่ระบบในอุปกรณ์อื่นอยู่');
-                    }
-                } else {
-                    // ไม่มีการเข้าสู่ระบบจากอุปกรณ์อื่น
-                    await userSessionRef.set({
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(async (userCredential) => {
+                    const user = userCredential.user;
+                    // อัพเดตสถานะการล็อกอินของผู้ใช้เอง
+                    await db.collection('userSessions').doc(user.uid).set({
                         email: email,
                         isLoggedIn: true
-                    });
+                    }, { merge: true });
+
                     alert('เข้าสู่ระบบสำเร็จ');
                     document.getElementById('login').classList.add('hidden');
                     document.getElementById('menu').classList.remove('hidden');
-                }
-            })
-            .catch((error) => {
-                alert('เกิดข้อผิดพลาด: ' + error.message);
-            });
-    }
+                })
+                .catch((error) => {
+                    alert('เกิดข้อผิดพลาด: ' + error.message);
+                });
+        }
+
         // ฟังก์ชันออกจากระบบ
         async function logout(updateSession = true) {
             const user = firebase.auth().currentUser;
