@@ -13,76 +13,90 @@
     <script>
         // Firebase configuration
         var firebaseConfig = {
-  apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
-  authDomain: "webup-7449a.firebaseapp.com",
-  projectId: "webup-7449a",
-  storageBucket: "webup-7449a.appspot.com",
-  messagingSenderId: "375236615142",
-  appId: "1:375236615142:web:958c73cf5cc7929a901427",
+            apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
+            authDomain: "webup-7449a.firebaseapp.com",
+            projectId: "webup-7449a",
+            storageBucket: "webup-7449a.appspot.com",
+            messagingSenderId: "375236615142",
+            appId: "1:375236615142:web:958c73cf5cc7929a901427",
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-
-        // ตั้งค่าให้ Firebase Authentication เก็บสถานะการล็อกอิน
-        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-          .then(() => {
-            // ตอนนี้ Firebase จะจำสถานะล็อกอินเมื่อรีเฟรชหรือปิดหน้าเว็บ
-          })
-          .catch((error) => {
-            // จัดการข้อผิดพลาด
-            console.error('Error setting persistence:', error);
-          });
 
         // ฟังก์ชันเข้าสู่ระบบ
         async function login() {
             const email = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            try {
-                const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-                await db.collection('userSessions').doc(email).set({
-                    email: email,
-                    isLoggedIn: true
+            // ตรวจสอบสถานะการล็อกอินใน Firestore
+            const userDoc = await db.collection('userSessions').doc(email).get();
+
+            if (userDoc.exists && userDoc.data().isLoggedIn) {
+                alert('ผู้ใช้อีเมลนี้มีการล็อกอินอยู่ จะทำการล็อกเอาท์ผู้ใช้นั้น');
+                await db.collection('userSessions').doc(email).update({
+                    isLoggedIn: false
                 });
-                alert('เข้าสู่ระบบสำเร็จ');
-                document.getElementById('login').classList.add('hidden');
-                document.getElementById('menu').classList.remove('hidden');
-            } catch (error) {
-                alert('เกิดข้อผิดพลาด: ' + error.message);
             }
+
+            // ล็อกอินผู้ใช้ใหม่ผ่าน Firebase Auth
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(async (userCredential) => {
+                    await db.collection('userSessions').doc(email).set({
+                        email: email,
+                        isLoggedIn: true
+                    });
+
+                    // บันทึกสถานะการล็อกอินไว้ใน LocalStorage
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userEmail', email);
+
+                    alert('เข้าสู่ระบบสำเร็จ');
+                    document.getElementById('login').classList.add('hidden');
+                    document.getElementById('menu').classList.remove('hidden');
+                })
+                .catch((error) => {
+                    alert('เกิดข้อผิดพลาด: ' + error.message);
+                });
         }
 
         // ฟังก์ชันออกจากระบบ
         async function logout() {
             const email = firebase.auth().currentUser.email;
             await firebase.auth().signOut();
-            
+
             // ตั้งค่า isLoggedIn เป็น false ใน Firestore
             await db.collection('userSessions').doc(email).update({
                 isLoggedIn: false
             });
+
+            // ลบสถานะการล็อกอินออกจาก LocalStorage
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userEmail');
 
             alert('ออกจากระบบสำเร็จ');
             document.getElementById('menu').classList.add('hidden');
             document.getElementById('login').classList.remove('hidden');
         }
 
-        // เช็คสถานะการล็อกอินเมื่อโหลดหน้าเว็บ
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                // ผู้ใช้ล็อกอินแล้ว
-                const email = user.email;
+        // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อโหลดหน้าเว็บ
+        window.onload = function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userEmail = localStorage.getItem('userEmail');
 
-                // แสดงเมนูหลัก
-                document.getElementById('login').classList.add('hidden');
-                document.getElementById('menu').classList.remove('hidden');
-            } else {
-                // ผู้ใช้ยังไม่ได้ล็อกอิน แสดงหน้า login
-                document.getElementById('login').classList.remove('hidden');
-                document.getElementById('menu').classList.add('hidden');
+            if (isLoggedIn && userEmail) {
+                // ดึงข้อมูลผู้ใช้จาก Firestore
+                db.collection('userSessions').doc(userEmail).get().then(userDoc => {
+                    if (userDoc.exists && userDoc.data().isLoggedIn) {
+                        document.getElementById('login').classList.add('hidden');
+                        document.getElementById('menu').classList.remove('hidden');
+                    } else {
+                        // ถ้าไม่พบข้อมูลการล็อกอินใน Firestore
+                        localStorage.removeItem('isLoggedIn');
+                        localStorage.removeItem('userEmail');
+                    }
+                });
             }
-        });
-
+        };
     </script>
 </head>
 <body>
