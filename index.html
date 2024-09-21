@@ -4,24 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document Management System</title>
-    <link rel="stylesheet" href="./css/styles.css">
-
-    <!-- ปิดการคลิกขวาและการใช้ Developer Tools -->
-    <script>
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault(); // ปิดการคลิกขวา
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
-                e.preventDefault(); // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
-            }
-        });
-    </script>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
     <script>
         // Firebase configuration
         var firebaseConfig = {
@@ -32,16 +19,30 @@
     messagingSenderId: "375236615142",
     appId: "1:375236615142:web:958c73cf5cc7929a901427",
         };
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
         // ฟังก์ชันเข้าสู่ระบบ
-        function login() {
+        async function login() {
             const email = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
+            // ตรวจสอบสถานะการล็อกอินใน Firestore
+            const userDoc = await db.collection('userSessions').doc(email).get();
+
+            if (userDoc.exists && userDoc.data().isLoggedIn) {
+                alert('มีผู้ใช้งานบัญชีนี้ล็อกอินอยู่แล้ว');
+                return;
+            }
+
+            // ถ้าไม่มีการล็อกอินอยู่ ทำการล็อกอินผ่าน Firebase Auth
             firebase.auth().signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
+                .then(async (userCredential) => {
+                    // ตั้งค่า isLoggedIn เป็น true ใน Firestore
+                    await db.collection('userSessions').doc(email).set({
+                        email: email,
+                        isLoggedIn: true
+                    });
                     alert('เข้าสู่ระบบสำเร็จ');
                     document.getElementById('login').classList.add('hidden');
                     document.getElementById('menu').classList.remove('hidden');
@@ -52,14 +53,18 @@
         }
 
         // ฟังก์ชันออกจากระบบ
-        function logout() {
-            firebase.auth().signOut().then(() => {
-                alert('ออกจากระบบสำเร็จ');
-                document.getElementById('menu').classList.add('hidden');
-                document.getElementById('login').classList.remove('hidden');
-            }).catch((error) => {
-                alert('เกิดข้อผิดพลาด: ' + error.message);
+        async function logout() {
+            const email = firebase.auth().currentUser.email;
+            await firebase.auth().signOut();
+            
+            // ตั้งค่า isLoggedIn เป็น false ใน Firestore
+            await db.collection('userSessions').doc(email).update({
+                isLoggedIn: false
             });
+
+            alert('ออกจากระบบสำเร็จ');
+            document.getElementById('menu').classList.add('hidden');
+            document.getElementById('login').classList.remove('hidden');
         }
     </script>
 </head>
@@ -74,7 +79,6 @@
     <div id="menu" class="hidden">
         <div id="header">
             <button id="logout-button" onclick="logout()">Logout</button>
-            <div id="session-timer">เวลาที่เหลือ: <span id="time-left"></span></div>
         </div>
         <h2>เอกสาร</h2>
         <div class="menu-container">
