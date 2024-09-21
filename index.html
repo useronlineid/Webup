@@ -6,25 +6,67 @@
     <title>Document Management System</title>
     <link rel="stylesheet" href="./css/styles.css">
 
-        <!-- สคริปต์ปิดการคลิกขวาและการใช้ Developer Tools -->
+    <!-- ปิดการคลิกขวาและการใช้ Developer Tools -->
     <script>
-      document.addEventListener('contextmenu', function(e) {
-          e.preventDefault(); // ปิดการคลิกขวา
-      });
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault(); // ปิดการคลิกขวา
+        });
 
-      document.addEventListener('keydown', function(e) {
-          // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
-          if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
-              e.preventDefault();
-          }
-      });
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault(); // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
+            }
+        });
     </script>
-    
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script>
+        // Firebase configuration
+        var firebaseConfig = {
+    apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
+    authDomain: "webup-7449a.firebaseapp.com",
+    projectId: "webup-7449a",
+    storageBucket: "webup-7449a.appspot.com",
+    messagingSenderId: "375236615142",
+    appId: "1:375236615142:web:958c73cf5cc7929a901427",
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // ฟังก์ชันเข้าสู่ระบบ
+        function login() {
+            const email = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    alert('เข้าสู่ระบบสำเร็จ');
+                    document.getElementById('login').classList.add('hidden');
+                    document.getElementById('menu').classList.remove('hidden');
+                })
+                .catch((error) => {
+                    alert('เกิดข้อผิดพลาด: ' + error.message);
+                });
+        }
+
+        // ฟังก์ชันออกจากระบบ
+        function logout() {
+            firebase.auth().signOut().then(() => {
+                alert('ออกจากระบบสำเร็จ');
+                document.getElementById('menu').classList.add('hidden');
+                document.getElementById('login').classList.remove('hidden');
+            }).catch((error) => {
+                alert('เกิดข้อผิดพลาด: ' + error.message);
+            });
+        }
+    </script>
 </head>
 <body>
     <div id="login">
         <h2>Login</h2>
-        <input type="text" id="username" placeholder="Username"><br>
+        <input type="email" id="username" placeholder="Email"><br>
         <input type="password" id="password" placeholder="Password"><br>
         <button onclick="login()">Login</button>
     </div>
@@ -502,6 +544,5 @@
         <button onclick="backToMenu()">Back</button>
     </div>
 
-    <script src="./app/script.js"></script>
 </body>
 </html>
