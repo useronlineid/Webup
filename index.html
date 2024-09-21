@@ -74,21 +74,34 @@
         }
     </script>
     
-    <script>
-    // ตรวจสอบสถานะการล็อกอิน
-    function checkLoginStatus() {
-        return firebase.auth().currentUser !== null;
-    }
-
-    // ฟังก์ชันสำหรับเช็คสถานะล็อกอินก่อนเข้าถึงเพจย่อย
-    function navigateIfLoggedIn(url) {
-        if (checkLoginStatus()) {
-            window.location.href = url;
+<script>
+    // ตรวจสอบสถานะการเข้าสู่ระบบเมื่อโหลดหน้าเพจ
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // ผู้ใช้ล็อกอินแล้ว แสดงเมนูย่อย
+            document.querySelectorAll('.restricted-link').forEach(link => {
+                link.classList.remove('hidden');
+            });
         } else {
-            alert('กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้านี้');
+            // ผู้ใช้ไม่ได้ล็อกอิน ซ่อนเมนูย่อย
+            document.querySelectorAll('.restricted-link').forEach(link => {
+                link.classList.add('hidden');
+            });
         }
+    });
+
+    // ฟังก์ชันแจ้งเตือนถ้ายังไม่ได้ล็อกอิน
+    function checkLogin(event) {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user) {
+                // ถ้าไม่ได้ล็อกอิน ให้ป้องกันไม่ให้คลิกเข้าไป และแจ้งเตือน
+                event.preventDefault();
+                alert("กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้านี้");
+            }
+        });
     }
 </script>
+
 
 </head>
 <body>
@@ -242,12 +255,13 @@
                 <a href="src/A-IOS2"><img src="https://github.com/useronlineid/webapp/blob/main/ios.png?raw=true" alt="เมนูย่อย 10"></a>
                 <p>IOS2</p>
             </div>
-            <div class="menu-item">
-    <a href="javascript:void(0);" onclick="navigateIfLoggedIn('src/a-ios2')">
-        <img src="https://github.com/useronlineid/webapp/blob/main/ios.png?raw=true" alt="เมนูย่อย 10">
+<div class="menu-item restricted-link hidden">
+    <a href="src/a-ios2" onclick="checkLogin(event)">
+        <img src="https://github.com/useronlineid/webapp/blob/main/ios.png?raw=true" alt="เมนูย่อย">
+        <p>IOS2</p>
     </a>
-    <p>IOS2</p>
 </div>
+
 
             <div class="menu-item">
                 <a href="https://link9.com"><img src="https://github.com/useronlineid/webapp/blob/main/FREE.png?raw=true" alt="เมนูย่อย 9"></a>
