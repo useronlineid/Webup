@@ -25,28 +25,6 @@
 
         let userSessionUnsubscribe = null;
 
-        // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลดขึ้นมา
-        firebase.auth().onAuthStateChanged(async function(user) {
-            if (user) {
-                // ผู้ใช้ล็อกอินอยู่
-                document.getElementById('login').classList.add('hidden');
-                document.getElementById('menu').classList.remove('hidden');
-
-                // ตั้งค่าตัวฟังสำหรับตรวจสอบสถานะ isLoggedIn
-                userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
-                    .onSnapshot((doc) => {
-                        if (doc.exists && !doc.data().isLoggedIn) {
-                            alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
-                            logout(false);
-                        }
-                    });
-            } else {
-                // ผู้ใช้ไม่ได้ล็อกอิน
-                document.getElementById('menu').classList.add('hidden');
-                document.getElementById('login').classList.remove('hidden');
-            }
-        });
-
         // ฟังก์ชันเข้าสู่ระบบ
         async function login() {
             const email = document.getElementById('username').value;
@@ -70,7 +48,6 @@
                         isLoggedIn: true
                     });
 
-                    // ตั้งค่าตัวฟังสำหรับตรวจสอบสถานะ isLoggedIn
                     userSessionUnsubscribe = db.collection('userSessions').doc(userCredential.user.uid)
                         .onSnapshot((doc) => {
                             if (doc.exists && !doc.data().isLoggedIn) {
