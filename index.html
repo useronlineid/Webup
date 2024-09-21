@@ -25,6 +25,34 @@
 
         let userSessionUnsubscribe = null;
 
+        // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
+        firebase.auth().onAuthStateChanged(async function(user) {
+            if (user) {
+                // ผู้ใช้ล็อกอินอยู่
+                const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
+                if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
+                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions
+                    userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
+                        .onSnapshot((doc) => {
+                            if (doc.exists && !doc.data().isLoggedIn) {
+                                alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
+                                logout(false);
+                            }
+                        });
+                    // แสดงเมนู
+                    document.getElementById('login').classList.add('hidden');
+                    document.getElementById('menu').classList.remove('hidden');
+                } else {
+                    // ถ้า isLoggedIn เป็น false ในฐานข้อมูล
+                    await logout(false);
+                }
+            } else {
+                // ผู้ใช้ไม่ได้ล็อกอิน
+                document.getElementById('login').classList.remove('hidden');
+                document.getElementById('menu').classList.add('hidden');
+            }
+        });
+
         // ฟังก์ชันเข้าสู่ระบบ
         async function login() {
             const email = document.getElementById('username').value;
@@ -48,14 +76,6 @@
                         isLoggedIn: true
                     });
 
-                    userSessionUnsubscribe = db.collection('userSessions').doc(userCredential.user.uid)
-                        .onSnapshot((doc) => {
-                            if (doc.exists && !doc.data().isLoggedIn) {
-                                alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
-                                logout(false);
-                            }
-                        });
-
                     alert('เข้าสู่ระบบสำเร็จ');
                     document.getElementById('login').classList.add('hidden');
                     document.getElementById('menu').classList.remove('hidden');
@@ -70,8 +90,6 @@
             const user = firebase.auth().currentUser;
             if (user) {
                 const uid = user.uid;
-                await firebase.auth().signOut();
-
                 if (userSessionUnsubscribe) {
                     userSessionUnsubscribe();
                     userSessionUnsubscribe = null;
@@ -82,6 +100,8 @@
                         isLoggedIn: false
                     });
                 }
+
+                await firebase.auth().signOut();
             }
 
             alert('ออกจากระบบสำเร็จ');
