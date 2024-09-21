@@ -48,7 +48,13 @@
                         isLoggedIn: true
                     });
 
-                    setupUserSessionListener(userCredential.user.uid);
+                    userSessionUnsubscribe = db.collection('userSessions').doc(userCredential.user.uid)
+                        .onSnapshot((doc) => {
+                            if (doc.exists && !doc.data().isLoggedIn) {
+                                alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
+                                logout(false);
+                            }
+                        });
 
                     alert('เข้าสู่ระบบสำเร็จ');
                     document.getElementById('login').classList.add('hidden');
@@ -82,43 +88,6 @@
             document.getElementById('menu').classList.add('hidden');
             document.getElementById('login').classList.remove('hidden');
         }
-
-        // ฟังก์ชันตั้งค่าตัวฟังสำหรับตรวจสอบสถานะการล็อกอิน
-        function setupUserSessionListener(uid) {
-            if (userSessionUnsubscribe) {
-                userSessionUnsubscribe();
-            }
-
-            userSessionUnsubscribe = db.collection('userSessions').doc(uid)
-                .onSnapshot((doc) => {
-                    if (doc.exists && !doc.data().isLoggedIn) {
-                        alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
-                        logout(false);
-                    }
-                });
-        }
-
-        // ตรวจสอบสถานะการล็อกอินเมื่อโหลดหน้าเว็บ
-        firebase.auth().onAuthStateChanged(async (user) => {
-            if (user) {
-                // ผู้ใช้ล็อกอินอยู่
-                const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
-                if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                    document.getElementById('login').classList.add('hidden');
-                    document.getElementById('menu').classList.remove('hidden');
-                    setupUserSessionListener(user.uid);
-                } else {
-                    // ถ้า isLoggedIn ใน Firestore เป็น false
-                    await firebase.auth().signOut();
-                    document.getElementById('login').classList.remove('hidden');
-                    document.getElementById('menu').classList.add('hidden');
-                }
-            } else {
-                // ผู้ใช้ไม่ได้ล็อกอิน
-                document.getElementById('login').classList.remove('hidden');
-                document.getElementById('menu').classList.add('hidden');
-            }
-        });
     </script>
     
 </head>
