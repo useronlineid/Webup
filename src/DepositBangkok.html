@@ -7,19 +7,40 @@
     <link rel="stylesheet" href="../css/slip.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
     
-    <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const loginTime = localStorage.getItem('loginTime');
-    const duration = localStorage.getItem('duration');
-    const username = localStorage.getItem('username');
+    <!-- ป้องกันการแคช -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 
-    // ถ้าไม่มีข้อมูลการล็อกอินหรือเซสชันหมดอายุ ให้เปลี่ยนเส้นทางกลับไปยังหน้า login
-    if (!loginTime || !duration || !username || new Date().getTime() > parseInt(loginTime, 10) + parseInt(duration, 10)) {
-      alert('กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้าเพจนี้');
-      window.location.href = 'https://useronlineid.github.io/Webup/'; // เปลี่ยนเป็น URL ของหน้า login
-    }
-  });
-</script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <script>
+        // Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
+            authDomain: "webup-7449a.firebaseapp.com",
+            projectId: "webup-7449a",
+            storageBucket: "webup-7449a.appspot.com",
+            messagingSenderId: "375236615142",
+            appId: "1:375236615142:web:958c73cf5cc7929a901427",
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // ตรวจสอบสถานะการล็อกอิน
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // ผู้ใช้ล็อกอินแล้ว สามารถเข้าถึงเนื้อหาในหน้านี้ได้
+            } else {
+                // ผู้ใช้ไม่ได้ล็อกอิน แสดงคำเตือนและปิดหน้าต่าง
+                alert('กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้านี้ หน้าต่างจะถูกปิด');
+                window.close();
+            }
+        });
+    </script>
     
 </head>
 <body>
