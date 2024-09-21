@@ -28,26 +28,24 @@
         // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
         firebase.auth().onAuthStateChanged(async function(user) {
             if (user) {
-                // ผู้ใช้ล็อกอินอยู่
-                const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
+                const uid = user.uid;
+                const userSessionRef = db.collection('userSessions').doc(uid);
+                const userSessionDoc = await userSessionRef.get();
+                
                 if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
                     // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions
-                    userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
-                        .onSnapshot((doc) => {
-                            if (doc.exists && !doc.data().isLoggedIn) {
-                                alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
-                                logout(false);
-                            }
-                        });
-                    // แสดงเมนู
+                    userSessionUnsubscribe = userSessionRef.onSnapshot((doc) => {
+                        if (doc.exists && !doc.data().isLoggedIn) {
+                            alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
+                            logout(false);
+                        }
+                    });
                     document.getElementById('login').classList.add('hidden');
                     document.getElementById('menu').classList.remove('hidden');
                 } else {
-                    // ถ้า isLoggedIn เป็น false ในฐานข้อมูล
                     await logout(false);
                 }
             } else {
-                // ผู้ใช้ไม่ได้ล็อกอิน
                 document.getElementById('login').classList.remove('hidden');
                 document.getElementById('menu').classList.add('hidden');
             }
@@ -60,18 +58,16 @@
 
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(async (userCredential) => {
-                    const activeUsers = await db.collection('userSessions').where('isLoggedIn', '==', true).get();
+                    const uid = userCredential.user.uid;
+                    const userSessionRef = db.collection('userSessions').doc(uid);
+                    const userSessionDoc = await userSessionRef.get();
 
-                    if (!activeUsers.empty) {
-                        activeUsers.forEach(async (doc) => {
-                            await db.collection('userSessions').doc(doc.id).update({
-                                isLoggedIn: false
-                            });
-                        });
-                        alert('มีผู้ใช้งานอยู่ในระบบ จะทำการล็อกเอาท์ผู้ใช้นั้น');
+                    if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
+                        alert('มีผู้ใช้ล็อกอินอยู่ในระบบ');
+                        await userSessionRef.update({ isLoggedIn: false });
                     }
 
-                    await db.collection('userSessions').doc(userCredential.user.uid).set({
+                    await userSessionRef.set({
                         email: email,
                         isLoggedIn: true
                     });
@@ -110,7 +106,7 @@
         }
     </script>
 
-        <script>
+    <script>
       document.addEventListener('contextmenu', function(e) {
           e.preventDefault(); // ปิดการคลิกขวา
       });
@@ -122,7 +118,6 @@
           }
       });
     </script>
-    
 </head>
 <body>
     <div id="login">
