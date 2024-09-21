@@ -23,6 +23,25 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
+        // ฟังก์ชันสำหรับตรวจสอบสถานะการล็อกอิน
+        firebase.auth().onAuthStateChanged(async function(user) {
+            if (user) {
+                const email = user.email;
+                const userDoc = await db.collection('userSessions').doc(email).get();
+                
+                if (userDoc.exists && userDoc.data().isLoggedIn) {
+                    document.getElementById('login').classList.add('hidden');
+                    document.getElementById('menu').classList.remove('hidden');
+                } else {
+                    logout();  // ถ้าผู้ใช้ออกจากระบบแล้ว ก็จะทำการล็อกเอาท์
+                }
+            } else {
+                // ถ้าผู้ใช้ไม่ได้ล็อกอิน ก็ให้แสดงหน้า login
+                document.getElementById('login').classList.remove('hidden');
+                document.getElementById('menu').classList.add('hidden');
+            }
+        });
+
         // ฟังก์ชันเข้าสู่ระบบ
         async function login() {
             const email = document.getElementById('username').value;
@@ -46,10 +65,8 @@
                         isLoggedIn: true
                     });
 
-                    // บันทึกสถานะการล็อกอินไว้ใน LocalStorage
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('userEmail', email);
-
+                    // บันทึกสถานะการล็อกอินลงใน localStorage
+                    localStorage.setItem('isLoggedIn', true);
                     alert('เข้าสู่ระบบสำเร็จ');
                     document.getElementById('login').classList.add('hidden');
                     document.getElementById('menu').classList.remove('hidden');
@@ -64,40 +81,27 @@
             const email = firebase.auth().currentUser.email;
             await firebase.auth().signOut();
 
-            // ตั้งค่า isLoggedIn เป็น false ใน Firestore
+            // อัพเดตสถานะ isLoggedIn ใน Firestore
             await db.collection('userSessions').doc(email).update({
                 isLoggedIn: false
             });
 
-            // ลบสถานะการล็อกอินออกจาก LocalStorage
+            // ลบสถานะการล็อกอินจาก localStorage
             localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('userEmail');
-
             alert('ออกจากระบบสำเร็จ');
             document.getElementById('menu').classList.add('hidden');
             document.getElementById('login').classList.remove('hidden');
         }
 
-        // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อโหลดหน้าเว็บ
+        // ตรวจสอบ localStorage เพื่อดูว่าผู้ใช้ล็อกอินอยู่หรือไม่
         window.onload = function() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            const userEmail = localStorage.getItem('userEmail');
-
-            if (isLoggedIn && userEmail) {
-                // ดึงข้อมูลผู้ใช้จาก Firestore
-                db.collection('userSessions').doc(userEmail).get().then(userDoc => {
-                    if (userDoc.exists && userDoc.data().isLoggedIn) {
-                        document.getElementById('login').classList.add('hidden');
-                        document.getElementById('menu').classList.remove('hidden');
-                    } else {
-                        // ถ้าไม่พบข้อมูลการล็อกอินใน Firestore
-                        localStorage.removeItem('isLoggedIn');
-                        localStorage.removeItem('userEmail');
-                    }
-                });
+            if (localStorage.getItem('isLoggedIn')) {
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('menu').classList.remove('hidden');
             }
         };
     </script>
+    
 </head>
 <body>
     <div id="login">
