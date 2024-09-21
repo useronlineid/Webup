@@ -9,12 +9,13 @@
     <script>
         // ตรวจสอบสถานะการล็อกอินเมื่อโหลดเพจ
         window.onload = function() {
-            // เช็คว่าใน localStorage มีสถานะการล็อกอินหรือไม่
             const isLoggedIn = localStorage.getItem('isLoggedIn');
+            console.log('Login status:', isLoggedIn);  // ตรวจสอบสถานะการล็อกอิน
 
             // ถ้าไม่มีสถานะการล็อกอินหรือยังไม่ได้ล็อกอิน
             if (!isLoggedIn || isLoggedIn !== 'true') {
                 // รีไดเร็กต์ไปยังหน้า login
+                alert('ยังไม่ได้เข้าสู่ระบบ! กำลังนำคุณไปที่หน้า login');
                 window.location.href = 'https://webup10.netlify.app';
             }
         }
