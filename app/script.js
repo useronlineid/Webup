@@ -1,1 +1,124 @@
-const _0x800dd3=_0x1bae;(function(_0x33416d,_0x25efa8){const _0x4006b8=_0x1bae,_0x5e8319=_0x33416d();while(!![]){try{const _0x2961f8=-parseInt(_0x4006b8(0x17a))/0x1+parseInt(_0x4006b8(0x177))/0x2*(-parseInt(_0x4006b8(0x164))/0x3)+parseInt(_0x4006b8(0x184))/0x4+-parseInt(_0x4006b8(0x16e))/0x5*(-parseInt(_0x4006b8(0x156))/0x6)+parseInt(_0x4006b8(0x158))/0x7*(parseInt(_0x4006b8(0x180))/0x8)+-parseInt(_0x4006b8(0x15f))/0x9+-parseInt(_0x4006b8(0x167))/0xa*(-parseInt(_0x4006b8(0x174))/0xb);if(_0x2961f8===_0x25efa8)break;else _0x5e8319['push'](_0x5e8319['shift']());}catch(_0x2308eb){_0x5e8319['push'](_0x5e8319['shift']());}}}(_0x20cc,0xbb82f));function _0x1bae(_0x9bce5c,_0x37a72d){const _0x20ccdb=_0x20cc();return _0x1bae=function(_0x1baefb,_0x41d5ec){_0x1baefb=_0x1baefb-0x151;let _0x50ad28=_0x20ccdb[_0x1baefb];return _0x50ad28;},_0x1bae(_0x9bce5c,_0x37a72d);}const users={'max168':{'password':_0x800dd3(0x16f),'duration':0x3c*0x1e0*0x3e8,'maxSessions':0xa},'luck001':{'password':_0x800dd3(0x16f),'duration':0x3c*0x3c*0x3e8,'maxSessions':0x1},'pass899':{'password':_0x800dd3(0x15e),'duration':0x3c*0x1e0*0x3e8,'maxSessions':0x1},'admin168':{'password':_0x800dd3(0x16f),'duration':0x3c*0x1e0*0x3e8,'maxSessions':0xa},'god168':{'password':_0x800dd3(0x16f),'duration':0x3c*0x1e0*0x3e8,'maxSessions':0xa},'eqxjdg':{'password':_0x800dd3(0x163),'duration':0x3c*0x1e0*0x3e8,'maxSessions':0xa},'admin99':{'password':_0x800dd3(0x16f),'duration':0x3c*0x1e0*0x3e8,'maxSessions':0xa},'lemon':{'password':_0x800dd3(0x16f),'duration':0x3c*0xb40*0x3e8,'maxSessions':0xa},'dx':{'password':_0x800dd3(0x175),'duration':0x3c*0xb40*0x3e8,'maxSessions':0xa}};function _0x20cc(){const _0x1ba9d2=['33KzsvOX','164626','remove','4OSIijt','toFixed','floor','493208ASzapd','input','sessions','DOMContentLoaded','maxSessions','stringify','16uBYHWi','getItem','getTime','value','421732inmtVz','รหัสผ่านไม่ถูกต้อง','loginTime','password','removeItem','innerText','.sub-menu','hidden','18828SoxcFv','\x20มีการเข้าสู่ระบบเต็มจำนวนแล้ว','1206961ouAvaA','parse','push','submenu8-pass','setItem','ยูสเซอร์\x20','899899','4534731iABLzh','submenu8','menu','forEach','eqxjdg1999','476292gBsNHW','กรุณาเข้าสู่ระบบใหม่อีกครั้ง','username','5242470GigDLm','length','keys','classList','add','querySelectorAll','submenu8-password','95biLGJQ','123456','login','duration','addEventListener','getElementById'];_0x20cc=function(){return _0x1ba9d2;};return _0x20cc();}function login(){const _0x104fc1=_0x800dd3,_0x3c30b1=document[_0x104fc1(0x173)](_0x104fc1(0x166))[_0x104fc1(0x183)],_0x134a5d=document[_0x104fc1(0x173)](_0x104fc1(0x151))[_0x104fc1(0x183)];if(users[_0x3c30b1]&&users[_0x3c30b1][_0x104fc1(0x151)]===_0x134a5d){const _0x202748=JSON[_0x104fc1(0x159)](localStorage[_0x104fc1(0x181)](_0x104fc1(0x17c)))||{},_0x466280=new Date()[_0x104fc1(0x182)]();Object[_0x104fc1(0x169)](_0x202748)[_0x104fc1(0x162)](_0x43a932=>{const _0x5378f1=_0x104fc1;_0x202748[_0x43a932]=_0x202748[_0x43a932]['filter'](_0x214565=>_0x214565+users[_0x43a932][_0x5378f1(0x171)]>_0x466280);});if(_0x202748[_0x3c30b1]&&_0x202748[_0x3c30b1][_0x104fc1(0x168)]>=users[_0x3c30b1][_0x104fc1(0x17e)]){alert(_0x104fc1(0x15d)+_0x3c30b1+_0x104fc1(0x157));return;}const _0x5a330f=new Date()[_0x104fc1(0x182)](),_0x2f2fc5=users[_0x3c30b1][_0x104fc1(0x171)];if(!_0x202748[_0x3c30b1])_0x202748[_0x3c30b1]=[];_0x202748[_0x3c30b1][_0x104fc1(0x15a)](_0x5a330f),localStorage[_0x104fc1(0x15c)](_0x104fc1(0x17c),JSON['stringify'](_0x202748)),localStorage[_0x104fc1(0x15c)](_0x104fc1(0x186),_0x5a330f),localStorage['setItem'](_0x104fc1(0x166),_0x3c30b1),localStorage[_0x104fc1(0x15c)](_0x104fc1(0x171),_0x2f2fc5),document['getElementById'](_0x104fc1(0x170))[_0x104fc1(0x16a)][_0x104fc1(0x16b)](_0x104fc1(0x155)),document['getElementById']('menu')[_0x104fc1(0x16a)]['remove'](_0x104fc1(0x155)),updateTimeLeft(),checkSession();}else alert(_0x104fc1(0x185));}function showSubMenu(_0x50d7e7){const _0xd827a1=_0x800dd3;document['getElementById'](_0xd827a1(0x161))[_0xd827a1(0x16a)][_0xd827a1(0x16b)](_0xd827a1(0x155)),document['querySelectorAll'](_0xd827a1(0x154))['forEach'](_0x3da604=>{const _0x278b51=_0xd827a1;_0x3da604[_0x278b51(0x16a)]['add'](_0x278b51(0x155));}),document[_0xd827a1(0x173)](_0x50d7e7)[_0xd827a1(0x16a)][_0xd827a1(0x176)](_0xd827a1(0x155));}function backToMenu(){const _0x577f6a=_0x800dd3;document[_0x577f6a(0x173)](_0x577f6a(0x161))[_0x577f6a(0x16a)][_0x577f6a(0x176)](_0x577f6a(0x155)),document[_0x577f6a(0x16c)](_0x577f6a(0x154))[_0x577f6a(0x162)](_0xc081de=>{const _0x57c07f=_0x577f6a;_0xc081de['classList']['add'](_0x57c07f(0x155));});}function logout(){const _0x157a9d=_0x800dd3,_0x4b1877=localStorage[_0x157a9d(0x181)](_0x157a9d(0x166)),_0x572ca0=parseInt(localStorage[_0x157a9d(0x181)](_0x157a9d(0x186)),0xa),_0x52bc3d=JSON[_0x157a9d(0x159)](localStorage['getItem'](_0x157a9d(0x17c)))||{};_0x52bc3d[_0x4b1877]=_0x52bc3d[_0x4b1877]['filter'](_0x5aa609=>_0x5aa609!==_0x572ca0),localStorage[_0x157a9d(0x15c)](_0x157a9d(0x17c),JSON[_0x157a9d(0x17f)](_0x52bc3d)),localStorage[_0x157a9d(0x152)](_0x157a9d(0x186)),localStorage[_0x157a9d(0x152)](_0x157a9d(0x166)),localStorage[_0x157a9d(0x152)]('duration'),document['getElementById'](_0x157a9d(0x161))[_0x157a9d(0x16a)]['add'](_0x157a9d(0x155)),document[_0x157a9d(0x16c)](_0x157a9d(0x154))[_0x157a9d(0x162)](_0x1ce070=>{const _0x1b0376=_0x157a9d;_0x1ce070['classList'][_0x1b0376(0x16b)](_0x1b0376(0x155));}),document[_0x157a9d(0x173)](_0x157a9d(0x170))[_0x157a9d(0x16a)][_0x157a9d(0x176)](_0x157a9d(0x155));}function updateTimeLeft(){const _0x242a9a=_0x800dd3,_0x5b53dc=parseInt(localStorage[_0x242a9a(0x181)](_0x242a9a(0x186)),0xa),_0x56b920=parseInt(localStorage[_0x242a9a(0x181)](_0x242a9a(0x171)),0xa),_0x5e2252=new Date()[_0x242a9a(0x182)](),_0x27a9c8=_0x5b53dc+_0x56b920-_0x5e2252;if(_0x27a9c8<=0x0)logout(),alert(_0x242a9a(0x165));else{const _0x147972=Math[_0x242a9a(0x179)](_0x27a9c8/0xea60),_0x22dfdd=(_0x27a9c8%0xea60/0x3e8)[_0x242a9a(0x178)](0x0);document[_0x242a9a(0x173)]('time-left')[_0x242a9a(0x153)]=_0x147972+':'+(_0x22dfdd<0xa?'0':'')+_0x22dfdd;}}function checkSession(){updateTimeLeft(),setInterval(updateTimeLeft,0x3e8);}document[_0x800dd3(0x172)](_0x800dd3(0x17d),()=>{const _0x4d2f70=_0x800dd3,_0x25bd47=localStorage['getItem'](_0x4d2f70(0x186)),_0x5206eb=localStorage[_0x4d2f70(0x181)]('duration'),_0x27e390=localStorage[_0x4d2f70(0x181)](_0x4d2f70(0x166));if(_0x25bd47&&_0x5206eb&&_0x27e390){const _0x15e114=new Date()[_0x4d2f70(0x182)]();_0x15e114<parseInt(_0x25bd47,0xa)+parseInt(_0x5206eb,0xa)?(document[_0x4d2f70(0x173)](_0x4d2f70(0x170))[_0x4d2f70(0x16a)][_0x4d2f70(0x16b)](_0x4d2f70(0x155)),document[_0x4d2f70(0x173)](_0x4d2f70(0x161))[_0x4d2f70(0x16a)][_0x4d2f70(0x176)]('hidden'),checkSession()):logout();}});let isSubmenu8Unlocked=![];document[_0x800dd3(0x173)](_0x800dd3(0x15b))[_0x800dd3(0x172)](_0x800dd3(0x17b),function(){const _0x444685=_0x800dd3,_0x5104ee=this['value'],_0x279cac=document[_0x444685(0x173)]('password-error');if(_0x5104ee[_0x444685(0x168)]===0x6)_0x5104ee===_0x444685(0x175)?(document[_0x444685(0x173)](_0x444685(0x160))[_0x444685(0x16a)][_0x444685(0x176)]('hidden'),document[_0x444685(0x173)](_0x444685(0x16d))[_0x444685(0x16a)][_0x444685(0x16b)]('hidden'),isSubmenu8Unlocked=!![]):(_0x279cac['classList'][_0x444685(0x176)](_0x444685(0x155)),setTimeout(()=>{const _0x191105=_0x444685;_0x279cac[_0x191105(0x16a)]['add'](_0x191105(0x155)),this[_0x191105(0x183)]='';},0x7d0));else _0x5104ee[_0x444685(0x168)]>0x6&&(_0x279cac[_0x444685(0x16a)][_0x444685(0x176)](_0x444685(0x155)),setTimeout(()=>{const _0x59f04d=_0x444685;_0x279cac[_0x59f04d(0x16a)][_0x59f04d(0x16b)](_0x59f04d(0x155)),this[_0x59f04d(0x183)]='';},0x7d0));});function showSubMenu(_0x483cec){const _0x11060f=_0x800dd3;document[_0x11060f(0x173)]('menu')['classList'][_0x11060f(0x16b)]('hidden'),document[_0x11060f(0x16c)](_0x11060f(0x154))[_0x11060f(0x162)](_0x191856=>_0x191856[_0x11060f(0x16a)][_0x11060f(0x16b)](_0x11060f(0x155))),_0x483cec==='submenu8'?isSubmenu8Unlocked?document[_0x11060f(0x173)]('submenu8')[_0x11060f(0x16a)][_0x11060f(0x176)]('hidden'):document[_0x11060f(0x173)](_0x11060f(0x16d))[_0x11060f(0x16a)][_0x11060f(0x176)](_0x11060f(0x155)):document[_0x11060f(0x173)](_0x483cec)['classList'][_0x11060f(0x176)]('hidden');}function backToMenu(){const _0x595692=_0x800dd3;document[_0x595692(0x16c)](_0x595692(0x154))[_0x595692(0x162)](_0x5dabe5=>_0x5dabe5[_0x595692(0x16a)][_0x595692(0x16b)](_0x595692(0x155))),document[_0x595692(0x173)](_0x595692(0x161))[_0x595692(0x16a)][_0x595692(0x176)](_0x595692(0x155));}
+const users = {
+    max168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },  // 8 ชั่วโมง // ห้อง 4
+    luck001: { password: '123456', duration: 60 * 60 * 1000, maxSessions: 1 },   // 1 ชั่วโมง // มีมี่
+    pass899: { password: '899899', duration: 60 * 480 * 1000, maxSessions: 1 },   // 1 ชั่วโมง // ปอน
+    admin168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // แจ็ค
+    god168: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // ซัง
+    eqxjdg: { password: 'eqxjdg1999', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // โต
+    admin99: { password: '123456', duration: 60 * 480 * 1000, maxSessions: 10 },   // 8 ชั่วโมง // พี่น้ำ
+    lemon: { password: '123456', duration: 60 * 2880 * 1000, maxSessions: 10 },   // 48 ชั่วโมง // พี่น้ำ
+    dx: { password: '164626', duration: 60 * 2880 * 1000, maxSessions: 10 }   // ไม่จำกัดเวลา, ไม่จำกัดจำนวนคน
+};
+
+// ฟังก์ชันตรวจสอบเซสชันที่หมดอายุและลบออก
+function cleanExpiredSessions() {
+    const sessions = JSON.parse(localStorage.getItem('sessions')) || {};
+    const currentTime = new Date().getTime();
+
+    Object.keys(sessions).forEach(user => {
+        sessions[user] = sessions[user].filter(session => session + users[user].duration > currentTime);
+    });
+
+    localStorage.setItem('sessions', JSON.stringify(sessions));
+}
+
+// ฟังก์ชันเข้าสู่ระบบ
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (users[username] && users[username].password === password) {
+        cleanExpiredSessions(); // ลบเซสชันที่หมดอายุ
+
+        const sessions = JSON.parse(localStorage.getItem('sessions')) || {};
+        const currentTime = new Date().getTime();
+
+        // ตรวจสอบว่าเซสชันเกินจำนวนที่กำหนดหรือไม่
+        if (sessions[username] && sessions[username].length >= users[username].maxSessions) {
+            alert(`ยูสเซอร์ ${username} มีการเข้าสู่ระบบเต็มจำนวนแล้ว`);
+            return;
+        }
+
+        const loginTime = currentTime;
+        const duration = users[username].duration;
+
+        // เพิ่มเซสชันใหม่
+        if (!sessions[username]) sessions[username] = [];
+        sessions[username].push(loginTime);
+
+        localStorage.setItem('sessions', JSON.stringify(sessions));
+        localStorage.setItem('loginTime', loginTime);
+        localStorage.setItem('username', username);
+        localStorage.setItem('duration', duration);
+
+        document.getElementById('login').classList.add('hidden');
+        document.getElementById('menu').classList.remove('hidden');
+        updateTimeLeft(); // อัปเดตการแสดงผลเวลาที่เหลือ
+        checkSession(); // เริ่มตรวจสอบเซสชัน
+    } else {
+        alert('รหัสผ่านไม่ถูกต้อง');
+    }
+}
+
+// ฟังก์ชันออกจากระบบ
+function logout() {
+    const username = localStorage.getItem('username');
+    const loginTime = parseInt(localStorage.getItem('loginTime'), 10);
+
+    const sessions = JSON.parse(localStorage.getItem('sessions')) || {};
+    sessions[username] = sessions[username].filter(session => session !== loginTime);
+
+    localStorage.setItem('sessions', JSON.stringify(sessions));
+    localStorage.removeItem('loginTime');
+    localStorage.removeItem('username');
+    localStorage.removeItem('duration');
+
+    document.getElementById('menu').classList.add('hidden');
+    document.querySelectorAll('.sub-menu').forEach(subMenu => {
+        subMenu.classList.add('hidden');
+    });
+    document.getElementById('login').classList.remove('hidden');
+}
+
+// ฟังก์ชันอัปเดตเวลาที่เหลือ
+function updateTimeLeft() {
+    const loginTime = parseInt(localStorage.getItem('loginTime'), 10);
+    const duration = parseInt(localStorage.getItem('duration'), 10);
+    const currentTime = new Date().getTime();
+    const timeLeft = loginTime + duration - currentTime;
+
+    if (timeLeft <= 0) {
+        logout();
+        alert('กรุณาเข้าสู่ระบบใหม่อีกครั้ง');
+    } else {
+        const minutes = Math.floor(timeLeft / 60000);
+        const seconds = ((timeLeft % 60000) / 1000).toFixed(0);
+        document.getElementById('time-left').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+}
+
+// ฟังก์ชันตรวจสอบสถานะเซสชัน
+function checkSession() {
+    updateTimeLeft();
+    setInterval(updateTimeLeft, 1000);
+}
+
+// ตรวจสอบการเข้าสู่ระบบเมื่อโหลดหน้า
+document.addEventListener('DOMContentLoaded', () => {
+    const loginTime = localStorage.getItem('loginTime');
+    const duration = localStorage.getItem('duration');
+    const username = localStorage.getItem('username');
+
+    cleanExpiredSessions(); // ลบเซสชันที่หมดอายุ
+
+    if (loginTime && duration && username) {
+        const currentTime = new Date().getTime();
+        if (currentTime < parseInt(loginTime, 10) + parseInt(duration, 10)) {
+            document.getElementById('login').classList.add('hidden');
+            document.getElementById('menu').classList.remove('hidden');
+            checkSession();
+        } else {
+            logout();
+        }
+    }
+});
