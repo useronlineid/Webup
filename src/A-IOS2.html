@@ -6,6 +6,9 @@
     <title>IOS - ( 2 )</title>
     <link rel="stylesheet" href="../css/slip.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
     <script>
         // Firebase configuration
         var firebaseConfig = {
@@ -14,31 +17,32 @@
             projectId: "webup-7449a",
             storageBucket: "webup-7449a.appspot.com",
             messagingSenderId: "375236615142",
-            appId: "1:375236615142:web:958c73cf5cc7929a901427",
+            appId: "1:375236615142:web:958c73cf5cc7929a901427"
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // ตรวจสอบการเข้าสู่ระบบก่อนเข้าถึงเพจ
-        async function checkLoginStatus() {
+        // ฟังก์ชันตรวจสอบการล็อกอิน
+        async function checkLogin() {
             firebase.auth().onAuthStateChanged(async (user) => {
                 if (user) {
                     const email = user.email;
                     const userDoc = await db.collection('userSessions').doc(email).get();
-                    
                     if (userDoc.exists && userDoc.data().isLoggedIn) {
-                        // ผู้ใช้ล็อกอินแล้ว สามารถเข้าถึงเนื้อหาได้
+                        // ผู้ใช้ล็อกอินแล้ว แสดงเนื้อหาของเพจได้
                         document.getElementById('content').classList.remove('hidden');
                     } else {
-                        window.location.href = '../login.html';
+                        // ผู้ใช้ยังไม่ได้ล็อกอิน รีไดเร็กต์ไปยังหน้า login
+                        window.location.href = "/login.html";
                     }
                 } else {
-                    window.location.href = '../login.html';
+                    // ไม่พบผู้ใช้ รีไดเร็กต์ไปยังหน้า login
+                    window.location.href = "/login.html";
                 }
             });
         }
 
-        checkLoginStatus();
+        window.onload = checkLogin;
     </script>
 </head>
 <body>
