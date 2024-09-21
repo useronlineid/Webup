@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <!-- ส่วน head คงเดิม -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document Management System</title>
@@ -14,7 +13,6 @@
     <script>
         // Firebase configuration
         var firebaseConfig = {
-            // ... ข้อมูลการตั้งค่า Firebase ของคุณ ...
             apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
             authDomain: "webup-7449a.firebaseapp.com",
             projectId: "webup-7449a",
@@ -30,11 +28,11 @@
         // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
         firebase.auth().onAuthStateChanged(async function(user) {
             if (user) {
-                const uid = user.uid;
-                const userSessionDoc = await db.collection('userSessions').doc(uid).get();
+                // ผู้ใช้ล็อกอินอยู่
+                const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
                 if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions ของผู้ใช้ปัจจุบัน
-                    userSessionUnsubscribe = db.collection('userSessions').doc(uid)
+                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions
+                    userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
                         .onSnapshot((doc) => {
                             if (doc.exists && !doc.data().isLoggedIn) {
                                 alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
@@ -56,47 +54,46 @@
         });
 
         // ฟังก์ชันเข้าสู่ระบบ
-        async function login() {
-            const email = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+    async function login() {
+        const email = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
 
-            try {
-                const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-                const uid = userCredential.user.uid;
-
-                const userSessionDoc = await db.collection('userSessions').doc(uid).get();
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(async (userCredential) => {
+                const userSessionRef = db.collection('userSessions').doc(userCredential.user.uid);
+                const userSessionDoc = await userSessionRef.get();
 
                 if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                    // ผู้ใช้ล็อกอินจากอุปกรณ์อื่น
-                    await db.collection('userSessions').doc(uid).update({
-                        isLoggedIn: false
+                    // ผู้ใช้มีการเข้าสู่ระบบจากอุปกรณ์อื่น
+                    const confirmLogout = confirm('บัญชีนี้มีการเข้าสู่ระบบอยู่แล้วจากอุปกรณ์อื่น ต้องการยกเลิกการเข้าสู่ระบบจากอุปกรณ์อื่นหรือไม่?');
+                    if (confirmLogout) {
+                        // ยกเลิกการเข้าสู่ระบบจากอุปกรณ์อื่น
+                        await userSessionRef.update({
+                            isLoggedIn: true
+                        });
+                        alert('เข้าสู่ระบบสำเร็จ และยกเลิกการเข้าสู่ระบบจากอุปกรณ์อื่นแล้ว');
+                        document.getElementById('login').classList.add('hidden');
+                        document.getElementById('menu').classList.remove('hidden');
+                    } else {
+                        // ผู้ใช้ไม่ต้องการยกเลิกการเข้าสู่ระบบจากอุปกรณ์อื่น
+                        await firebase.auth().signOut();
+                        alert('คุณยังคงเข้าสู่ระบบในอุปกรณ์อื่นอยู่');
+                    }
+                } else {
+                    // ไม่มีการเข้าสู่ระบบจากอุปกรณ์อื่น
+                    await userSessionRef.set({
+                        email: email,
+                        isLoggedIn: true
                     });
-                    alert('คุณได้เข้าสู่ระบบจากอุปกรณ์อื่นแล้ว จะทำการล็อกเอาท์จากอุปกรณ์นั้น');
+                    alert('เข้าสู่ระบบสำเร็จ');
+                    document.getElementById('login').classList.add('hidden');
+                    document.getElementById('menu').classList.remove('hidden');
                 }
-
-                await db.collection('userSessions').doc(uid).set({
-                    email: email,
-                    isLoggedIn: true
-                });
-
-                // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions ของผู้ใช้ปัจจุบัน
-                userSessionUnsubscribe = db.collection('userSessions').doc(uid)
-                    .onSnapshot((doc) => {
-                        if (doc.exists && !doc.data().isLoggedIn) {
-                            alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
-                            logout(false);
-                        }
-                    });
-
-                alert('เข้าสู่ระบบสำเร็จ');
-                document.getElementById('login').classList.add('hidden');
-                document.getElementById('menu').classList.remove('hidden');
-
-            } catch (error) {
+            })
+            .catch((error) => {
                 alert('เกิดข้อผิดพลาด: ' + error.message);
-            }
-        }
-
+            });
+    }
         // ฟังก์ชันออกจากระบบ
         async function logout(updateSession = true) {
             const user = firebase.auth().currentUser;
@@ -120,25 +117,23 @@
             document.getElementById('menu').classList.add('hidden');
             document.getElementById('login').classList.remove('hidden');
         }
-    </script
-        
-    <!-- สคริปต์ปิดการคลิกขวาและการใช้ Developer Tools -->
-    <script>
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault(); // ปิดการคลิกขวา
-        });
-
-        document.addEventListener('keydown', function(e) {
-            // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
-            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
-                e.preventDefault();
-            }
-        });
     </script>
 
+        <script>
+      document.addEventListener('contextmenu', function(e) {
+          e.preventDefault(); // ปิดการคลิกขวา
+      });
+
+      document.addEventListener('keydown', function(e) {
+          // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
+          if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+              e.preventDefault();
+          }
+      });
+    </script>
+    
 </head>
 <body>
-    <!-- ส่วนของ HTML คงเดิม -->
     <div id="login">
         <h2>Login</h2>
         <input type="email" id="username" placeholder="Email"><br>
