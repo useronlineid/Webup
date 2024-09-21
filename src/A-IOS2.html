@@ -6,6 +6,23 @@
     <title>IOS - ( 2 )</title>
     <link rel="stylesheet" href="../css/slip.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+        <script>
+// ฟังก์ชันเพื่อตรวจสอบสถานะการล็อกอิน
+function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn'); // ดึงข้อมูลการล็อกอินจาก Local Storage
+
+    if (!isLoggedIn || isLoggedIn !== 'true') {
+        // ถ้าผู้ใช้ยังไม่ได้ล็อกอิน ให้ redirect ไปที่หน้า login
+        window.location.href = 'https://webup10.netlify.app'; // กำหนดเส้นทางไปยังหน้า login
+    }
+}
+
+// เรียกใช้ฟังก์ชันเมื่อเพจโหลด
+window.onload = function() {
+    checkLoginStatus();
+};
+
+</script>
 </head>
 <body>
     <div class="container">
