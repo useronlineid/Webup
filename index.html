@@ -26,17 +26,16 @@
     let userSessionUnsubscribe = null;
 
     // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
-        // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
         firebase.auth().onAuthStateChanged(async function(user) {
-            if (user) {
-                // ผู้ใช้ล็อกอินอยู่
-                const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
-                if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions ของผู้ใช้คนนี้
-                    userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
+            const systemSessionDoc = await db.collection('systemSession').doc('currentSession').get();
+            if (systemSessionDoc.exists && systemSessionDoc.data().isLoggedIn) {
+                if (user && user.uid === systemSessionDoc.data().uid) {
+                    // ผู้ใช้คนปัจจุบันเป็นคนที่ล็อกอินอยู่
+                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน systemSession
+                    systemSessionUnsubscribe = db.collection('systemSession').doc('currentSession')
                         .onSnapshot((doc) => {
-                            if (doc.exists && !doc.data().isLoggedIn) {
-                                alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
+                            if (doc.exists && doc.data().uid !== user.uid) {
+                                alert('คุณถูกล็อกเอาท์เนื่องจากมีผู้ใช้คนอื่นเข้าสู่ระบบ');
                                 logout(false);
                             }
                         });
@@ -44,13 +43,38 @@
                     document.getElementById('login').classList.add('hidden');
                     document.getElementById('menu').classList.remove('hidden');
                 } else {
-                    // ถ้า isLoggedIn เป็น false ในฐานข้อมูล
-                    await logout(false);
+                    // มีผู้ใช้อื่นล็อกอินอยู่
+                    if (user) {
+                        await firebase.auth().signOut();
+                    }
+                    document.getElementById('login').classList.remove('hidden');
+                    document.getElementById('menu').classList.add('hidden');
                 }
             } else {
-                // ผู้ใช้ไม่ได้ล็อกอิน
-                document.getElementById('login').classList.remove('hidden');
-                document.getElementById('menu').classList.add('hidden');
+                // ไม่มีผู้ใช้ล็อกอินอยู่
+                if (user) {
+                    // อัปเดตสถานะการล็อกอินใน systemSession
+                    await db.collection('systemSession').doc('currentSession').set({
+                        uid: user.uid,
+                        email: user.email,
+                        isLoggedIn: true
+                    });
+                    // แสดงเมนู
+                    document.getElementById('login').classList.add('hidden');
+                    document.getElementById('menu').classList.remove('hidden');
+
+                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน systemSession
+                    systemSessionUnsubscribe = db.collection('systemSession').doc('currentSession')
+                        .onSnapshot((doc) => {
+                            if (doc.exists && doc.data().uid !== user.uid) {
+                                alert('คุณถูกล็อกเอาท์เนื่องจากมีผู้ใช้คนอื่นเข้าสู่ระบบ');
+                                logout(false);
+                            }
+                        });
+                } else {
+                    document.getElementById('login').classList.remove('hidden');
+                    document.getElementById('menu').classList.add('hidden');
+                }
             }
         });
 
@@ -62,15 +86,27 @@
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(async (userCredential) => {
                     const user = userCredential.user;
-                    const userSessionRef = db.collection('userSessions').doc(user.uid);
+                    const systemSessionRef = db.collection('systemSession').doc('currentSession');
+                    const systemSessionDoc = await systemSessionRef.get();
 
-                    // อัปเดตสถานะ isLoggedIn เป็น true โดยไม่ต้องยืนยัน
-                    await userSessionRef.set({
-                        email: email,
-                        isLoggedIn: true
-                    });
+                    if (systemSessionDoc.exists && systemSessionDoc.data().isLoggedIn) {
+                        // มีผู้ใช้คนอื่นล็อกอินอยู่
+                        await systemSessionRef.update({
+                            uid: user.uid,
+                            email: email,
+                            isLoggedIn: true
+                        });
+                        alert('ผู้ใช้ก่อนหน้าถูกล็อกเอาท์ คุณได้เข้าสู่ระบบแล้ว');
+                    } else {
+                        // ไม่มีผู้ใช้ล็อกอินอยู่
+                        await systemSessionRef.set({
+                            uid: user.uid,
+                            email: email,
+                            isLoggedIn: true
+                        });
+                        alert('เข้าสู่ระบบสำเร็จ');
+                    }
 
-                    alert('เข้าสู่ระบบสำเร็จ');
                     document.getElementById('login').classList.add('hidden');
                     document.getElementById('menu').classList.remove('hidden');
                 })
@@ -83,14 +119,13 @@
         async function logout(updateSession = true) {
             const user = firebase.auth().currentUser;
             if (user) {
-                const uid = user.uid;
-                if (userSessionUnsubscribe) {
-                    userSessionUnsubscribe();
-                    userSessionUnsubscribe = null;
+                if (systemSessionUnsubscribe) {
+                    systemSessionUnsubscribe();
+                    systemSessionUnsubscribe = null;
                 }
 
                 if (updateSession) {
-                    await db.collection('userSessions').doc(uid).update({
+                    await db.collection('systemSession').doc('currentSession').update({
                         isLoggedIn: false
                     });
                 }
@@ -103,7 +138,6 @@
             document.getElementById('login').classList.remove('hidden');
         }
     </script>
-
         <script>
       document.addEventListener('contextmenu', function(e) {
           e.preventDefault(); // ปิดการคลิกขวา
