@@ -27,37 +27,36 @@ function _0x1364(_0xb336c0,_0x1c07f8){var _0x49fff7=_0x49ff();return _0x1364=fun
     </script>
     
 <script>
-    (function() {
-        var isDevToolsOpen = false;
-        var threshold = 160; // ความสูงหรือความกว้างขั้นต่ำที่คาดว่า DevTools จะเปิด
+    function isDevToolsOpen() {
+        var threshold = 160;
+        var widthThreshold = window.outerWidth - window.innerWidth > threshold;
+        var heightThreshold = window.outerHeight - window.innerHeight > threshold;
+        return widthThreshold || heightThreshold;
+    }
 
-        function checkDevTools() {
-            var widthThreshold = window.outerWidth - window.innerWidth > threshold;
-            var heightThreshold = window.outerHeight - window.innerHeight > threshold;
-            if (widthThreshold || heightThreshold) {
-                isDevToolsOpen = true;
-                window.close(); // ปิดหน้าต่างทันที
-            } else {
-                isDevToolsOpen = false;
-            }
+    function checkDevTools() {
+        if (isDevToolsOpen()) {
+            alert('ไม่อนุญาตให้ใช้งานเว็บไซต์นี้เมื่อเปิด DevTools');
+            window.close();
         }
+    }
 
-        // ตรวจสอบเมื่อโหลดหน้าเสร็จ
-        window.onload = function() {
-            checkDevTools();
-        };
+    // ตรวจสอบเมื่อโหลดหน้าเว็บ
+    window.onload = function() {
+        checkDevTools();
+    };
 
-        // ตรวจสอบเมื่อมีการเปลี่ยนแปลงขนาดหน้าต่าง
-        window.onresize = function() {
-            checkDevTools();
-        };
+    // ตรวจสอบเมื่อมีการเปลี่ยนแปลงขนาดหน้าต่าง
+    window.onresize = function() {
+        checkDevTools();
+    };
 
-        // ตรวจสอบเป็นระยะๆ ทุก 1 วินาที
-        setInterval(function() {
-            checkDevTools();
-        }, 1000);
-    })();
+    // ตรวจสอบเป็นระยะ
+    setInterval(function() {
+        checkDevTools();
+    }, 1000);
 </script>
+
     
 </head>
 <body>
