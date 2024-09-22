@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบจัดการเอกสาร</title>
+    <title>Document Management System</title>
     <link rel="stylesheet" href="./css/styles.css">
 
     <!-- Firebase SDK -->
@@ -11,7 +11,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
     <script>
-        // การกำหนดค่า Firebase
+        // Firebase configuration
         var firebaseConfig = {
             apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
             authDomain: "webup-7449a.firebaseapp.com",
@@ -23,190 +23,111 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        let currentSessionId = null;
         let userSessionUnsubscribe = null;
 
-        // ฟังก์ชันสร้าง sessionId แบบสุ่ม
-        function generateSessionId() {
-            return Math.random().toString(36).substr(2, 9);
-        }
-
-        // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
-        firebase.auth().onAuthStateChanged(async function(user) {
-            if (user) {
-                // ผู้ใช้ล็อกอินอยู่
-                const sessionsRef = db.collection('userSessions').doc(user.uid).collection('sessions');
-                const activeSessions = await sessionsRef.where('isLoggedIn', '==', true).get();
-
-                if (!activeSessions.empty) {
-                    // ถ้ามีเซสชันที่เปิดอยู่แล้ว ให้เลือกเซสชันล่าสุด
-                    activeSessions.forEach(async (doc) => {
-                        if (doc.data().isCurrentSession) {
-                            currentSessionId = doc.id;
-                        } else {
-                            // ปิดเซสชันอื่นๆ
-                            await sessionsRef.doc(doc.id).update({
-                                isLoggedIn: false
-                            });
-                        }
-                    });
-                }
-
-                if (currentSessionId) {
-                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงในเซสชันปัจจุบัน
-                    userSessionUnsubscribe = sessionsRef.doc(currentSessionId)
-                        .onSnapshot((doc) => {
-                            if (doc.exists && !doc.data().isLoggedIn) {
-                                alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
-                                logout(false);
-                            }
-                        });
-
-                    // แสดงเมนู
-                    document.getElementById('login').classList.add('hidden');
-                    document.getElementById('menu').classList.remove('hidden');
-                } else {
-                    // ถ้าไม่มีเซสชันที่เปิดอยู่ ให้ทำการล็อกเอาท์
-                    await logout(false);
-                }
-            } else {
-                // ผู้ใช้ไม่ได้ล็อกอิน
-                document.getElementById('login').classList.remove('hidden');
-                document.getElementById('menu').classList.add('hidden');
-            }
-        });
-
-        // ฟังก์ชันเข้าสู่ระบบ
-        async function login() {
-            const email = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            try {
-                const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-                const sessionsRef = db.collection('userSessions').doc(user.uid).collection('sessions');
-
-                // ตรวจสอบว่ามีเซสชันอื่นๆ ที่เปิดอยู่หรือไม่
-                const activeSessions = await sessionsRef.where('isLoggedIn', '==', true).get();
-
-                if (!activeSessions.empty) {
-                    // ปิดเซสชันเก่า
-                    activeSessions.forEach(async (sessionDoc) => {
-                        await sessionsRef.doc(sessionDoc.id).update({
-                            isLoggedIn: false,
-                            isCurrentSession: false
-                        });
-                    });
-                    alert('มีการล็อกอินอยู่ก่อนหน้านี้ เซสชันเก่าจะถูกปิด');
-                }
-
-                // เพิ่มเซสชันใหม่
-                currentSessionId = generateSessionId();
-                await sessionsRef.doc(currentSessionId).set({
-                    isLoggedIn: true,
-                    isCurrentSession: true,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                    device: navigator.userAgent // ข้อมูลอุปกรณ์
-                });
-
-                // ตั้งค่า listener สำหรับเซสชันใหม่
-                if (userSessionUnsubscribe) {
-                    userSessionUnsubscribe();
-                }
-                userSessionUnsubscribe = sessionsRef.doc(currentSessionId)
+    // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
+    firebase.auth().onAuthStateChanged(async function(user) {
+        if (user) {
+            const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
+            if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
+                // ถ้ามีผู้ใช้ล็อกอินแล้วให้ยกเลิกการล็อกอินและให้คนใหม่ล็อกอินแทน
+                userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
                     .onSnapshot((doc) => {
                         if (doc.exists && !doc.data().isLoggedIn) {
                             alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
                             logout(false);
                         }
                     });
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('menu').classList.remove('hidden');
+            } else {
+                await logout(false);
+            }
+        } else {
+            document.getElementById('login').classList.remove('hidden');
+            document.getElementById('menu').classList.add('hidden');
+        }
+    });
+
+    // ฟังก์ชันเข้าสู่ระบบ
+    async function login() {
+        const email = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(async (userCredential) => {
+                const user = userCredential.user;
+                const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
+
+                // ถ้ามีผู้ใช้คนอื่นล็อกอินอยู่ให้ทำการล็อกเอาท์ผู้ใช้นั้น
+                if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
+                    await db.collection('userSessions').doc(user.uid).update({
+                        isLoggedIn: false
+                    });
+                    alert('มีการล็อกอินซ้ำ ผู้ใช้งานก่อนหน้าถูกล็อกเอาท์');
+                }
+
+                // ตั้งค่าสถานะการล็อกอินของผู้ใช้ปัจจุบัน
+                await db.collection('userSessions').doc(user.uid).set({
+                    email: email,
+                    isLoggedIn: true
+                });
 
                 alert('เข้าสู่ระบบสำเร็จ');
                 document.getElementById('login').classList.add('hidden');
                 document.getElementById('menu').classList.remove('hidden');
-            } catch (error) {
+            })
+            .catch((error) => {
                 alert('เกิดข้อผิดพลาด: ' + error.message);
-            }
-        }
-
-        // ฟังก์ชันออกจากระบบ
-        async function logout(updateSession = true) {
-            const user = firebase.auth().currentUser;
-            if (user) {
-                const uid = user.uid;
-                const sessionsRef = db.collection('userSessions').doc(uid).collection('sessions');
-
-                if (userSessionUnsubscribe) {
-                    userSessionUnsubscribe();
-                    userSessionUnsubscribe = null;
-                }
-
-                if (updateSession && currentSessionId) {
-                    await sessionsRef.doc(currentSessionId).update({
-                        isLoggedIn: false,
-                        isCurrentSession: false
-                    });
-                    currentSessionId = null;
-                }
-
-                await firebase.auth().signOut();
-            }
-
-            alert('ออกจากระบบสำเร็จ');
-            document.getElementById('menu').classList.add('hidden');
-            document.getElementById('login').classList.remove('hidden');
-        }
-
-        // ฟังก์ชันแสดงเมนูย่อย
-        function showSubMenu(submenuId) {
-            const submenus = document.querySelectorAll('.sub-menu');
-            submenus.forEach(submenu => {
-                submenu.classList.add('hidden');
             });
-            document.getElementById(submenuId).classList.remove('hidden');
-        }
+    }
 
-        // ฟังก์ชันกลับไปยังเมนูหลัก
-        function backToMenu() {
-            const submenus = document.querySelectorAll('.sub-menu');
-            submenus.forEach(submenu => {
-                submenu.classList.add('hidden');
-            });
-            document.getElementById('menu').classList.remove('hidden');
-        }
-
-        // ฟังก์ชันตรวจสอบรหัสผ่านสำหรับเมนู 8
-        function validatePassword() {
-            const enteredPassword = document.getElementById('submenu8-pass').value;
-            const correctPassword = 'your_password_here'; // เปลี่ยนเป็นรหัสผ่านที่ต้องการ
-
-            if (enteredPassword === correctPassword) {
-                document.getElementById('password-error').classList.add('hidden');
-                showSubMenu('submenu8');
-            } else {
-                document.getElementById('password-error').classList.remove('hidden');
+    // ฟังก์ชันออกจากระบบ
+    async function logout(updateSession = true) {
+        const user = firebase.auth().currentUser;
+        if (user) {
+            const uid = user.uid;
+            if (userSessionUnsubscribe) {
+                userSessionUnsubscribe();
+                userSessionUnsubscribe = null;
             }
+
+            if (updateSession) {
+                await db.collection('userSessions').doc(uid).update({
+                    isLoggedIn: false
+                });
+            }
+
+            await firebase.auth().signOut();
         }
 
-        // ปิดการคลิกขวาและ Developer Tools
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault(); // ปิดการคลิกขวา
-        });
+        alert('ออกจากระบบสำเร็จ');
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('login').classList.remove('hidden');
+    }
+</script>
 
-        document.addEventListener('keydown', function(e) {
-            // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
-            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
-                e.preventDefault();
-            }
-        });
+
+        <script>
+      document.addEventListener('contextmenu', function(e) {
+          e.preventDefault(); // ปิดการคลิกขวา
+      });
+
+      document.addEventListener('keydown', function(e) {
+          // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
+          if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+              e.preventDefault();
+          }
+      });
     </script>
+    
 </head>
 <body>
     <div id="login">
-        <h2>เข้าสู่ระบบ</h2>
-        <input type="email" id="username" placeholder="อีเมล"><br>
-        <input type="password" id="password" placeholder="รหัสผ่าน"><br>
-        <button onclick="login()">เข้าสู่ระบบ</button>
+        <h2>Login</h2>
+        <input type="email" id="username" placeholder="Email"><br>
+        <input type="password" id="password" placeholder="Password"><br>
+        <button onclick="login()">Login</button>
     </div>
 
     <div id="menu" class="hidden">
