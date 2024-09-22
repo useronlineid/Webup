@@ -67,39 +67,13 @@
             const email = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            try {
-                const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-                const uid = userCredential.user.uid;
-                const userSessionRef = db.collection('userSessions').doc(uid);
-                const userSessionDoc = await userSessionRef.get();
-
-                if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                    // มีผู้ใช้ล็อกอินอยู่แล้วในบัญชีนี้
-                    const confirmLogin = confirm('บัญชีนี้มีการใช้งานอยู่แล้ว คุณต้องการล็อกอินและแทนที่ผู้ใช้งานก่อนหน้าหรือไม่?');
-                    if (confirmLogin) {
-                        // สร้าง sessionId ใหม่
-                        const sessionId = Date.now().toString();
-                        localSessionId = sessionId;
-
-                        await userSessionRef.set({
-                            email: email,
-                            isLoggedIn: true,
-                            sessionId: sessionId
-                        });
-
-                        alert('เข้าสู่ระบบสำเร็จ และผู้ใช้งานก่อนหน้าถูกล็อกเอาท์แล้ว');
-                        document.getElementById('login').classList.add('hidden');
-                        document.getElementById('menu').classList.remove('hidden');
-                    } else {
-                        // ผู้ใช้ยกเลิกการล็อกอิน
-                        await firebase.auth().signOut();
-                    }
-                } else {
-                    // ไม่มีผู้ใช้ล็อกอินในบัญชีนี้ หรือไม่มีข้อมูลใน userSessions
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(async (userCredential) => {
+                    // สร้าง sessionId ที่ไม่ซ้ำกัน
                     const sessionId = Date.now().toString();
                     localSessionId = sessionId;
 
-                    await userSessionRef.set({
+                    await db.collection('userSessions').doc(userCredential.user.uid).set({
                         email: email,
                         isLoggedIn: true,
                         sessionId: sessionId
@@ -108,10 +82,10 @@
                     alert('เข้าสู่ระบบสำเร็จ');
                     document.getElementById('login').classList.add('hidden');
                     document.getElementById('menu').classList.remove('hidden');
-                }
-            } catch (error) {
-                alert('เกิดข้อผิดพลาด: ' + error.message);
-            }
+                })
+                .catch((error) => {
+                    alert('เกิดข้อผิดพลาด: ' + error.message);
+                });
         }
 
         // ฟังก์ชันออกจากระบบ
