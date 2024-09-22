@@ -24,6 +24,7 @@
         const db = firebase.firestore();
 
         let userSessionUnsubscribe = null;
+        let localSessionId = null;
 
         // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
         firebase.auth().onAuthStateChanged(async function(user) {
@@ -31,12 +32,20 @@
                 // ผู้ใช้ล็อกอินอยู่
                 const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
                 if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions ของผู้ใช้นั้น
+                    localSessionId = userSessionDoc.data().sessionId || null;
+
+                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions
                     userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
                         .onSnapshot((doc) => {
-                            if (doc.exists && !doc.data().isLoggedIn) {
-                                alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
-                                logout(false);
+                            if (doc.exists) {
+                                const data = doc.data();
+                                if (!data.isLoggedIn) {
+                                    alert('คุณถูกล็อกเอาท์');
+                                    logout(false);
+                                } else if (data.sessionId !== localSessionId) {
+                                    alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
+                                    logout(false);
+                                }
                             }
                         });
                     // แสดงเมนู
@@ -60,22 +69,14 @@
 
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(async (userCredential) => {
-                    const user = userCredential.user;
-                    const userSessionRef = db.collection('userSessions').doc(user.uid);
-                    const userSessionDoc = await userSessionRef.get();
+                    // สร้าง sessionId ที่ไม่ซ้ำกัน
+                    const sessionId = Date.now().toString();
+                    localSessionId = sessionId;
 
-                    if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                        // ล็อกเอาท์เซสชันเดิมของผู้ใช้นี้
-                        await userSessionRef.update({
-                            isLoggedIn: false
-                        });
-                        alert('บัญชีนี้มีการใช้งานอยู่ ระบบจะทำการล็อกเอาท์ผู้ใช้นั้น');
-                    }
-
-                    // ตั้งค่า isLoggedIn เป็น true สำหรับเซสชันใหม่
-                    await userSessionRef.set({
+                    await db.collection('userSessions').doc(userCredential.user.uid).set({
                         email: email,
-                        isLoggedIn: true
+                        isLoggedIn: true,
+                        sessionId: sessionId
                     });
 
                     alert('เข้าสู่ระบบสำเร็จ');
@@ -99,7 +100,8 @@
 
                 if (updateSession) {
                     await db.collection('userSessions').doc(uid).update({
-                        isLoggedIn: false
+                        isLoggedIn: false,
+                        sessionId: null
                     });
                 }
 
