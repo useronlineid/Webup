@@ -26,6 +26,7 @@
     let userSessionUnsubscribe = null;
 
     // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
+        // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
         firebase.auth().onAuthStateChanged(async function(user) {
             if (user) {
                 // ผู้ใช้ล็อกอินอยู่
@@ -62,35 +63,16 @@
                 .then(async (userCredential) => {
                     const user = userCredential.user;
                     const userSessionRef = db.collection('userSessions').doc(user.uid);
-                    const userSessionDoc = await userSessionRef.get();
 
-                    if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                        // ผู้ใช้ล็อกอินจากอุปกรณ์อื่นอยู่
-                        const confirmLogout = confirm('บัญชีนี้ถูกล็อกอินจากอุปกรณ์อื่น ต้องการล็อกเอาท์จากอุปกรณ์นั้นหรือไม่?');
-                        if (confirmLogout) {
-                            // อัปเดตสถานะ isLoggedIn เป็น true และอนุญาตให้ล็อกอิน
-                            await userSessionRef.set({
-                                email: email,
-                                isLoggedIn: true
-                            });
-                            alert('เข้าสู่ระบบสำเร็จ (อุปกรณ์อื่นถูกล็อกเอาท์แล้ว)');
-                            document.getElementById('login').classList.add('hidden');
-                            document.getElementById('menu').classList.remove('hidden');
-                        } else {
-                            // ยกเลิกการล็อกอินปัจจุบัน
-                            await firebase.auth().signOut();
-                            alert('การเข้าสู่ระบบถูกยกเลิก');
-                        }
-                    } else {
-                        // ไม่มีการล็อกอินจากอุปกรณ์อื่น อนุญาตให้ล็อกอิน
-                        await userSessionRef.set({
-                            email: email,
-                            isLoggedIn: true
-                        });
-                        alert('เข้าสู่ระบบสำเร็จ');
-                        document.getElementById('login').classList.add('hidden');
-                        document.getElementById('menu').classList.remove('hidden');
-                    }
+                    // อัปเดตสถานะ isLoggedIn เป็น true โดยไม่ต้องยืนยัน
+                    await userSessionRef.set({
+                        email: email,
+                        isLoggedIn: true
+                    });
+
+                    alert('เข้าสู่ระบบสำเร็จ');
+                    document.getElementById('login').classList.add('hidden');
+                    document.getElementById('menu').classList.remove('hidden');
                 })
                 .catch((error) => {
                     alert('เกิดข้อผิดพลาด: ' + error.message);
