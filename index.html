@@ -68,47 +68,41 @@
             const password = document.getElementById('password').value;
 
             try {
+                // ลองล็อกอินด้วยอีเมลและรหัสผ่าน
                 const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
                 const uid = userCredential.user.uid;
+
+                // ตรวจสอบว่าบัญชีนี้มีการล็อกอินอยู่แล้วหรือไม่
+                const userSessionDoc = await db.collection('userSessions').doc(uid).get();
+                if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
+                    // ถ้ามีการล็อกอินอยู่แล้ว ให้แจ้งเตือนผู้ใช้
+                    const confirmLogin = confirm('บัญชีนี้กำลังถูกใช้งานอยู่ ต้องการล็อกอินต่อหรือไม่?');
+                    if (!confirmLogin) {
+                        // ถ้าผู้ใช้ยกเลิกการล็อกอิน
+                        await firebase.auth().signOut();
+                        return;
+                    } else {
+                        // ถ้าผู้ใช้ยืนยันการล็อกอิน เราจะล็อกเอาท์เซสชันเก่า
+                        await db.collection('userSessions').doc(uid).update({
+                            isLoggedIn: false,
+                            sessionId: null
+                        });
+                    }
+                }
 
                 // สร้าง sessionId ที่ไม่ซ้ำกัน
                 const sessionId = Date.now().toString();
                 localSessionId = sessionId;
 
-                // ตรวจสอบว่ามีการล็อกอินอยู่แล้วหรือไม่
-                const userSessionDoc = await db.collection('userSessions').doc(uid).get();
+                await db.collection('userSessions').doc(uid).set({
+                    email: email,
+                    isLoggedIn: true,
+                    sessionId: sessionId
+                });
 
-                if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                    // มีผู้ใช้งานอยู่ ต้องการแจ้งเตือนหรือไม่
-                    const confirmLogout = confirm('มีผู้ใช้งานอยู่ด้วยบัญชีนี้ ต้องการล็อกเอาท์ผู้ใช้นั้นหรือไม่?');
-                    if (confirmLogout) {
-                        // ล็อกเอาท์ผู้ใช้เก่า และล็อกอินผู้ใช้ใหม่
-                        await db.collection('userSessions').doc(uid).set({
-                            email: email,
-                            isLoggedIn: true,
-                            sessionId: sessionId
-                        });
-                        alert('เข้าสู่ระบบสำเร็จ ผู้ใช้เดิมถูกล็อกเอาท์');
-                        // แสดงเมนู
-                        document.getElementById('login').classList.add('hidden');
-                        document.getElementById('menu').classList.remove('hidden');
-                    } else {
-                        // ยกเลิกการล็อกอิน
-                        await firebase.auth().signOut();
-                        alert('ยกเลิกการเข้าสู่ระบบ');
-                    }
-                } else {
-                    // ไม่มีผู้ใช้งานอยู่ ล็อกอินได้ปกติ
-                    await db.collection('userSessions').doc(uid).set({
-                        email: email,
-                        isLoggedIn: true,
-                        sessionId: sessionId
-                    });
-                    alert('เข้าสู่ระบบสำเร็จ');
-                    // แสดงเมนู
-                    document.getElementById('login').classList.add('hidden');
-                    document.getElementById('menu').classList.remove('hidden');
-                }
+                alert('เข้าสู่ระบบสำเร็จ');
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('menu').classList.remove('hidden');
             } catch (error) {
                 alert('เกิดข้อผิดพลาด: ' + error.message);
             }
