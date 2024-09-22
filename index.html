@@ -114,6 +114,19 @@
         }
     </script>
     
+        <script>
+      document.addEventListener('contextmenu', function(e) {
+          e.preventDefault(); // ปิดการคลิกขวา
+      });
+
+      document.addEventListener('keydown', function(e) {
+          // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
+          if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+              e.preventDefault();
+          }
+      });
+    </script>
+    
 </head>
 <body>
     <div id="login">
@@ -596,64 +609,5 @@
         <button onclick="backToMenu()">Back</button>
     </div>
     <script src="./app/script.js"></script>
-
-        <!-- เพิ่มสคริปต์เพื่อจับการเปิด DevTools -->
-    <script>
-        // ฟังก์ชันตรวจสอบการเปิด DevTools
-        function detectDevTools() {
-            let devtoolsOpen = false;
-            const element = new Image();
-            Object.defineProperty(element, 'id', {
-                get: function () {
-                    devtoolsOpen = true;
-                    window.close();
-                    throw new Error('DevTools detected');
-                }
-            });
-
-            console.log('%c', element);
-
-            // ตรวจสอบขนาดหน้าต่าง
-            const threshold = 160;
-            if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
-                devtoolsOpen = true;
-                window.close();
-            }
-
-            // ตรวจสอบว่ามีการเปิด DevTools หรือไม่
-            if (devtoolsOpen) {
-                window.close();
-            }
-        }
-
-        // เรียกใช้ฟังก์ชันเมื่อหน้าเว็บโหลด
-        window.onload = function() {
-            detectDevTools();
-
-            // ตรวจสอบการเปิด DevTools ทุก ๆ 500 มิลลิวินาที
-            setInterval(function() {
-                detectDevTools();
-            }, 500);
-        };
-
-        // ป้องกันการคลิกขวา
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            window.close();
-        });
-
-        // จับการกดปุ่ม F12 และ Ctrl+U
-        document.addEventListener('keydown', function(e) {
-            if (e.keyCode === 123) {
-                e.preventDefault();
-                window.close();
-            } else if (e.ctrlKey && (e.keyCode === 85 || e.key === 'u')) {
-                e.preventDefault();
-                window.close();
-            }
-        });
-    </script>
-
 </body>
-    
 </html>
