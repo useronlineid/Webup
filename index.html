@@ -10,7 +10,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-    <script>
+   <script>
         // Firebase configuration
         var firebaseConfig = {
             apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
@@ -28,10 +28,8 @@
         // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
         firebase.auth().onAuthStateChanged(async function(user) {
             if (user) {
-                // ผู้ใช้ล็อกอินอยู่
                 const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
                 if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions
                     userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
                         .onSnapshot((doc) => {
                             if (doc.exists && !doc.data().isLoggedIn) {
@@ -39,15 +37,12 @@
                                 logout(false);
                             }
                         });
-                    // แสดงเมนู
                     document.getElementById('login').classList.add('hidden');
                     document.getElementById('menu').classList.remove('hidden');
                 } else {
-                    // ถ้า isLoggedIn เป็น false ในฐานข้อมูล
                     await logout(false);
                 }
             } else {
-                // ผู้ใช้ไม่ได้ล็อกอิน
                 document.getElementById('login').classList.remove('hidden');
                 document.getElementById('menu').classList.add('hidden');
             }
@@ -58,34 +53,29 @@
             const email = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            firebase.auth().signInWithEmailAndPassword(email, password)
-                .then(async (userCredential) => {
-                    const userId = userCredential.user.uid;
+            try {
+                const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+                const uid = userCredential.user.uid;
 
-                    // ตรวจสอบสถานะการล็อกอินของผู้ใช้คนนี้
-                    const userSessionDoc = await db.collection('userSessions').doc(userId).get();
+                const userSessionDoc = await db.collection('userSessions').doc(uid).get();
+                if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
+                    await logout(false);
+                    alert('คุณได้ล็อกอินจากอุปกรณ์อื่น เซสชันเดิมได้ถูกล็อกเอาท์แล้ว');
+                }
 
-                    if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                        // ถ้าผู้ใช้คนนี้ล็อกอินอยู่แล้วจากอุปกรณ์อื่น ให้ทำการล็อกเอาท์
-                        await db.collection('userSessions').doc(userId).update({
-                            isLoggedIn: false
-                        });
-                        alert('มีการเข้าสู่ระบบจากอุปกรณ์อื่น คุณจะถูกล็อกเอาท์จากอุปกรณ์นั้น');
-                    }
-
-                    // ตั้งค่าสถานะการล็อกอินของผู้ใช้คนนี้เป็น true
-                    await db.collection('userSessions').doc(userId).set({
-                        email: email,
-                        isLoggedIn: true
-                    }, { merge: true });
-
-                    alert('เข้าสู่ระบบสำเร็จ');
-                    document.getElementById('login').classList.add('hidden');
-                    document.getElementById('menu').classList.remove('hidden');
-                })
-                .catch((error) => {
-                    alert('เกิดข้อผิดพลาด: ' + error.message);
+                await db.collection('userSessions').doc(uid).set({
+                    email: email,
+                    isLoggedIn: true,
+                    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
                 });
+
+                alert('เข้าสู่ระบบสำเร็จ');
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('menu').classList.remove('hidden');
+
+            } catch (error) {
+                alert('เกิดข้อผิดพลาด: ' + error.message);
+            }
         }
 
         // ฟังก์ชันออกจากระบบ
@@ -111,8 +101,7 @@
             document.getElementById('menu').classList.add('hidden');
             document.getElementById('login').classList.remove('hidden');
         }
-    </script>
-
+       
         <script>
       document.addEventListener('contextmenu', function(e) {
           e.preventDefault(); // ปิดการคลิกขวา
