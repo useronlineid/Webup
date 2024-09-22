@@ -22,56 +22,17 @@ var _0x1db7c0=_0x4aa2;(function(_0x10184d,_0x578667){var _0x150276=_0x4aa2,_0x47
     </script>
 
     <script>
-    document.onkeydown = function(e) {
-        // ตรวจสอบว่ากด F12 (keyCode 123) หรือไม่
-        if (e.keyCode == 123) {
-            window.close();
-            return false;
-        }
-        // ตรวจสอบการกด Ctrl+Shift+I
-        if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-            window.close();
-            return false;
-        }
-        // ตรวจสอบการกด Ctrl+Shift+J
-        if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-            window.close();
-            return false;
-        }
-        // ตรวจสอบการกด Ctrl+U
-        if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-            window.close();
-            return false;
-        }
-    };
-</script>
-
-    <script>
-    (function() {
-        var element = new Image();
-        Object.defineProperty(element, 'id', {
-            get: function() {
-                window.close();
-            }
-        });
-        console.log(element);
-    })();
-</script>
-
-    <script>
-    var checkStatus;
-    var devtools = /./;
-    devtools.toString = function() {
-        checkStatus = 'on';
-    };
-    setInterval(function() {
-        checkStatus = 'off';
-        console.log('%c', devtools);
-        if (checkStatus === 'on') {
-            window.close();
-        }
-    }, 1000);
-</script>
+        // ฟังก์ชันตรวจสอบการเปิด DevTools
+        (function() {
+            var threshold = 160; // กำหนดค่าความแตกต่างของขนาดหน้าต่าง
+            setInterval(function() {
+                if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
+                    window.close(); // ปิดหน้าต่างทันที
+                }
+            }, 1000); // ตรวจสอบทุก ๆ 1 วินาที
+        })();
+    </script>
+    
 
     
 </head>
