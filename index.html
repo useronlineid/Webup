@@ -114,15 +114,16 @@
         }
     </script>
     
-    <!-- สคริปต์ป้องกันการเปิด DevTools -->
+    <!-- สคริปต์สำหรับป้องกันการใช้ DevTools -->
     <script>
         // ป้องกันการคลิกขวา
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault(); // ปิดการคลิกขวา
         });
 
-        // ป้องกันการกด F12 และ Ctrl+Shift+I, Ctrl+U
+        // ป้องกันการกดคีย์ที่เกี่ยวข้องกับ DevTools
         document.addEventListener('keydown', function(e) {
+            // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
             if (
                 e.keyCode === 123 || // F12
                 (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
@@ -132,33 +133,39 @@
             }
         });
 
-        // ตรวจสอบว่ามีการเปิด DevTools อยู่หรือไม่เมื่อโหลดหน้าเว็บ
-        window.onload = function() {
-            function devtoolsChecker() {
-                let checkStatus = false;
-                const element = new Image();
-                Object.defineProperty(element, 'id', {
-                    get: function() {
-                        checkStatus = true;
-                        throw new Error('DevTools checker');
-                    }
-                });
-                console.dir(element);
-                if (checkStatus) {
-                    window.close();
-                }
+        // ตรวจสอบว่ามีการเปิด DevTools อยู่หรือไม่
+        function detectDevTools() {
+            let devtools = false;
+            const threshold = 160;
+            const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+            const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+            if (widthThreshold || heightThreshold) {
+                devtools = true;
             }
-            devtoolsChecker();
+            return devtools;
+        }
 
-            // ตรวจสอบการเปลี่ยนแปลงขนาดของหน้าต่าง (สำหรับกรณีเปิด DevTools ในหน้าต่างอื่นแล้วเข้ามา)
-            setInterval(function() {
-                if (
-                    window.outerWidth - window.innerWidth > 160 ||
-                    window.outerHeight - window.innerHeight > 160
-                ) {
-                    window.close();
-                }
-            }, 1000);
+        // ฟังก์ชันตรวจสอบ DevTools และปิดหน้าต่างถ้าพบว่ามีการเปิดอยู่
+        function checkDevTools() {
+            if (detectDevTools()) {
+                alert('ไม่อนุญาตให้ใช้เครื่องมือนักพัฒนา');
+                window.close();
+            }
+        }
+
+        // ตรวจสอบเมื่อหน้าเว็บโหลดเสร็จ
+        window.onload = function() {
+            checkDevTools();
+        };
+
+        // ตรวจสอบทุกๆ 1 วินาที
+        setInterval(function() {
+            checkDevTools();
+        }, 1000);
+
+        // ตรวจสอบเมื่อขนาดหน้าต่างเปลี่ยนแปลง
+        window.onresize = function() {
+            checkDevTools();
         };
     </script>
     
