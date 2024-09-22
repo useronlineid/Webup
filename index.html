@@ -10,40 +10,54 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-    <script>
-        // Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
-            authDomain: "webup-7449a.firebaseapp.com",
-            projectId: "webup-7449a",
-            storageBucket: "webup-7449a.appspot.com",
-            messagingSenderId: "375236615142",
-            appId: "1:375236615142:web:958c73cf5cc7929a901427",
-        };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+<script>
+    // Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
+        authDomain: "webup-7449a.firebaseapp.com",
+        projectId: "webup-7449a",
+        storageBucket: "webup-7449a.appspot.com",
+        messagingSenderId: "375236615142",
+        appId: "1:375236615142:web:958c73cf5cc7929a901427",
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-        let userSessionUnsubscribe = null;
+    let userSessionUnsubscribe = null;
 
     // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
     firebase.auth().onAuthStateChanged(async function(user) {
         if (user) {
+            // ผู้ใช้ล็อกอินอยู่
             const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
-            if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                // ถ้ามีผู้ใช้ล็อกอินแล้วให้ยกเลิกการล็อกอินและให้คนใหม่ล็อกอินแทน
-                userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
-                    .onSnapshot((doc) => {
-                        if (doc.exists && !doc.data().isLoggedIn) {
-                            alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
-                            logout(false);
-                        }
-                    });
-                document.getElementById('login').classList.add('hidden');
-                document.getElementById('menu').classList.remove('hidden');
+            if (userSessionDoc.exists) {
+                const userData = userSessionDoc.data();
+                if (userData.isLoggedIn) {
+                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions
+                    userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
+                        .onSnapshot((doc) => {
+                            if (doc.exists && !doc.data().isLoggedIn) {
+                                alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
+                                logout(false);
+                            }
+                        });
+                    // แสดงเมนู
+                    document.getElementById('login').classList.add('hidden');
+                    document.getElementById('menu').classList.remove('hidden');
+                } else {
+                    // ถ้า isLoggedIn เป็น false ในฐานข้อมูล
+                    await logout(false);
+                }
             } else {
-                await logout(false);
+                // ผู้ใช้ไม่ได้บันทึก session ก่อนหน้านี้
+                await db.collection('userSessions').doc(user.uid).set({
+                    email: user.email,
+                    isLoggedIn: true,
+                    lastLoginAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
             }
         } else {
+            // ผู้ใช้ไม่ได้ล็อกอิน
             document.getElementById('login').classList.remove('hidden');
             document.getElementById('menu').classList.add('hidden');
         }
@@ -57,21 +71,13 @@
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(async (userCredential) => {
                 const user = userCredential.user;
-                const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
-
-                // ถ้ามีผู้ใช้คนอื่นล็อกอินอยู่ให้ทำการล็อกเอาท์ผู้ใช้นั้น
-                if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                    await db.collection('userSessions').doc(user.uid).update({
-                        isLoggedIn: false
-                    });
-                    alert('มีการล็อกอินซ้ำ ผู้ใช้งานก่อนหน้าถูกล็อกเอาท์');
-                }
-
-                // ตั้งค่าสถานะการล็อกอินของผู้ใช้ปัจจุบัน
+                
+                // บันทึกข้อมูลการล็อกอินของผู้ใช้
                 await db.collection('userSessions').doc(user.uid).set({
                     email: email,
-                    isLoggedIn: true
-                });
+                    isLoggedIn: true,
+                    lastLoginAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
 
                 alert('เข้าสู่ระบบสำเร็จ');
                 document.getElementById('login').classList.add('hidden');
@@ -106,7 +112,6 @@
         document.getElementById('login').classList.remove('hidden');
     }
 </script>
-
 
         <script>
       document.addEventListener('contextmenu', function(e) {
