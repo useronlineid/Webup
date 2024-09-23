@@ -30,14 +30,16 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
-window.onload = function() {
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (!user) {
-            // ถ้าไม่ได้ล็อกอิน จะพากลับไปยังหน้าล็อกอิน
-            window.location.href = '/login.html';  // หรือหน้าใดก็ตามที่คุณต้องการ
-        }
-    });
-};
+        // ตรวจสอบสถานะการล็อกอิน
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // ผู้ใช้ล็อกอินแล้ว สามารถเข้าถึงเนื้อหาในหน้านี้ได้
+            } else {
+                // ผู้ใช้ไม่ได้ล็อกอิน แสดงคำเตือนและปิดหน้าต่าง
+                alert('กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้านี้ หน้าต่างจะถูกปิด');
+                window.close();
+            }
+        });
     </script>
     
 
