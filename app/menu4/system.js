@@ -96,10 +96,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // แสดงผลลัพธ์ใน Popup
                 resultText.textContent = message;
+
+                const warningElement = document.querySelector('.warning');
                 if (isPassed) {
-                    document.querySelector('.warning').textContent = 'หมายเหตุ: ผ่านการตรวจสอบ';
+                    warningElement.textContent = 'หมายเหตุ: ผ่านการตรวจสอบ';
+                    warningElement.classList.remove('error');
+                    warningElement.classList.add('success');
                 } else {
-                    document.querySelector('.warning').textContent = 'หมายเหตุ: ไม่สามารถดำเนินการ AI SMART CONTRACT ไม่สามารถอ่านค่าของสลิปได้';
+                    warningElement.textContent = 'หมายเหตุ: ไม่สามารถดำเนินการ AI SMART CONTRACT ไม่สามารถอ่านค่าของสลิปได้';
+                    warningElement.classList.remove('success');
+                    warningElement.classList.add('error');
                 }
                 resultPopup.style.display = 'flex';
             }
