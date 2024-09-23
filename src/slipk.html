@@ -47,20 +47,30 @@
             messagingSenderId: "375236615142",
             appId: "1:375236615142:web:958c73cf5cc7929a901427",
         };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 
-        // ตรวจสอบสถานะการล็อกอิน
+    // ตรวจสอบสถานะการล็อกอินเมื่อโหลดหน้าต่าง
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // ผู้ใช้ล็อกอินแล้ว สามารถเข้าถึงเนื้อหาในหน้านี้ได้
+            console.log("User is logged in");
+        } else {
+            // ผู้ใช้ไม่ได้ล็อกอิน ปิดหน้าต่างโดยทันที
+            console.log("User is not logged in, closing window");
+            window.close();
+        }
+    });
+
+    // ปิดหน้าต่างหากยังไม่ได้ล็อกอินและผู้ใช้เข้าผ่าน URL โดยตรง
+    window.onload = function() {
         firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                // ผู้ใช้ล็อกอินแล้ว สามารถเข้าถึงเนื้อหาในหน้านี้ได้
-            } else {
-                // ผู้ใช้ไม่ได้ล็อกอิน แสดงคำเตือนและปิดหน้าต่าง
-                alert('กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้านี้ หน้าต่างจะถูกปิด');
-                window.close();
+            if (!user) {
+                window.close(); // ปิดหน้าต่างทันทีโดยไม่มีการแจ้งเตือน
             }
         });
-    </script>
+    };
+</script>
 
     <!-- เพิ่มสคริปต์ใหม่เพื่อจับการเปิด DevTools -->
     <script>
