@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ยืนยันรับแผนงาน</title>
+    <link rel="stylesheet" href="/css/system.css">
+    <!-- ใช้ Google Fonts เพื่อเพิ่มความสวยงามให้กับตัวอักษร -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>ยืนยันรับแผนงาน</h1>
+
+        <form id="verificationForm">
+            <div class="form-group">
+                <label for="username">User:</label>
+                <input type="text" id="username" name="username" placeholder="User" required>
+            </div>
+            <div class="form-group">
+                <label for="imageUpload">Slip:</label>
+                <div id="dropArea" class="drop-area" tabindex="0">
+                    <p id="dropInstruction">Crypto Exchange Slip</p>
+                    <img id="previewImage" src="" alt="รูปภาพที่อัปโหลด" style="display: none;">
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="submit">ตรวจสอบ</button>
+                <button type="button" id="hiddenButton" aria-label="ปุ่มลับ"></button> <!-- ปุ่มลับที่ซ่อนอยู่ -->
+            </div>
+        </form>
+    </div>
+
+    <!-- แถบโหลด -->
+    <div id="loader" class="loader" style="display: none;">
+        <div class="progress-container">
+            <!-- เพิ่มไอคอนฟันเฟืองที่นี่ -->
+            <svg class="gear-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path fill="#ffffff" d="M19.14,12.936c0.036-0.3,0.057-0.61,0.057-0.936s-0.021-0.636-0.057-0.936l2.037-1.58a0.5,0.5,0,0,0,0.12-0.65l-1.928-3.34a0.5,0.5,0,0,0-0.61-0.22l-2.4,0.96a7.007,7.007,0,0,0-1.62-0.936l-0.36-2.54A0.5,0.5,0,0,0,14.5,3h-5a0.5,0.5,0,0,0-0.5,0.42L8.63,6.46a7.007,7.007,0,0,0-1.62,0.936l-2.4-0.96a0.5,0.5,0,0,0-0.61,0.22L2.94,9.94a0.5,0.5,0,0,0,0.12,0.65L4.09,12c-0.036,0.3-0.057,0.61-0.057,0.936s0.021,0.636,0.057,0.936L2.94,14.516a0.5,0.5,0,0,0-0.12,0.65l1.928,3.34a0.5,0.5,0,0,0,0.61,0.22l2.4-0.96a7.007,7.007,0,0,0,1.62,0.936l0.36,2.54a0.5,0.5,0,0,0,0.5.42h5a0.5,0.5,0,0,0,0.5-0.42l0.36-2.54a7.007,7.007,0,0,0,1.62-0.936l2.4,0.96a0.5,0.5,0,0,0,0.61-0.22l1.928-3.34a0.5,0.5,0,0,0-0.12-0.65ZM12,15.5A3.5,3.5,0,1,1,15.5,12,3.504,3.504,0,0,1,12,15.5Z"/>
+            </svg>
+            <p id="loadingText">ระบบ AI กำลังประมวลผล</p> <!-- ข้อความที่จะแสดงระหว่างการโหลด -->
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+    <!-- Popup ผลลัพธ์ -->
+    <div id="resultPopup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <button class="close-btn">&times;</button>
+            <h2>ผลการตรวจสอบ</h2>
+            <p id="resultText"></p>
+            <img id="resultImage" src="" alt="รูปภาพที่อัปโหลด">
+            <p class="warning">หมายเหตุ: ไม่สามารถดำเนินการ AI SMART CONTRACT ไม่สามารถอ่านค่าของสลิปได้</p>
+        </div>
+    </div>
+
+    <script src="/app/menu4/system.js"></script>
+</body>
+</html>
