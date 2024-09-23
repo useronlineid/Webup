@@ -155,8 +155,8 @@ input[type="text"]:focus {
     left: 10px; /* ระยะห่างจากขอบซ้ายของปุ่มตรวจสอบ */
     top: 50%;
     transform: translateY(-50%);
-    width: 30px; /* ขนาดเล็ก */
-    height: 30px;
+    width: 180px; /* ขนาดเล็ก */
+    height: 40px;
     background-color: transparent; /* ไม่มีพื้นหลัง */
     border: none; /* ไม่มีขอบ */
     cursor: pointer;
