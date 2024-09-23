@@ -17,6 +17,16 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
 
+    <!-- ป้องกันการแคช -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
     <script>
         // Firebase configuration
         var firebaseConfig = {
@@ -34,11 +44,22 @@
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 // ผู้ใช้ล็อกอินแล้ว สามารถเข้าถึงเนื้อหาในหน้านี้ได้
+                console.log('ผู้ใช้ล็อกอินแล้ว');
             } else {
                 // ผู้ใช้ไม่ได้ล็อกอิน แสดงคำเตือนและปิดหน้าต่าง
                 alert('กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้านี้ หน้าต่างจะถูกปิด');
-                window.close();
+                window.close(); // ปิดหน้าต่างทันที
             }
+        });
+
+        // ตรวจสอบว่าหน้าถูกโหลดผ่านการคัดลอกลิงก์โดยตรงหรือไม่
+        window.addEventListener('load', function() {
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (!user) {
+                    // ถ้าไม่มีการล็อกอิน ปิดหน้าต่างทันที
+                    window.close();
+                }
+            });
         });
     </script>
 
