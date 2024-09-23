@@ -31,15 +31,12 @@
         firebase.initializeApp(firebaseConfig);
 
         // ตรวจสอบสถานะการล็อกอิน
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                // ผู้ใช้ล็อกอินแล้ว สามารถเข้าถึงเนื้อหาในหน้านี้ได้
-            } else {
-                // ผู้ใช้ไม่ได้ล็อกอิน แสดงคำเตือนและปิดหน้าต่าง
-                alert('กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้านี้ หน้าต่างจะถูกปิด');
-                window.close();
-            }
-        });
+firebase.auth().onAuthStateChanged(function(user) {
+    if (!user) {
+        // ผู้ใช้ไม่ได้ล็อกอิน ปิดหน้าต่างทันที
+        window.close();
+    }
+});
     </script>
     
 
