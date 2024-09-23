@@ -30,13 +30,15 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
-        // ตรวจสอบสถานะการล็อกอิน
+// ตรวจสอบสถานะการล็อกอินเมื่อพยายามเข้าถึงลิงค์โดยตรง
 firebase.auth().onAuthStateChanged(function(user) {
     if (!user) {
-        // ผู้ใช้ไม่ได้ล็อกอิน ปิดหน้าต่างทันที
-        window.close();
-    }
+        // ผู้ใช้ไม่ได้ล็อกอิน แสดงคำเตือนและปิดหน้าต่าง
+        alert('กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้านี้ หน้าต่างจะถูกปิด');
+        window.location.href = '/login.html'; // เปลี่ยนเส้นทางไปยังหน้าล็อกอิน
+    } 
 });
+
     </script>
     
 
