@@ -27,6 +27,16 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
 
+    <!-- ป้องกันการแคช -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
     <script>
         // Firebase configuration
         var firebaseConfig = {
@@ -44,28 +54,40 @@
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 // ผู้ใช้ล็อกอินแล้ว สามารถเข้าถึงเนื้อหาในหน้านี้ได้
-                console.log('ผู้ใช้ล็อกอินแล้ว');
             } else {
                 // ผู้ใช้ไม่ได้ล็อกอิน แสดงคำเตือนและปิดหน้าต่าง
                 alert('กรุณาเข้าสู่ระบบก่อนเข้าถึงหน้านี้ หน้าต่างจะถูกปิด');
-                window.close(); // ปิดหน้าต่างทันที
+                window.close();
             }
-        });
-
-        // ตรวจสอบว่าหน้าถูกโหลดผ่านการคัดลอกลิงก์โดยตรงหรือไม่
-        window.addEventListener('load', function() {
-            firebase.auth().onAuthStateChanged(function(user) {
-                if (!user) {
-                    // ถ้าไม่มีการล็อกอิน ปิดหน้าต่างทันที
-                    window.close();
-                }
-            });
         });
     </script>
 
     <!-- เพิ่มสคริปต์ใหม่เพื่อจับการเปิด DevTools -->
     <script>
-function _0x1364(_0xb336c0,_0x1c07f8){var _0x49fff7=_0x49ff();return _0x1364=function(_0x13644c,_0x2eabf1){_0x13644c=_0x13644c-0x91;var _0x2a2c01=_0x49fff7[_0x13644c];return _0x2a2c01;},_0x1364(_0xb336c0,_0x1c07f8);}var _0x1a6376=_0x1364;(function(_0x1a0ea0,_0x392db2){var _0x4aae93=_0x1364,_0x3db835=_0x1a0ea0();while(!![]){try{var _0x55267f=-parseInt(_0x4aae93(0xa1))/0x1*(-parseInt(_0x4aae93(0x9c))/0x2)+-parseInt(_0x4aae93(0x9e))/0x3*(parseInt(_0x4aae93(0x94))/0x4)+parseInt(_0x4aae93(0x9d))/0x5+-parseInt(_0x4aae93(0xa3))/0x6*(parseInt(_0x4aae93(0xa5))/0x7)+-parseInt(_0x4aae93(0x99))/0x8+parseInt(_0x4aae93(0x97))/0x9*(parseInt(_0x4aae93(0x96))/0xa)+-parseInt(_0x4aae93(0xa0))/0xb;if(_0x55267f===_0x392db2)break;else _0x3db835['push'](_0x3db835['shift']());}catch(_0x908ca6){_0x3db835['push'](_0x3db835['shift']());}}}(_0x49ff,0xd7c5b),document[_0x1a6376(0xa2)](_0x1a6376(0x95),function(_0x249cac){var _0x1a58b9=_0x1a6376;if(_0x249cac[_0x1a58b9(0x98)]===0x7b)_0x249cac['preventDefault'](),window[_0x1a58b9(0x92)]();else _0x249cac[_0x1a58b9(0x9f)]&&(_0x249cac[_0x1a58b9(0x98)]===0x55||_0x249cac[_0x1a58b9(0x91)]==='u')&&(_0x249cac[_0x1a58b9(0x93)](),window[_0x1a58b9(0x92)]());},![]),(function(){var _0x42fa62=0xa0;setInterval(function(){var _0x3b2998=_0x1364;(window['outerWidth']-window[_0x3b2998(0xa4)]>_0x42fa62||window[_0x3b2998(0x9b)]-window[_0x3b2998(0x9a)]>_0x42fa62)&&window['close']();},0x3e8);}()));function _0x49ff(){var _0x2e4953=['outerHeight','106FSvryy','4686570ocfBaH','2937MQIaLj','ctrlKey','2553034AeDFXM','28106jrexkY','addEventListener','788622apTvCB','innerWidth','56CNysMt','key','close','preventDefault','4076oMrsdl','keydown','459530PYfIcQ','171zqERMq','keyCode','1080360edVIbg','innerHeight'];_0x49ff=function(){return _0x2e4953;};return _0x49ff();}
+
+        // จับการกดปุ่ม F12 และ Ctrl+U
+        document.addEventListener('keydown', function(e) {
+            // ตรวจสอบถ้ากด F12
+            if (e.keyCode === 123) {
+                e.preventDefault();
+                window.close();
+            }
+            // ตรวจสอบถ้ากด Ctrl+U
+            else if (e.ctrlKey && (e.keyCode === 85 || e.key === 'u')) {
+                e.preventDefault();
+                window.close();
+            }
+        }, false);
+
+        // ตรวจสอบการเปิด DevTools ด้วยวิธีอื่น
+        (function() {
+            var threshold = 160;
+            setInterval(function() {
+                if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
+                    window.close();
+                }
+            }, 1000);
+        })();
     </script>
     
 </head>
