@@ -23,7 +23,7 @@
         apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
         authDomain: "webup-7449a.firebaseapp.com",
         projectId: "webup-7449a",
-        storageBucket: "webup-7449a.appspot.com",
+        storageBucket: "webup-7449a",
         messagingSenderId: "375236615142",
         appId: "1:375236615142:web:958c73cf5cc7929a901427",
     };
@@ -33,7 +33,7 @@
     // ตรวจสอบสถานะการล็อกอิน
     firebase.auth().onAuthStateChanged(function(user) {
         if (!user) {
-            // หากผู้ใช้ไม่ได้ล็อกอิน ให้ปิดหน้าต่างทันทีโดยไม่มีแจ้งเตือน
+            // ผู้ใช้ไม่ได้ล็อกอิน ปิดหน้าต่างทันที
             window.close();
         }
     });
