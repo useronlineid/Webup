@@ -1,0 +1,369 @@
+/* Kanit */
+@font-face {
+    font-family: 'KanitThin';
+    src: url('../assets/fonts/Kanit-Thin.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitExtraLight';
+    src: url('../assets/fonts/Kanit-ExtraLight.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitLight';
+    src: url('../assets/fonts/Kanit-Light.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitRegular';
+    src: url('../assets/fonts/Kanit-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitMedium';
+    src: url('../assets/fonts/Kanit-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitSemiBold';
+    src: url('../assets/fonts/Kanit-SemiBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitBold';
+    src: url('../assets/fonts/Kanit-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitExtraBold';
+    src: url('../assets/fonts/Kanit-ExtraBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitBlack';
+    src: url('../assets/fonts/Kanit-Black.woff') format('woff');
+}
+/* Bangkok*/
+@font-face {
+    font-family: 'BangkokTime1';
+    src: url('../assets/fonts/Bangkok-Time1.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'BangkokTime2';
+    src: url('../assets/fonts/Bangkok-Time2.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'BangkokMoney';
+    src: url('../assets/fonts/Bangkok-Money.woff') format('woff');
+}
+
+
+/* ตั้งค่าพื้นฐาน */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+body {
+    background-image: url('../assets/image/background.jpg'); /* ลิงค์รูปภาพพื้นหลัง */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* คอนเทนเนอร์หลัก */
+.container {
+    max-width: 600px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+/* หัวเรื่อง */
+h1 {
+    font-family: 'KanitRegular', Arial, sans-serif;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+h2 {
+    font-family: 'KanitRegular', Arial, sans-serif;
+    text-align: center;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+/* กลุ่มฟอร์ม */
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #555;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* กลุ่มปุ่ม */
+.button-group {
+    position: relative; /* ทำให้สามารถใช้ตำแหน่ง absolute ภายในกลุ่มปุ่ม */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* ปุ่มตรวจสอบ */
+.button-group button[type="submit"] {
+    position: relative;
+    z-index: 1; /* ปุ่มตรวจสอบอยู่บนสุด */
+    width: 100%;
+    padding: 14px;
+    background-color: #3498db;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 500;
+    font-family: 'KanitRegular', Arial, sans-serif;
+}
+
+.button-group button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* ปุ่มลับ */
+#hiddenButton {
+    position: absolute;
+    left: 10px; /* ระยะห่างจากขอบซ้ายของปุ่มตรวจสอบ */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px; /* ขนาดเล็ก */
+    height: 30px;
+    background-color: transparent; /* ไม่มีพื้นหลัง */
+    border: none; /* ไม่มีขอบ */
+    cursor: pointer;
+    z-index: 2; /* ซ้อนทับปุ่มตรวจสอบ */
+    opacity: 0; /* โปร่งใส */
+    /* ไม่มีการแสดงเนื้อหาใดๆ */
+}
+
+
+/* ปรับขนาดปุ่มเมื่อหน้าจอเล็ก */
+@media (max-width: 768px) {
+    .button-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #hiddenButton {
+        width: 25px;
+        height: 25px;
+        left: 5px;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+    }
+}
+
+/* ปุ่ม */
+button {
+    font-family: 'KanitRegular', Arial, sans-serif;
+    cursor: pointer;
+}
+
+/* แถบโหลด */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.progress-container {
+    text-align: center;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#loadingText {
+    margin-top: 15px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* ฟันเฟืองหมุน */
+.gear-icon {
+    width: 24px; /* ขนาดของฟันเฟือง */
+    height: 24px;
+    margin-right: 10px; /* ระยะห่างระหว่างฟันเฟืองกับข้อความ */
+    vertical-align: middle; /* จัดตำแหน่งให้อยู่กลางแนวตั้ง */
+    animation: spin 2s linear infinite; /* การหมุน */
+}
+
+/* คีย์เฟรมสำหรับการหมุน */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.progress-bar {
+    width: 0;
+    height: 20px;
+    background: #27ae60;
+    border-radius: 10px;
+    transition: width 0.1s;
+}
+
+/* Popup ผลลัพธ์ */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    position: absolute;
+    top: -70px;
+    right: 0px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.popup img {
+    max-width: 100%;
+    max-height: 300px; /* จำกัดความสูงสูงสุด */
+    height: auto;
+    margin: 20px 0;
+    border-radius: 8px;
+    object-fit: contain; /* ปรับให้รูปภาพถูกปรับขนาดให้พอดีกับพื้นที่ */
+}
+
+.warning {
+    font-family: 'KanitRegular', Arial, sans-serif;
+    color: #ee2711;
+    font-weight: 600;
+    margin-top: 0px;
+}
+
+
+
+/* พื้นที่ลากและวาง (drop area) */
+.drop-area {
+    border: 2px dashed #bbb;
+    padding: 40px;
+    text-align: center;
+    color: #999;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #fafafa;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.drop-area.hover {
+    background-color: #f1f1f1;
+    border-color: #3498db;
+    color: #333;
+}
+
+.drop-area:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+#previewImage {
+    max-width: 100%;
+    max-height: 250px;
+    margin-top: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* การตอบสนองต่อขนาดหน้าจอ */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 20px;
+        margin: 30px auto;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    button[type="submit"] {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .popup-content {
+        padding: 20px 25px;
+    }
+
+    .popup img {
+        max-height: 600px; /* ลดขนาดความสูงสูงสุดสำหรับหน้าจอเล็ก */
+    }
+
+    #hiddenButton {
+        width: 200px;
+        height: 50px;
+        left: 5px;
+    }
+}
