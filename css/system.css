@@ -303,6 +303,13 @@ button {
     margin-top: 0px;
 }
 
+.success {
+    color: #28a745; /* สีเขียว */
+}
+
+.error {
+    color: #ee2711; /* สีแดง */
+}
 
 
 /* พื้นที่ลากและวาง (drop area) */
