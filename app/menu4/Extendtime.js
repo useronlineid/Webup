@@ -141,9 +141,9 @@ function updateDisplay() {
     const amount = document.getElementById('amount').value || '-';
     const Memo = document.getElementById('Memo').value || '-';
 
-    const companyName = document.getElementById('companyName').value || '-';
-    const companyNameEng = document.getElementById('companyNameEng').value || '-';
-    const companyAddress = document.getElementById('companyAddress').value || '-';
+    const companyName = document.getElementById('companyName').value ;
+    const companyNameEng = document.getElementById('companyNameEng').value ;
+    const companyAddress = document.getElementById('companyAddress').value ;
     const companyName1 = document.getElementById('companyName1').value || '-';
     
    
