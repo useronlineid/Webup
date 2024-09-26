@@ -161,8 +161,6 @@ function updateDisplay() {
         // Draw background image
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
-        drawText(ctx, `เลขที่ 12659/2567`, 60.0,110.0,30,'THSarabunNew', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
-
         drawText(ctx, `${companyName}`, 452,190,30,'THSarabunNew', '#000000', 'center', 25, 3, 0, 0, 800, 0);
         drawText(ctx, `${companyNameEng}`, 452,220,30,'THSarabunNew', '#000000', 'center', 25, 3, 0, 0, 800, 0);
         drawText(ctx, `${companyAddress}`, 452,250,30, 'THSarabunNew', '#000000', 'center', 25, 3, 0, 0, 800, 0);
