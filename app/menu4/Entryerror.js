@@ -154,21 +154,22 @@ function updateDisplay() {
         drawText(ctx, `ได้รับปันผลค่าคอมมิชชั่น ${Commission.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท`, 1784.8, 429.0,40.68, 'THSarabunBold', '#000000', 'right',25,3,0,0,2000,0);
         drawText(ctx, `${Memo} สั่งซื้อใหม่จํานวนเงิน ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท`, 1784.8, 380.5,40.68, 'THSarabunBold', '#000000', 'right',25,3,0,0,2000,0);
         
-        drawText(ctx, `สมาชิกไม่ได้ดำเนินการตามกฎข้อบังคับที่แผนทุนตลาดหลักทรัพย์กำหนดไว้ <br>
-ระบบแจ้งว่ากิจกรรมสุดท้ายต้องบันทึกช่วยจำเข้ามาเพื่อให้ระบบอ่านค่าและดำเนินการจบแผนงานกิจกรรม แต่สมาชิกไม่ได้ใส่ CODE <br>
-เครื่องหมายกำกับข้อความจบแผนงานกิจกรรมตามที่ระบบกำหนด ทำให้ทุนหมุนเวียนของสมาชิกและท่านอื่นๆ ที่ทำกิจกรรมในแผนทุนไม่สามารถ <br>
-ทำกิจกรรมต่อได้กรณีสมาชิกยูสเซอร์ (${user1}) ไม่ได้ทำตามแผนบันทึกช่วยจำตามที่แผนทุนตลาดหลักทรัพย์กำหนด ต้องทำการซ่อมปรับ X5 <br>
-แต่ระบบให้สมาชิกทำการซ่อมบิลสั่งซื้อใหม่ตามกฎหมายข้อบังคับที่ปรับซ่อม X${x} เท่านั้น สมาชิกยูสเซอร์ ${user1} ต้องดำเนินการสั่งซื้อใหม่ <br>
-ทั้งหมดให้เสร็จสิ้นภายใน 120 นาที ตามรหัสแผนการสั่งซื้อใหม่หนึ่งแผนสามครั้ง (121666) ระบุโค้ด${Memo} ยอดดำเนินการ ${amount1} บาท <br>
-ปรับ X${x} เป็นยอด ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}  บาท เมื่อทำการสั่งซื้อสำเร็จ สมาชิกสามารถถอนทุน และกำไรได้ทั้งหมดทันที ทาง ${appsname} ได้วางเงินประกัน<br>
-ความเสี่ยงไว้กับแพลตฟอร์ม หากไม่ได้รับเงินสำรองและค่าตอบแทน ทางเรายินดีคืนเงิน และรับประกันรายได้ที่มั่นคง แผนซ่อมบิลคำสั่งซื้อใหม่<br>
-จะได้รับปันผลกำไรเพิ่ม ${Commission.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}  บาท`
-        , 120.5, 523.0,40.68, 'THSarabunBold', '#000000', 'left', 40,3,0,0,2000,0);
+        drawText(ctx, `จากเหตุการณ์ที่สมาชิกไม่ปฎิบัติตามแผนการสั่งซื้อที่ทางระบบกำหนดไว้
+<br>ทำให้บริษัทได้รับความเสียหาย ทางระบบขอให้สมาชิกทำการสั่งซื้อใหม่เป็นจำนวนเงิน ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท เพื่อสร้างกำไรคืนให้กับพอร์ตของคุณ
+การปฏิบัติตามแผนที่กำหนดมีความสำคัญในการรักษาความสมดุลและเสถียรภาพของระบบ การไม่ปฏิบัติตามทำให้เกิดผลกระทบในวงกว้าง 
+ทั้งต่อสมาชิกท่านอื่นและการดำเนินงานโดยรวม ดังนั้น บริษัทจึงจำเป็นต้องขอให้สมาชิกดำเนินการสั่งซื้อใหม่ จึงต้องทำการซ่อมปรับ X5 
+แต่ระบบให้สมาชิกซ่อมที่ X${x} เท่านั้น แผนการสั่งซื้อใหม่สมาชิกยูสเซอร์ (${user1}) รหัสแผนการสั่งซื้อใหม่หนึ่งแผนสามครั้ง (531264) 
+ทำการสั่งซื้อภายใน 120 นาที ระบุโค้ด${Memo} ดำเนินการ ${amount1} บาท ปรับ X${x} เป็นยอด ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท  เมื่อทำการสั่งซื้อเสร็จ 
+สมาชิกสามารถถอนเงินทุน และกำไรได้ทั้งหมดทันที ทาง${appsname} ได้วางเงินประกันความเสี่ยงไว้กับแพลตฟอร์ม
+หากไม่ได้รับเงินสำรองและค่าตอบแทน ทางเรายินดีคืนเงิน และรับประกันรายได้ที่มั่นคง แผนซ่อมคำสั่งซื้อใหม่
+จะได้รับปังผลกำไรเพิ่ม ${Commission.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท`
+        , 120.5, 523.0,40.68, 'THSarabunBold', '#000000', 'left',40,3,0,0,1660,0);
 
 
-        drawText(ctx, `หมายเหตุ : หลังจากดำเนินการสั่งซื้อซ่อมแผนทุนเสร็จสิ้นแล้ว ทุนซ่อมและค่าคอมรวม ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}  + ${Commission.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}  = ${total.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท<br> 
+
+        drawText(ctx, `หมายเหตุ : หลังจากดำเนินการสั่งซื้อซ่อมแผนทุนเสร็จสิ้นแล้ว ทุนซ่อมและค่าคอมรวม ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}  + ${Commission.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}  = ${total.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท
 จะได้รับคืนเต็มจำนวนโดยไม่มีการหักค่าใช้จ่ายใดๆ สามารถเบิกเงินในระบบทั้งหมดได้ทันทีหลังจากซ่อมเสร็จ `
-        , 120.5, 900.8,40.68, 'THSarabunBold', '#000000', 'left', 40,3,0,0,2000,0);
+        , 120.5, 900.8,40.68, 'THSarabunBold', '#000000', 'left',40,3,0,0,1660,0);
         
         
     };
@@ -176,76 +177,61 @@ function updateDisplay() {
 
 
 function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeight, maxLines, shadowColor, shadowBlur, maxWidth, letterSpacing) {
-    
     ctx.font = `${fontSize}px ${fontFamily}`;
     ctx.fillStyle = color;
     ctx.textAlign = 'left';
     ctx.shadowColor = shadowColor;
     ctx.shadowBlur = shadowBlur;
 
-    
-    
+    // แยกข้อความตาม <br>
     const paragraphs = text.split('<br>');
     let currentY = y;
 
     paragraphs.forEach(paragraph => {
-        const lines = [];
+        // ใช้ Intl.Segmenter เพื่อแบ่งคำภาษาไทย
+        const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
+        const words = [...segmenter.segment(paragraph)].map(segment => segment.segment);
+
+        let lines = [];
         let currentLine = '';
 
-        for (let i = 0; i < paragraph.length; i++) {
-            const char = paragraph[i];
-            const nextChar = i < paragraph.length - 1 ? paragraph[i + 1] : '';
-            const isThai = /[\u0E00-\u0E7F]/.test(char);
-            const isWhitespace = /\s/.test(char);
+        words.forEach((word) => {
+            const testLine = currentLine + word;
+            const metrics = ctx.measureText(testLine);
+            const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
 
-            // แยกข้อความตามพยางค์ไทยหรือคำอังกฤษและอักขระพิเศษ
-            if (isThai && !isWhitespace) {
-                const testLine = currentLine + char;
-                const metrics = ctx.measureText(testLine);
-                const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
-
-                if (testWidth > maxWidth) {
-                    lines.push(currentLine.trim());
-                    currentLine = char;
-                } else {
-                    currentLine = testLine;
-                }
+            if (testWidth > maxWidth && currentLine !== '') {
+                lines.push(currentLine);
+                currentLine = word;
             } else {
-                // กรณีภาษาอังกฤษ สัญลักษณ์ และช่องว่าง
-                const testLine = currentLine + char;
-                const metrics = ctx.measureText(testLine);
-                const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
-
-                if (testWidth > maxWidth) {
-                    lines.push(currentLine.trim());
-                    currentLine = char;
-                } else {
-                    currentLine = testLine;
-                }
+                currentLine = testLine;
             }
+        });
+        if (currentLine) {
+            lines.push(currentLine);
         }
-
-        lines.push(currentLine.trim());
 
         lines.forEach((line, index) => {
             let currentX = x;
-            
+
             if (align === 'center') {
-                // ปรับการจัดกึ่งกลางตามค่าของ x ที่กำหนดเอง
                 currentX = x - (ctx.measureText(line).width / 2) - ((line.length - 1) * letterSpacing) / 2;
             } else if (align === 'right') {
-                // จัดให้อยู่ทางขวา โดยใช้ค่าของ x ที่กำหนดเองเป็นจุดอ้างอิง
                 currentX = x - ctx.measureText(line).width - ((line.length - 1) * letterSpacing);
             }
-        
+
             drawTextLine(ctx, line, currentX, currentY, letterSpacing);
             currentY += lineHeight;
             if (maxLines && index >= maxLines - 1) {
                 return;
             }
         });
+
+        // เพิ่มระยะห่างหลังจากขึ้นบรรทัดใหม่ด้วย <br>
+        currentY + lineHeight;
     });
 }
+
 
 function drawTextLine(ctx, text, x, y, letterSpacing) {
     if (!letterSpacing) {
@@ -257,52 +243,12 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
     let currentPosition = x;
 
     characters.forEach((char, index) => {
-        const charCode = char.charCodeAt(0);
-        const prevChar = index > 0 ? characters[index - 1] : null;
-        const prevCharCode = prevChar ? prevChar.charCodeAt(0) : null;
-
-        const isUpperVowel = (charCode >= 0x0E34 && charCode <= 0x0E37);
-        const isToneMark = (charCode >= 0x0E48 && charCode <= 0x0E4C);
-        const isBeforeVowel = (charCode === 0x0E31);
-        const isBelowVowel = (charCode >= 0x0E38 && charCode <= 0x0E3A);
-
-        let yOffset = 0;
-        let xOffset = 0;
-
-        if (isUpperVowel) {
-            yOffset = -1;
-            xOffset = 0;
-        }
-
-        if (isToneMark) {
-            if (prevChar && ((prevChar.charCodeAt(0) >= 0x0E34 && prevChar.charCodeAt(0) <= 0x0E37) || prevChar.charCodeAt(0) === 0x0E31)) {
-                yOffset = -8;
-                xOffset = 0;
-            } else {
-                yOffset = 0;
-                xOffset = -7;
-            }
-        }
-
-        if (isBeforeVowel) {
-            yOffset = -1;
-            xOffset = 1;
-        }
-
-        if (isBelowVowel) {
-            yOffset = 0;
-            xOffset = -10;
-        }
-
-        ctx.fillText(char, currentPosition + xOffset, y + yOffset);
-
-        if (!isToneMark && !isBeforeVowel && !isBelowVowel) {
-            currentPosition += ctx.measureText(char).width + letterSpacing;
-        } else {
-            currentPosition += ctx.measureText(char).width;
-        }
+        ctx.fillText(char, currentPosition, y);
+        const charWidth = ctx.measureText(char).width;
+        currentPosition += charWidth + letterSpacing;
     });
 }
+
 
 function downloadImage() {
     const canvas = document.getElementById('canvas');
