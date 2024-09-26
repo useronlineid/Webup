@@ -1,4 +1,44 @@
+/* Kanit */
+@font-face {
+    font-family: 'KanitThin';
+    src: url('../assets/fonts/Kanit-Thin.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitExtraLight';
+    src: url('../assets/fonts/Kanit-ExtraLight.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitLight';
+    src: url('../assets/fonts/Kanit-Light.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitRegular';
+    src: url('../assets/fonts/Kanit-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitMedium';
+    src: url('../assets/fonts/Kanit-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitSemiBold';
+    src: url('../assets/fonts/Kanit-SemiBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitBold';
+    src: url('../assets/fonts/Kanit-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitExtraBold';
+    src: url('../assets/fonts/Kanit-ExtraBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'KanitBlack';
+    src: url('../assets/fonts/Kanit-Black.woff') format('woff');
+}
+
+
 body {
+    font-family: 'KanitRegular', Arial, sans-serif;
     font-family: 'Kanit', sans-serif;
     display: flex;
     flex-direction: column;
@@ -26,7 +66,13 @@ body {
 }
 
 h1, h2 {
+    font-family: 'KanitRegular', Arial, sans-serif;
     color: white;
+}
+
+p {
+    font-family: 'KanitMedium', Arial, sans-serif;
+    color: black;
 }
 
 #login {
