@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กองทุนช่วยเหลือ</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>กองทุนช่วยเหลือ</h1>
+            <div class="form">
+                <label for="user1">ยูสเซอร์</label>
+                <input type="text" id="user1" name="user1" placeholder="AM0000" oninput="updateDisplay()">
+                
+                <label for="sendername">ชื่อ-นามสกุล</label>
+                <input type="text" id="sendername" name="sendername" placeholder="ชื่อ-นามสกุล" oninput="updateDisplay()">
+                
+                <label for="datetime">เวลา (hh:mm:ss):</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="amount1">เงินในระบบ</label>
+                <input type="text" id="amount1" name="amount1" placeholder="เงินในระบบ" oninput="updateDisplay()">
+                
+                <label for="Percent">เปอร์เซ็นต์ (0-100)</label>
+                <input type="text" id="Percent" name="Percent" placeholder="ช่วยเหลือ" oninput="updateDisplay()">
+                
+                <label for="notes">หมายเหตุ</label>
+                <input type="text" id="notes" name="notes" placeholder="หมายเหตุ" oninput="updateDisplay()">
+                
+                <br>
+                <br>
+                <label for="companyName">บริษัท</label>
+                <input type="text" id="companyName"  name="companyName" value="บริษัท ซันนี่ วี โฮลดิ้ง จำกัด" oninput="updateDisplay()">
+                <input type="text" id="companyNameEng"  name="companyNameEng" value="SUNNY V HOLDING COMPANY LIMITED" oninput="updateDisplay()">
+                <input type="text" id="companyAddress"  name="companyAddress" value="70/1 หมู่ที่ 3 ตำบลบวกค้าง อำเภอสันกำแพง จ.เชียงใหม่ 50130" oninput="updateDisplay()">
+                <input type="text" id="companyName1"  name="companyName1" value="นายมงคล เลิศวงศ์ประเสริฐ" oninput="updateDisplay()">
+    
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu4/help.js"></script>
+</body>
+</html>
