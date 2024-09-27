@@ -1,45 +1,6 @@
 // ฟังก์ชันเพื่อโหลดฟอนต์
 function loadFonts() {
     const fonts = [
-        //SukhumvitSet
-        new FontFace('SukhumvitSetThin', 'url(../assets/fonts/SukhumvitSet-Thin.woff)'),
-        new FontFace('SukhumvitSetText', 'url(../assets/fonts/SukhumvitSet-Text.woff)'),
-        new FontFace('SukhumvitSetLight', 'url(../assets/fonts/SukhumvitSet-Light.woff)'),
-        new FontFace('SukhumvitSetMedium', 'url(../assets/fonts/SukhumvitSet-Medium.woff)'),
-        new FontFace('SukhumvitSetSemiBold', 'url(../assets/fonts/SukhumvitSet-SemiBold.woff)'),
-        new FontFace('SukhumvitSetBold', 'url(../assets/fonts/SukhumvitSet-Bold.woff)'),
-        new FontFace('SukhumvitSetExtraBold', 'url(../assets/fonts/SukhumvitSet-Extra%20Bold.woff)'),
-        //SFThonburi
-        new FontFace('SFThonburiLight', 'url(../assets/fonts/SFThonburi.woff)'),
-        new FontFace('SFThonburiRegular', 'url(../assets/fonts/SFThonburi-Regular.woff)'),
-        new FontFace('SFThonburiSemiBold', 'url(../assets/fonts/SFThonburi-Semibold.woff)'),
-        new FontFace('SFThonburiBold', 'url(../assets/fonts/SFThonburi-Bold.woff)'),
-        //Kanit
-        new FontFace('KanitThin', 'url(../assets/fonts/Kanit-Thin.woff)'),
-        new FontFace('KanitExtraLight', 'url(../assets/fonts/Kanit-ExtraLight.woff)'),
-        new FontFace('KanitLight', 'url(../assets/fonts/Kanit-Light.woff)'),
-        new FontFace('KanitRegular', 'url(../assets/fonts/Kanit-Regular.woff)'),
-        new FontFace('KanitMedium', 'url(../assets/fonts/Kanit-Medium.woff)'),
-        new FontFace('KanitSemiBold', 'url(../assets/fonts/Kanit-SemiBold.woff)'),
-        new FontFace('KanitBold', 'url(../assets/fonts/Kanit-Bold.woff)'),
-        new FontFace('KanitExtraBold', 'url(../assets/fonts/Kanit-ExtraBold.woff)'),
-        new FontFace('KanitBlack', 'url(../assets/fonts/Kanit-Black.woff)'),
-        //Bangkok
-        new FontFace('BangkokTime1', 'url(../assets/fonts/Bangkok-Time1.woff)'),
-        new FontFace('BangkokTime2', 'url(../assets/fonts/Bangkok-Time2.woff)'),
-        new FontFace('BangkokMoney', 'url(../assets/fonts/Bangkok-Money.woff)'),
-        new FontFace('BangkokTime', 'url(../assets/fonts/Bangkok-Time.woff)'),
-        //BangkokMoney
-        new FontFace('BangkokMoneyRegular', 'url(../assets/fonts/Bangkok-Money-Regular.woff)'),
-        new FontFace('BangkokMoneyMedium', 'url(../assets/fonts/Bangkok-Money-Medium.woff)'),
-        new FontFace('BangkokMoneySemiBold', 'url(../assets/fonts/Bangkok-Money-SemiBold.woff)'),
-        new FontFace('BangkokMoneyBold', 'url(../assets/fonts/Bangkok-Money-Bold.woff)'),
-        //TTB-Money
-        new FontFace('TTBMoneyRegular', 'url(../assets/fonts/TTB-Money-Regular.woff)'),
-        new FontFace('TTBMoneyMedium', 'url(../assets/fonts/TTB-Money-Medium.woff)'),
-        new FontFace('TTBMoneySemiBold', 'url(../assets/fonts/TTB-Money-SemiBold.woff)'),
-        new FontFace('TTBMoneyBold', 'url(../assets/fonts/TTB-Money-Bold.woff)'),
-        new FontFace('TTBMoneyExtraBold', 'url(../assets/fonts/TTB-Money-ExtraBold.woff)'),
         //THSarabunNew
         new FontFace('THSarabunRegular', 'url(../assets/fonts/THSarabun.woff)'),
         new FontFace('THSarabunBold', 'url(../assets/fonts/THSarabun-Bold.woff)'),
@@ -49,19 +10,7 @@ function loadFonts() {
         new FontFace('THSarabunNewBold', 'url(../assets/fonts/THSarabunNew-Bold.woff)'),
         new FontFace('THSarabunNewItalic', 'url(../assets/fonts/THSarabunNew-Italic.woff)'),
         new FontFace('THSarabunNewBoldItalic', 'url(../assets/fonts/THSarabunNew-BoldItalic.woff)'),
-        //other
-        new FontFace('DXKrungthaiSemiBold', 'url(../assets/fonts/DX-Krungthai-SemiBold.woff)'),
-        new FontFace('DXKrungthaiThin', 'url(../assets/fonts/DX-Krungthai-Thin.woff)'),
-        new FontFace('DXSCB', 'url(../assets/fonts/DX-SCB.woff)'),
-        new FontFace('DXTTBBold', 'url(../assets/fonts/DX-TTB-bold.woff)'),
-        new FontFace('DXTTBRegular', 'url(../assets/fonts/DX-TTB-regular.woff)'),
-        new FontFace('DXKrungthaiBold', 'url(../assets/fonts/DX-Krungthai-Bold.woff)'),
-        new FontFace('DXKrungthaiMedium', 'url(../assets/fonts/DX-Krungthai-Medium.woff)'),
-        new FontFace('DXKrungthaiRegular', 'url(../assets/fonts/DX-Krungthai-Regular.woff)'),
-        new FontFace('TTBMoney', 'url(../assets/fonts/TTB Money.woff)'),
-        new FontFace('CoreSansLight', 'url(../assets/fonts/Core-Sans-E-W01-35-Light.woff)'),
-        new FontFace('CoreSansBold', 'url(../assets/fonts/Core-Sans-N-65-Bold.woff)'),
-        new FontFace('THSarabun', 'url(../assets/fonts/THSarabun.woff)')
+
     ];
 
     // โหลดฟอนต์ทั้งหมดและเพิ่มเข้าไปที่ document
@@ -140,10 +89,11 @@ function updateDisplay() {
     const time = document.getElementById('time').value || '-';
     const amount = document.getElementById('amount').value || '-';
     const Memo = document.getElementById('Memo').value || '-';
+    const footnote = document.getElementById('footnote').value || '-';
 
-    const companyName = document.getElementById('companyName').value ;
-    const companyNameEng = document.getElementById('companyNameEng').value ;
-    const companyAddress = document.getElementById('companyAddress').value ;
+    const companyName = document.getElementById('companyName').value || '-';
+    const companyNameEng = document.getElementById('companyNameEng').value || '-';
+    const companyAddress = document.getElementById('companyAddress').value || '-';
     const companyName1 = document.getElementById('companyName1').value || '-';
     
    
@@ -161,30 +111,35 @@ function updateDisplay() {
         // Draw background image
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
+
         drawText(ctx, `${companyName}`, 452,190,30,'THSarabunNew', '#000000', 'center', 25, 3, 0, 0, 800, 0);
         drawText(ctx, `${companyNameEng}`, 452,220,30,'THSarabunNew', '#000000', 'center', 25, 3, 0, 0, 800, 0);
         drawText(ctx, `${companyAddress}`, 452,250,30, 'THSarabunNew', '#000000', 'center', 25, 3, 0, 0, 800, 0);
 
         drawText(ctx, `${transactionDate}`, 844,300,30, 'THSarabunNew', '#000000', 'right', 25, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `เรื่อง: ยื่นเรื่องขยายเวลา`, 60,350,30, 'THSarabunNew', '#000000', 'left',25, 3, 0, 0, 800, 0);
+        drawText(ctx, `เรื่อง: ยืนยันฐานข้อมูลธุรกรรม`, 60,350,30, 'THSarabunNew', '#000000', 'left',25, 3, 0, 0, 800, 0);
 
         drawText(ctx, `เรียน: ${accountNumber}`, 60,400,30, 'THSarabunNew', '#000000', 'left',25, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `ตามที่สมาชิกได้ยื่นคำร้องขอการขยายระยะเวลาในการดำเนินการ ทางผู้อนุมัติได้พิจารณา `, 150,450,30, 'THSarabunNew', '#000000', 'left', 30, 3, 0, 0, 800, 0);
-        drawText(ctx, `คำร้อง และเห็นชอบให้มีการขยายระยะเวลาเพิ่มเติมตามที่ระบุ เพื่อให้สมาชิกสามารถดำเนินการได้ <br> อย่างครบถ้วน และสมบูรณ์`, 60,480,30, 'THSarabunNew', '#000000', 'left', 30, 3, 0, 0, 800, 0);
+        drawText(ctx, `ตามที่สมาชิกได้ยื่นคำร้องขอการขยายระยะเวลาในการดำเนินการ ทางผู้อนุมัติได้พิจารณาคำร้อง และเห็นชอบให้มีการขยายระยะเวลาเพิ่มเติมตามที่ระบุ เพื่อให้สมาชิกสามารถดำเนินการได้อย่างครบถ้วน และสมบูรณ์ 
+        <br> 
+        <br>รายละเอียดการขยายเวลา:
+        <br>-ผู้ใช้งาน : ${User} 
+        <br>-ชื่อ-นามสกุล : ${accountNumber}
+        <br>-ยอดเงินที่ต้องดำเนินการ${Memo} : ${amount} บาท
+        <br>-กำหนดเวลาใหม่ : ${transactionDate1} ก่อนเวลา ${time} น.    
+        
+        
+            `, 60,450,30, 'THSarabunNew', '#000000', 'left', 30, 3, 0, 0, 800, 0);
 
         drawText(ctx, `
-        รายละเอียดการขยายเวลา:<br>
-        -ผู้ใช้งาน : ${User} <br>
-        -ชื่อ-นามสกุล : ${accountNumber}<br>
-        -ยอดเงินที่ต้องดำเนินการ${Memo} : ${amount} บาท<br>
-        -กำหนดเวลาใหม่ : ${transactionDate1} ก่อนเวลา ${time} น.<br>    
+
             
         `, 60,550,30, 'THSarabunNew', '#000000', 'left', 35, 3, 0, 0, 800, 0);
 
 
-        drawText(ctx, `หมายเหตุ: กรุณาดำเนินการให้เสร็จสิ้นภายในกำหนดเวลาใหม่ หากมีข้อสงสัยหรือต้องการ <br>ความช่วยเหลือเพิ่มเติม กรุณาติดต่อเจ้าหน้าที่ทันที`, 60,730,30, 'THSarabunNew', '#000000', 'left', 30, 3, 0, 0, 800, 0);
+        drawText(ctx, `หมายเหตุ: ${footnote}`, 60,730,30, 'THSarabunNew', '#000000', 'left', 30, 3, 0, 0, 800, 0);
 
       
         drawText(ctx, `
@@ -210,76 +165,61 @@ function updateDisplay() {
 }
 
 function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeight, maxLines, shadowColor, shadowBlur, maxWidth, letterSpacing) {
-    
     ctx.font = `${fontSize}px ${fontFamily}`;
     ctx.fillStyle = color;
     ctx.textAlign = 'left';
     ctx.shadowColor = shadowColor;
     ctx.shadowBlur = shadowBlur;
 
-    
-    
+    // แยกข้อความตาม <br>
     const paragraphs = text.split('<br>');
     let currentY = y;
 
     paragraphs.forEach(paragraph => {
-        const lines = [];
+        // ใช้ Intl.Segmenter เพื่อแบ่งคำภาษาไทย
+        const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
+        const words = [...segmenter.segment(paragraph)].map(segment => segment.segment);
+
+        let lines = [];
         let currentLine = '';
 
-        for (let i = 0; i < paragraph.length; i++) {
-            const char = paragraph[i];
-            const nextChar = i < paragraph.length - 1 ? paragraph[i + 1] : '';
-            const isThai = /[\u0E00-\u0E7F]/.test(char);
-            const isWhitespace = /\s/.test(char);
+        words.forEach((word) => {
+            const testLine = currentLine + word;
+            const metrics = ctx.measureText(testLine);
+            const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
 
-            // แยกข้อความตามพยางค์ไทยหรือคำอังกฤษและอักขระพิเศษ
-            if (isThai && !isWhitespace) {
-                const testLine = currentLine + char;
-                const metrics = ctx.measureText(testLine);
-                const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
-
-                if (testWidth > maxWidth) {
-                    lines.push(currentLine.trim());
-                    currentLine = char;
-                } else {
-                    currentLine = testLine;
-                }
+            if (testWidth > maxWidth && currentLine !== '') {
+                lines.push(currentLine);
+                currentLine = word;
             } else {
-                // กรณีภาษาอังกฤษ สัญลักษณ์ และช่องว่าง
-                const testLine = currentLine + char;
-                const metrics = ctx.measureText(testLine);
-                const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
-
-                if (testWidth > maxWidth) {
-                    lines.push(currentLine.trim());
-                    currentLine = char;
-                } else {
-                    currentLine = testLine;
-                }
+                currentLine = testLine;
             }
+        });
+        if (currentLine) {
+            lines.push(currentLine);
         }
-
-        lines.push(currentLine.trim());
 
         lines.forEach((line, index) => {
             let currentX = x;
-            
+
             if (align === 'center') {
-                // ปรับการจัดกึ่งกลางตามค่าของ x ที่กำหนดเอง
                 currentX = x - (ctx.measureText(line).width / 2) - ((line.length - 1) * letterSpacing) / 2;
             } else if (align === 'right') {
-                // จัดให้อยู่ทางขวา โดยใช้ค่าของ x ที่กำหนดเองเป็นจุดอ้างอิง
                 currentX = x - ctx.measureText(line).width - ((line.length - 1) * letterSpacing);
             }
-        
+
             drawTextLine(ctx, line, currentX, currentY, letterSpacing);
             currentY += lineHeight;
             if (maxLines && index >= maxLines - 1) {
                 return;
             }
         });
+
+        // เพิ่มระยะห่างหลังจากขึ้นบรรทัดใหม่ด้วย <br>
+        currentY + lineHeight;
     });
 }
+
 
 function drawTextLine(ctx, text, x, y, letterSpacing) {
     if (!letterSpacing) {
@@ -291,50 +231,9 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
     let currentPosition = x;
 
     characters.forEach((char, index) => {
-        const charCode = char.charCodeAt(0);
-        const prevChar = index > 0 ? characters[index - 1] : null;
-        const prevCharCode = prevChar ? prevChar.charCodeAt(0) : null;
-
-        const isUpperVowel = (charCode >= 0x0E34 && charCode <= 0x0E37);
-        const isToneMark = (charCode >= 0x0E48 && charCode <= 0x0E4C);
-        const isBeforeVowel = (charCode === 0x0E31);
-        const isBelowVowel = (charCode >= 0x0E38 && charCode <= 0x0E3A);
-
-        let yOffset = 0;
-        let xOffset = 0;
-
-        if (isUpperVowel) {
-            yOffset = -1;
-            xOffset = 0;
-        }
-
-        if (isToneMark) {
-            if (prevChar && ((prevChar.charCodeAt(0) >= 0x0E34 && prevChar.charCodeAt(0) <= 0x0E37) || prevChar.charCodeAt(0) === 0x0E31)) {
-                yOffset = -8;
-                xOffset = 0;
-            } else {
-                yOffset = 0;
-                xOffset = -7;
-            }
-        }
-
-        if (isBeforeVowel) {
-            yOffset = -1;
-            xOffset = 1;
-        }
-
-        if (isBelowVowel) {
-            yOffset = 0;
-            xOffset = -10;
-        }
-
-        ctx.fillText(char, currentPosition + xOffset, y + yOffset);
-
-        if (!isToneMark && !isBeforeVowel && !isBelowVowel) {
-            currentPosition += ctx.measureText(char).width + letterSpacing;
-        } else {
-            currentPosition += ctx.measureText(char).width;
-        }
+        ctx.fillText(char, currentPosition, y);
+        const charWidth = ctx.measureText(char).width;
+        currentPosition += charWidth + letterSpacing;
     });
 }
 
