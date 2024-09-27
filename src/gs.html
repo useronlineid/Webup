@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หมาย(เสียหาย)</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>หมาย(เสียหาย)</h1>
+            <div class="form">
+                <label for="companyName">บริษัท</label>
+                <input type="text" id="companyName"  name="companyName" placeholder="บริษัท" oninput="updateDisplay()">
+
+                <label for="sendername">ชื่อ-นามสกุล</label>
+                <input type="text" id="sendername" name="sendername" placeholder="ชื่อ-นามสกุล" oninput="updateDisplay()">
+                
+                <label for="datetime">วันที่ออก</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu4/gs.js"></script>
+</body>
+</html>
