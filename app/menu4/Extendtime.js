@@ -118,7 +118,7 @@ function updateDisplay() {
 
         drawText(ctx, `${transactionDate}`, 844,300,30, 'THSarabunNew', '#000000', 'right', 25, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `เรื่อง: ยืนยันฐานข้อมูลธุรกรรม`, 60,350,30, 'THSarabunNew', '#000000', 'left',25, 3, 0, 0, 800, 0);
+        drawText(ctx, `เรื่อง: ยื่นเรื่องขยายเวลา`, 60,350,30, 'THSarabunNew', '#000000', 'left',25, 3, 0, 0, 800, 0);
 
         drawText(ctx, `เรียน: ${accountNumber}`, 60,400,30, 'THSarabunNew', '#000000', 'left',25, 3, 0, 0, 800, 0);
 
