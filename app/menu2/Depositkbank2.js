@@ -194,17 +194,16 @@ function updateDisplay() {
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
         // Draw text with custom styles
-         drawText(ctx, `${formattedDateWithDay}   `, 63.4, 167.8,33.50, 'SFThonburiSemiBold', '#ffffff','center', 24, 3, 0, 0, 800, 0);
+         drawText(ctx, `   ${formattedDateWithDay}   `, 295, 167.8,33.50, 'SFThonburiSemiBold', '#ffffff','center', 24, 3, 0, 0, 800, 0);
 
        3
-        drawText(ctx, `${formattedTimePlusOne}`, 63.4, 298.8,138.50, 'SFThonburiSemiBold', '#ffffff','center', 1.5, 3, 0, 0, 800, -7);
+        drawText(ctx, `${formattedTimePlusOne}`, 295, 298.8,138.50, 'SFThonburiSemiBold', '#ffffff','center', 1.5, 3, 0, 0, 800, -7);
 
         drawText(ctx, `รายการเงินเข้า`, 107.8, 451.8,21.50, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${timeMessage}`, 37.7, 451.8,18.50, 'SFThonburiBold', '#6f8590', 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${timeMessage}`, 547.5, 451.8,18.50, 'SFThonburiBold', '#6f8590', 'right', 1.5, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `
-        บัญชี ${senderaccount1} จำนวนเงิน ${money01} บาท วันที่ ${formattedDate} ${formattedTime} น.<br>
-        `, 107.8, 481.8,20.50, 'SFThonburiSemiBold', '#000000', 'left', 31.5, 3, 0, 0, 490, 0);
+        drawText(ctx, `บัญชี ${senderaccount1} จำนวนเงิน ${money01} บาท วันที่ ${formattedDate} ${formattedTime} น.<br>
+        `, 107.8, 481.8,20.50, 'SFThonburiSemiBold', '#000000', 'left', 31.5, 3, 0, 0, 420, 0);
 
 
 
@@ -229,42 +228,52 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
     ctx.shadowColor = shadowColor;
     ctx.shadowBlur = shadowBlur;
 
+    // แยกข้อความตาม <br>
     const paragraphs = text.split('<br>');
     let currentY = y;
 
     paragraphs.forEach(paragraph => {
-        const words = paragraph.split(' ');
-        let currentLine = '';
-        const lines = [];
+        // ใช้ Intl.Segmenter เพื่อแบ่งคำภาษาไทย
+        const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
+        const words = [...segmenter.segment(paragraph)].map(segment => segment.segment);
 
-        for (let i = 0; i < words.length; i++) {
-            const testLine = currentLine + words[i] + ' ';
+        let lines = [];
+        let currentLine = '';
+
+        words.forEach((word) => {
+            const testLine = currentLine + word;
             const metrics = ctx.measureText(testLine);
             const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
 
-            if (testWidth > maxWidth && i > 0) {
+            if (testWidth > maxWidth && currentLine !== '') {
                 lines.push(currentLine);
-                currentLine = words[i] + ' ';
+                currentLine = word;
             } else {
                 currentLine = testLine;
             }
+        });
+        if (currentLine) {
+            lines.push(currentLine);
         }
-        lines.push(currentLine);
 
         lines.forEach((line, index) => {
             let currentX = x;
+
             if (align === 'center') {
-                currentX = (ctx.canvas.width - ctx.measureText(line).width) / 1.72 - ((line.length - 1) * letterSpacing) / 2;
+                currentX = x - (ctx.measureText(line).width / 2) - ((line.length - 1) * letterSpacing) / 2;
             } else if (align === 'right') {
-                currentX = ctx.canvas.width - x - ctx.measureText(line).width - ((line.length - 1) * letterSpacing);
+                currentX = x - ctx.measureText(line).width - ((line.length - 1) * letterSpacing);
             }
 
-            drawTextLine(ctx, line.trim(), currentX, currentY, letterSpacing);
+            drawTextLine(ctx, line, currentX, currentY, letterSpacing);
             currentY += lineHeight;
             if (maxLines && index >= maxLines - 1) {
                 return;
             }
         });
+
+        // เพิ่มระยะห่างหลังจากขึ้นบรรทัดใหม่ด้วย <br>
+        currentY + lineHeight;
     });
 }
 
@@ -279,52 +288,12 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
     let currentPosition = x;
 
     characters.forEach((char, index) => {
-        const charCode = char.charCodeAt(0);
-        const prevChar = index > 0 ? characters[index - 1] : null;
-        const prevCharCode = prevChar ? prevChar.charCodeAt(0) : null;
-
-        const isUpperVowel = (charCode >= 0x0E34 && charCode <= 0x0E37);
-        const isToneMark = (charCode >= 0x0E48 && charCode <= 0x0E4C);
-        const isBeforeVowel = (charCode === 0x0E31);
-        const isBelowVowel = (charCode >= 0x0E38 && charCode <= 0x0E3A);
-
-        let yOffset = 0;
-        let xOffset = 0;
-
-        if (isUpperVowel) {
-            yOffset = -1;
-            xOffset = 0;
-        }
-
-        if (isToneMark) {
-            if (prevChar && ((prevChar.charCodeAt(0) >= 0x0E34 && prevChar.charCodeAt(0) <= 0x0E37) || prevChar.charCodeAt(0) === 0x0E31)) {
-                yOffset = -8; // วรรณยุกต์ที่มีสระ เลื่อนขึ้น 8 หน่วย
-                xOffset = 0; // เลื่อนในแนวนอน ซ้าย 5 หน่วย
-            } else {
-                yOffset = 0; // วรรณยุกต์ไม่มีสระ เลื่อนขึ้น 8 หน่วย
-                xOffset = -7; // เลื่อนในแนวนอน ซ้าย 5 หน่วย
-            }
-        }
-
-        if (isBeforeVowel) {
-            yOffset = -1;
-            xOffset = 1;
-        }
-
-        if (isBelowVowel) {
-            yOffset = 0;
-            xOffset = -10;
-        }
-
-        ctx.fillText(char, currentPosition + xOffset, y + yOffset);
-
-        if (!isToneMark && !isBeforeVowel && !isBelowVowel) {
-            currentPosition += ctx.measureText(char).width + letterSpacing;
-        } else {
-            currentPosition += ctx.measureText(char).width;
-        }
+        ctx.fillText(char, currentPosition, y);
+        const charWidth = ctx.measureText(char).width;
+        currentPosition += charWidth + letterSpacing;
     });
 }
+
 
 function drawBattery(ctx, batteryLevel, powerSavingMode) {
     // วาดกรอบแบตเตอรี่ด้วยมุมโค้งมน
@@ -335,7 +304,7 @@ function drawBattery(ctx, batteryLevel, powerSavingMode) {
 
 
     // กำหนดสีแบตเตอรี่ตามระดับและโหมดประหยัดพลังงาน
-    let batteryColor = '#ffffff'; // สีเขียวสำหรับโหมดปกติ
+    let batteryColor = '#28bf2b'; // สีเขียวสำหรับโหมดปกติ
     if (batteryLevel <= 20) {
         batteryColor = '#ff0000'; // สีแดงสำหรับแบตเตอรี่ต่ำ
     } else if (powerSavingMode) {
@@ -343,11 +312,11 @@ function drawBattery(ctx, batteryLevel, powerSavingMode) {
     }
 
 // วาดการเติมแบตเตอรี่
-const fillWidth = (batteryLevel / 100) * 38.5; // คำนวณความกว้างของการเติมแบตเตอรี่ตามระดับแบตเตอรี่
-const x = 508.5;
-const y = 28.0;
-const height = 21.0;
-const radius = 6; // รัศมีของโค้ง
+const fillWidth = (batteryLevel / 100) * 31; // คำนวณความกว้างของการเติมแบตเตอรี่ตามระดับแบตเตอรี่
+const x = 511.5;
+const y = 32.4;
+const height = 13.8;
+const radius = 4; // รัศมีของโค้ง
 
 ctx.fillStyle = batteryColor; // กำหนดสีการเติมแบตเตอรี่ตามที่คำนวณ
 
@@ -364,13 +333,6 @@ ctx.lineTo(x + radius, y); // วาดเส้นตรงไปที่ม�
 ctx.arcTo(x, y, x, y + radius, radius); // วาดส่วนโค้งที่มุมบนซ้าย
 ctx.closePath(); // ปิดเส้นที่วาดเพื่อสร้างรูปร่างปิด
 ctx.fill(); // เติมสีการเติมแบตเตอรี่ะสูง 16
-
-
-
-    ctx.font = '800 18px SFThonburiBold';
-    ctx.fillStyle = '#9ebbcc';
-    ctx.textAlign = 'center';
-    ctx.fillText(`${batteryLevel}`, x + 37.8 / 2, y + height / 1.25);
 }
 
 
@@ -384,6 +346,7 @@ function togglePowerSavingMode() {
     powerSavingButton.classList.toggle('active', powerSavingMode);
     updateDisplay();
 }
+
 function updateBatteryDisplay() {
     const batteryLevel = document.getElementById('battery').value;
     document.getElementById('battery-level').innerText = batteryLevel;
