@@ -158,6 +158,9 @@ function updateDisplay() {
     const money01 = document.getElementById('money01').value || '-';
     const senderaccount2 = document.getElementById('senderaccount2').value || '-';
     const money02 = document.getElementById('money02').value || '-';
+
+    const nametext1 = document.getElementById('nametext1').value || '-';
+    const text1 = document.getElementById('text1').value || '-';
     
     const formattedDate = formatDate(datetime.substring(0, 10)); // แปลงวันที่เป็นรูปแบบ DD/MM/YY
     const formattedDateWithDay = formatDateWithDay(datetime.substring(0, 10)); // แปลงวันที่เป็นรูปแบบ วันอังคารที่ 3 กันยายน
