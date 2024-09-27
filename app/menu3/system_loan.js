@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     warningElement.classList.remove('error');
                     warningElement.classList.add('success');
                 } else {
-                    warningElement.textContent = 'หมายเหตุ: ไม่สามารถดำเนินการ AI SMART CONTRACT ไม่สามารถอ่านค่าของสลิปได้';
+                    warningElement.textContent = 'หมายเหตุ: ระบบ AI SMART CONTRACT ไม่สามารถอ่านค่าของสลิปได้';
                     warningElement.classList.remove('success');
                     warningElement.classList.add('error');
                 }
