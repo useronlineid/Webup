@@ -146,15 +146,8 @@ function updateDisplay() {
 
 
 
-drawText(ctx, `
-ขอแสดงความนับถือ
-<br>
-<br>
-<br>
-(${companyName1})
-<br>${companyName}
-<br>ออก ณ วันที่ ${formattedDate}
-`,645,1035,30,'THSarabunNew', '#000000', 'center', 35, 3, 0, 0, 810, 0);
+        drawText(ctx, `ขอแสดงความนับถือ<br> <br> <br>(${companyName1})<br>ผู้จัดการ ${companyName}<br>ออก ณ วันที่ ${transactionDate}`, 640,1037,30, 'THSarabunNew', '#000000', 'center', 35, 3, 0, 0, 490, 0);
+
     };
 }
 
