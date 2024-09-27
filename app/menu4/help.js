@@ -83,6 +83,7 @@ function updateDisplay() {
     const datetime = document.getElementById('datetime').value || '-';
 
     const notes = document.getElementById('notes').value || '-';
+    const footnote = document.getElementById('footnote').value || '-';
 
     const companyName = document.getElementById('companyName').value || '-';
     const companyNameEng = document.getElementById('companyNameEng').value || '-';
@@ -138,7 +139,7 @@ function updateDisplay() {
             <br>- จำนวนเงินที่ต้องยื่นเรื่องเข้าระบบ: ${amount1Formatted} บาท
             <br>- จำนวนเงินช่วยเหลือจากกองทุน: ${Percent}% (${helpAmountFormatted} บาท)
             <br>- จำนวนเงินที่ต้องดำเนินการ: ${remainingAmountFormatted} บาท
-            <br>หมายเหตุ: ระบบจะปรับปรุงตามจำนวนเงินที่ยื่นเรื่อง โดยนำเงินกองทุนช่วยเหลือไปพร้อมกับเงินยื่นเรื่อง สมาชิกดำเนินการให้เสร็จสิ้นตามขั้นตอนที่กำหนด
+            <br>หมายเหตุ: ${footnote}
                       `,60,460,30,'THSarabunNew', '#000000', 'left', 35, 3, 0, 0, 800, 0);
             
 
