@@ -69,13 +69,13 @@ function formatDate(date) {
 
 
 function updateDisplay() {
-    const user1 = document.getElementById('user1').value;
-    const amount1 = document.getElementById('amount1').value;
-    const amount2 = document.getElementById('amount2').value;
-    const amount3 = document.getElementById('amount3').value;
-    const sendername = document.getElementById('sendername').value;
-    const datetime = document.getElementById('datetime').value;
-
+    const user1 = document.getElementById('user1').value || '-';
+    const amount1 = document.getElementById('amount1').value || '-';
+    const amount2 = document.getElementById('amount2').value || '-';
+    const amount3 = document.getElementById('amount3').value || '-';
+    const sendername = document.getElementById('sendername').value || '-';
+    const datetime = document.getElementById('datetime').value || '-';
+    
     const companyName = document.getElementById('companyName').value;
     const companyNameEng = document.getElementById('companyNameEng').value;
     const companyAddress = document.getElementById('companyAddress').value;
