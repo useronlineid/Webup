@@ -98,6 +98,45 @@
     font-family: 'KanitBlack';
     src: url('../assets/fonts/Kanit-Black.woff') format('woff');
 }
+
+/* NotoSansKR */
+@font-face {
+    font-family: 'NotoSansKRThin';
+    src: url('../assets/fonts/NotoSansKR-Thin.woff') format('woff');
+}
+@font-face {
+    font-family: 'NotoSansKRExtraLight';
+    src: url('../assets/fonts/NotoSansKR-ExtraLight.woff') format('woff');
+}
+@font-face {
+    font-family: 'NotoSansKRLight';
+    src: url('../assets/fonts/NotoSansKR-Light.woff') format('woff');
+}
+@font-face {
+    font-family: 'NotoSansKRRegular';
+    src: url('../assets/fonts/NotoSansKR-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'NotoSansKRMedium';
+    src: url('../assets/fonts/NotoSansKR-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'NotoSansKRSemiBold';
+    src: url('../assets/fonts/NotoSansKR-SemiBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'NotoSansKRBold';
+    src: url('../assets/fonts/NotoSansKR-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'NotoSansKRExtraBold';
+    src: url('../assets/fonts/NotoSansKR-ExtraBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'NotoSansKRBlack';
+    src: url('../assets/fonts/NotoSansKR-Black.woff') format('woff');
+}
+
 /* Bangkok*/
 @font-face {
     font-family: 'BangkokTime1';
