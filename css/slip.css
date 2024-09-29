@@ -142,6 +142,10 @@
     src: url('../assets/fonts/arial.woff') format('woff');
 }
 @font-face {
+    font-family: 'arialRegularItalic';
+    src: url('../assets/fonts/ariali.woff') format('woff');
+}
+@font-face {
     font-family: 'arialMedium';
     src: url('../assets/fonts/arialbd.woff') format('woff');
 }
