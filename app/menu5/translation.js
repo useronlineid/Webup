@@ -102,49 +102,51 @@ function handlePaste(event) {
                 drawText(ctx, `House Particulars`, 369.7,148,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
                 drawText(ctx, `Book No. 1`, 658.8,148,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
                 
-                drawText(ctx, `House Code No.: ${houseCode}`,83.7,190.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
+                drawText(ctx, `House Code No.: ${houseCode}`,83.7,190.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,300,0);
                 drawText(ctx, `Registration Office: ${RegistrationOffice}`, 379.2,190.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Address list: ${addressList}`, 94.7, 237.6,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Name of Village: ${nameOfVillage}`,83.7, 325.8,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Name of House: ${nameOfHouse}`, 452, 325.8,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Type of House: ${typeOfHouse}`,83.7,373,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Description of House: ${descriptionOfHouse}`, 452,373,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Date of month,year to determine the house number: ${registrationDate}`, 77, 533.2,17.5, 'arialBold', '#000000', 'left', 23,3,0,0,450,0);
+                drawText(ctx, `Address list:`, 94.7, 237.6,17.5, 'arialBold', '#000000', 'left',30,3,0,0,700,0);
+                drawText(ctx, `${addressList}`, 185.7, 237.6,17.5, 'arialBold', '#000000', 'left',30,3,0,0,500,0);
+                drawText(ctx, `Name of Village: ${nameOfVillage}`,83.7, 325.8,17.5, 'arialBold', '#000000', 'left',30,3,0,0,400,0);
+                drawText(ctx, `Name of House: ${nameOfHouse}`, 452, 325.8,17.5, 'arialBold', '#000000', 'left',30,3,0,0,400,0);
+                drawText(ctx, `Type of House: ${typeOfHouse}`,83.7,373,17.5, 'arialBold', '#000000', 'left',30,3,0,0,400,0);
+                drawText(ctx, `Description of House: ${descriptionOfHouse}`, 452,373,17.5, 'arialBold', '#000000', 'left',30,3,0,0,400,0);
+                drawText(ctx, `Date of month,year to determine the house number: ${registrationDate}`, 77, 533.2,17.5, 'arialBold', '#000000', 'left', 23,3,0,0,750,0);
         
-                drawText(ctx, `Registrar<br>Signed:    ${signed}`, 680.5, 461,17.5, 'arialBold', '#000000', 'center',30,3,0,0,450,0);
+                drawText(ctx, `Registrar<br>Signed:    ${signed}`, 680.5, 461,17.5, 'arialBold', '#000000', 'center',30,3,0,0,330,0);
         
                 drawText(ctx, `Date of House Registration Printing: ${houseNumberDate}`,83.7, 406.5,17.5, 'arialBold', '#000000', 'left', 23,3,0,0,450,0);
                
                 drawText(ctx, `Book No. 1`,83.7,640,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Particulars of Persons in the House Code No: ${houseCodeBack}`, 189,640,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Book No. ${bookNo}`, 658.8,640,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Name: ${name1}`,83.7,675.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Nationality: ${nationality}`, 412.8,675.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Sex: ${sex}`, 596.3,675.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Identification No.: ${identification}`,83.7,726.7,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Status: ${status}`, 396.9,726.7,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Date of Birth: ${dob}`, 596.3,726.7,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
+                drawText(ctx, `Particulars of Persons in the House Code No: ${houseCodeBack}`, 189,650,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
+                drawText(ctx, `Book No. ${bookNo}`, 658.8,640,17.5, 'arialBold', '#000000', 'left',30,3,0,0,180,0);
+                drawText(ctx, `Name: ${name1}`,83.7,675.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,330,0);
+                drawText(ctx, `Nationality: ${nationality}`, 412.8,675.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,180,0);
+                drawText(ctx, `Sex: ${sex}`, 596.3,675.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,300,0);
+                drawText(ctx, `Identification No.: ${identification}`,83.7,726.7,17.5, 'arialBold', '#000000', 'left',30,3,0,0,320,0);
+                drawText(ctx, `Status: ${status}`, 396.9,726.7,17.5, 'arialBold', '#000000', 'left',30,3,0,0,200,0);
+                drawText(ctx, `Date of Birth: ${dob}`, 596.3,726.7,17.5, 'arialBold', '#000000', 'left',30,3,0,0,240,0);
         
-                drawText(ctx, `Name of Biological Mother: ${mother}`,83.7,775.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `${identification1}`, 387,775.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Nationality: ${nationality1}`, 596.3,775.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
+                drawText(ctx, `Name of Biological Mother: ${mother}`,83.7,775.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,200,0);
+                drawText(ctx, `${identification1}`, 387,775.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,250,0);
+                drawText(ctx, `Nationality: ${nationality1}`, 596.3,775.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,250,0);
                 
-                drawText(ctx, `Name of Biological Father: ${father}`,83.7,815.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `${identification2}`, 387,815.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `Nationality: ${nationality2}`, 596.3,815.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
+                drawText(ctx, `Name of Biological Father: ${father}`,83.7,815.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,200,0);
+                drawText(ctx, `${identification2}`, 387,815.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,250,0);
+                drawText(ctx, `Nationality: ${nationality2}`, 596.3,815.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,250,0);
                 
                 drawText(ctx, `* Transferred from:`,83.7, 866.3,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `${transferredFrom}`, 194.2, 758.6,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
+                drawText(ctx, `${transferredFrom}`, 221.6, 866.3,17.5, 'arialBold', '#000000', 'left',30,3,0,0,500,0);
         
-                drawText(ctx, `Registrar<br>Signed:    ${signed1}`, 680.5, 931.3,17.5, 'arialBold', '#000000', 'center',30,3,0,0,450,0);
+                drawText(ctx, `Registrar<br>Signed:    ${signed1}`, 680.5, 931.3,17.5, 'arialBold', '#000000', 'center',30,3,0,0,330,0);
         
-                drawText(ctx, `** Transferred to`,77, 1013.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
+                drawText(ctx, `** Transferred to`,77, 1013.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,750,0);
         
-                drawText(ctx, `Certified Correct Translation<br>(${certified})`, 680.5, 1124.2,17.5, 'arialBold', '#000000', 'center',40,3,0,0,450,0);
+                drawText(ctx, `Certified Correct Translation<br>(${certified})`, 680.5, 1124.2,17.5, 'arialBold', '#000000', 'center',40,3,0,0,440,0);
         
                 // Continue drawing other fields similarly with the desired line heights and letter spacing
             };
         }
+
 
 
 function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeight, maxLines, shadowColor, shadowBlur, maxWidth, letterSpacing) {
