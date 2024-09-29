@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ยื่นคำขอวีซ่า</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+<button id="updateButton" onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>ยื่นคำขอวีซ่า</h1>
+            <div class="form">
+                <!-- เพิ่มตัวเลือกสำหรับเลือกหน้า -->
+                <label for="pageSelect">เลือกหน้า</label>
+                <select id="pageSelect" name="pageSelect" onchange="updateDisplay()">
+                    <option value="1">หน้า 1</option>
+                    <option value="2">หน้า 2</option>
+                </select>
+              
+                
+                <label for="Dateofvisaapplication">Date of visa application ( วันที่ขอวีซ่า )</label>
+                <input type="text" id="Dateofvisaapplication" name="Dateofvisaapplication" placeholder="วันที่ขอวีซ่า" oninput="updateDisplay()">
+
+                <label for="Transactionreferencenumber">Transaction reference number</label>
+                <input type="text" id="Transactionreferencenumber" name="Transactionreferencenumber" placeholder="Transaction reference number" oninput="updateDisplay()">
+
+               <label for="ApplicationID">Application ID</label>
+               <input type="text" id="ApplicationID" name="ApplicationID" placeholder="Application ID" oninput="updateDisplay()">
+
+               <label for="Filenumber">File number ( หมายเลขไฟล์ )</label>
+               <input type="text" id="Filenumber" name="Filenumber" placeholder="File number ( หมายเลขไฟล์ )" oninput="updateDisplay()">
+
+               <label for="Visafees">Visa application charge receipt number <br> [ หมายเลขค่าทำธรรมเนียม ]</label>
+               <input type="text" id="Visafees" name="Visafees" placeholder="หมายเลขค่าทำธรรมเนียม"oninput="updateDisplay()">
+
+               <label for="Clientname">Clientname (ชื่อ-นามสกุล)</label>
+               <input type="text" id="Clientname" name="Clientname" placeholder="ชื่อ-นามสกุล" oninput="updateDisplay()">
+
+               <label for="Dateofbirth">Date of birth ( วัน/เดือน/ปี )</label>
+               <input type="text" id="Dateofbirth" name="Dateofbirth" placeholder="วัน/เดือน/ปี" oninput="updateDisplay()">
+
+               <label for="ClientID">Client ID ( รหัส )</label>
+               <input type="text" id="ClientID" name="ClientID" placeholder="รหัส" oninput="updateDisplay()">
+
+               <label for="Visasubclassstream">Visa subclass stream</label>
+               <input type="text" id="Visasubclassstream" name="Visasubclassstream" placeholder="Visa subclass stream" oninput="updateDisplay()">
+
+               <label for="PositionNumber">Position Number ( หมายเลขตำแหน่ง )</label>
+               <input type="text" id="PositionNumber" name="PositionNumber" placeholder="Position Number ( หมายเลขตำแหน่ง )" oninput="updateDisplay()">
+           
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu5/DR1.js"></script>
+</body>
+</html>
