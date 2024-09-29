@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบอนุญาตไปเกาหลี</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+<button id="updateButton" onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>ใบอนุญาตไปเกาหลี</h1>
+            <div class="form">
+              
+                <label for="QRCode">รูปภาพ</label>
+                <div id="QRCode" class="qrcode-drop-area" onpaste="handlePaste(event)">
+                    วางรูปภาพที่นี่
+                </div>
+                
+                <label for="VisaNo">VisaNo</label>
+                <input type="text" id="VisaNo" name="VisaNo" placeholder="VisaNo" oninput="updateDisplay()">
+                
+
+                <label for="accountNumber">ชื่อ-นามสกุล</label>
+            <input type="text" id="accountNumber" name="accountNumber" placeholder="ชื่อ-นามสกุล" oninput="updateDisplay()">
+
+                <label for="Dateofbirth">วันเดือนปีเกิด</label>
+                <div id="Dateofbirth" class="dob-container">
+                    <select id="day" name="day" onchange="updateDisplay()">
+                        <option value="">วัน</option>
+                        <!-- เพิ่มวันที่ 1-31 -->
+                        <option value="01">1</option>
+                        <option value="02">2</option>
+                        <option value="03">3</option>
+                        <option value="04">4</option>
+                        <option value="05">5</option>
+                        <option value="06">6</option>
+                        <option value="07">7</option>
+                        <option value="08">8</option>
+                        <option value="09">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    <select id="month" name="month" onchange="updateDisplay()">
+                        <option value="">เดือน</option>
+                        <!-- เพิ่มเดือนเป็นภาษาอังกฤษตัวย่อ -->
+                        <option value="JAN">JAN</option>
+                        <option value="FEB">FEB</option>
+                        <option value="MAR">MAR</option>
+                        <option value="APR">APR</option>
+                        <option value="MAY">MAY</option>
+                        <option value="JUN">JUN</option>
+                        <option value="JUL">JUL</option>
+                        <option value="AUG">AUG</option>
+                        <option value="SEP">SEP</option>
+                        <option value="OCT">OCT</option>
+                        <option value="NOV">NOV</option>
+                        <option value="DEC">DEC</option>
+                    </select>
+                   <input type="number" id="year" name="year" placeholder="ปี ค.ศ." onchange="updateDisplay()" min="1980" max="2100">
+</div>
+
+            <label for="sex">เพศ</label>
+                <select id="sex" name="sex" onchange="updateDisplay()">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+
+            <label for="country">ประเทศ</label>
+            <input type="text" id="country" name="country" value="THAILAND" oninput="updateDisplay()">
+
+            <label for="PassportNo">PassportNo</label>
+            <input type="text" id="PassportNo" name="PassportNo" placeholder="PassportNo"  oninput="updateDisplay()">
+            
+
+                            <label for="ped">วันหมดอายุหนังสือเดินทาง</label>
+                <div id="ped" class="dob-container">
+                    <select id="day1" name="day1" onchange="updateDisplay()">
+                        <option value="">วัน</option>
+                        <!-- เพิ่มวันที่ 1-31 -->
+                        <option value="01">1</option>
+                        <option value="02">2</option>
+                        <option value="03">3</option>
+                        <option value="04">4</option>
+                        <option value="05">5</option>
+                        <option value="06">6</option>
+                        <option value="07">7</option>
+                        <option value="08">8</option>
+                        <option value="09">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    <select id="month1" name="month1" onchange="updateDisplay()">
+                        <option value="">เดือน</option>
+                        <!-- เพิ่มเดือนเป็นภาษาอังกฤษตัวย่อ -->
+                        <option value="JAN">JAN</option>
+                        <option value="FEB">FEB</option>
+                        <option value="MAR">MAR</option>
+                        <option value="APR">APR</option>
+                        <option value="MAY">MAY</option>
+                        <option value="JUN">JUN</option>
+                        <option value="JUL">JUL</option>
+                        <option value="AUG">AUG</option>
+                        <option value="SEP">SEP</option>
+                        <option value="OCT">OCT</option>
+                        <option value="NOV">NOV</option>
+                        <option value="DEC">DEC</option>
+                    </select>
+                   <input type="number" id="year1" name="year1" placeholder="ปี ค.ศ." onchange="updateDisplay()" min="1980" max="2100">
+</div>
+
+            <label for="StatusofStay">สถานะการเข้าพัก</label>
+            <input type="text" id="StatusofStay" name="StatusofStay" value="E-9-1" oninput="updateDisplay()">
+            
+            <label for="Year">Par iod of Stay ( ระบุไว้3ปี {แก้ไขได้} )</label>
+            <input type="text" id="Year" name="Year" value="03Year(s)" oninput="updateDisplay()">
+            
+            <label for="Dateoflssue">วันที่ออก</label>
+            <input type="text" id="Dateoflssue"  name="Dateoflssue" placeholder="วันที่ออก" oninput="updateDisplay()">
+            
+            <label for="ValidityPeriodofVisa">วันที่ออกวีซ่า</label>
+            <input type="text" id="ValidityPeriodofVisa" name="ValidityPeriodofVisa" placeholder="วันที่ออกวีซ่า"  oninput="updateDisplay()">
+
+            <label for="Remarkds">หมายเหตุ ( ระบุไว้ HSBE22010230 {แก้ไขได้} )</label>
+            <input type="text" id="Remarkds" name="Remarkds" placeholder="HSBE22010230"  oninput="updateDisplay()">
+
+            <label for="datetime">Datetime</label>
+            <input type="text" id="datetime" name="datetime" placeholder="YYYY-MM-DD HH:MM" oninput="updateDisplay()">
+
+
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu5/visakorean.js"></script>
+</body>
+</html>
