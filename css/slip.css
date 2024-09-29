@@ -136,6 +136,27 @@
     font-family: 'NotoSansKRBlack';
     src: url('../assets/fonts/NotoSansKR-Black.woff') format('woff');
 }
+/* arial */
+@font-face {
+    font-family: 'arialRegular';
+    src: url('../assets/fonts/arial.woff') format('woff');
+}
+@font-face {
+    font-family: 'arialMedium';
+    src: url('../assets/fonts/arialbd.woff') format('woff');
+}
+@font-face {
+    font-family: 'arialSemiBold';
+    src: url('../assets/fonts/Arialn_0.woff') format('woff');
+}
+@font-face {
+    font-family: 'arialBold';
+    src: url('../assets/fonts/ARIALNB.woff') format('woff');
+}
+@font-face {
+    font-family: 'arialExtraBold';
+    src: url('../assets/fonts/ariblk.woff') format('woff');
+}
 
 /* Bangkok*/
 @font-face {
@@ -385,6 +406,15 @@ h1 {
     color: #ffffff;
     margin-bottom: 10px;
 }
+
+h2 {
+    font-family: 'KanitRegular', Arial, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #0099ff;
+    margin-bottom: 10px;
+}
+
 
 label {
     font-family: 'KanitRegular', Arial, sans-serif;
