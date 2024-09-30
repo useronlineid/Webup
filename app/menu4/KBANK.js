@@ -110,7 +110,7 @@ function updateDisplay() {
         drawText(ctx, `${Payeeaccount}`, 794,374.4,32, 'THSarabunNew', '#656565', 'left', 25, 3, 0, 0, 800, 0);
         drawText(ctx, `${savings} บาท`, 794,436.7,32,'THSarabunNew', '#656565', 'left', 25, 3, 0, 0, 800, 0);
         drawText(ctx, `${Dateandtime}`, 794,499,32, 'THSarabunNew', '#656565', 'left', 25, 3, 0, 0, 800, 0);
-        drawText(ctx, `${notes}`, 592.5,565.2,30, 'THSarabunNew', '#ff0000', 'left', 35, 3, 0, 0, 700, 0);
+        drawText(ctx, `${notes}`, 592.5,565.2,30, 'THSarabunNew', '#ff0000', 'left', 35, 3, 0, 0, 730, 0);
 
     };
 }
