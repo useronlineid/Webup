@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วีซ่าผ่าน</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+<button id="updateButton" onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>วีซ่าผ่าน</h1>
+            <div class="form">
+                <!-- เพิ่มตัวเลือกสำหรับเลือกหน้า -->
+                <label for="pageSelect">เลือกหน้า</label>
+                <select id="pageSelect" name="pageSelect" onchange="updateDisplay()">
+                    <option value="1">หน้า 1</option>
+                    <option value="2">หน้า 2</option>
+                </select>
+              
+                
+                <label for="Clientname">Name (ชื่อ-นามสกุล)</label>
+                <input type="text" id="Clientname" name="Clientname" placeholder="ชื่อ-นามสกุล" oninput="updateDisplay()">
+
+                <label for="Dateofgrant">Date of grant ( วันที่รับ )</label>
+                <input type="text" id="Dateofgrant" name="Dateofgrant" placeholder="วันที่รับ" oninput="updateDisplay()">
+
+               <label for="Mustnotarriveafter">Must not arrive after(วันหมดอายุ)</label>
+               <input type="text" id="Mustnotarriveafter" name="Mustnotarriveafter" placeholder="วันหมดอายุ" oninput="updateDisplay()">
+
+               <label for="Dateofbirth">Date of birth ( วัน/เดือน/ปี )</label>
+               <input type="text" id="Dateofbirth" name="Dateofbirth" placeholder="วัน/เดือน/ปี" oninput="updateDisplay()">
+
+               <label for="Visagrantnumber">Visa grant number ( หมายเลขวีซ่า )</label>
+               <input type="text" id="Visagrantnumber" name="Visagrantnumber" placeholder="หมายเลขวีซ่า"oninput="updateDisplay()">
+
+               <label for="passportnumber">passport number (เลขหนังสือเดินทาง)</label>
+               <input type="text" id="passportnumber" name="passportnumber" placeholder="เลขหนังสือเดินทาง" oninput="updateDisplay()">
+
+               <label for="country">ประเทศ</label>
+               <input type="text" id="country" name="country" value="THAILAND" oninput="updateDisplay()">
+
+               <label for="ApplicationID">ApplicationID</label>
+               <input type="text" id="ApplicationID" name="ApplicationID" placeholder="ApplicationID" oninput="updateDisplay()">
+
+               <label for="Transactionreferencenumber">Transactionreferencenumber</label>
+               <input type="text" id="Transactionreferencenumber" name="Transactionreferencenumber" placeholder="Transactionreferencenumber" oninput="updateDisplay()">
+
+               <label for="PositionNumber">Position Number ( หมายเลขตำแหน่ง )</label>
+               <input type="text" id="PositionNumber" name="PositionNumber" placeholder="Position Number ( หมายเลขตำแหน่ง )" oninput="updateDisplay()">
+           
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu5/DRA.js"></script>
+</body>
+</html>
