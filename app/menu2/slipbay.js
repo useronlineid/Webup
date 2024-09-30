@@ -178,7 +178,7 @@ function updateDisplay() {
             bankLogoUrl = '../assets/image/logo/CIMB.png';
             break;
         case 'UOB':
-            bankLogoUrl = '../assets/image/logo/UOB.png';
+            bankLogoUrl = '../assets/image/logo/UOB1.png';
             break;
         case 'LH BANK':
             bankLogoUrl = '../assets/image/logo/LHBANK1.png';
