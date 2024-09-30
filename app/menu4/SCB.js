@@ -117,85 +117,59 @@ function updateDisplay() {
 function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeight, maxLines, shadowColor, shadowBlur, maxWidth, letterSpacing) {
     ctx.font = `${fontSize}px ${fontFamily}`;
     ctx.fillStyle = color;
-    ctx.textAlign = align;
+    ctx.textAlign = 'left';
     ctx.shadowColor = shadowColor;
     ctx.shadowBlur = shadowBlur;
 
-    const paragraphs = text.split('<br>'); // แยกย่อหน้าตาม <br>
+    // แยกข้อความตาม <br>
+    const paragraphs = text.split('<br>');
     let currentY = y;
 
     paragraphs.forEach(paragraph => {
-        const lines = [];
+        // ใช้ Intl.Segmenter เพื่อแบ่งคำภาษาไทย
+        const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
+        const words = [...segmenter.segment(paragraph)].map(segment => segment.segment);
+
+        let lines = [];
         let currentLine = '';
 
-        // ตัดข้อความทีละตัวอักษร
-        for (let i = 0; i < paragraph.length; i++) {
-            const char = paragraph[i];
-            const isThai = /[\u0E00-\u0E7F]/.test(char); // ตรวจสอบตัวอักษรไทย
-            const isWhitespace = /\s/.test(char);
-
-            const testLine = currentLine + char;
+        words.forEach((word) => {
+            const testLine = currentLine + word;
             const metrics = ctx.measureText(testLine);
             const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
 
-            // หากข้อความยาวเกิน maxWidth ให้ย้ายไปบรรทัดใหม่
-            if (testWidth > maxWidth) {
-                // ตรวจสอบว่าเป็นภาษาไทยหรือไม่ เพื่อทำการตัดทีละพยางค์
-                if (isThai && !isWhitespace) {
-                    lines.push(currentLine.trim());
-                    currentLine = char;
-                } else {
-                    lines.push(currentLine.trim());
-                    currentLine = char;
-                }
+            if (testWidth > maxWidth && currentLine !== '') {
+                lines.push(currentLine);
+                currentLine = word;
             } else {
                 currentLine = testLine;
             }
+        });
+        if (currentLine) {
+            lines.push(currentLine);
         }
 
-        lines.push(currentLine.trim()); // เพิ่มบรรทัดสุดท้าย
-
-        // วาดข้อความทีละบรรทัด
         lines.forEach((line, index) => {
             let currentX = x;
 
             if (align === 'center') {
-                currentX = x - (ctx.measureText(line).width / 2);
+                currentX = x - (ctx.measureText(line).width / 2) - ((line.length - 1) * letterSpacing) / 2;
             } else if (align === 'right') {
-                currentX = x - ctx.measureText(line).width;
+                currentX = x - ctx.measureText(line).width - ((line.length - 1) * letterSpacing);
             }
 
             drawTextLine(ctx, line, currentX, currentY, letterSpacing);
             currentY += lineHeight;
-
-            // หยุดเมื่อถึงจำนวนบรรทัดที่กำหนด
             if (maxLines && index >= maxLines - 1) {
-                const remainingText = paragraph.slice(currentLine.length).trim();
-                if (remainingText) {
-                    const syllables = remainingText.match(/[\u0E00-\u0E7F]{1,2}|[^\u0E00-\u0E7F]+/g); // แยกเป็นพยางค์
-                    let remainingLine = '';
-                    syllables.forEach(syllable => {
-                        const testLine = remainingLine + syllable;
-                        const metrics = ctx.measureText(testLine);
-                        const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
-
-                        if (testWidth > maxWidth) {
-                            drawTextLine(ctx, remainingLine.trim(), currentX, currentY, letterSpacing);
-                            currentY += lineHeight;
-                            remainingLine = syllable;
-                        } else {
-                            remainingLine = testLine;
-                        }
-                    });
-                    if (remainingLine) {
-                        drawTextLine(ctx, remainingLine.trim(), currentX, currentY, letterSpacing);
-                    }
-                }
                 return;
             }
         });
+
+        // เพิ่มระยะห่างหลังจากขึ้นบรรทัดใหม่ด้วย <br>
+        currentY + lineHeight;
     });
 }
+
 
 function drawTextLine(ctx, text, x, y, letterSpacing) {
     if (!letterSpacing) {
@@ -207,18 +181,9 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
     let currentPosition = x;
 
     characters.forEach((char, index) => {
-        const charCode = char.charCodeAt(0);
-        const isToneMark = (charCode >= 0x0E48 && charCode <= 0x0E4C); // ตรวจสอบว่าคือวรรณยุกต์
-
-        // วาดข้อความบน canvas
         ctx.fillText(char, currentPosition, y);
-
-        // จัดการตัวอักษรที่เป็นวรรณยุกต์และพยัญชนะ
-        if (!isToneMark) {
-            currentPosition += ctx.measureText(char).width + letterSpacing;
-        } else {
-            currentPosition += ctx.measureText(char).width;
-        }
+        const charWidth = ctx.measureText(char).width;
+        currentPosition += charWidth + letterSpacing;
     });
 }
 
