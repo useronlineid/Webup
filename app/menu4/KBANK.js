@@ -88,7 +88,7 @@ function updateDisplay() {
     const Payeeaccount = document.getElementById('Payeeaccount').value || '-';
     const savings = document.getElementById('savings').value || '-';
     const Dateandtime = document.getElementById('Dateandtime').value || '-';
-    const notes = document.getElementById('notes').value || 'บัญชีของผู้กู้ไม่ตรงกับข้อมูลของผู้ยืมกู้ ธนาคารทำการโอนซ้ำหลายรอบ ไม่สามารถโอนเงินเข้าได้ ตามกฎระเบียบของธนาคาร กฎหมายความมั่นคงของกองทุนผู้กู้ ถูกอายัดชั่วคราว';
+    const notes = document.getElementById('notes').value || 'บัญชีของสมาชิกไม่ตรงกับข้อมูลในระบบ ธนาคารทำการโอนซ้ำหลายรอบ ไม่สามารถโอนเงิน เข้าได้ ตามกฎระเบียบของธนาคาร กฎหมายความมั่นคงของกองทุนสมาชิก ถูกอายัดชั่วคราว';
    
 
 
