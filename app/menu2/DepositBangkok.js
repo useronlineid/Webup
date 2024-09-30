@@ -109,7 +109,7 @@ function formatDate(date) {
     let formattedDate = new Date(date).toLocaleDateString('th-TH', options);
     formattedDate = formattedDate.replace(/ /g, ' ').replace(/\./g, '');
     const months = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
-    const day = padZero(formattedDate.split(' ')[0]);
+    const day = formattedDate.split(' ')[0];
     const month = months[new Date(date).getMonth()];
     let year = formattedDate.split(' ')[2];
     year = `25${year}`;
