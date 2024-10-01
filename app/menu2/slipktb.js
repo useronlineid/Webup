@@ -201,13 +201,13 @@ function updateDisplay() {
             drawText(ctx, `${generateUniqueID()}`, 357.5, 357.3,34.5, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -1);
             
             
-            drawText(ctx, `${sendername}`, 188, 519,47, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800,0);
+            drawText(ctx, `${sendername}`, 188, 519,47, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800,-0.6);
             drawText(ctx, `กรุงไทย`, 188, 577,36.5, 'DXKrungthaiBold', '#000000', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${senderaccount}`,188, 631,37, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500,-1.5);
+            drawText(ctx, `${senderaccount}`,188, 631,37, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500,-1.6);
             
-            drawText(ctx, `${receivername}`, 188,796.3,47, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `${receivername}`, 188,796.3,47, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.6);
             drawText(ctx, `${bank}`, 188, 853.8,36.5, 'DXKrungthaiBold', '#000000', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${receiveraccount}`, 188, 908.1,37, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -1.5);
+            drawText(ctx, `${receiveraccount}`, 188, 908.1,37, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500,-1.6);
             
             drawText(ctx, `บาท`, 963.7, 1025.7,41.50, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
             drawText(ctx, `${amount11}`, 883.5, 1025.7,56.80, 'DXKrungthaiBold', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
@@ -215,7 +215,7 @@ function updateDisplay() {
             drawText(ctx, `0.00 บาท`, 963.7, 1104.0,41.50, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
 
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'DXKrungthaiMedium', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '../assets/image/logo/KTB3.png',31.2,406,126.5,126.5);  
+            drawImage(ctx, '/assets/image/logo/KTB3.png',31.2,406,126.5,126.5);  
         
           
                       // Draw the selected image
@@ -223,7 +223,7 @@ function updateDisplay() {
                 const customImage = new Image();
                 customImage.src = selectedImage;
                 customImage.onload = function() {
-                    ctx.drawImage(customImage, 0, 0, 1008, 1280); // Adjust the position and size as needed
+                    ctx.drawImage(customImage, 0, 0, 945, 1200); // Adjust the position and size as needed
                 }
             }
             //ถึงที่นี่
@@ -295,7 +295,8 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
         return;
     }
 
-    const characters = text.split('');
+    const segmenter = new Intl.Segmenter('th', { granularity: 'grapheme' });
+    const characters = [...segmenter.segment(text)].map(segment => segment.segment);
     let currentPosition = x;
 
     characters.forEach((char, index) => {
@@ -304,6 +305,7 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
         currentPosition += charWidth + letterSpacing;
     });
 }
+
 
 
 function downloadImage() {
