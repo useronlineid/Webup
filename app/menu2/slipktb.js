@@ -181,7 +181,7 @@ function updateDisplay() {
     
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '/assets/image/bs/KTB1.jpg';
+    backgroundImage.src = '../assets/image/bs/KTB1.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -215,7 +215,7 @@ function updateDisplay() {
             drawText(ctx, `0.00 บาท`, 963.7, 1104.0,41.50, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
 
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'DXKrungthaiMedium', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '/assets/image/logo/KTB3.png',31.2,406,126.5,126.5);  
+            drawImage(ctx, '../assets/image/logo/KTB3.png',31.2,406,126.5,126.5);  
         
           
                       // Draw the selected image
