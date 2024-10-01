@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สเตทเม้น</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="1382" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>สเตทเม้น</h1>
+            <div class="form">
+                <label for="datetime">วันที่ออก</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="accountNumber">เลขบัญชี</label>
+                <input type="text" id="accountNumber" name="accountNumber" placeholder="เลขบัญชี" oninput="updateDisplay()">
+                
+                <label for="accountName">ชื่อบัญชี</label>
+                <input type="text" id="accountName" name="accountName" placeholder="ชื่อบัญชี" oninput="updateDisplay()">
+
+                <label for="name10">ธนาคารที่ทำรายการ</label>
+                <input type="text" id="name10" name="name10" placeholder="สาขาธนาคาร" oninput="updateDisplay()">
+                
+                
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu1/dclStatement.js"></script>
+</body>
+</html>
