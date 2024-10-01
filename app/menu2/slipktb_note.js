@@ -182,7 +182,7 @@ function updateDisplay() {
     
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '/assets/image/bs/KTB1T.jpg';
+    backgroundImage.src = '../assets/image/bs/KTB1T.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -216,7 +216,7 @@ function updateDisplay() {
             drawText(ctx, `0.00 บาท`,942.9, 1046,39, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
 
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'DXKrungthaiMedium', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '/assets/image/logo/ICBC.png', 31,389, 117.5, 117.5);  
+            drawImage(ctx, '../assets/image/logo/KTB3.png', 31,389, 117.5, 117.5);  
         
             drawText(ctx, `${AideMemoire}`,942.9, 1183,39, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 1, 0, 0, 800, 0);
             
