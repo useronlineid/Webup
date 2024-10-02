@@ -102,6 +102,16 @@ window.onload = function() {
     });
 };
 
+loadFonts().then(function() {
+    // ใช้ document.fonts.ready เพื่อให้มั่นใจว่าฟอนต์ถูกโหลดทั้งหมด
+    document.fonts.ready.then(function() {
+        updateDisplay(); // วาดใหม่ด้วยฟอนต์ที่ถูกต้องหลังจากฟอนต์ถูกโหลดเสร็จ
+    });
+}).catch(function() {
+    // หากฟอนต์โหลดไม่สำเร็จ จะยังคงแสดงผลได้
+    updateDisplay();
+});
+
 function setCurrentDateTime() {
     const now = new Date();
     const localDateTime = now.toLocaleString('sv-SE', { timeZone: 'Asia/Bangkok', hour12: false });
@@ -293,7 +303,7 @@ function updateDisplay() {
             ctx.drawImage(senderLogo, senderImageX, 449, senderImageWidth, 55);
 
             // วาด sendername
-            drawText(ctx, `${sendername}`, senderNameX, 488.4, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `${sendername}`, senderNameX, 488.4, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
 
             // วาดหมายเลขบัญชีผู้ส่ง
             drawText(ctx, `${senderaccount}`, 769, 538, 38.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
@@ -307,7 +317,7 @@ function updateDisplay() {
                 ctx.drawImage(bankLogo, bankLogoX, 573.7, bankLogoWidth, 55);
 
                 // วาด receivername
-                drawText(ctx, `${receivername}`, receiverNameX, 613.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 800, 0);
+                drawText(ctx, `${receivername}`, receiverNameX, 613.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
 
                 // วาดหมายเลขบัญชีผู้รับ
                 drawText(ctx, `${receiveraccount}`, 769, 662.4, 38.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
