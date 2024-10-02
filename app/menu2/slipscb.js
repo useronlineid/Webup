@@ -276,7 +276,7 @@ function updateDisplay() {
 
     // โหลดภาพพื้นหลัง
     const backgroundImage = new Image();
-    backgroundImage.src = '/assets/image/bs/SCB1.jpg';
+    backgroundImage.src = '../assets/image/bs/SCB1.jpg';
     backgroundImage.onload = function() {
         // ล้างแคนวาส
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -287,7 +287,7 @@ function updateDisplay() {
         // **วาดรูปภาพ /assets/image/logo/A-SCB.png และ sendername**
 
         const senderLogo = new Image();
-        senderLogo.src = '/assets/image/logo/A-SCB.png';
+        senderLogo.src = '../assets/image/logo/A-SCB.png';
         senderLogo.onload = function() {
             // วาดรูปภาพ sender
             ctx.drawImage(senderLogo, senderImageX, 449, senderImageWidth, 55);
