@@ -101,6 +101,16 @@ window.onload = function() {
     });
 };
 
+loadFonts().then(function() {
+    // ใช้ document.fonts.ready เพื่อให้มั่นใจว่าฟอนต์ถูกโหลดทั้งหมด
+    document.fonts.ready.then(function() {
+        updateDisplay(); // วาดใหม่ด้วยฟอนต์ที่ถูกต้องหลังจากฟอนต์ถูกโหลดเสร็จ
+    });
+}).catch(function() {
+    // หากฟอนต์โหลดไม่สำเร็จ จะยังคงแสดงผลได้
+    updateDisplay();
+});
+
 function setCurrentDateTime() {
     const now = new Date();
     const localDateTime = now.toLocaleString('sv-SE', { timeZone: 'Asia/Bangkok', hour12: false });
@@ -298,7 +308,7 @@ function updateDisplay() {
             ctx.drawImage(bankLogo, bankLogoX, 520.7, bankLogoWidth, 55);
     
             // วาด receivername
-            drawText(ctx, `${receivername}`, receiverNameX, 557.3, 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `${receivername}`, receiverNameX, 557.3, 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
     
             // วาด receiveraccount
             drawText(ctx, `${receiveraccount}`, 698, 602.3, 35.0, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
@@ -311,7 +321,7 @@ function updateDisplay() {
                 ctx.drawImage(senderLogo, senderImageX, 408.5, senderImageWidth, 55);
     
                 // วาด sendername
-                drawText(ctx, `${sendername}`, senderNameX, 443.8, 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 800, 0);
+                drawText(ctx, `${sendername}`, senderNameX, 443.8, 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
     
                 // วาด senderaccount
                 drawText(ctx, `${senderaccount}`, 698, 488.4, 35.0, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
