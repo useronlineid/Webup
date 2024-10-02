@@ -225,140 +225,181 @@ function updateDisplay() {
 
     const formattedDate = formatDate(datetime);
     const formattedTime = new Date(datetime).toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
-
+    
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     
-    // คำนวณความกว้างของข้อความ ${sendername}
-    const textWidth = calculateTextWidth(ctx, sendername, '44.3px DB HelvethaicaMon X');
-    const imageX = 637.5 - textWidth;  // ปรับตำแหน่ง X ของรูปภาพ
-
-    // คำนวณความกว้างของข้อความ ${sendername}
-    const textWidth1 = calculateTextWidth1(ctx, receivername, '44.3px DB HelvethaicaMon X');
-    const imageX1 = 637.5 - textWidth1;  // ปรับตำแหน่ง X ของรูปภาพ
-
-    // Load background image
+    // **ปรับปรุงสำหรับ sendername และรูปภาพ**
+    
+    ctx.font = '42.3px DBHelvethaicaMonXMed'; // กำหนดฟอนต์สำหรับการคำนวณ
+    
+    // คำนวณความกว้างของ sendername
+    const senderNameWidth = ctx.measureText(sendername).width;
+    
+    // กำหนดความกว้างของรูปภาพผู้ส่ง
+    const senderImageWidth = 55;
+    
+    // ระยะห่างระหว่างรูปภาพและ sendername
+    const senderSpacing = 10;
+    
+    // ความกว้างรวมของกลุ่มผู้ส่ง
+    const senderTotalWidth = senderImageWidth + senderSpacing + senderNameWidth;
+    
+    // กำหนดตำแหน่ง x สำหรับการจัดชิดขวาที่ x = 698
+    const senderStartX = 698 - senderTotalWidth;
+    
+    // ตำแหน่ง x ของรูปภาพผู้ส่ง
+    const senderImageX = senderStartX;
+    
+    // ตำแหน่ง x ของ sendername
+    const senderNameX = senderImageX + senderImageWidth + senderSpacing;
+    
+    // **ปรับปรุงสำหรับ receivername และ bankLogo**
+    
+    ctx.font = '42.3px DBHelvethaicaMonXMed'; // กำหนดฟอนต์สำหรับการคำนวณ
+    
+    // คำนวณความกว้างของ receivername
+    const receiverNameWidth = ctx.measureText(receivername).width;
+    
+    // กำหนดความกว้างของ bankLogo
+    const bankLogoWidth = 55;
+    
+    // ระยะห่างระหว่าง bankLogo และ receivername
+    const receiverSpacing = 10;
+    
+    // ความกว้างรวมของกลุ่มผู้รับ
+    const receiverTotalWidth = bankLogoWidth + receiverSpacing + receiverNameWidth;
+    
+    // กำหนดตำแหน่ง x สำหรับการจัดชิดขวาที่ x = 698
+    const receiverStartX = 698 - receiverTotalWidth;
+    
+    // ตำแหน่ง x ของ bankLogo
+    const bankLogoX = receiverStartX;
+    
+    // ตำแหน่ง x ของ receivername
+    const receiverNameX = bankLogoX + bankLogoWidth + receiverSpacing;
+    
+    // **เริ่มการวาดบนแคนวาส**
+    
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/SCB1T.jpg';
+    backgroundImage.src = '/assets/image/bs/SCB1T.jpg';
     backgroundImage.onload = function() {
-        // Clear the canvas
+        // ล้างแคนวาส
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Draw background image
+    
+        // วาดภาพพื้นหลัง
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-        
-        // Draw bank logo
+    
+        // โหลด bankLogo
         const bankLogo = new Image();
         bankLogo.src = bankLogoUrl;
         bankLogo.onload = function() {
-            ctx.drawImage(bankLogo, imageX1, 520.7, 55, 55); // Adjust position and size as needed
-            
-            // Draw text with custom styles
-            drawText(ctx, `${formattedDate} - ${formattedTime}`, 370, 301.9,35.0, 'DXSCB', '#76737b', 'center', 1.5, 3, 0, 0, 800, 0);
-
-            drawText(ctx, `รหัสอ้างอิง: ${generateUniqueID()}`, 370, 342.8,35.0,'DXSCB', '#76737b', 'center', 1.5, 1, 0, 0, 800,0);
-            
-            
-            drawText(ctx, `${sendername}`, 698, 443.8,42.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 800,0);
-            drawText(ctx, `${senderaccount}`, 698, 488.4,35.0, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
-            
-            drawText(ctx, `${receivername}`, 698, 557.3,42.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 800, 0);
-            drawText(ctx, `${receiveraccount}`, 698, 602.3,35.0, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
-            
-            drawText(ctx, `${amount11}`, 698, 717.2,42.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
-
-            drawText(ctx, `${AideMemoire}`, 42.3, 836.4,32.50, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 500, 0);
-
-
-            drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'DBHelvethaicaMonXMed', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '../assets/image/logo/A-SCB.png', imageX, 408.5, 55, 55);  
-        
-          
-                      // Draw the selected image
-            if (selectedImage) {
-                const customImage = new Image();
-                customImage.src = selectedImage;
-                customImage.onload = function() {
-                    ctx.drawImage(customImage, 0, 0, 743, 1280); // Adjust the position and size as needed
+            // วาด bankLogo สำหรับผู้รับ
+            ctx.drawImage(bankLogo, bankLogoX, 520.7, bankLogoWidth, 55);
+    
+            // วาด receivername
+            drawText(ctx, `${receivername}`, receiverNameX, 557.3, 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 800, 0);
+    
+            // วาด receiveraccount
+            drawText(ctx, `${receiveraccount}`, 698, 602.3, 35.0, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+    
+            // โหลดรูปภาพผู้ส่ง
+            const senderLogo = new Image();
+            senderLogo.src = '/assets/image/logo/A-SCB.png';
+            senderLogo.onload = function() {
+                // วาดรูปภาพผู้ส่ง
+                ctx.drawImage(senderLogo, senderImageX, 408.5, senderImageWidth, 55);
+    
+                // วาด sendername
+                drawText(ctx, `${sendername}`, senderNameX, 443.8, 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 800, 0);
+    
+                // วาด senderaccount
+                drawText(ctx, `${senderaccount}`, 698, 488.4, 35.0, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+    
+                // วาดจำนวนเงิน
+                drawText(ctx, `${amount11}`, 698, 717.2, 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
+    
+                // วาดวันที่และเวลาที่โอน
+                drawText(ctx, `${formattedDate} - ${formattedTime}`, 370, 301.9, 35.0, 'DXSCB', '#76737b', 'center', 1.5, 3, 0, 0, 800, 0);
+    
+                // วาดรหัสอ้างอิง
+                drawText(ctx, `รหัสอ้างอิง: ${generateUniqueID()}`, 370, 342.8, 35.0, 'DXSCB', '#76737b', 'center', 1.5, 1, 0, 0, 800, 0);
+    
+                // วาด AideMemoire
+                drawText(ctx, `${AideMemoire}`, 42.3, 836.4, 32.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 500, 0);
+    
+                // วาด QRCode
+                drawText(ctx, `${QRCode}`, 238.9, 599.0, 33, 'DBHelvethaicaMonXMed', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
+    
+                // วาดภาพที่เลือกเพิ่มเติม (ถ้ามี)
+                if (selectedImage) {
+                    const customImage = new Image();
+                    customImage.src = selectedImage;
+                    customImage.onload = function() {
+                        ctx.drawImage(customImage, 0, 0, 743, 1280);
+                    }
                 }
             }
-            //ถึงที่นี่
-            
         }
     }
 }
 
 function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeight, maxLines, shadowColor, shadowBlur, maxWidth, letterSpacing) {
-    
     ctx.font = `${fontSize}px ${fontFamily}`;
     ctx.fillStyle = color;
     ctx.textAlign = 'left';
     ctx.shadowColor = shadowColor;
     ctx.shadowBlur = shadowBlur;
 
-    
-    
+    // แยกข้อความตาม <br>
     const paragraphs = text.split('<br>');
     let currentY = y;
 
     paragraphs.forEach(paragraph => {
-        const lines = [];
+        // ใช้ Intl.Segmenter เพื่อแบ่งคำภาษาไทย
+        const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
+        const words = [...segmenter.segment(paragraph)].map(segment => segment.segment);
+
+        let lines = [];
         let currentLine = '';
 
-        for (let i = 0; i < paragraph.length; i++) {
-            const char = paragraph[i];
-            const nextChar = i < paragraph.length - 1 ? paragraph[i + 1] : '';
-            const isThai = /[\u0E00-\u0E7F]/.test(char);
-            const isWhitespace = /\s/.test(char);
+        words.forEach((word) => {
+            const testLine = currentLine + word;
+            const metrics = ctx.measureText(testLine);
+            const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
 
-            // แยกข้อความตามพยางค์ไทยหรือคำอังกฤษและอักขระพิเศษ
-            if (isThai && !isWhitespace) {
-                const testLine = currentLine + char;
-                const metrics = ctx.measureText(testLine);
-                const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
-
-                if (testWidth > maxWidth) {
-                    lines.push(currentLine.trim());
-                    currentLine = char;
-                } else {
-                    currentLine = testLine;
-                }
+            if (testWidth > maxWidth && currentLine !== '') {
+                lines.push(currentLine);
+                currentLine = word;
             } else {
-                // กรณีภาษาอังกฤษ สัญลักษณ์ และช่องว่าง
-                const testLine = currentLine + char;
-                const metrics = ctx.measureText(testLine);
-                const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
-
-                if (testWidth > maxWidth) {
-                    lines.push(currentLine.trim());
-                    currentLine = char;
-                } else {
-                    currentLine = testLine;
-                }
+                currentLine = testLine;
             }
+        });
+        if (currentLine) {
+            lines.push(currentLine);
         }
-
-        lines.push(currentLine.trim());
 
         lines.forEach((line, index) => {
             let currentX = x;
-            
+
             if (align === 'center') {
-                // ปรับการจัดกึ่งกลางตามค่าของ x ที่กำหนดเอง
                 currentX = x - (ctx.measureText(line).width / 2) - ((line.length - 1) * letterSpacing) / 2;
             } else if (align === 'right') {
-                // จัดให้อยู่ทางขวา โดยใช้ค่าของ x ที่กำหนดเองเป็นจุดอ้างอิง
                 currentX = x - ctx.measureText(line).width - ((line.length - 1) * letterSpacing);
             }
-        
+
             drawTextLine(ctx, line, currentX, currentY, letterSpacing);
             currentY += lineHeight;
             if (maxLines && index >= maxLines - 1) {
                 return;
             }
         });
+
+        // เพิ่มระยะห่างหลังจากขึ้นบรรทัดใหม่ด้วย <br>
+        currentY + lineHeight;
     });
 }
+
 
 function drawTextLine(ctx, text, x, y, letterSpacing) {
     if (!letterSpacing) {
@@ -366,56 +407,17 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
         return;
     }
 
-    const characters = text.split('');
+    const segmenter = new Intl.Segmenter('th', { granularity: 'grapheme' });
+    const characters = [...segmenter.segment(text)].map(segment => segment.segment);
     let currentPosition = x;
 
     characters.forEach((char, index) => {
-        const charCode = char.charCodeAt(0);
-        const prevChar = index > 0 ? characters[index - 1] : null;
-        const prevCharCode = prevChar ? prevChar.charCodeAt(0) : null;
-
-        const isUpperVowel = (charCode >= 0x0E34 && charCode <= 0x0E37);
-        const isToneMark = (charCode >= 0x0E48 && charCode <= 0x0E4C);
-        const isBeforeVowel = (charCode === 0x0E31);
-        const isBelowVowel = (charCode >= 0x0E38 && charCode <= 0x0E3A);
-
-        let yOffset = 0;
-        let xOffset = 0;
-
-        if (isUpperVowel) {
-            yOffset = -1;
-            xOffset = 0;
-        }
-
-        if (isToneMark) {
-            if (prevChar && ((prevChar.charCodeAt(0) >= 0x0E34 && prevChar.charCodeAt(0) <= 0x0E37) || prevChar.charCodeAt(0) === 0x0E31)) {
-                yOffset = -8;
-                xOffset = 0;
-            } else {
-                yOffset = 0;
-                xOffset = -7;
-            }
-        }
-
-        if (isBeforeVowel) {
-            yOffset = -1;
-            xOffset = 1;
-        }
-
-        if (isBelowVowel) {
-            yOffset = 0;
-            xOffset = -10;
-        }
-
-        ctx.fillText(char, currentPosition + xOffset, y + yOffset);
-
-        if (!isToneMark && !isBeforeVowel && !isBelowVowel) {
-            currentPosition += ctx.measureText(char).width + letterSpacing;
-        } else {
-            currentPosition += ctx.measureText(char).width;
-        }
+        ctx.fillText(char, currentPosition, y);
+        const charWidth = ctx.measureText(char).width;
+        currentPosition += charWidth + letterSpacing;
     });
 }
+
 
 
 function downloadImage() {
