@@ -282,7 +282,7 @@ function updateDisplay() {
     // **เริ่มการวาดบนแคนวาส**
     
     const backgroundImage = new Image();
-    backgroundImage.src = '/assets/image/bs/SCB1T.jpg';
+    backgroundImage.src = '../assets/image/bs/SCB1T.jpg';
     backgroundImage.onload = function() {
         // ล้างแคนวาส
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -305,7 +305,7 @@ function updateDisplay() {
     
             // โหลดรูปภาพผู้ส่ง
             const senderLogo = new Image();
-            senderLogo.src = '/assets/image/logo/A-SCB.png';
+            senderLogo.src = '../assets/image/logo/A-SCB.png';
             senderLogo.onload = function() {
                 // วาดรูปภาพผู้ส่ง
                 ctx.drawImage(senderLogo, senderImageX, 408.5, senderImageWidth, 55);
