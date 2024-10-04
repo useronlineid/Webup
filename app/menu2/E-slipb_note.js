@@ -190,7 +190,7 @@ function updateDisplay() {
             const canvasWidth = canvas.width;
             const centerX = canvasWidth / 2;
           
-            const amountX = centerX - (ctx.measureText(totalText).width / 1.25);
+            const amountX = centerX - (ctx.measureText(totalText).width / 1.35);
             const amountY = 556.3;
             
             drawText(ctx, amountText, amountX, amountY,31, 'BangkokMoneyMedium', '#232121', 'left', 1.5, 3, 0, 0, 500, -2);
