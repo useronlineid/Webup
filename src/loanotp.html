@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ยืนยันเบิกOTPใหม่ ( เงินกู้ )</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>ยืนยันเบิกOTPใหม่ ( เงินกู้ )</h1>
+            <div class="form">
+                <label for="datetime">เวลา (hh:mm:ss):</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="sendername">ชื่อ-นามสกุล</label>
+                <input type="text" id="sendername" name="sendername" placeholder="ชื่อ-นามสกุล" oninput="updateDisplay()">
+                
+                <label for="Identificationnumber">เลขบัตรประชาชน</label>
+                <input type="text" id="Identificationnumber" name="Identificationnumber" placeholder="เลขบัตรประชาชน" oninput="updateDisplay()">
+
+                <label for="user11">เลขที่สัญญาสินเชื่อ</label>
+                <input type="text" id="user11" name="user11" placeholder="เลขที่สัญญาสินเชื่อ" oninput="updateDisplay()">
+                
+                <label for="amount1">วงเงิน</label>
+                <input type="text" id="amount1" name="amount1" placeholder="วงเงิน" oninput="updateDisplay()">
+                
+                <label for="Percent">เปอร์เซ็นต์ที่เก็บ(0-100)</label>
+                <input type="text" id="Percent" name="Percent" placeholder="เปอร์เซ็นต์" oninput="updateDisplay()">
+                
+                <br>
+                <br>
+                <label for="companyName">ข้อมูล</label>
+                <input type="text" id="company1"  name="company1" value="นางสาว เมทินี ศุภสวัสดิ์กุล" oninput="updateDisplay()">
+                <input type="text" id="companyA1"  name="companyA1" value="ผู้อำนวยการอาวุโส ฝ่ายนโนบายการกำกับสถาบันการเงิน" oninput="updateDisplay()">
+
+    
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu3/loanotp.js"></script>
+</body>
+</html>
