@@ -51,8 +51,23 @@ function formatDate(date) {
 }
 
 function generateUniqueID() {
-    return Math.floor(Math.random() * 1000000).toString().padStart(6, '0') + '001';
+    const fixedPart1 = "428"; // คงที่ไม่เปลี่ยน
+    const fixedPart2 = "I0000"; // คงที่ไม่เปลี่ยน
+    const fixedPart3 = "B9790"; // คงที่ไม่เปลี่ยน
+
+    // สุ่มส่วนที่ 118817029 (9 หลัก)
+    const randomPart1 = Math.floor(Math.random() * 1000000000).toString().padStart(9, '0');
+
+    // สุ่มเลขระหว่าง 1 ถึง 30 สำหรับ "24"
+    const randomPart2 = Math.floor(Math.random() * 30) + 1;
+
+    // ประกอบ ID ที่ต้องการ
+    return `${fixedPart1}${randomPart1}${fixedPart2}${randomPart2.toString().padStart(2, '0')}${fixedPart3}`;
 }
+
+// เรียกใช้ฟังก์ชันและแสดงผล
+console.log(generateUniqueID());
+
 
 
 function padZero(num) {
