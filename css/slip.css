@@ -360,6 +360,11 @@
     src: url('../assets/fonts/Core-Sans-N-65-Bold.woff') format('woff');
 }
 
+@font-face {
+    font-family: 'BaacBold';
+    src: url('../assets/fonts/Baac_Bold.woff') format('woff');
+}
+
 
 
 body {
