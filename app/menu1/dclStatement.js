@@ -28,6 +28,91 @@ function loadFonts() {
     });
 }
 
+// ถึงที่นี่ * เบลอ *
+
+// เพิ่มตัวแปรเพื่อเก็บสถานะการเบลอ
+let isBlurEnabled = false;
+
+// ฟังก์ชันสลับสถานะการเบลอ
+function toggleBlur() {
+    isBlurEnabled = !isBlurEnabled;
+    const blurButton = document.getElementById('blurButton');
+    blurButton.textContent = isBlurEnabled ? 'ปิดการเบลอ' : 'เปิดการเบลอ';
+    updateDisplay();
+}
+
+
+// ฟังก์ชันสำหรับเบลอภาพตามกรอบที่กำหนด
+// ฟังก์ชันสำหรับเบลอภาพตามกรอบที่กำหนด
+function applyBlur(ctx) {
+    // กำหนดกรอบที่ต้องการเบลอหลายๆ กรอบ
+    const blurRects = [
+        {
+            x: 442,    // ตำแหน่ง x ของกรอบที่ 1
+            y: 669,   // ตำแหน่ง y ของกรอบที่ 1
+            width: 250,  // ความกว้างของกรอบที่ 1
+            height: 520   // ความสูงของกรอบที่ 1
+        },
+        {
+            x: 48,    // กรอบที่ 2
+            y: 523,
+            width: 310,
+            height: 40
+        },
+        {
+            x: 84,    // กรอบที่ 3
+            y: 445,
+            width: 70,
+            height: 30
+        },
+        // เพิ่มกรอบอื่นๆ ที่คุณต้องการเบลอ
+    ];
+
+    blurRects.forEach(blurRect => {
+        // ดึงข้อมูลภาพจากกรอบที่กำหนด
+        const imageData = ctx.getImageData(blurRect.x, blurRect.y, blurRect.width, blurRect.height);
+
+        // เบลอภาพด้วยการเฉลี่ยค่าสีของพิกเซล
+        const pixels = imageData.data;
+        const width = imageData.width;
+        const height = imageData.height;
+        const radius = 5; // คุณสามารถปรับค่ารัศมีเพื่อเปลี่ยนระดับการเบลอ
+
+        // สำเนาข้อมูลภาพ
+        const tempPixels = new Uint8ClampedArray(pixels);
+
+        for (let y = radius; y < height - radius; y++) {
+            for (let x = radius; x < width - radius; x++) {
+                let totalR = 0, totalG = 0, totalB = 0, totalA = 0;
+                let count = 0;
+
+                // เฉลี่ยค่าสีภายในกรอบรัศมี
+                for (let dy = -radius; dy <= radius; dy++) {
+                    for (let dx = -radius; dx <= radius; dx++) {
+                        const px = ( (y + dy) * width + (x + dx) ) * 4;
+                        totalR += tempPixels[px];
+                        totalG += tempPixels[px + 1];
+                        totalB += tempPixels[px + 2];
+                        totalA += tempPixels[px + 3];
+                        count++;
+                    }
+                }
+
+                const idx = (y * width + x) * 4;
+                pixels[idx] = totalR / count;
+                pixels[idx + 1] = totalG / count;
+                pixels[idx + 2] = totalB / count;
+                pixels[idx + 3] = totalA / count;
+            }
+        }
+
+        // วาดภาพที่ถูกเบลอกลับไปที่ canvas
+        ctx.putImageData(imageData, blurRect.x, blurRect.y);
+    });
+}
+
+// ถึงที่นี่ * เบลอ *
+
 // เรียกใช้ฟังก์ชันเพื่อโหลดฟอนต์หลังจากหน้าเว็บถูกโหลด
 window.onload = function() {
     setCurrentDateTime();
@@ -403,7 +488,12 @@ function updateDisplay() {
 
 
 
-
+       // ถึงที่นี่ * เบลอ *
+        // ถ้าการเบลอเปิดใช้งาน ให้ทำการเบลอภาพตามกรอบที่กำหนด
+        if (isBlurEnabled) {
+            applyBlur(ctx);
+        }
+        // ถึงที่นี่ * เบลอ *
     };
 }
 
