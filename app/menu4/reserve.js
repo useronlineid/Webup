@@ -225,6 +225,11 @@ function updateDisplay() {
 
 
 function drawItem(ctx, itemNumber, itemName, quantity, pricePerItem, totalPrice, yPosition) {
+    // แปลงตัวเลขให้มีลูกน้ำ
+    const pricePerItemFormatted = numberWithCommas(pricePerItem.toFixed(2));
+    const totalPriceFormatted = numberWithCommas(totalPrice.toFixed(2));
+    const quantityFormatted = numberWithCommas(quantity);
+
     // วาดหมายเลขรายการ
     drawText(ctx, `${itemNumber}`, 50.7, yPosition, 18, 'SukhumvitSetBold', '#000000', 'center', 35, 3, 0, 0, 30, 0);
 
@@ -232,16 +237,16 @@ function drawItem(ctx, itemNumber, itemName, quantity, pricePerItem, totalPrice,
     drawText(ctx, `${itemName}`, 100, yPosition, 18, 'SukhumvitSetBold', '#000000', 'left', 35, 3, 0, 0, 250, 0);
 
     // วาดจำนวน
-    drawText(ctx, `${quantity}`, 514, yPosition, 18, 'SukhumvitSetBold', '#000000', 'center', 35, 3, 0, 0, 80, 0);
+    drawText(ctx, `${quantityFormatted}`, 514, yPosition, 18, 'SukhumvitSetBold', '#000000', 'center', 35, 3, 0, 0, 80, 0);
 
     // วาด "0.00" ในแต่ละรายการ
     drawText(ctx, `0.00`, 748, yPosition, 18, 'SukhumvitSetBold', '#000000', 'right', 35, 3, 0, 0, 60, 0);
 
     // วาดราคาต่อชิ้น
-    drawText(ctx, `${pricePerItem.toFixed(2)}`, 670, yPosition, 18, 'SukhumvitSetBold', '#000000', 'right', 35, 3, 0, 0, 150, 0);
+    drawText(ctx, `${pricePerItemFormatted}`, 670, yPosition, 18, 'SukhumvitSetBold', '#000000', 'right', 35, 3, 0, 0, 150, 0);
 
     // วาดยอดรวมของรายการ
-    drawText(ctx, `${totalPrice.toFixed(2)}`, 868, yPosition, 18, 'SukhumvitSetBold', '#000000', 'right', 35, 3, 0, 0, 100, 0);
+    drawText(ctx, `${totalPriceFormatted}`, 868, yPosition, 18, 'SukhumvitSetBold', '#000000', 'right', 35, 3, 0, 0, 100, 0);
 }
 
 function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeight, maxLines, shadowColor, shadowBlur, maxWidth, letterSpacing) {
