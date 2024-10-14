@@ -148,7 +148,7 @@ function updateDisplay() {
 
 
         drawText(ctx, `${formattedDate} ${formattedTime} บช x${senderaccount1} เงินเข้า ${money01} บ จาก บ/ช ยอดคงเหลือ${money02} บ
-            `, 113, 292,29, 'SFThonburiRegular', '#252525', 'left', 40, 3, 0, 0, 500,-0.25);
+            `, 113, 292,29, 'SFThonburiRegular', '#252525', 'left', 40, 3, 0, 0, 430,-0.25);
 
         drawText(ctx, `${formattedTime} น.`, 577, 380.5,20, 'SFThonburiRegular', '#395376','left', 1.5, 3, 0, 0, 800, -0.25);
 
