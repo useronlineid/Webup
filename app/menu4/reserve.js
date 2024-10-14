@@ -216,6 +216,7 @@ function updateDisplay() {
         drawText(ctx, `${grandTotalFormatted}`, 868,932, 18, 'SukhumvitSetBold', '#000000', 'right', 35, 3, 0, 0, 300, 0);
         drawText(ctx, `0.00`, 868,971, 18, 'SukhumvitSetBold', '#000000', 'right', 35, 3, 0, 0, 300, 0);
         drawText(ctx, `${grandTotalFormatted}`, 868,1012, 18, 'SukhumvitSetBold', '#000000', 'right', 35, 3, 0, 0, 300, 0);
+        drawText(ctx, `${grandTotalFormatted}`, 868,1052, 18, 'SukhumvitSetBold', '#ffffff', 'right', 35, 3, 0, 0, 300, 0);
 
         // แสดงยอดรวมเป็นภาษาไทย
         drawText(ctx, `(${grandTotalInWords})`, 280,932, 18, 'SukhumvitSetBold', '#000000', 'center', 35, 3, 0, 0, 800, 0);
