@@ -234,6 +234,9 @@ function drawItem(ctx, itemNumber, itemName, quantity, pricePerItem, totalPrice,
     // วาดจำนวน
     drawText(ctx, `${quantity}`, 514, yPosition, 18, 'SukhumvitSetBold', '#000000', 'center', 35, 3, 0, 0, 80, 0);
 
+    // วาด "0.00" ในแต่ละรายการ
+    drawText(ctx, `0.00`, 748, yPosition, 18, 'SukhumvitSetBold', '#000000', 'right', 35, 3, 0, 0, 60, 0);
+
     // วาดราคาต่อชิ้น
     drawText(ctx, `${pricePerItem.toFixed(2)}`, 670, yPosition, 18, 'SukhumvitSetBold', '#000000', 'right', 35, 3, 0, 0, 150, 0);
 
