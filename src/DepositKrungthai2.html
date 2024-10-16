@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เงินเข้ากรุงไทย (2)</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../assets/image/icon/D-KTB.png" type="image/png">
+
+</head>
+<body>
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="811" height="700"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>เงินเข้ากรุงไทย (2)</h1>
+            <div class="form">
+              
+
+                
+                <label for="sendername">เงินเข้าจำนวนเงิน</label>
+                <input type="text" id="money01" name="money01" value="+1,924.00" oninput="updateDisplay()">
+
+                <label for="bank1">เข้าบัญชี</label>
+                <input type="text" id="senderaccount" name="senderaccount" value="XX7820" oninput="updateDisplay()">
+                
+                <label for="bank1">จากบัญชี</label>
+                <select id="bank1" name="bank1" onchange="updateDisplay()">
+                    <option value="KTB">กรุงไทย</option>
+                    <option value="BAY">กรุงศรี</option>
+                    <option value="KBANK">กสิกรไทย</option>
+                    <option value="BBL">กรุงเทพ</option>
+                    <option value="SCB">ไทยพาณิชย์</option>
+                    <option value="TTB">ทหารไทยธนชาต</option>
+                    <option value="GSB">ออมสิน</option>
+                    <option value="BAAC">ธ.ก.ส.</option>
+                    <option value="GHB">อาคารสงเคราะห์</option>
+                    <option value="KKP">เกียรตินาคินภัทร</option>
+                    <option value="CIMB">ซีไอเอ็มบี</option>
+                    <option value="UOB">ยูโอบี</option>
+                    <option value="LH BANK">แลนด์ แอนด์ เฮาส์</option>
+                    <option value="ICBC">ไอซีบีซี</option>
+                </select>
+
+                <input type="text" id="receiveraccount" name="receiveraccount" value="XX8881" oninput="updateDisplay()">
+                
+
+                
+                <label for="sendername">ยอดที่ใช้ได้</label>
+                <input type="text" id="money02" name="money02" value="30,924.00" oninput="updateDisplay()">
+
+                <label for="datetime">เวลาเงินเข้า</label>
+                <input type="datetime-local" id="datetime" required oninput="updateDisplay()">
+
+                <label for="datetime_plus_one">เวลาแจ้งเตือน</label>
+                <input type="time" id="datetime_plus_one" required oninput="updateDisplay()">
+     
+                
+                
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu2/DepositKrungthai2.js"></script>
+</body>
+</html>
