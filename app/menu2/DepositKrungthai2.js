@@ -40,7 +40,7 @@ function setCurrentDateTime() {
     document.getElementById('datetime').value = formattedDateTime;
     
     // ตั้งค่าเวลาที่มากกว่า 1 นาที
-    const oneMinuteLater = new Date(now.getTime() + 60000); // เพิ่ม 1 นาที (60,000 มิลลิวินาที)
+    const oneMinuteLater = new Date(now.getTime() + 0); // เพิ่ม 1 นาที (60,000 มิลลิวินาที)
     const hours = oneMinuteLater.getHours().toString().padStart(2, '0');
     const minutes = oneMinuteLater.getMinutes().toString().padStart(2, '0');
     const formattedTimePlusOne = `${hours}:${minutes}`;
@@ -136,13 +136,20 @@ function updateDisplay() {
 
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/backgroundEnter-KT3.jpg';
+    backgroundImage.src = '../assets/image/bs/backgroundEnter-KT3.1.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Draw background image
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+
+        drawText(ctx, `เงินเข้า`, 131.5,85,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
+        drawText(ctx, `ประเภท`, 131.5,145,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
+        drawText(ctx, `เข้าบัญชี`, 131.5,207,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
+        drawText(ctx, `จากบัญชี`, 131.5,271.5,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
+        drawText(ctx, `ยอดที่ใช้ได้`, 131.5,335.4,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
+        drawText(ctx, `วันที่ทำรายการ`, 131.5,399,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
 
         drawText(ctx, `บาท`, 669, 85, 30, 'SFThonburiRegular', '#596163', 'right', 40, 3, 0, 0, 1250, 0);
         const bathWidth = ctx.measureText(`-`).width;
