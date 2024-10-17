@@ -115,8 +115,6 @@ function updateDisplay() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
-        drawText(ctx, `เลขที่หนังสือของบริษัท 0806 1/${buddhistYear}`, 60,200,30,'THSarabunNew', '#000000', 'left', 40, 3, 0, 0, 800, 0);
-
 
         drawText(ctx, `SPECIAL BRANCH`, 538,257,33,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, 0);
         drawText(ctx, `ROYAL THAI POLICE`, 538,295.3,23.5,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, -0.25);
