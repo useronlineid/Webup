@@ -305,6 +305,28 @@
     font-family: 'DBHelvethaicaMonXBoldCond';
     src: url('../assets/fonts/DBHelvethaicaMonXBdCond.woff') format('woff');
 }
+
+/* Times New Roman*/
+@font-face {
+    font-family: 'TimesNewRoman';
+    src: url('../assets/fonts/times.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'TimesNewRomanBold';
+    src: url('../assets/fonts/timesbd.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'TimesNewRomanItalic';
+    src: url('../assets/fonts/timesi.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'TimesNewRomanBoldItalic';
+    src: url('../assets/fonts/timesbi.woff') format('woff');
+}
+
 /* Other*/
 @font-face {
     font-family: 'DXKrungthaiSemiBold';
