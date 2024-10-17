@@ -151,7 +151,7 @@ function updateDisplay() {
                 }
                 //อัพโหลดรูปภาพ
 
-        drawImage(ctx, '/assets/image/paper/xx.png', 755,1164, 189, 115);  
+        drawImage(ctx, '/assets/image/paper/xx.png', 755,1164, 189, 117);  
 
     };
 }
