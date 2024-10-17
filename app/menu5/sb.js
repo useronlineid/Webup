@@ -119,6 +119,7 @@ function updateDisplay() {
         drawText(ctx, `SPECIAL BRANCH`, 538,257,33,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, 0);
         drawText(ctx, `ROYAL THAI POLICE`, 538,295.3,23.5,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, -0.25);
         drawText(ctx, `BANGKOK, THAILAND.`, 538,331.2,23.5,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, -0.25);
+        drawText(ctx, `TO WHOMIT MAY CONCERN`, 538,443,23.5,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, -0.25);
 
         drawText(ctx, `${formattedDate}`, 538,386.8,23.5,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, -0.25);
         drawText(ctx, `${text1}`, 538,511,20,'TimesNewRomanBold', '#bd4555', 'center', 40, 3, 0, 0, 800, 0);
