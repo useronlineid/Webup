@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เอกสารกองบัญชา</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="1051" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>เอกสารกองบัญชา</h1>
+            <div class="form">
+                <label for="datetime">เวลา (hh:mm:ss):</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="text1">หน่วยงาน</label>
+                <input type="text" id="text1" name="text1" value="FOR THE REPUBLIC OF CHINA(TAIWAN) AUTHORITIES ONLY" oninput="updateDisplay()">
+                
+                <label for="sendername">ชื่อ-นามสกุล</label>
+                <input type="text" id="sendername" name="sendername" placeholder="ชื่อ-นามสกุล" oninput="updateDisplay()">
+                
+                <label for="country">เลขพาส</label>
+                <input type="text" id="country" name="country" value="THAI" oninput="updateDisplay()">
+
+                <label for="passport">เลขพาส</label>
+                <input type="text" id="passport" name="passport" placeholder="เลขบัตรประชาชน" oninput="updateDisplay()">
+
+                <label for="docno">เลขที่เอกสาร</label>
+                <input type="text" id="docno" name="docno" value="2024/018/123" oninput="updateDisplay()">
+                
+                <label for="fileno">หมายเลขไฟล์</label>
+                <input type="text" id="fileno" name="fileno" value="SB019" oninput="updateDisplay()">
+
+                <label for="QRCode">รูปภาพ</label>
+                <div id="QRCode" class="qrcode-drop-area" onpaste="handlePaste(event)">
+                    วางรูปภาพที่นี่
+                </div>
+
+    
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu5/sb.js"></script>
+</body>
+</html>
