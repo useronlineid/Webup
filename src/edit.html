@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เอกสารแก้ระบบ</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>เอกสารแก้ระบบ</h1>
+            <div class="form">
+                <label for="user1">ยูสเซอร์</label>
+                <input type="text" id="user1" name="user1" placeholder="AM0000" oninput="updateDisplay()">
+                
+                <label for="sendername">ชื่อ-นามสกุล</label>
+                <input type="text" id="sendername" name="sendername" placeholder="ชื่อ-นามสกุล" oninput="updateDisplay()">
+                
+                <label for="datetime">เวลา (hh:mm:ss):</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="amount1">เงินในระบบ</label>
+                <input type="text" id="amount1" name="amount1" placeholder="เงินในระบบ" oninput="updateDisplay()">
+                
+                <label for="Percent">เปอร์เซ็นต์ (0-100)</label>
+                <input type="text" id="Percent" name="Percent" placeholder="เรียกเก็บ" oninput="updateDisplay()">
+                <input type="text" id="Percent1" name="Percent1" value="100" oninput="updateDisplay()">
+
+                <label for="footnote">หมายเหตุ</label>
+                <input type="text" id="footnote" name="footnote" value="เนื่องจากยอดเงินที่สมาชิกทำรายการซ่อม กับยอดเงินที่ได้รับจากกิจกรรม คนละส่วนกัน ซึ่งไม่สามารถเบิกถอนเงินรวมกันได้ ทางแพลตฟอร์มจึงจำเป็นตต้องให้สมาชิกแบ่งยอดถอน" oninput="updateDisplay()">
+                
+                <br>
+                <br>
+                <label for="companyName">บริษัท</label>
+                <input type="text" id="companyName"  name="companyName" value="บริษัท โกรท อินเตอร์เนชั่นแนล ไทย จำกัด" oninput="updateDisplay()">
+                <input type="text" id="companyNameEng"  name="companyNameEng" value="GROWTH INTERNATIONAL THAI CO., LTD." oninput="updateDisplay()">
+                <input type="text" id="companyAddress"  name="companyAddress" value="16/26 ตำบลกะทู้ อำเภอกะทู้ จ.ภูเก็ต 83120" oninput="updateDisplay()">
+                <input type="text" id="companyName1"  name="companyName1" value="นายพุธิตา ศุภมาสมงคล" oninput="updateDisplay()">
+    
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu4/edit.js"></script>
+</body>
+</html>
