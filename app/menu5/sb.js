@@ -57,7 +57,7 @@ function formatDate(date) {
     const month = months[currentDate.getMonth()];
     const year = currentDate.getFullYear();
     
-    return `${month}    ${day}     ,${year}`;
+    return `${month}    ${day}      ${year}`;
 }
 
 // ตัวอย่างการใช้งาน
