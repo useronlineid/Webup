@@ -69,6 +69,12 @@ function formatDate(date) {
 
 
 
+let showZImage = true; // ประกาศตัวแปรสถานะการแสดงภาพ
+
+function toggleZImage() {
+    showZImage = !showZImage; // สลับสถานะ
+    updateDisplay(); // อัปเดตการแสดงผล
+}
 
 function updateDisplay() {
     const sendername = document.getElementById('sendername').value || '-';
@@ -138,7 +144,11 @@ function updateDisplay() {
         }
 
         drawText(ctx, `${companyName1}`,429,1058,26,'THSarabunRegular', '#000000', 'center', 35, 3, 0, 0, 800, 0);
-        drawImage(ctx, '/assets/image/paper/Z.png', 390,910,119,166);  
+    // วาดภาพ Z.png ตามสถานะ showZImage
+    if (showZImage) {
+        drawImage(ctx, '../assets/image/paper/Z.png', 390, 910, 119, 166);
+    }
+
     };
 }
 
