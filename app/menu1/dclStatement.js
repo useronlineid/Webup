@@ -28,6 +28,7 @@ function loadFonts() {
     });
 }
 
+
 // ถึงที่นี่ * เบลอ *
 
 // เพิ่มตัวแปรเพื่อเก็บสถานะการเบลอ
@@ -416,16 +417,23 @@ function updateDisplay() {
             currentDate.setMinutes(currentDate.getMinutes() - randomMinutes);
             currentDate.setSeconds(randomSeconds);
 
+            // ตรวจสอบเวลาว่าต่ำกว่า 09:00:00 หรือไม่
+            const hours = currentDate.getHours();
+            if (hours < 9) {
+                // หากเวลาต่ำกว่า 09:00:00 ให้ย้อนกลับไปเริ่มจากวันก่อนที่เวลา 21:00:00
+                currentDate.setDate(currentDate.getDate() - 1);
+                currentDate.setHours(21);
+                currentDate.setMinutes(0);
+                currentDate.setSeconds(0);
+
+                // จากนั้นให้ลดเวลาลงตามสุ่ม randomMinutes และ randomSeconds
+                currentDate.setMinutes(currentDate.getMinutes() - randomMinutes);
+                currentDate.setSeconds(currentDate.getSeconds() - randomSeconds);
+            }
+
             // ทำสำเนาของวันที่ปัจจุบันเพื่อการแสดงผล
             let displayDate = new Date(currentDate);
             let displayTime = formatTime(displayDate);
-
-            // ตรวจสอบเวลาว่าต่ำกว่า 09:00:00 หรือไม่
-            const hours = displayDate.getHours();
-            if (hours < 9) {
-                // ปรับวันที่เป็นวันก่อนหน้า
-                displayDate.setDate(displayDate.getDate() - 1);
-            }
 
             // จัดรูปแบบวันที่หลังจากปรับแล้ว
             const formattedDate = formatDate(displayDate);
@@ -485,7 +493,6 @@ function updateDisplay() {
 
         // วาดข้อความ 'noet' ด้วยสีดำ (#737373)
         drawText(ctx, `- Baht - ${name10}`, 51 + accountNameWidth + accountNumberWidth, 549.8, 30, 'THSarabunNew', '#737373', 'left', 1.5, 3, 0, 0, 800, 0);
-
 
 
        // ถึงที่นี่ * เบลอ *
@@ -582,6 +589,8 @@ function downloadImage() {
     link.download = 'canvas_image.png';
     link.click();
 }
+
+
 
 document.getElementById('generate').addEventListener('click', updateDisplay);
 
