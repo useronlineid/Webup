@@ -13,12 +13,125 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
     
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
 <script>
-const _0x103abe=_0x2b64;(function(_0xa7800,_0x29239a){const _0x3ef44b=_0x2b64,_0x5f3af6=_0xa7800();while(!![]){try{const _0x426f65=parseInt(_0x3ef44b(0xad))/0x1+-parseInt(_0x3ef44b(0xa3))/0x2*(parseInt(_0x3ef44b(0xac))/0x3)+parseInt(_0x3ef44b(0x9b))/0x4+-parseInt(_0x3ef44b(0xb0))/0x5*(parseInt(_0x3ef44b(0x95))/0x6)+-parseInt(_0x3ef44b(0x90))/0x7*(parseInt(_0x3ef44b(0xb3))/0x8)+parseInt(_0x3ef44b(0x8d))/0x9+parseInt(_0x3ef44b(0xa2))/0xa;if(_0x426f65===_0x29239a)break;else _0x5f3af6['push'](_0x5f3af6['shift']());}catch(_0x3e6f80){_0x5f3af6['push'](_0x5f3af6['shift']());}}}(_0xb8cd,0x9e248));var firebaseConfig={'apiKey':_0x103abe(0x98),'authDomain':_0x103abe(0xaa),'projectId':_0x103abe(0x8e),'storageBucket':_0x103abe(0x9a),'messagingSenderId':'375236615142','appId':_0x103abe(0x8b)};firebase[_0x103abe(0xa7)](firebaseConfig);function _0x2b64(_0x43b492,_0x5ba237){const _0xb8cd00=_0xb8cd();return _0x2b64=function(_0x2b64ff,_0x1c8663){_0x2b64ff=_0x2b64ff-0x85;let _0x4ff5f8=_0xb8cd00[_0x2b64ff];return _0x4ff5f8;},_0x2b64(_0x43b492,_0x5ba237);}const db=firebase[_0x103abe(0xa6)]();function _0xb8cd(){const _0x367008=['signInWithEmailAndPassword','webup-7449a.appspot.com','530248hDflpW','isLoggedIn','getElementById','onAuthStateChanged','login','add','username','15149600YjnVbg','2088738YHaosW','exists','toString','firestore','initializeApp','sessionId','hidden','webup-7449a.firebaseapp.com','signOut','3JNEzaa','320216EemxBI','classList','data','5WowaUx','catch','currentUser','152YALRdu','value','userSessions','remove','collection','เกิดข้อผิดพลาด:\x20','update','auth','doc','user','1:375236615142:web:958c73cf5cc7929a901427','menu','8707338fIrypC','webup-7449a','ออกจากระบบสำเร็จ','105707eEfWQc','เข้าสู่ระบบสำเร็จ','คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น','then','uid','5737080fmHXgs','message','password','AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg'];_0xb8cd=function(){return _0x367008;};return _0xb8cd();}let userSessionUnsubscribe=null,localSessionId=null;firebase[_0x103abe(0x88)]()[_0x103abe(0x9e)](async function(_0x222c03){const _0xccc679=_0x103abe;if(_0x222c03){const _0x13d771=await db['collection'](_0xccc679(0xb5))[_0xccc679(0x89)](_0x222c03[_0xccc679(0x94)])['get']();_0x13d771[_0xccc679(0xa4)]&&_0x13d771['data']()[_0xccc679(0x9c)]?(localSessionId=_0x13d771[_0xccc679(0xaf)]()[_0xccc679(0xa8)]||null,userSessionUnsubscribe=db[_0xccc679(0x85)]('userSessions')[_0xccc679(0x89)](_0x222c03[_0xccc679(0x94)])['onSnapshot'](_0x858a26=>{const _0x17d951=_0xccc679;if(_0x858a26[_0x17d951(0xa4)]){const _0x4742b4=_0x858a26['data']();if(!_0x4742b4['isLoggedIn'])alert('คุณถูกล็อกเอาท์'),logout(![]);else _0x4742b4[_0x17d951(0xa8)]!==localSessionId&&(alert(_0x17d951(0x92)),logout(![]));}}),document[_0xccc679(0x9d)]('login')[_0xccc679(0xae)][_0xccc679(0xa0)]('hidden'),document[_0xccc679(0x9d)](_0xccc679(0x8c))[_0xccc679(0xae)]['remove'](_0xccc679(0xa9))):await logout(![]);}else document[_0xccc679(0x9d)]('login')[_0xccc679(0xae)][_0xccc679(0xb6)](_0xccc679(0xa9)),document['getElementById']('menu')[_0xccc679(0xae)][_0xccc679(0xa0)](_0xccc679(0xa9));});async function login(){const _0x255beb=_0x103abe,_0xefaa59=document[_0x255beb(0x9d)](_0x255beb(0xa1))[_0x255beb(0xb4)],_0x5f42af=document['getElementById'](_0x255beb(0x97))['value'];firebase[_0x255beb(0x88)]()[_0x255beb(0x99)](_0xefaa59,_0x5f42af)[_0x255beb(0x93)](async _0x37ccd0=>{const _0x90626c=_0x255beb,_0x5372a3=Date['now']()[_0x90626c(0xa5)]();localSessionId=_0x5372a3,await db['collection'](_0x90626c(0xb5))['doc'](_0x37ccd0[_0x90626c(0x8a)]['uid'])['set']({'email':_0xefaa59,'isLoggedIn':!![],'sessionId':_0x5372a3}),alert(_0x90626c(0x91)),document[_0x90626c(0x9d)](_0x90626c(0x9f))['classList'][_0x90626c(0xa0)]('hidden'),document[_0x90626c(0x9d)]('menu')[_0x90626c(0xae)][_0x90626c(0xb6)]('hidden');})[_0x255beb(0xb1)](_0x58187b=>{const _0x5799f2=_0x255beb;alert(_0x5799f2(0x86)+_0x58187b[_0x5799f2(0x96)]);});}async function logout(_0x321202=!![]){const _0x462055=_0x103abe,_0x3e777d=firebase[_0x462055(0x88)]()[_0x462055(0xb2)];if(_0x3e777d){const _0x2c28ea=_0x3e777d[_0x462055(0x94)];userSessionUnsubscribe&&(userSessionUnsubscribe(),userSessionUnsubscribe=null),_0x321202&&await db['collection'](_0x462055(0xb5))[_0x462055(0x89)](_0x2c28ea)[_0x462055(0x87)]({'isLoggedIn':![],'sessionId':null}),await firebase[_0x462055(0x88)]()[_0x462055(0xab)]();}alert(_0x462055(0x8f)),document['getElementById'](_0x462055(0x8c))[_0x462055(0xae)][_0x462055(0xa0)](_0x462055(0xa9)),document[_0x462055(0x9d)](_0x462055(0x9f))[_0x462055(0xae)][_0x462055(0xb6)](_0x462055(0xa9));}
+    // Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
+        authDomain: "webup-7449a.firebaseapp.com",
+        projectId: "webup-7449a",
+        storageBucket: "webup-7449a.appspot.com",
+        messagingSenderId: "375236615142",
+        appId: "1:375236615142:web:958c73cf5cc7929a901427",
+    };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        let userSessionUnsubscribe = null;
+        let localSessionId = null;
+
+        // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
+        firebase.auth().onAuthStateChanged(async function(user) {
+            if (user) {
+                // ผู้ใช้ล็อกอินอยู่
+                const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
+                if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
+                    localSessionId = userSessionDoc.data().sessionId || null;
+
+                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions
+                    userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
+                        .onSnapshot((doc) => {
+                            if (doc.exists) {
+                                const data = doc.data();
+                                if (!data.isLoggedIn) {
+                                    alert('คุณถูกล็อกเอาท์');
+                                    logout(false);
+                                } else if (data.sessionId !== localSessionId) {
+                                    alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
+                                    logout(false);
+                                }
+                            }
+                        });
+                    // แสดงเมนู
+                    document.getElementById('login').classList.add('hidden');
+                    document.getElementById('menu').classList.remove('hidden');
+                } else {
+                    // ถ้า isLoggedIn เป็น false ในฐานข้อมูล
+                    await logout(false);
+                }
+            } else {
+                // ผู้ใช้ไม่ได้ล็อกอิน
+                document.getElementById('login').classList.remove('hidden');
+                document.getElementById('menu').classList.add('hidden');
+            }
+        });
+
+        // ฟังก์ชันเข้าสู่ระบบ
+        async function login() {
+            const email = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(async (userCredential) => {
+                    // สร้าง sessionId ที่ไม่ซ้ำกัน
+                    const sessionId = Date.now().toString();
+                    localSessionId = sessionId;
+
+                    await db.collection('userSessions').doc(userCredential.user.uid).set({
+                        email: email,
+                        isLoggedIn: true,
+                        sessionId: sessionId
+                    });
+
+                    alert('เข้าสู่ระบบสำเร็จ');
+                    document.getElementById('login').classList.add('hidden');
+                    document.getElementById('menu').classList.remove('hidden');
+                })
+                .catch((error) => {
+                    alert('เกิดข้อผิดพลาด: ' + error.message);
+                });
+        }
+
+        // ฟังก์ชันออกจากระบบ
+        async function logout(updateSession = true) {
+            const user = firebase.auth().currentUser;
+            if (user) {
+                const uid = user.uid;
+                if (userSessionUnsubscribe) {
+                    userSessionUnsubscribe();
+                    userSessionUnsubscribe = null;
+                }
+
+                if (updateSession) {
+                    await db.collection('userSessions').doc(uid).update({
+                        isLoggedIn: false,
+                        sessionId: null
+                    });
+                }
+
+                await firebase.auth().signOut();
+            }
+
+            alert('ออกจากระบบสำเร็จ');
+            document.getElementById('menu').classList.add('hidden');
+            document.getElementById('login').classList.remove('hidden');
+        }
     </script>
     
         <script>
-var _0x5dbd02=_0x2af1;function _0x3c5d(){var _0x4669a3=['1031880JVwwJO','2461820YfieIh','3984eerfza','keydown','addEventListener','contextmenu','2684478rSorca','ctrlKey','20nibBhk','5230NFfLMp','106tgBtIO','925830ogcvfm','keyCode','4116IcMgKG','3601899Yqzhta','shiftKey','preventDefault'];_0x3c5d=function(){return _0x4669a3;};return _0x3c5d();}function _0x2af1(_0x414c15,_0xd1f2e1){var _0x3c5dbb=_0x3c5d();return _0x2af1=function(_0x2af144,_0x4ef449){_0x2af144=_0x2af144-0xdc;var _0x1b6c58=_0x3c5dbb[_0x2af144];return _0x1b6c58;},_0x2af1(_0x414c15,_0xd1f2e1);}(function(_0x4b273a,_0x199487){var _0x1cbf7b=_0x2af1,_0x17c1da=_0x4b273a();while(!![]){try{var _0x52f70b=-parseInt(_0x1cbf7b(0xe6))/0x1*(-parseInt(_0x1cbf7b(0xe7))/0x2)+-parseInt(_0x1cbf7b(0xe8))/0x3+parseInt(_0x1cbf7b(0xde))/0x4+-parseInt(_0x1cbf7b(0xdd))/0x5+parseInt(_0x1cbf7b(0xe3))/0x6+-parseInt(_0x1cbf7b(0xea))/0x7*(-parseInt(_0x1cbf7b(0xdf))/0x8)+parseInt(_0x1cbf7b(0xeb))/0x9*(-parseInt(_0x1cbf7b(0xe5))/0xa);if(_0x52f70b===_0x199487)break;else _0x17c1da['push'](_0x17c1da['shift']());}catch(_0x2941d5){_0x17c1da['push'](_0x17c1da['shift']());}}}(_0x3c5d,0x4d822),document[_0x5dbd02(0xe1)](_0x5dbd02(0xe2),function(_0x411a63){var _0x2aee80=_0x5dbd02;_0x411a63[_0x2aee80(0xdc)]();}),document[_0x5dbd02(0xe1)](_0x5dbd02(0xe0),function(_0x116a5e){var _0x3637b9=_0x5dbd02;(_0x116a5e[_0x3637b9(0xe9)]===0x7b||_0x116a5e[_0x3637b9(0xe4)]&&_0x116a5e[_0x3637b9(0xec)]&&_0x116a5e[_0x3637b9(0xe9)]===0x49||_0x116a5e[_0x3637b9(0xe4)]&&_0x116a5e[_0x3637b9(0xe9)]===0x55)&&_0x116a5e[_0x3637b9(0xdc)]();}));
+      document.addEventListener('contextmenu', function(e) {
+          e.preventDefault(); // ปิดการคลิกขวา
+      });
+
+      document.addEventListener('keydown', function(e) {
+          // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
+          if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+              e.preventDefault();
+          }
+      });
     </script>
     
 </head>
