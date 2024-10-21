@@ -39,8 +39,8 @@
             try {
                 const user = await Parse.User.logIn(username, password);
 
-                // เรียกใช้ Cloud Function เพื่อลบเซสชันเก่า
-                await Parse.Cloud.run('deleteOldSessions');
+                // ไม่ต้องลบเซสชันเก่าอีกต่อไป
+                // await Parse.Cloud.run('deleteOldSessions');
 
                 alert('เข้าสู่ระบบสำเร็จ');
                 document.getElementById('login').classList.add('hidden');
@@ -62,7 +62,7 @@
             }
         }
 
-        // ฟังก์ชันตรวจสอบเซสชัน (ถ้าต้องการตรวจสอบเพิ่มเติม)
+        // ฟังก์ชันตรวจสอบเซสชัน (ถ้าต้องการ)
         function checkSession() {
             const user = Parse.User.current();
             if (!user) {
@@ -94,10 +94,6 @@
         <input type="text" id="username" placeholder="Username"><br>
         <input type="password" id="password" placeholder="Password"><br>
         <button onclick="login()">Login</button>
-        <!-- หากต้องการให้มีการสมัครสมาชิก -->
-        <!--
-        <button onclick="showSignUp()">Sign Up</button>
-        -->
     </div>
 
     <div id="menu" class="hidden">
