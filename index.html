@@ -15,99 +15,90 @@
         Parse.initialize("h0TgGmmJHeNinxVbiyEZaRw0IRW8rEWP0DCMTo9W", "gjGU8GWNg7eri95r6AoQ43pFA80IPEdgRX24TjSL");
         Parse.serverURL = 'https://parseapi.back4app.com/';
 
-    // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
-    document.addEventListener('DOMContentLoaded', async function() {
-      const user = await Parse.User.currentAsync();
-      if (user) {
-        // ผู้ใช้ล็อกอินอยู่
-        document.getElementById('login').classList.add('hidden');
-        document.getElementById('menu').classList.remove('hidden');
-      } else {
-        // ผู้ใช้ไม่ได้ล็อกอิน
-        document.getElementById('login').classList.remove('hidden');
-        document.getElementById('menu').classList.add('hidden');
-      }
-    });
+        // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
+        document.addEventListener('DOMContentLoaded', async function() {
+            const user = Parse.User.current();
+            if (user) {
+                // ผู้ใช้ล็อกอินอยู่
+                const username = user.get('username');
+                console.log('Logged in as:', username);
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('menu').classList.remove('hidden');
+            } else {
+                // ผู้ใช้ไม่ได้ล็อกอิน
+                document.getElementById('login').classList.remove('hidden');
+                document.getElementById('menu').classList.add('hidden');
+            }
+        });
 
-    // ฟังก์ชันเข้าสู่ระบบ
-    async function login() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+        // ฟังก์ชันเข้าสู่ระบบ
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-      if (!username || !password) {
-        alert('กรุณากรอกชื่อผู้ใช้และรหัสผ่าน');
-        return;
-      }
+            try {
+                const user = await Parse.User.logIn(username, password);
 
-      try {
-        // เรียกใช้ฟังก์ชัน Cloud Code 'secureLogin'
-        const result = await Parse.Cloud.run('secureLogin', { username, password });
+                // เรียกใช้ Cloud Function เพื่อลบเซสชันเก่า
+                await Parse.Cloud.run('deleteOldSessions');
 
-        // ตั้งค่าผู้ใช้ปัจจุบันด้วยเซสชันโทเค็นใหม่
-        await Parse.User.become(result.sessionToken);
-
-        alert('เข้าสู่ระบบสำเร็จ');
-        document.getElementById('login').classList.add('hidden');
-        document.getElementById('menu').classList.remove('hidden');
-      } catch (error) {
-        alert('เกิดข้อผิดพลาด: ' + error.message);
-      }
-    }
-
-    // ฟังก์ชันออกจากระบบ
-    async function logout() {
-      try {
-        await Parse.User.logOut();
-        alert('ออกจากระบบสำเร็จ');
-        document.getElementById('menu').classList.add('hidden');
-        document.getElementById('login').classList.remove('hidden');
-      } catch (error) {
-        alert('เกิดข้อผิดพลาด: ' + error.message);
-      }
-    }
-
-    // ฟังก์ชันจัดการเมื่อเซสชันไม่ถูกต้อง
-    async function handleInvalidSession() {
-      alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
-      await logout();
-    }
-
-    // ตรวจสอบข้อผิดพลาดทั่วโลก
-    Parse.CoreManager.set('REQUEST_ATTEMPT_LIMIT', 1);
-
-    // Override the default ajax function to catch invalid session token errors
-    const originalAjax = Parse.CoreManager.getRESTController().ajax;
-    Parse.CoreManager.getRESTController().ajax = function(method, url, data, headers) {
-      return originalAjax(method, url, data, headers).catch(async (error) => {
-        if (error.code === 209) { // Invalid session token
-          await handleInvalidSession();
+                alert('เข้าสู่ระบบสำเร็จ');
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('menu').classList.remove('hidden');
+            } catch (error) {
+                alert('เกิดข้อผิดพลาด: ' + error.message);
+            }
         }
-        throw error;
+
+        // ฟังก์ชันออกจากระบบ
+        async function logout() {
+            try {
+                await Parse.User.logOut();
+                alert('ออกจากระบบสำเร็จ');
+                document.getElementById('menu').classList.add('hidden');
+                document.getElementById('login').classList.remove('hidden');
+            } catch (error) {
+                alert('เกิดข้อผิดพลาด: ' + error.message);
+            }
+        }
+
+        // ฟังก์ชันตรวจสอบเซสชัน (ถ้าต้องการตรวจสอบเพิ่มเติม)
+        function checkSession() {
+            const user = Parse.User.current();
+            if (!user) {
+                alert('เซสชันของคุณหมดอายุ กรุณาล็อกอินใหม่');
+                document.getElementById('menu').classList.add('hidden');
+                document.getElementById('login').classList.remove('hidden');
+            }
+        }
+    </script>
+    
+    <script>
+      document.addEventListener('contextmenu', function(e) {
+          e.preventDefault(); // ปิดการคลิกขวา
       });
-    };
-  </script>
 
-  <!-- สคริปต์เพิ่มเติม (ถ้ามี) -->
-  <script>
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault(); // ปิดการคลิกขวา
-    });
-
-    document.addEventListener('keydown', function(e) {
-      // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
-      if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
-        e.preventDefault();
-      }
-    });
-  </script>
+      document.addEventListener('keydown', function(e) {
+          // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
+          if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+              e.preventDefault();
+          }
+      });
+    </script>
+    
 </head>
 <body>
-  <div id="login">
-    <h2>เข้าสู่ระบบ</h2>
-    <input type="text" id="username" placeholder="ชื่อผู้ใช้"><br>
-    <input type="password" id="password" placeholder="รหัสผ่าน"><br>
-    <button onclick="login()">เข้าสู่ระบบ</button>
-  </div>
+    <!-- ฟอร์มล็อกอิน -->
+    <div id="login">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username"><br>
+        <input type="password" id="password" placeholder="Password"><br>
+        <button onclick="login()">Login</button>
+        <!-- หากต้องการให้มีการสมัครสมาชิก -->
+        <!--
+        <button onclick="showSignUp()">Sign Up</button>
+        -->
+    </div>
 
     <div id="menu" class="hidden">
         <div id="header">
