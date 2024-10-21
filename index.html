@@ -7,32 +7,41 @@
     <link rel="icon" href="../assets/image/icon/LOGO.png" type="image/png">
     <link rel="stylesheet" href="./css/styles.css">
     
-    <!-- Firebase SDK -->
     <script>
-      document.addEventListener('contextmenu', function(e) {
-          e.preventDefault(); // ปิดการคลิกขวา
-      });
+        // ฟังก์ชันสำหรับการแสดงเมนูโดยตรง
+        document.addEventListener('DOMContentLoaded', function() {
+            // แสดงเมนูทันทีเมื่อหน้าโหลด
+            document.getElementById('login').classList.add('hidden');
+            document.getElementById('menu').classList.remove('hidden');
+        });
 
-      document.addEventListener('keydown', function(e) {
-          // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
-          if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
-              e.preventDefault();
-          }
-      });
+        // ลบฟังก์ชัน login และ logout เนื่องจากไม่จำเป็น
 
-      // ตั้งค่าให้เมนูแสดงโดยอัตโนมัติเมื่อโหลดหน้า
-      document.addEventListener('DOMContentLoaded', function() {
-          document.getElementById('login').classList.add('hidden');
-          document.getElementById('menu').classList.remove('hidden');
-      });
+        // ส่วนของการปิดการคลิกขวาและการใช้ Developer Tools
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault(); // ปิดการคลิกขวา
+        });
+
+        document.addEventListener('keydown', function(e) {
+            // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
+            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault();
+            }
+        });
     </script>
     
 </head>
 <body>
+    <!-- ซ่อนส่วนของการล็อกอิน -->
+    <div id="login" class="hidden">
+        <!-- เนื้อหาของการล็อกอินที่ไม่จำเป็นถูกซ่อน -->
+    </div>
 
-    <div id="menu" class="hidden">
+    <!-- แสดงเมนูโดยตรง -->
+    <div id="menu">
         <div id="header">
-            <button id="logout-button" onclick="logout()">Logout</button>
+            <!-- ซ่อนปุ่ม Logout เนื่องจากไม่มีการล็อกอิน -->
+            <!-- <button id="logout-button" onclick="logout()">Logout</button> -->
         </div>
         <h2>เอกสาร</h2>
         <div class="menu-container">
