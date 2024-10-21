@@ -15,6 +15,7 @@
         Parse.initialize("h0TgGmmJHeNinxVbiyEZaRw0IRW8rEWP0DCMTo9W", "gjGU8GWNg7eri95r6AoQ43pFA80IPEdgRX24TjSL");
         Parse.serverURL = 'https://parseapi.back4app.com/';
 
+
         // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
         document.addEventListener('DOMContentLoaded', async function() {
             const user = Parse.User.current();
@@ -39,12 +40,15 @@
             try {
                 const user = await Parse.User.logIn(username, password);
 
-                // ไม่ต้องลบเซสชันเก่าอีกต่อไป
-                // await Parse.Cloud.run('deleteOldSessions');
+                // เรียกใช้ Cloud Function เพื่อลบเซสชันเก่า
+                await Parse.Cloud.run('deleteOldSessions');
 
                 alert('เข้าสู่ระบบสำเร็จ');
                 document.getElementById('login').classList.add('hidden');
                 document.getElementById('menu').classList.remove('hidden');
+
+                // เรียกใช้ checkSession เป็นระยะ ๆ
+                setInterval(checkSession, 30000); // ทุกๆ 30 วินาที
             } catch (error) {
                 alert('เกิดข้อผิดพลาด: ' + error.message);
             }
@@ -62,15 +66,30 @@
             }
         }
 
-        // ฟังก์ชันตรวจสอบเซสชัน (ถ้าต้องการ)
-        function checkSession() {
+        // ฟังก์ชันตรวจสอบเซสชัน
+        async function checkSession() {
             const user = Parse.User.current();
             if (!user) {
-                alert('เซสชันของคุณหมดอายุ กรุณาล็อกอินใหม่');
+                alert('เซสชันของคุณหมดอายุหรือถูกล็อกเอาท์จากอุปกรณ์อื่น กรุณาล็อกอินใหม่');
                 document.getElementById('menu').classList.add('hidden');
                 document.getElementById('login').classList.remove('hidden');
+                // หยุดการเรียกใช้ checkSession เพิ่มเติม
+                clearInterval(sessionInterval);
+            } else {
+                try {
+                    // ตรวจสอบเซสชันจากเซิร์ฟเวอร์
+                    await user.fetch();
+                } catch (error) {
+                    alert('เซสชันของคุณหมดอายุหรือถูกล็อกเอาท์จากอุปกรณ์อื่น กรุณาล็อกอินใหม่');
+                    document.getElementById('menu').classList.add('hidden');
+                    document.getElementById('login').classList.remove('hidden');
+                    clearInterval(sessionInterval);
+                }
             }
         }
+
+        // ตัวแปรสำหรับเก็บ Interval
+        let sessionInterval;
     </script>
     
     <script>
