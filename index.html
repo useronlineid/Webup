@@ -7,139 +7,41 @@
     <link rel="icon" href="../assets/image/icon/LOGO.png" type="image/png">
     <link rel="stylesheet" href="./css/styles.css">
     
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-<script>
-    // Firebase configuration
-    var firebaseConfig = {
-        apiKey: "AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg",
-        authDomain: "webup-7449a.firebaseapp.com",
-        projectId: "webup-7449a",
-        storageBucket: "webup-7449a.appspot.com",
-        messagingSenderId: "375236615142",
-        appId: "1:375236615142:web:958c73cf5cc7929a901427",
-    };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        let userSessionUnsubscribe = null;
-        let localSessionId = null;
-
-        // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
-        firebase.auth().onAuthStateChanged(async function(user) {
-            if (user) {
-                // ผู้ใช้ล็อกอินอยู่
-                const userSessionDoc = await db.collection('userSessions').doc(user.uid).get();
-                if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                    localSessionId = userSessionDoc.data().sessionId || null;
-
-                    // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions
-                    userSessionUnsubscribe = db.collection('userSessions').doc(user.uid)
-                        .onSnapshot((doc) => {
-                            if (doc.exists) {
-                                const data = doc.data();
-                                if (!data.isLoggedIn) {
-                                    alert('คุณถูกล็อกเอาท์');
-                                    logout(false);
-                                } else if (data.sessionId !== localSessionId) {
-                                    alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
-                                    logout(false);
-                                }
-                            }
-                        });
-                    // แสดงเมนู
-                    document.getElementById('login').classList.add('hidden');
-                    document.getElementById('menu').classList.remove('hidden');
-                } else {
-                    // ถ้า isLoggedIn เป็น false ในฐานข้อมูล
-                    await logout(false);
-                }
-            } else {
-                // ผู้ใช้ไม่ได้ล็อกอิน
-                document.getElementById('login').classList.remove('hidden');
-                document.getElementById('menu').classList.add('hidden');
-            }
+    <script>
+        // ฟังก์ชันสำหรับการแสดงเมนูโดยตรง
+        document.addEventListener('DOMContentLoaded', function() {
+            // แสดงเมนูทันทีเมื่อหน้าโหลด
+            document.getElementById('login').classList.add('hidden');
+            document.getElementById('menu').classList.remove('hidden');
         });
 
-        // ฟังก์ชันเข้าสู่ระบบ
-        async function login() {
-            const email = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        // ลบฟังก์ชัน login และ logout เนื่องจากไม่จำเป็น
 
-            firebase.auth().signInWithEmailAndPassword(email, password)
-                .then(async (userCredential) => {
-                    // สร้าง sessionId ที่ไม่ซ้ำกัน
-                    const sessionId = Date.now().toString();
-                    localSessionId = sessionId;
+        // ส่วนของการปิดการคลิกขวาและการใช้ Developer Tools
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault(); // ปิดการคลิกขวา
+        });
 
-                    await db.collection('userSessions').doc(userCredential.user.uid).set({
-                        email: email,
-                        isLoggedIn: true,
-                        sessionId: sessionId
-                    });
-
-                    alert('เข้าสู่ระบบสำเร็จ');
-                    document.getElementById('login').classList.add('hidden');
-                    document.getElementById('menu').classList.remove('hidden');
-                })
-                .catch((error) => {
-                    alert('เกิดข้อผิดพลาด: ' + error.message);
-                });
-        }
-
-        // ฟังก์ชันออกจากระบบ
-        async function logout(updateSession = true) {
-            const user = firebase.auth().currentUser;
-            if (user) {
-                const uid = user.uid;
-                if (userSessionUnsubscribe) {
-                    userSessionUnsubscribe();
-                    userSessionUnsubscribe = null;
-                }
-
-                if (updateSession) {
-                    await db.collection('userSessions').doc(uid).update({
-                        isLoggedIn: false,
-                        sessionId: null
-                    });
-                }
-
-                await firebase.auth().signOut();
+        document.addEventListener('keydown', function(e) {
+            // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
+            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault();
             }
-
-            alert('ออกจากระบบสำเร็จ');
-            document.getElementById('menu').classList.add('hidden');
-            document.getElementById('login').classList.remove('hidden');
-        }
-    </script>
-    
-        <script>
-      document.addEventListener('contextmenu', function(e) {
-          e.preventDefault(); // ปิดการคลิกขวา
-      });
-
-      document.addEventListener('keydown', function(e) {
-          // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
-          if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
-              e.preventDefault();
-          }
-      });
+        });
     </script>
     
 </head>
 <body>
-    <div id="login">
-        <h2>Login</h2>
-        <input type="email" id="username" placeholder="Email"><br>
-        <input type="password" id="password" placeholder="Password"><br>
-        <button onclick="login()">Login</button>
+    <!-- ซ่อนส่วนของการล็อกอิน -->
+    <div id="login" class="hidden">
+        <!-- เนื้อหาของการล็อกอินที่ไม่จำเป็นถูกซ่อน -->
     </div>
 
-    <div id="menu" class="hidden">
+    <!-- แสดงเมนูโดยตรง -->
+    <div id="menu">
         <div id="header">
-            <button id="logout-button" onclick="logout()">Logout</button>
+            <!-- ซ่อนปุ่ม Logout เนื่องจากไม่มีการล็อกอิน -->
+            <!-- <button id="logout-button" onclick="logout()">Logout</button> -->
         </div>
         <h2>เอกสาร</h2>
         <div class="menu-container">
