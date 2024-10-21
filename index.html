@@ -7,41 +7,83 @@
     <link rel="icon" href="../assets/image/icon/LOGO.png" type="image/png">
     <link rel="stylesheet" href="./css/styles.css">
     
+    
+    <!-- Parse SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/2.19.0/parse.min.js"></script>
     <script>
-        // ฟังก์ชันสำหรับการแสดงเมนูโดยตรง
-        document.addEventListener('DOMContentLoaded', function() {
-            // แสดงเมนูทันทีเมื่อหน้าโหลด
-            document.getElementById('login').classList.add('hidden');
-            document.getElementById('menu').classList.remove('hidden');
-        });
+        // Parse initialization
+        Parse.initialize("h0TgGmmJHeNinxVbiyEZaRw0IRW8rEWP0DCMTo9W", "gjGU8GWNg7eri95r6AoQ43pFA80IPEdgRX24TjSL");
+        Parse.serverURL = 'https://parseapi.back4app.com/';
 
-        // ลบฟังก์ชัน login และ logout เนื่องจากไม่จำเป็น
-
-        // ส่วนของการปิดการคลิกขวาและการใช้ Developer Tools
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault(); // ปิดการคลิกขวา
-        });
-
-        document.addEventListener('keydown', function(e) {
-            // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
-            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
-                e.preventDefault();
+        // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
+        document.addEventListener('DOMContentLoaded', async function() {
+            const user = Parse.User.current();
+            if (user) {
+                // ผู้ใช้ล็อกอินอยู่
+                const username = user.get('username');
+                console.log('Logged in as:', username);
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('menu').classList.remove('hidden');
+            } else {
+                // ผู้ใช้ไม่ได้ล็อกอิน
+                document.getElementById('login').classList.remove('hidden');
+                document.getElementById('menu').classList.add('hidden');
             }
         });
+
+        // ฟังก์ชันเข้าสู่ระบบ
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const user = await Parse.User.logIn(username, password);
+                alert('เข้าสู่ระบบสำเร็จ');
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('menu').classList.remove('hidden');
+            } catch (error) {
+                alert('เกิดข้อผิดพลาด: ' + error.message);
+            }
+        }
+
+        // ฟังก์ชันออกจากระบบ
+        async function logout() {
+            try {
+                await Parse.User.logOut();
+                alert('ออกจากระบบสำเร็จ');
+                document.getElementById('menu').classList.add('hidden');
+                document.getElementById('login').classList.remove('hidden');
+            } catch (error) {
+                alert('เกิดข้อผิดพลาด: ' + error.message);
+            }
+        }
+    </script>
+    
+    <script>
+      document.addEventListener('contextmenu', function(e) {
+          e.preventDefault(); // ปิดการคลิกขวา
+      });
+
+      document.addEventListener('keydown', function(e) {
+          // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
+          if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
+              e.preventDefault();
+          }
+      });
     </script>
     
 </head>
 <body>
-    <!-- ซ่อนส่วนของการล็อกอิน -->
-    <div id="login" class="hidden">
-        <!-- เนื้อหาของการล็อกอินที่ไม่จำเป็นถูกซ่อน -->
+    <div id="login">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username"><br>
+        <input type="password" id="password" placeholder="Password"><br>
+        <button onclick="login()">Login</button>
     </div>
 
-    <!-- แสดงเมนูโดยตรง -->
-    <div id="menu">
+    <div id="menu" class="hidden">
         <div id="header">
-            <!-- ซ่อนปุ่ม Logout เนื่องจากไม่มีการล็อกอิน -->
-            <!-- <button id="logout-button" onclick="logout()">Logout</button> -->
+            <button id="logout-button" onclick="logout()">Logout</button>
         </div>
         <h2>เอกสาร</h2>
         <div class="menu-container">
