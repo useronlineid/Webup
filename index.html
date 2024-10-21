@@ -21,10 +21,9 @@
             const user = Parse.User.current();
             if (user) {
                 // ผู้ใช้ล็อกอินอยู่
-                const username = user.get('username');
-                console.log('Logged in as:', username);
                 document.getElementById('login').classList.add('hidden');
                 document.getElementById('menu').classList.remove('hidden');
+                startSessionCheck(); // เริ่มตรวจสอบเซสชัน
             } else {
                 // ผู้ใช้ไม่ได้ล็อกอิน
                 document.getElementById('login').classList.remove('hidden');
@@ -40,15 +39,14 @@
             try {
                 const user = await Parse.User.logIn(username, password);
 
-                // เรียกใช้ Cloud Function เพื่อลบเซสชันเก่า
-                await Parse.Cloud.run('deleteOldSessions');
+                // เรียกใช้ Cloud Function เพื่อลบเซสชันอื่น ๆ
+                await Parse.Cloud.run('deleteOtherSessions');
 
                 alert('เข้าสู่ระบบสำเร็จ');
                 document.getElementById('login').classList.add('hidden');
                 document.getElementById('menu').classList.remove('hidden');
 
-                // เรียกใช้ checkSession เป็นระยะ ๆ
-                setInterval(checkSession, 30000); // ทุกๆ 30 วินาที
+                startSessionCheck(); // เริ่มตรวจสอบเซสชัน
             } catch (error) {
                 alert('เกิดข้อผิดพลาด: ' + error.message);
             }
@@ -61,35 +59,62 @@
                 alert('ออกจากระบบสำเร็จ');
                 document.getElementById('menu').classList.add('hidden');
                 document.getElementById('login').classList.remove('hidden');
+                stopSessionCheck(); // หยุดการตรวจสอบเซสชัน
             } catch (error) {
                 alert('เกิดข้อผิดพลาด: ' + error.message);
             }
         }
 
         // ฟังก์ชันตรวจสอบเซสชัน
+        let sessionInterval;
+
+        function startSessionCheck() {
+            // ตรวจสอบทันทีครั้งแรก
+            checkSession();
+            // เริ่ม Interval ทุก ๆ 10 วินาที
+            sessionInterval = setInterval(checkSession, 10000);
+        }
+
+        function stopSessionCheck() {
+            clearInterval(sessionInterval);
+        }
+
         async function checkSession() {
             const user = Parse.User.current();
             if (!user) {
-                alert('เซสชันของคุณหมดอายุหรือถูกล็อกเอาท์จากอุปกรณ์อื่น กรุณาล็อกอินใหม่');
+                alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
                 document.getElementById('menu').classList.add('hidden');
                 document.getElementById('login').classList.remove('hidden');
-                // หยุดการเรียกใช้ checkSession เพิ่มเติม
-                clearInterval(sessionInterval);
+                stopSessionCheck();
             } else {
                 try {
                     // ตรวจสอบเซสชันจากเซิร์ฟเวอร์
-                    await user.fetch();
+                    await Parse.Session.current();
                 } catch (error) {
-                    alert('เซสชันของคุณหมดอายุหรือถูกล็อกเอาท์จากอุปกรณ์อื่น กรุณาล็อกอินใหม่');
-                    document.getElementById('menu').classList.add('hidden');
-                    document.getElementById('login').classList.remove('hidden');
-                    clearInterval(sessionInterval);
+                    if (error.code === 209) {
+                        // เซสชันไม่ถูกต้อง
+                        alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
+                        document.getElementById('menu').classList.add('hidden');
+                        document.getElementById('login').classList.remove('hidden');
+                        stopSessionCheck();
+                    }
                 }
             }
         }
 
-        // ตัวแปรสำหรับเก็บ Interval
-        let sessionInterval;
+        // ฟังก์ชันสำหรับจัดการเมนู
+        function showSubMenu(subMenuId) {
+            document.getElementById('menu').classList.add('hidden');
+            document.getElementById(subMenuId).classList.remove('hidden');
+        }
+
+        function backToMenu() {
+            const subMenus = document.getElementsByClassName('sub-menu');
+            for (let i = 0; i < subMenus.length; i++) {
+                subMenus[i].classList.add('hidden');
+            }
+            document.getElementById('menu').classList.remove('hidden');
+        }
     </script>
     
     <script>
@@ -114,7 +139,7 @@
         <input type="password" id="password" placeholder="Password"><br>
         <button onclick="login()">Login</button>
     </div>
-
+    
     <div id="menu" class="hidden">
         <div id="header">
             <button id="logout-button" onclick="logout()">Logout</button>
