@@ -110,12 +110,12 @@ function generateUniqueID() {
     const now = new Date(document.getElementById('datetime').value);
     const startDate = new Date("2024-07-24");
     const dayDifference = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-    const uniqueDay = (14206 + dayDifference).toString().padStart(6, '0'); // เพิ่มตามจำนวนวันตั้งแต่วันที่ 24/07/2567
-    const timePart = `${padZero(now.getHours())}${padZero(now.getMinutes())}`;
-    const randomPart = Math.floor(Math.random() * 100).toString().padStart(2, '0');
+    const uniqueDay = (14206 + dayDifference).toString().padStart(6, '0'); // Tambah jumlah hari sejak 24/07/2567
+    const timePart = `${padZero(now.getHours())}${padZero(now.getMinutes())}${padZero(now.getSeconds())}`; // Tambah saat (seconds)
     const randomPart1 = Math.floor(Math.random() * 100000).toString().padStart(5, '0');
-    return `${uniqueDay}${timePart}${randomPart}BOR${randomPart1}`;
+    return `${uniqueDay}${timePart}BOR${randomPart1}`;
 }
+
 
 function padZero(num) {
     return num.toString().padStart(2, '0');
