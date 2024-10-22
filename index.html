@@ -11,214 +11,15 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    
 <script>
-    // Firebase configuration (แทนที่ค่าด้านล่างด้วยของคุณเอง)
-    var firebaseConfig = {
-  apiKey: "AIzaSyBXoWeCgXXIQadVKvBabazrE39xPoivlUI",
-  authDomain: "webup10-412f1.firebaseapp.com",
-  projectId: "webup10-412f1",
-  storageBucket: "webup10-412f1.appspot.com",
-  messagingSenderId: "289946224359",
-  appId: "1:289946224359:web:86874865721816f1bb8442",
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    let userSessionUnsubscribe = null;
-    let localSessionId = null;
-
-    // ฟังก์ชันตรวจสอบสถานะการล็อกอินเมื่อหน้าเว็บโหลด
-    firebase.auth().onAuthStateChanged(async function(user) {
-        if (user) {
-            const uid = user.uid;
-            const userDoc = await db.collection('users').doc(uid).get();
-
-            if (userDoc.exists) {
-                const userData = userDoc.data();
-                const expirationDate = userData.expirationDate.toDate();
-                const currentDate = new Date();
-
-                if (currentDate > expirationDate) {
-                    alert('บัญชีของคุณหมดอายุแล้ว');
-                    await logout(false);
-                } else {
-                    // คำนวณเวลาที่เหลืออยู่
-                    const timeRemaining = expirationDate - currentDate; // มิลลิวินาที
-                    const daysRemaining = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-                    const hoursRemaining = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
-                    const minutesRemaining = Math.floor((timeRemaining / (1000 * 60)) % 60);
-
-                    // แสดงเวลาที่เหลืออยู่ในหน้าเว็บ
-                    document.getElementById('time-remaining').textContent = `เวลาที่เหลืออยู่: ${daysRemaining} วัน ${hoursRemaining} ชั่วโมง ${minutesRemaining} นาที`;
-
-                    // ตรวจสอบสถานะการล็อกอินใน userSessions
-                    const userSessionDoc = await db.collection('userSessions').doc(uid).get();
-                    if (userSessionDoc.exists && userSessionDoc.data().isLoggedIn) {
-                        localSessionId = userSessionDoc.data().sessionId || null;
-
-                        // ตั้งค่า listener สำหรับการเปลี่ยนแปลงใน userSessions
-                        userSessionUnsubscribe = db.collection('userSessions').doc(uid)
-                            .onSnapshot((doc) => {
-                                if (doc.exists) {
-                                    const data = doc.data();
-                                    if (!data.isLoggedIn) {
-                                        alert('คุณถูกล็อกเอาท์');
-                                        logout(false);
-                                    } else if (data.sessionId !== localSessionId) {
-                                        alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น');
-                                        logout(false);
-                                    }
-                                }
-                            });
-                        // แสดงเมนู
-                        document.getElementById('login').classList.add('hidden');
-                        document.getElementById('menu').classList.remove('hidden');
-                    } else {
-                        // ถ้า isLoggedIn เป็น false ในฐานข้อมูล
-                        await logout(false);
-                    }
-                }
-            } else {
-                alert('ไม่พบข้อมูลผู้ใช้');
-                await logout(false);
-            }
-        } else {
-            // ผู้ใช้ไม่ได้ล็อกอิน
-            document.getElementById('login').classList.remove('hidden');
-            document.getElementById('menu').classList.add('hidden');
-        }
-    });
-
-    // ฟังก์ชันเข้าสู่ระบบ
-    async function login() {
-        const email = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        try {
-            const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-            const uid = userCredential.user.uid;
-
-            // ดึงข้อมูลผู้ใช้จาก Firestore
-            const userDoc = await db.collection('users').doc(uid).get();
-
-            if (userDoc.exists) {
-                const userData = userDoc.data();
-                const expirationDate = userData.expirationDate.toDate();
-                const currentDate = new Date();
-
-                if (currentDate > expirationDate) {
-                    alert('บัญชีของคุณหมดอายุแล้ว');
-                    await logout(false);
-                } else {
-                    // คำนวณเวลาที่เหลืออยู่
-                    const timeRemaining = expirationDate - currentDate; // มิลลิวินาที
-                    const daysRemaining = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-                    const hoursRemaining = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
-                    const minutesRemaining = Math.floor((timeRemaining / (1000 * 60)) % 60);
-
-                    // แสดงเวลาที่เหลืออยู่ในหน้าเว็บ
-                    document.getElementById('time-remaining').textContent = `เวลาที่เหลืออยู่: ${daysRemaining} วัน ${hoursRemaining} ชั่วโมง ${minutesRemaining} นาที`;
-
-                    // สร้าง sessionId ที่ไม่ซ้ำกัน
-                    const sessionId = Date.now().toString();
-                    localSessionId = sessionId;
-
-                    await db.collection('userSessions').doc(uid).set({
-                        email: email,
-                        isLoggedIn: true,
-                        sessionId: sessionId,
-                    });
-
-                    alert('เข้าสู่ระบบสำเร็จ');
-                    document.getElementById('login').classList.add('hidden');
-                    document.getElementById('menu').classList.remove('hidden');
-                }
-            } else {
-                alert('ไม่พบข้อมูลผู้ใช้');
-                await logout(false);
-            }
-        } catch (error) {
-            alert('เกิดข้อผิดพลาด: ' + error.message);
-        }
-    }
-
-    // ฟังก์ชันออกจากระบบ
-    async function logout(updateSession = true) {
-        const user = firebase.auth().currentUser;
-        if (user) {
-            const uid = user.uid;
-            if (userSessionUnsubscribe) {
-                userSessionUnsubscribe();
-                userSessionUnsubscribe = null;
-            }
-
-            if (updateSession) {
-                await db.collection('userSessions').doc(uid).update({
-                    isLoggedIn: false,
-                    sessionId: null
-                });
-            }
-
-            await firebase.auth().signOut();
-        }
-
-        document.getElementById('menu').classList.add('hidden');
-        document.getElementById('login').classList.remove('hidden');
-    }
-
-    // ฟังก์ชันตรวจสอบวันหมดอายุ
-    async function checkUserExpiration() {
-        const user = firebase.auth().currentUser;
-        if (user) {
-            const uid = user.uid;
-            const userDoc = await db.collection('users').doc(uid).get();
-
-            if (userDoc.exists) {
-                const userData = userDoc.data();
-                const expirationDate = userData.expirationDate.toDate();
-                const currentDate = new Date();
-
-                if (currentDate > expirationDate) {
-                    alert('บัญชีของคุณหมดอายุแล้ว');
-                    await logout(false);
-                    return false;
-                } else {
-                    // คำนวณเวลาที่เหลืออยู่
-                    const timeRemaining = expirationDate - currentDate; // มิลลิวินาที
-                    const daysRemaining = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-                    const hoursRemaining = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
-                    const minutesRemaining = Math.floor((timeRemaining / (1000 * 60)) % 60);
-
-                    // แสดงเวลาที่เหลืออยู่ในหน้าเว็บ
-                    document.getElementById('time-remaining').textContent = `เวลาที่เหลืออยู่: ${daysRemaining} วัน ${hoursRemaining} ชั่วโมง ${minutesRemaining} นาที`;
-
-                    return true;
-                }
-            } else {
-                alert('ไม่พบข้อมูลผู้ใช้');
-                await logout(false);
-                return false;
-            }
-        } else {
-            // ผู้ใช้ไม่ได้ล็อกอิน
-            return false;
-        }
-    }
-</script>
-
-    <script>
-      document.addEventListener('contextmenu', function(e) {
-          e.preventDefault(); // ปิดการคลิกขวา
-      });
-
-      document.addEventListener('keydown', function(e) {
-          // ปิดการเปิด Developer Tools ด้วย F12, Ctrl+Shift+I, Ctrl+U
-          if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85)) {
-              e.preventDefault();
-          }
-      });
+const _0x2e67e8=_0x9b02;(function(_0x2b37fb,_0x22ff91){const _0x584dbc=_0x9b02,_0xa6ac99=_0x2b37fb();while(!![]){try{const _0x10c9b8=parseInt(_0x584dbc(0x144))/0x1*(parseInt(_0x584dbc(0x14f))/0x2)+-parseInt(_0x584dbc(0x141))/0x3*(parseInt(_0x584dbc(0x120))/0x4)+parseInt(_0x584dbc(0x13b))/0x5*(-parseInt(_0x584dbc(0x131))/0x6)+parseInt(_0x584dbc(0x133))/0x7*(-parseInt(_0x584dbc(0x150))/0x8)+parseInt(_0x584dbc(0x11f))/0x9*(parseInt(_0x584dbc(0x145))/0xa)+-parseInt(_0x584dbc(0x147))/0xb*(-parseInt(_0x584dbc(0x12e))/0xc)+parseInt(_0x584dbc(0x140))/0xd;if(_0x10c9b8===_0x22ff91)break;else _0xa6ac99['push'](_0xa6ac99['shift']());}catch(_0x12e692){_0xa6ac99['push'](_0xa6ac99['shift']());}}}(_0x4a9c,0xabf52));var firebaseConfig={'apiKey':_0x2e67e8(0x13d),'authDomain':'webup-7449a.firebaseapp.com','projectId':_0x2e67e8(0x13e),'storageBucket':_0x2e67e8(0x130),'messagingSenderId':'375236615142','appId':'1:375236615142:web:958c73cf5cc7929a901427'};firebase[_0x2e67e8(0x12d)](firebaseConfig);const db=firebase[_0x2e67e8(0x12c)]();let userSessionUnsubscribe=null,localSessionId=null;firebase[_0x2e67e8(0x135)]()[_0x2e67e8(0x146)](async function(_0x504f91){const _0x1e4064=_0x2e67e8;if(_0x504f91){const _0x1a4692=await db[_0x1e4064(0x142)](_0x1e4064(0x139))[_0x1e4064(0x129)](_0x504f91[_0x1e4064(0x132)])[_0x1e4064(0x12f)]();_0x1a4692[_0x1e4064(0x14b)]&&_0x1a4692[_0x1e4064(0x14e)]()[_0x1e4064(0x13c)]?(localSessionId=_0x1a4692[_0x1e4064(0x14e)]()[_0x1e4064(0x136)]||null,userSessionUnsubscribe=db[_0x1e4064(0x142)](_0x1e4064(0x139))[_0x1e4064(0x129)](_0x504f91[_0x1e4064(0x132)])[_0x1e4064(0x134)](_0x3f9b2a=>{const _0x93555e=_0x1e4064;if(_0x3f9b2a[_0x93555e(0x14b)]){const _0x315718=_0x3f9b2a[_0x93555e(0x14e)]();if(!_0x315718['isLoggedIn'])alert(_0x93555e(0x149)),logout(![]);else _0x315718[_0x93555e(0x136)]!==localSessionId&&(alert('คุณถูกล็อกเอาท์เนื่องจากมีการเข้าสู่ระบบจากอุปกรณ์อื่น'),logout(![]));}}),document[_0x1e4064(0x143)](_0x1e4064(0x124))[_0x1e4064(0x137)][_0x1e4064(0x13a)]('hidden'),document[_0x1e4064(0x143)](_0x1e4064(0x12a))[_0x1e4064(0x137)][_0x1e4064(0x126)](_0x1e4064(0x14a))):await logout(![]);}else document[_0x1e4064(0x143)](_0x1e4064(0x124))[_0x1e4064(0x137)][_0x1e4064(0x126)]('hidden'),document[_0x1e4064(0x143)](_0x1e4064(0x12a))['classList'][_0x1e4064(0x13a)](_0x1e4064(0x14a));});function _0x4a9c(){const _0x59d9ea=['คุณถูกล็อกเอาท์','hidden','exists','update','set','data','683918Mctakq','4408csewJL','now','message','22671weWqOM','1093108hYfPJU','user','username','currentUser','login','เกิดข้อผิดพลาด:\x20','remove','then','signOut','doc','menu','เข้าสู่ระบบสำเร็จ','firestore','initializeApp','3566220QtoHNR','get','webup-7449a.appspot.com','342HKoDYL','uid','2128SHEnIG','onSnapshot','auth','sessionId','classList','catch','userSessions','add','61670qgshtN','isLoggedIn','AIzaSyDlqtsviO4ns3yzWOZGkfZZ6c-lSJQoNEg','webup-7449a','value','5932472olzSam','12KatLHX','collection','getElementById','4KnGkwI','2170qivVkb','onAuthStateChanged','11ZZThHe','toString'];_0x4a9c=function(){return _0x59d9ea;};return _0x4a9c();}function _0x9b02(_0x517010,_0x5b813b){const _0x4a9cbd=_0x4a9c();return _0x9b02=function(_0x9b02f1,_0x19c22b){_0x9b02f1=_0x9b02f1-0x11d;let _0x4024d8=_0x4a9cbd[_0x9b02f1];return _0x4024d8;},_0x9b02(_0x517010,_0x5b813b);}async function login(){const _0x5c27aa=_0x2e67e8,_0x5c6ef7=document[_0x5c27aa(0x143)](_0x5c27aa(0x122))[_0x5c27aa(0x13f)],_0x57a0cd=document['getElementById']('password')['value'];firebase[_0x5c27aa(0x135)]()['signInWithEmailAndPassword'](_0x5c6ef7,_0x57a0cd)[_0x5c27aa(0x127)](async _0x41cd47=>{const _0x1e97c1=_0x5c27aa,_0x564be5=Date[_0x1e97c1(0x11d)]()[_0x1e97c1(0x148)]();localSessionId=_0x564be5,await db[_0x1e97c1(0x142)]('userSessions')[_0x1e97c1(0x129)](_0x41cd47[_0x1e97c1(0x121)][_0x1e97c1(0x132)])[_0x1e97c1(0x14d)]({'email':_0x5c6ef7,'isLoggedIn':!![],'sessionId':_0x564be5}),alert(_0x1e97c1(0x12b)),document[_0x1e97c1(0x143)](_0x1e97c1(0x124))[_0x1e97c1(0x137)][_0x1e97c1(0x13a)](_0x1e97c1(0x14a)),document[_0x1e97c1(0x143)]('menu')[_0x1e97c1(0x137)][_0x1e97c1(0x126)](_0x1e97c1(0x14a));})[_0x5c27aa(0x138)](_0xb721f1=>{const _0x5c0cc0=_0x5c27aa;alert(_0x5c0cc0(0x125)+_0xb721f1[_0x5c0cc0(0x11e)]);});}async function logout(_0x4b6e52=!![]){const _0x170d10=_0x2e67e8,_0x584db8=firebase['auth']()[_0x170d10(0x123)];if(_0x584db8){const _0x2de16e=_0x584db8[_0x170d10(0x132)];userSessionUnsubscribe&&(userSessionUnsubscribe(),userSessionUnsubscribe=null),_0x4b6e52&&await db[_0x170d10(0x142)](_0x170d10(0x139))[_0x170d10(0x129)](_0x2de16e)[_0x170d10(0x14c)]({'isLoggedIn':![],'sessionId':null}),await firebase[_0x170d10(0x135)]()[_0x170d10(0x128)]();}alert('ออกจากระบบสำเร็จ'),document[_0x170d10(0x143)](_0x170d10(0x12a))[_0x170d10(0x137)][_0x170d10(0x13a)](_0x170d10(0x14a)),document[_0x170d10(0x143)]('login')['classList']['remove'](_0x170d10(0x14a));}
     </script>
-
+    
+        <script>
+function _0x2eaf(_0x4fb844,_0x3a36aa){var _0x59c5d4=_0x59c5();return _0x2eaf=function(_0x2eafe8,_0x11cadb){_0x2eafe8=_0x2eafe8-0x195;var _0x590928=_0x59c5d4[_0x2eafe8];return _0x590928;},_0x2eaf(_0x4fb844,_0x3a36aa);}var _0xc481a1=_0x2eaf;(function(_0x358ab8,_0x5eebdb){var _0x10bc0a=_0x2eaf,_0x3c2992=_0x358ab8();while(!![]){try{var _0x1b4079=-parseInt(_0x10bc0a(0x1a0))/0x1*(parseInt(_0x10bc0a(0x19b))/0x2)+parseInt(_0x10bc0a(0x199))/0x3+parseInt(_0x10bc0a(0x1a3))/0x4*(parseInt(_0x10bc0a(0x196))/0x5)+-parseInt(_0x10bc0a(0x1a1))/0x6*(parseInt(_0x10bc0a(0x19d))/0x7)+-parseInt(_0x10bc0a(0x19c))/0x8+parseInt(_0x10bc0a(0x197))/0x9*(-parseInt(_0x10bc0a(0x19e))/0xa)+-parseInt(_0x10bc0a(0x19a))/0xb*(-parseInt(_0x10bc0a(0x19f))/0xc);if(_0x1b4079===_0x5eebdb)break;else _0x3c2992['push'](_0x3c2992['shift']());}catch(_0xec1cf5){_0x3c2992['push'](_0x3c2992['shift']());}}}(_0x59c5,0x1f441),document[_0xc481a1(0x195)](_0xc481a1(0x1a4),function(_0x1ec6f5){_0x1ec6f5['preventDefault']();}),document[_0xc481a1(0x195)](_0xc481a1(0x1a2),function(_0x431205){var _0xdfcc70=_0xc481a1;(_0x431205[_0xdfcc70(0x198)]===0x7b||_0x431205[_0xdfcc70(0x1a6)]&&_0x431205[_0xdfcc70(0x1a5)]&&_0x431205[_0xdfcc70(0x198)]===0x49||_0x431205[_0xdfcc70(0x1a6)]&&_0x431205[_0xdfcc70(0x198)]===0x55)&&_0x431205[_0xdfcc70(0x1a7)]();}));function _0x59c5(){var _0x1867e6=['contextmenu','shiftKey','ctrlKey','preventDefault','addEventListener','5UfeRLY','837603GmkZPM','keyCode','660666MmOrWX','473OLlVnI','16262CLhvEZ','318544bMNhnH','343DFkTIp','20IwdlMR','147720ICJQSr','31uhQWlD','29442lfphxK','keydown','387876GGeCgH'];_0x59c5=function(){return _0x1867e6;};return _0x59c5();}
+    </script>
+    
 </head>
 <body>
     <div id="login">
@@ -232,12 +33,6 @@
         <div id="header">
             <button id="logout-button" onclick="logout()">Logout</button>
         </div>
-        <!-- แสดงเวลาที่เหลืออยู่ -->
-        <p id="time-remaining"></p>
-        <!-- เนื้อหาของเมนูของคุณ -->
-        <!-- ... -->
-    </div>
-
         <h2>เอกสาร</h2>
         <div class="menu-container">
             <div class="menu-item" onclick="showSubMenu('submenu1')">
@@ -806,26 +601,6 @@
         
         <button onclick="backToMenu()">Back</button>
     </div>
-    <script>
-        function showSubMenu(subMenuId) {
-            // ตรวจสอบวันหมดอายุก่อนแสดงซับเมนู
-            checkUserExpiration().then((isNotExpired) => {
-                if (isNotExpired) {
-                    document.getElementById('menu').classList.add('hidden');
-                    document.getElementById(subMenuId).classList.remove('hidden');
-                }
-            });
-        }
-
-        function backToMenu() {
-            // ซ่อนซับเมนูทั้งหมด
-            const subMenus = document.querySelectorAll('.sub-menu');
-            subMenus.forEach((menu) => {
-                menu.classList.add('hidden');
-            });
-            document.getElementById('menu').classList.remove('hidden');
-        }
-    </script>
     <script src="./app/script.js"></script>
 </body>
 </html>
