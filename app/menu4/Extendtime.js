@@ -90,6 +90,7 @@ function updateDisplay() {
     const amount = document.getElementById('amount').value || '-';
     const Memo = document.getElementById('Memo').value || '-';
     const footnote = document.getElementById('footnote').value || '-';
+    const backgroundSelect = document.getElementById('backgroundSelect').value || '';
 
     const companyName = document.getElementById('companyName').value || '-';
     const companyNameEng = document.getElementById('companyNameEng').value || '-';
@@ -103,7 +104,7 @@ function updateDisplay() {
 
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/paper2.jpg';
+    backgroundImage.src = backgroundSelect;
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
