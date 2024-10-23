@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จองโควต้า</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>จองโควต้า</h1>
+            <div class="form">
+                <label for="code">รหัสโควต้า</label>
+                <input type="text" id="code" name="code" placeholder="รหัสโควต้า" oninput="updateDisplay()">
+                
+                <label for="datetime">วันที่:</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="ProjectName1">เรื่อง</label>
+                <input type="text" id="ProjectName1" name="ProjectName1" value="เรื่อง “โรงงานอุตสาหกรรม” ในอนาคต" oninput="updateDisplay()">
+
+
+                <!-- รายการที่ 1 -->
+                <h2>รายการที่ 1</h2>
+                <label for="itemName1">ชื่อ-นามสกุล</label>
+                <input type="text" id="itemName1" name="itemName1" oninput="updateDisplay()">
+
+                <label for="itemnumber1">เลขบัตร</label>
+                <input type="text" id="itemnumber1" name="itemnumber1" oninput="updateDisplay()">
+
+                <label for="itemQuantity1">โควต้า</label>
+                <input type="number" id="itemQuantity1" name="itemQuantity1" min="0" oninput="updateDisplay()">
+
+                <label for="itemPrice1">จำนวนเงิน</label>
+                <input type="number" id="itemPrice1" name="itemPrice1" min="0" step="0.01" oninput="updateDisplay()">
+
+                <!-- รายการที่ 2 -->
+                <h2>รายการที่ 2</h2>
+                <label for="itemName2">ชื่อ-นามสกุล</label>
+                <input type="text" id="itemName2" name="itemName2" oninput="updateDisplay()">
+
+                <label for="itemnumber2">เลขบัตร</label>
+                <input type="text" id="itemnumber2" name="itemnumber2" oninput="updateDisplay()">
+
+                <label for="itemQuantity2">โควต้า</label>
+                <input type="number" id="itemQuantity2" name="itemQuantity2" min="0" oninput="updateDisplay()">
+
+                <label for="itemPrice2">จำนวนเงิน</label>
+                <input type="number" id="itemPrice2" name="itemPrice2" min="0" step="0.01" oninput="updateDisplay()">
+
+                <br>
+                <br>
+                <label for="companyName">บริษัท</label>
+                <input type="text" id="companyName"  name="companyName" value="บริษัท จัดหางาน ไทยอัศวเลิศ จำกัด" oninput="updateDisplay()">
+                <input type="text" id="companyAddress"  name="companyAddress" value="ชั้นที่ 2 เอ เลขที่ 2 ซอยปุณณวิถี 31 ถนนสุขุมวิท 101 แขวงบางจาก เขตพระโขนง กรุงเทพมหานคร 10260" oninput="updateDisplay()">
+                <input type="text" id="companytax"  name="companytax" value="0105540073320" oninput="updateDisplay()">
+
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu5/Quota.js"></script>
+</body>
+</html>
