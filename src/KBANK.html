@@ -53,10 +53,9 @@ function _0x1364(_0xb336c0,_0x1c07f8){var _0x49fff7=_0x49ff();return _0x1364=fun
                 <label for="savings">จำนวนเงินเงินที่สั่งจ่าย</label>
                 <input type="text" id="savings" name="savings" placeholder="ระบุจำนวนเงิน"  oninput="updateDisplay()">
                 
-                
-                <label for="Dateandtime">เวลาสั่งจ่าย</label>
-                <input type="text" id="Dateandtime" name="Dateandtime" placeholder="01/01/2567 10:00:00" oninput="updateDisplay()">
-                
+                <label for="datetime">เวลา (hh:mm:ss):</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
                 <label for="notes">หมายเหตุ <br>ปุ่มสเปคบาร์ ( ให้คำท้ายไปบรรทัดใหม่ )</label>
                 <input type="text" id="notes" name="notes" placeholder="บัญชีของผู้กู้ไม่ตรงกับข้อมูลของผู้ยืมกู้ ธนาคารทำการโอนซ้ำหลายรอบ ไม่สามารถโอนเงินเข้าได้ ตามกฎระเบียบของธนาคาร กฎหมายความมั่นคงของกองทุนผู้กู้ ถูกอายัดชั่วคราว" oninput="updateDisplay()">
                 
