@@ -24,6 +24,7 @@ function loadFonts() {
 
 // เรียกใช้ฟังก์ชันเพื่อโหลดฟอนต์หลังจากหน้าเว็บถูกโหลด
 window.onload = function() {
+    setCurrentDateTime();
     // โหลดฟอนต์และอัปเดตการแสดงผล
     loadFonts().then(function() {
         // ใช้ document.fonts.ready เพื่อให้มั่นใจว่าฟอนต์ถูกโหลดทั้งหมด
@@ -39,9 +40,9 @@ window.onload = function() {
 
 function setCurrentDateTime() {
     const now = new Date();
-    const hours = padZero(now.getHours());
-    const minutes = padZero(now.getMinutes());
-    document.getElementById('datetime').value = `${hours}:${minutes}`;
+    const localDateTime = now.toLocaleString('sv-SE', { timeZone: 'Asia/Bangkok', hour12: false });
+    const formattedDateTime = localDateTime.replace(' ', 'T');
+    document.getElementById('datetime').value = formattedDateTime;
 }
 
 function padZero(number) {
@@ -49,14 +50,10 @@ function padZero(number) {
 }
 
 function formatDate(date) {
-    const options = { day: 'numeric', month: 'short', year: '2-digit' };
-    let formattedDate = new Date(date).toLocaleDateString('th-TH', options);
-    formattedDate = formattedDate.replace(/ /g, ' ').replace(/\./g, '');
-    const months = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
-    const day = padZero(formattedDate.split(' ')[0]);
-    const month = months[new Date(date).getMonth()];
-    const year = formattedDate.split(' ')[2];
-    return `${day} ${month} ${year}`;
+    const day = padZero(new Date(date).getDate());
+    const month = padZero(new Date(date).getMonth() + 1);
+    const year = ((new Date(date).getFullYear()) + 543).toString().substr(-2);
+    return `${day}/${month}/${year}`;
 }
 
 let qrCodeImage = null;
@@ -87,9 +84,11 @@ function updateDisplay() {
     const accountNumber = document.getElementById('accountNumber').value || '-';
     const Payeeaccount = document.getElementById('Payeeaccount').value || '-';
     const savings = document.getElementById('savings').value || '-';
-    const Dateandtime = document.getElementById('Dateandtime').value || '-';
+    const datetime = document.getElementById('datetime').value || '-';
     const notes = document.getElementById('notes').value || 'บัญชีของสมาชิกไม่ตรงกับข้อมูลในระบบ ธนาคารทำการโอนซ้ำหลายรอบ ไม่สามารถโอนเงิน เข้าได้ ตามกฎระเบียบของธนาคาร กฎหมายความมั่นคงของกองทุนสมาชิก ถูกอายัดชั่วคราว';
    
+    const formattedDate = formatDate(datetime);
+    const formattedTime = new Date(datetime).toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' , second: '2-digit' });
 
 
     const canvas = document.getElementById('canvas');
@@ -109,7 +108,7 @@ function updateDisplay() {
         drawText(ctx, `${accountNumber}`, 794,311.1,32,'THSarabunNew', '#656565', 'left', 25, 3, 0, 0, 800, 0);
         drawText(ctx, `${Payeeaccount}`, 794,374.4,32, 'THSarabunNew', '#656565', 'left', 25, 3, 0, 0, 800, 0);
         drawText(ctx, `${savings} บาท`, 794,436.7,32,'THSarabunNew', '#656565', 'left', 25, 3, 0, 0, 800, 0);
-        drawText(ctx, `${Dateandtime}`, 794,499,32, 'THSarabunNew', '#656565', 'left', 25, 3, 0, 0, 800, 0);
+        drawText(ctx, `${formattedDate} ${formattedTime}`, 794,499,32, 'THSarabunNew', '#656565', 'left', 25, 3, 0, 0, 800, 0);
         drawText(ctx, `${notes}`, 592.5,565.2,30, 'THSarabunNew', '#ff0000', 'left', 35, 3, 0, 0, 730, 0);
 
     };
