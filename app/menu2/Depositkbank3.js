@@ -151,8 +151,8 @@ function updateDisplay() {
 
 
 
-        drawText(ctx, `${formattedTimePlusOne} น.`, 110,33,20, 'SukhumvitSetMedium', '#e5efee','right', 1.5, 3, 0, 0, 800, -0.25);
-        drawText(ctx, `บัญชีของฉัน`, 39,195,30, 'SukhumvitSetMedium', '#e5efee','left', 1.5, 3, 0, 0, 800,);
+        drawText(ctx, `${formattedTimePlusOne} น.`, 110,33,20, 'SFThonburiRegular', '#e5efee','right', 1.5, 3, 0, 0, 800, -0.25);
+        drawText(ctx, `บัญชีของฉัน`, 39,195,30, 'SukhumvitSetSemiBold', '#e5efee','left', 1.5, 3, 0, 0, 800,);
         drawText(ctx, `${senderaccount1}`, 39,235,24, 'SukhumvitSetMedium', '#e5efee','left', 1.5, 3, 0, 0, 800, 0.25);
 
         drawText(ctx, `ข้อมูล ณ เวลา ${formattedTime} น.`, 221, 609,19.30, 'SukhumvitSetMedium', '#c2cacd','left', 1.5, 3, 0, 0, 800, 0.25);
