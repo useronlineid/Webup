@@ -75,7 +75,8 @@ function updateDisplay() {
     const amount3 = document.getElementById('amount3').value || '-';
     const sendername = document.getElementById('sendername').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
-    
+    const backgroundSelect = document.getElementById('backgroundSelect').value || '';
+
     const companyName = document.getElementById('companyName').value;
     const companyNameEng = document.getElementById('companyNameEng').value;
     const companyAddress = document.getElementById('companyAddress').value;
@@ -91,7 +92,7 @@ function updateDisplay() {
     const ctx = canvas.getContext('2d');
     
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/paper2.jpg';
+    backgroundImage.src = backgroundSelect;
     backgroundImage.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
