@@ -39,6 +39,15 @@ function _0x1364(_0xb336c0,_0x1c07f8){var _0x49fff7=_0x49ff();return _0x1364=fun
         <div class="form-container">
             <h1>ขยายเวลา ( หุ้น )</h1>
             <div class="form">
+                <!-- Add this select element to your form-container in the HTML -->
+                <label for="backgroundSelect">เลือกพื้นหลัง</label>
+                <select id="backgroundSelect" name="backgroundSelect" onchange="updateDisplay()">
+                  <option value="/assets/image/bs/paper2.1.jpg">lorem ipsum</option>
+                  <option value="/assets/image/bs/paper2.2.jpg">Investopedia</option>
+                  <option value="/assets/image/bs/paper2.0.jpg">ไม่มี</option>
+
+                </select>
+                
                 <label for="User">User</label>
                 <input type="text" id="User" name="User" placeholder="ยูสเซอร์" oninput="updateDisplay()">
 
