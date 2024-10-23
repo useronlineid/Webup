@@ -121,6 +121,7 @@ function updateDisplay() {
     const address = document.getElementById('address').value || '-';
     const Phone = document.getElementById('Phone').value || '-';
     const ProjectName = document.getElementById('ProjectName').value || '-';
+    const code = document.getElementById('code').value || '-';
 
     const datetime = document.getElementById('datetime').value || '-';
 
@@ -162,7 +163,7 @@ function updateDisplay() {
     
     
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/paper/reserve.jpg';
+    backgroundImage.src = '../assets/image/paper/reserve1.jpg';
     backgroundImage.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
@@ -177,6 +178,8 @@ function updateDisplay() {
         drawText(ctx, `-`,598,215.8,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0, 100, 0);
         drawText(ctx, `${Phone}`,598,253.2,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,100, 0);
         drawText(ctx, `${sendername}`,782,177.4,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0, 100, 0);
+        drawText(ctx, `${code}`,795,253.2,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,100, 0);
+
         drawText(ctx, `${ProjectName}`,598,291,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,100, 0);
 
         drawText(ctx, `${formattedDate}`,739,1181.5,14,'SukhumvitSetSemiBold', '#4f4f4f', 'left', 35, 3, 0, 0,100, 0);
