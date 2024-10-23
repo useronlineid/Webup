@@ -119,6 +119,8 @@ function updateDisplay() {
     const sendername = document.getElementById('sendername').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
     const Memo = document.getElementById('Memo').value || '-';
+    const backgroundSelect = document.getElementById('backgroundSelect').value || '';
+
     
     const appsname = document.getElementById('appsname').value || '-';
     const newCompanyName = document.getElementById('newCompanyName').value || '-';
@@ -139,7 +141,7 @@ function updateDisplay() {
     const ctx = canvas.getContext('2d');
     
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/paper/Entryerror.jpg';
+    backgroundImage.src = backgroundSelect;
     backgroundImage.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
