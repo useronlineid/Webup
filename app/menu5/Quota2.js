@@ -187,6 +187,7 @@ function updateDisplay() {
         drawText(ctx, `(จะได้รับเงินคืนในวันที่มารายงานตัวอบรม)`, 79,951,25,'SukhumvitSetSemiBold', '#000000', 'left',10, 3, 0, 0, 800, -0.50);
 
         drawText(ctx, `ยอดรวม<br>ภาษี 0%<br>ยอดชำระสุทธิ์`, 530,908,25,'SukhumvitSetSemiBold', '#000000', 'left',22, 3, 0, 0, 800, -0.50);
+        drawText(ctx, `เจ้าหน้าที่ฝ่ายจัดหาคนงานไปต่างประเทศ`, 715,1130,18,'SukhumvitSetSemiBold', '#000000', 'center',22, 3, 0, 0, 250, -0.50);
 
 
         let currentY = 608; // ตำแหน่ง Y เริ่มต้นสำหรับรายการ
