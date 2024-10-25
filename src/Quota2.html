@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จองโควต้า</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>จองโควต้า</h1>
+            <div class="form">
+
+                <label for="datetime">วันที่:</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="Name1">ชื่อ-นามสกุล</label>
+                <input type="text" id="Name1" name="Name1" placeholder="ชื่อ-นามสกุล"  oninput="updateDisplay()">
+
+                <label for="Address">ที่อยู่ปัจจุบัน</label>
+                <input type="text" id="Address" name="Address"  placeholder="ที่อยู่ปัจจุบัน" oninput="updateDisplay()">
+
+                <label for="Phone">เบอร์ติดต่อ</label>
+                <input type="text" id="Phone" name="Phone" placeholder="เบอร์ติดต่อ"oninput="updateDisplay()">
+
+                <label for="code">รหัสโควต้า</label>
+                <input type="text" id="code" name="code" placeholder="รหัสโควต้า" oninput="updateDisplay()">
+                
+                <!-- รายการที่ 1 -->
+                <h2>รายการที่ 1</h2>
+                <label for="ProjectName1">เรื่อง</label>
+                <input type="text" id="ProjectName1" name="ProjectName1" value="โควต้าเกษตรกรรม" oninput="updateDisplay()">
+
+
+                <label for="itemQuantity1">จำนวน</label>
+                <input type="number" id="itemQuantity1" name="itemQuantity1" placeholder="จำนวน" min="0" oninput="updateDisplay()">
+
+                <label for="itemPrice1">จำนวนเงิน</label>
+                <input type="number" id="itemPrice1" name="itemPrice1"placeholder="จำนวนเงิน" min="0" step="0.01" oninput="updateDisplay()">
+
+                <!-- รายการที่ 2 -->
+                <h2>รายการที่ 2</h2>
+                <label for="ProjectName2">เรื่อง</label>
+                <input type="text" id="ProjectName2" name="ProjectName2" oninput="updateDisplay()">
+
+
+                <label for="itemQuantity2">โควต้า</label>
+                <input type="number" id="itemQuantity2" name="itemQuantity2" min="0" oninput="updateDisplay()">
+
+                <label for="itemPrice2">จำนวนเงิน</label>
+                <input type="number" id="itemPrice2" name="itemPrice2" min="0" step="0.01" oninput="updateDisplay()">
+
+                <br>
+                <br>
+                <label for="companyName">บริษัท</label>
+                <input type="text" id="companyName"  name="companyName" value="บริษัท จัดหางาน ไทยอัศวเลิศ จำกัด" oninput="updateDisplay()">
+                <input type="text" id="newCompanyNameEng"  name="newCompanyNameEng" value="THAI ASAWALERT MANPOWER CO.,LTD." oninput="updateDisplay()">
+                <input type="text" id="companyAddress"  name="companyAddress" value="ชั้นที่ 2 เอ เลขที่ 2 ซอยปุณณวิถี 31 ถนนสุขุมวิท 101 แขวงบางจาก เขตพระโขนง กรุงเทพมหานคร 10260" oninput="updateDisplay()">
+
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu5/Quota2.js"></script>
+</body>
+</html>
