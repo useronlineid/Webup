@@ -182,7 +182,7 @@ function updateDisplay() {
     
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/KTB1T.jpg';
+    backgroundImage.src = '../assets/image/bs/KTB3T.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
