@@ -186,7 +186,7 @@ function updateDisplay() {
         }
 
         // วาดข้อมูลรายการที่ 2 ถ้ามีการกรอกข้อมูลครบ
-        if (itemName2 !== '-' && itemnumber1 > 0 && itemQuantity2 > 0 && itemPrice2 > 0) {
+        if (itemName2 !== '-' && itemnumber2 > 0 && itemQuantity2 > 0 && itemPrice2 > 0) {
             drawItem(ctx, itemNumber, itemName2, itemnumber2 , itemQuantity2, itemPrice2, totalPrice2, currentY);
             currentY += 55;
             itemNumber++;
