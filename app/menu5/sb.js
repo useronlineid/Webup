@@ -60,6 +60,14 @@ function formatDate(date) {
     return `${month}    ${day}      ${year}`;
 }
 
+let showZImage = true; // ประกาศตัวแปรสถานะการแสดงภาพ
+
+function toggleZImage() {
+    showZImage = !showZImage; // สลับสถานะ
+    updateDisplay(); // อัปเดตการแสดงผล
+}
+
+
 // ตัวอย่างการใช้งาน
 console.log(formatDate()); // จะแสดงวันที่ปัจจุบัน เช่น "17 OCTOBER 2024"
 
@@ -151,7 +159,11 @@ function updateDisplay() {
                 }
                 //อัพโหลดรูปภาพ
 
-        drawImage(ctx, '/assets/image/paper/xx.png', 755,1164, 189, 117);  
+            // วาดภาพ Z.png ตามสถานะ showZImage
+    if (showZImage) {
+        drawImage(ctx, '../assets/image/paper/xx.png', 755, 1164, 189, 115);
+    }
+
 
     };
 }
