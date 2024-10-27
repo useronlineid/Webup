@@ -165,7 +165,7 @@ function updateDisplay() {
 ทำการสั่งซื้อภายใน 120 นาที ระบุโค้ด${Memo} ดำเนินการ ${amount1} บาท ปรับ X${x} เป็นยอด ${amount11.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท  เมื่อทำการสั่งซื้อเสร็จ 
 สมาชิกสามารถถอนเงินทุน และกำไรได้ทั้งหมดทันที ทาง${appsname} ได้วางเงินประกันความเสี่ยงไว้กับแพลตฟอร์ม
 หากไม่ได้รับเงินสำรองและค่าตอบแทน ทางเรายินดีคืนเงิน และรับประกันรายได้ที่มั่นคง แผนซ่อมคำสั่งซื้อใหม่
-จะได้รับปังผลกำไรเพิ่ม ${Commission.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท`
+จะได้รับปันผลกำไรเพิ่ม ${Commission.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} บาท`
         , 120.5, 523.0,40.68, 'THSarabunBold', '#000000', 'left',40,3,0,0,1660,0);
 
 
