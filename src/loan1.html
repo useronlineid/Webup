@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สัญญายืม</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>สัญญายืม</h1>
+            <div class="form">
+                <!-- ปรับปรุงช่องวันที่ออกเอกสาร -->
+                <label for="datetime">วันที่ออกเอกสาร</label>
+                <input type="date" id="datetime" required oninput="updateDisplay()">
+                
+                <label for="companyName">ข้อมูลบริษัท</label>
+                <input type="text" id="newCompanyName1"  name="newCompanyName1" placeholder="บริษัท" oninput="updateDisplay()">
+                <input type="text" id="newCompanyAddress1"  name="newCompanyAddress1" placeholder="ที่อยู่บรษัท" oninput="updateDisplay()">
+                <input type="text" id="newCompanyAddressA1"  name="newCompanyAddressA1" placeholder="ชื่อผู้ให้กู้" oninput="updateDisplay()">
+
+                <label for="newCompanyName2">ข้อมูลผู้กู้</label>
+                <input type="text" id="newCompanyName2" name="newCompanyName2" placeholder="ชื่อ-นามสกุล" oninput="updateDisplay()">
+                <input type="text" id="newCompanyAddress2" name="newCompanyAddress2" placeholder="ที่อยู่ผู้กู้" oninput="updateDisplay()">
+                <input type="text" id="witness1" name="witness1" placeholder="พยาน (1)" oninput="updateDisplay()">
+                <input type="text" id="witness2" name="witness2" placeholder="พยาน (1)" oninput="updateDisplay()">
+
+
+
+                <label for="amount1">วงเงิน</label>
+                <input type="text" id="amount1" name="amount1" placeholder="วงเงิน" oninput="updateDisplay()">
+
+                <!-- เพิ่มช่องสำหรับระบุวันที่เริ่มต้น -->
+                <label for="startDate">วันที่เริ่มต้นสำหรับคำนวณวันชำระ</label>
+                <input type="date" id="startDate" name="startDate" oninput="updateDisplay()">
+
+                <!-- เพิ่มช่องสำหรับระบุจำนวนเดือน -->
+                <label for="paymentMonths">จำนวนเดือนที่กำหนดวันชำระ</label>
+                <input type="number" id="paymentMonths" name="paymentMonths" placeholder="ระบุจำนวนเดือน" min="0" oninput="updateDisplay()">
+                
+
+                <br>
+                <br>
+                <label for="text1">หลักฐาน</label>
+                <input type="text" id="text1" name="text1" value="ไม่มีหลักประกัน" oninput="updateDisplay()">
+
+
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu3/loan1.js"></script>
+</body>
+</html>
