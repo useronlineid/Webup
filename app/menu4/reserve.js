@@ -178,7 +178,7 @@ function updateDisplay() {
         drawText(ctx, `-`,598,215.8,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0, 100, 0);
         drawText(ctx, `${Phone}`,598,253.2,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,100, 0);
         drawText(ctx, `${sendername}`,782,177.4,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0, 100, 0);
-        drawText(ctx, `${code}`,791,253.2,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,100, -0.30);
+        drawText(ctx, `${code}`,782,253.2,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,100, -0.30);
 
         drawText(ctx, `${ProjectName}`,598,291,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,100, 0);
 
