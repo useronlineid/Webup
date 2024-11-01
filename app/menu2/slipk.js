@@ -203,11 +203,11 @@ function updateDisplay() {
             // Draw text with custom styles
             drawText(ctx, `${formattedDate}  ${formattedTime} น.`, 69.8, 136.6,37.5, 'SukhumvitSetMedium', '#4e4e4e', 'left', 1.5, 3, 0, 0, 500, 0);
 
-            drawText(ctx, `${sendername}`, 238.9, 272.0,39.3, 'SukhumvitSetSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 500, 0);
+            drawText(ctx, `${sendername}`, 238.9, 272.0,39.3, 'SukhumvitSetSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
             drawText(ctx, `ธ.กสิกรไทย`, 238.9, 333.6,37.5, 'SukhumvitSetMedium', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${senderaccount}`, 238.9, 392.5,37.5, 'SukhumvitSetMedium', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
             
-            drawText(ctx, `${receivername}`, 238.9, 577.0,39.3, 'SukhumvitSetSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 500, 0);
+            drawText(ctx, `${receivername}`, 238.9, 577.0,39.3, 'SukhumvitSetSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
             drawText(ctx, `${bank}`, 238.9, 639.0,37.5, 'SukhumvitSetMedium', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${receiveraccount}`, 238.9, 697.7,37.5, 'SukhumvitSetMedium', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
             
