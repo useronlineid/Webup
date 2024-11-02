@@ -202,11 +202,11 @@ function updateDisplay() {
             
             
             drawText(ctx, `${sendername}`, 188, 519,47, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800,-0.6);
-            drawText(ctx, `กรุงไทย`, 188, 577,36.5, 'DXKrungthaiBold', '#000000', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `กรุงไทย`, 188, 577,36.5, 'DXKrungthaiMedium', '#000000', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${senderaccount}`,188, 631,37, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500,-1.6);
             
             drawText(ctx, `${receivername}`, 188,796.3,47, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.6);
-            drawText(ctx, `${bank}`, 188, 853.8,36.5, 'DXKrungthaiBold', '#000000', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${bank}`, 188, 853.8,36.5, 'DXKrungthaiMedium', '#000000', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${receiveraccount}`, 188, 908.1,37, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500,-1.6);
             
             drawText(ctx, `บาท`, 963.7, 1025.7,41.50, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
