@@ -144,7 +144,7 @@ function updateDisplay() {
             bankLogoUrl = '../assets/image/logo/BBL1.png';
             break;
         case 'ธ.ไทยพาณิชย์':
-            bankLogoUrl = '../assets/image/logo/SCB.png';
+            bankLogoUrl = '../assets/image/logo/SCB1.png';
             break;
         case 'ธ.กรุงศรีอยุธยา':
             bankLogoUrl = '../assets/image/logo/BAY2.png';
