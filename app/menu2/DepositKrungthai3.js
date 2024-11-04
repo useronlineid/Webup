@@ -244,7 +244,8 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
         return;
     }
 
-    const characters = text.split('');
+    const segmenter = new Intl.Segmenter('th', { granularity: 'grapheme' });
+    const characters = [...segmenter.segment(text)].map(segment => segment.segment);
     let currentPosition = x;
 
     characters.forEach((char, index) => {
@@ -253,7 +254,6 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
         currentPosition += charWidth + letterSpacing;
     });
 }
-
 
 function drawBattery(ctx, batteryLevel, powerSavingMode) {
     // วาดกรอบแบตเตอรี่ด้วยมุมโค้งมน
