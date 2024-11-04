@@ -1,67 +1,12 @@
 // ฟังก์ชันเพื่อโหลดฟอนต์
 function loadFonts() {
     const fonts = [
-        //SukhumvitSet
-        new FontFace('SukhumvitSetThin', 'url(../assets/fonts/SukhumvitSet-Thin.woff)'),
-        new FontFace('SukhumvitSetText', 'url(../assets/fonts/SukhumvitSet-Text.woff)'),
-        new FontFace('SukhumvitSetLight', 'url(../assets/fonts/SukhumvitSet-Light.woff)'),
-        new FontFace('SukhumvitSetMedium', 'url(../assets/fonts/SukhumvitSet-Medium.woff)'),
-        new FontFace('SukhumvitSetSemiBold', 'url(../assets/fonts/SukhumvitSet-SemiBold.woff)'),
-        new FontFace('SukhumvitSetBold', 'url(../assets/fonts/SukhumvitSet-Bold.woff)'),
-        new FontFace('SukhumvitSetExtraBold', 'url(../assets/fonts/SukhumvitSet-Extra%20Bold.woff)'),
         //SFThonburi
         new FontFace('SFThonburiLight', 'url(../assets/fonts/SFThonburi.woff)'),
         new FontFace('SFThonburiRegular', 'url(../assets/fonts/SFThonburi-Regular.woff)'),
         new FontFace('SFThonburiSemiBold', 'url(../assets/fonts/SFThonburi-Semibold.woff)'),
         new FontFace('SFThonburiBold', 'url(../assets/fonts/SFThonburi-Bold.woff)'),
-        //Kanit
-        new FontFace('KanitThin', 'url(../assets/fonts/Kanit-Thin.woff)'),
-        new FontFace('KanitExtraLight', 'url(../assets/fonts/Kanit-ExtraLight.woff)'),
-        new FontFace('KanitLight', 'url(../assets/fonts/Kanit-Light.woff)'),
-        new FontFace('KanitRegular', 'url(../assets/fonts/Kanit-Regular.woff)'),
-        new FontFace('KanitMedium', 'url(../assets/fonts/Kanit-Medium.woff)'),
-        new FontFace('KanitSemiBold', 'url(../assets/fonts/Kanit-SemiBold.woff)'),
-        new FontFace('KanitBold', 'url(../assets/fonts/Kanit-Bold.woff)'),
-        new FontFace('KanitExtraBold', 'url(../assets/fonts/Kanit-ExtraBold.woff)'),
-        new FontFace('KanitBlack', 'url(../assets/fonts/Kanit-Black.woff)'),
-        //Bangkok
-        new FontFace('BangkokTime1', 'url(../assets/fonts/Bangkok-Time1.woff)'),
-        new FontFace('BangkokTime2', 'url(../assets/fonts/Bangkok-Time2.woff)'),
-        new FontFace('BangkokMoney', 'url(../assets/fonts/Bangkok-Money.woff)'),
-        new FontFace('BangkokTime', 'url(../assets/fonts/Bangkok-Time.woff)'),
-        //BangkokMoney
-        new FontFace('BangkokMoneyRegular', 'url(../assets/fonts/Bangkok-Money-Regular.woff)'),
-        new FontFace('BangkokMoneyMedium', 'url(../assets/fonts/Bangkok-Money-Medium.woff)'),
-        new FontFace('BangkokMoneySemiBold', 'url(../assets/fonts/Bangkok-Money-SemiBold.woff)'),
-        new FontFace('BangkokMoneyBold', 'url(../assets/fonts/Bangkok-Money-Bold.woff)'),
-        //TTB-Money
-        new FontFace('TTBMoneyRegular', 'url(../assets/fonts/TTB-Money-Regular.woff)'),
-        new FontFace('TTBMoneyMedium', 'url(../assets/fonts/TTB-Money-Medium.woff)'),
-        new FontFace('TTBMoneySemiBold', 'url(../assets/fonts/TTB-Money-SemiBold.woff)'),
-        new FontFace('TTBMoneyBold', 'url(../assets/fonts/TTB-Money-Bold.woff)'),
-        new FontFace('TTBMoneyExtraBold', 'url(../assets/fonts/TTB-Money-ExtraBold.woff)'),
-        //THSarabunNew
-        new FontFace('THSarabunRegular', 'url(../assets/fonts/THSarabun.woff)'),
-        new FontFace('THSarabunBold', 'url(../assets/fonts/THSarabun-Bold.woff)'),
-        new FontFace('THSarabunItalic', 'url(../assets/fonts/THSarabun-Italic.woff)'),
-        new FontFace('THSarabunBoldItalic', 'url(../assets/fonts/THSarabun-BoldItalic.woff)'),
-        new FontFace('THSarabunNew', 'url(../assets/fonts/THSarabunNew.woff)'),
-        new FontFace('THSarabunNewBold', 'url(../assets/fonts/THSarabunNew-Bold.woff)'),
-        new FontFace('THSarabunNewItalic', 'url(../assets/fonts/THSarabunNew-Italic.woff)'),
-        new FontFace('THSarabunNewBoldItalic', 'url(../assets/fonts/THSarabunNew-BoldItalic.woff)'),
-        //other
-        new FontFace('DXKrungthaiSemiBold', 'url(../assets/fonts/DX-Krungthai-SemiBold.woff)'),
-        new FontFace('DXKrungthaiThin', 'url(../assets/fonts/DX-Krungthai-Thin.woff)'),
-        new FontFace('DXSCB', 'url(../assets/fonts/DX-SCB.woff)'),
-        new FontFace('DXTTBBold', 'url(../assets/fonts/DX-TTB-bold.woff)'),
-        new FontFace('DXTTBRegular', 'url(../assets/fonts/DX-TTB-regular.woff)'),
-        new FontFace('DXKrungthaiBold', 'url(../assets/fonts/DX-Krungthai-Bold.woff)'),
-        new FontFace('DXKrungthaiMedium', 'url(../assets/fonts/DX-Krungthai-Medium.woff)'),
-        new FontFace('DXKrungthaiRegular', 'url(../assets/fonts/DX-Krungthai-Regular.woff)'),
-        new FontFace('TTBMoney', 'url(../assets/fonts/TTB Money.woff)'),
-        new FontFace('CoreSansLight', 'url(../assets/fonts/Core-Sans-E-W01-35-Light.woff)'),
-        new FontFace('CoreSansBold', 'url(../assets/fonts/Core-Sans-N-65-Bold.woff)'),
-        new FontFace('THSarabun', 'url(../assets/fonts/THSarabun.woff)')
+
     ];
 
     // โหลดฟอนต์ทั้งหมดและเพิ่มเข้าไปที่ document
@@ -206,19 +151,19 @@ function updateDisplay() {
 
         drawText(ctx, `ttb touch
         `, 107.8, 451.8,20.50,'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${timeMessage}`, 547.5, 451.8,18.50,'SFThonburiBold', '#6f8590','right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${timeMessage}`, 547.5, 451.8,18.50,'SFThonburiRegular', '#6f8590','right', 1.5, 3, 0, 0, 800, 0);
 
 
         drawText(ctx, `มีเงิน${money01}บ.โอนเข้าบ/ช${senderaccount2} จาก<br>${bank1} ${senderaccount1} ${name1}<br>คงเหลือ${money02}บ.${formattedDate}@${formattedTime}<br>
-        `, 107.8, 481.8,20.50,'SFThonburiSemiBold', '#000000','left', 31.5, 3, 0, 0, 450, 0);
+        `, 107.8, 481.8,20.50,'SFThonburiRegular', '#000000','left', 31.5, 3, 0, 0, 450, 0);
 
        // แถบ 2 //
-        drawText(ctx, `5 นาทีที่แล้ว`, 547.5, 640.0,18.50, 'SFThonburiSemiBold', '#6f8590','right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `5 นาทีที่แล้ว`, 547.5, 640.0,18.50, 'SFThonburiRegular', '#6f8590','right', 1.5, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `${nametext1}`, 107.8, 640.0,20.50, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${nametext1}`, 107.8, 640.0,20.50, 'SFThonburiSemiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
 
         drawText(ctx, `${text1}<br>
-        `, 107.8, 670.0,20.50, 'SFThonburiSemiBold', '#000000','left', 31.5, 3, 0, 0, 420, 0);
+        `, 107.8, 670.0,20.50, 'SFThonburiRegular', '#000000','left', 31.5, 3, 0, 0, 420, 0);
 
 
 
@@ -306,6 +251,7 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
         currentPosition += charWidth + letterSpacing;
     });
 }
+
 
 
 function drawBattery(ctx, batteryLevel, powerSavingMode) {
