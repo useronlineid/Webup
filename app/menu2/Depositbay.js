@@ -179,8 +179,8 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
     let currentY = y;
 
     paragraphs.forEach(paragraph => {
-        // ใช้ Intl.Segmenter เพื่อแบ่งคำภาษาไทย
-        const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
+        // ใช้ Intl.Segmenter โดยไม่กำหนด locale เพื่อรองรับหลายภาษา
+        const segmenter = new Intl.Segmenter(undefined, { granularity: 'word' });
         const words = [...segmenter.segment(paragraph)].map(segment => segment.segment);
 
         let lines = [];
@@ -199,7 +199,7 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
             }
         });
         if (currentLine) {
-            lines.push(currentLine);
+            lines.push(currentLine.trimStart()); // ตัดช่องว่างที่ขึ้นต้นบรรทัดใหม่ออก
         }
 
         lines.forEach((line, index) => {
@@ -219,10 +219,9 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
         });
 
         // เพิ่มระยะห่างหลังจากขึ้นบรรทัดใหม่ด้วย <br>
-        currentY + lineHeight;
+        currentY += lineHeight;
     });
 }
-
 
 function drawTextLine(ctx, text, x, y, letterSpacing) {
     if (!letterSpacing) {
