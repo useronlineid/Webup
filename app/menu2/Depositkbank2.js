@@ -233,8 +233,8 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
     let currentY = y;
 
     paragraphs.forEach(paragraph => {
-        // ใช้ Intl.Segmenter เพื่อแบ่งคำภาษาไทย
-        const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
+        // ใช้ Intl.Segmenter โดยไม่กำหนด locale เพื่อรองรับหลายภาษา
+        const segmenter = new Intl.Segmenter(undefined, { granularity: 'word' });
         const words = [...segmenter.segment(paragraph)].map(segment => segment.segment);
 
         let lines = [];
@@ -273,10 +273,9 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
         });
 
         // เพิ่มระยะห่างหลังจากขึ้นบรรทัดใหม่ด้วย <br>
-        currentY + lineHeight;
+        currentY += lineHeight;
     });
 }
-
 
 function drawTextLine(ctx, text, x, y, letterSpacing) {
     if (!letterSpacing) {
@@ -284,16 +283,17 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
         return;
     }
 
-    const characters = text.split('');
+    // ใช้ Intl.Segmenter โดยไม่กำหนด locale เพื่อรองรับหลายภาษา
+    const segmenter = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+    const characters = [...segmenter.segment(text)].map(segment => segment.segment);
     let currentPosition = x;
 
-    characters.forEach((char, index) => {
+    characters.forEach((char) => {
         ctx.fillText(char, currentPosition, y);
         const charWidth = ctx.measureText(char).width;
         currentPosition += charWidth + letterSpacing;
     });
 }
-
 
 function drawBattery(ctx, batteryLevel, powerSavingMode) {
     // วาดกรอบแบตเตอรี่ด้วยมุมโค้งมน
