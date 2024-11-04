@@ -159,7 +159,7 @@ function updateDisplay() {
         drawText(ctx, `${timeMessage}`, 547.5, 451.8,18.50, 'SFThonburiRegular', '#6f8590', 'right', 1.5, 3, 0, 0, 800, 0);
 
         drawText(ctx, `บัญชี ${senderaccount1} จำนวนเงิน ${money01} บาท วันที่ ${formattedDate} ${formattedTime} น.<br>
-        `, 107.8, 481.8,20.50, 'SFThonburiRegular', '#000000', 'left', 31.5, 3, 0, 0, 420, 0);
+        `, 107.8, 481.8,20.50, 'SFThonburiRegular', '#000000', 'left', 31.5, 3, 0, 0, 430, 0);
 
 
 
