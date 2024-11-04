@@ -39,9 +39,8 @@ window.onload = function() {
 
 function setCurrentDateTime() {
     const now = new Date();
-    const localDateTime = now.toLocaleString('sv-SE', { timeZone: 'Asia/Bangkok', hour12: false });
-    const formattedDateTime = localDateTime.replace(' ', 'T');
-    document.getElementById('datetime').value = formattedDateTime;
+    const localDate = now.toISOString().split('T')[0]; // ได้รูปแบบ YYYY-MM-DD
+    document.getElementById('datetime').value = localDate;
 }
 
 function padZero(number) {
