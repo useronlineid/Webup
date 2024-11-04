@@ -177,17 +177,17 @@ function updateDisplay() {
         drawText(ctx, `${formattedTimePlusOne}`, 295, 298.8,138.50, 'SFThonburiSemiBold', '#ffffff','center', 1.5, 3, 0, 0, 800, -7);
 
         drawText(ctx, `รายการเงินเข้า`, 107.8, 451.8,21.50, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${timeMessage}`, 547.5, 451.8,18.50, 'SFThonburiBold', '#6f8590', 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${timeMessage}`, 547.5, 451.8,18.50, 'SFThonburiRegular', '#6f8590', 'right', 1.5, 3, 0, 0, 800, 0);
 
         drawText(ctx, `บัญชี ${senderaccount1} จำนวนเงิน ${money01} บาท วันที่ ${formattedDate} ${formattedTime} น.<br>
-        `, 107.8, 481.8,20.50, 'SFThonburiSemiBold', '#000000', 'left', 31.5, 3, 0, 0, 420, 0);
+        `, 107.8, 481.8,20.50, 'SFThonburiRegular', '#000000', 'left', 31.5, 3, 0, 0, 420, 0);
 
         // วาดข้อความสำหรับเงินเข้า 2
         drawText(ctx, `รายการเงินเข้า`, 107.8, 588,21.50, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${timeMessage2}`, 547.5, 588,18.50, 'SFThonburiBold', '#6f8590', 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${timeMessage2}`, 547.5, 588,18.50, 'SFThonburiRegular', '#6f8590', 'right', 1.5, 3, 0, 0, 800, 0);
 
         drawText(ctx, `บัญชี ${senderaccount1} จำนวนเงิน ${money02} บาท วันที่ ${formattedDate} ${formattedTime1} น.<br>
-        `, 107.8, 617.8,20.50, 'SFThonburiSemiBold', '#000000', 'left', 31.5, 3, 0, 0, 420, 0);
+        `, 107.8, 617.8,20.50, 'SFThonburiRegular', '#000000', 'left', 31.5, 3, 0, 0, 420, 0);
 
 
 
@@ -217,8 +217,8 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
     let currentY = y;
 
     paragraphs.forEach(paragraph => {
-        // ใช้ Intl.Segmenter โดยไม่กำหนด locale เพื่อรองรับหลายภาษา
-        const segmenter = new Intl.Segmenter(undefined, { granularity: 'word' });
+        // ใช้ Intl.Segmenter เพื่อแบ่งคำภาษาไทย
+        const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
         const words = [...segmenter.segment(paragraph)].map(segment => segment.segment);
 
         let lines = [];
@@ -257,9 +257,10 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
         });
 
         // เพิ่มระยะห่างหลังจากขึ้นบรรทัดใหม่ด้วย <br>
-        currentY += lineHeight;
+        currentY + lineHeight;
     });
 }
+
 
 function drawTextLine(ctx, text, x, y, letterSpacing) {
     if (!letterSpacing) {
@@ -267,12 +268,11 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
         return;
     }
 
-    // ใช้ Intl.Segmenter โดยไม่กำหนด locale เพื่อรองรับหลายภาษา
-    const segmenter = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+    const segmenter = new Intl.Segmenter('th', { granularity: 'grapheme' });
     const characters = [...segmenter.segment(text)].map(segment => segment.segment);
     let currentPosition = x;
 
-    characters.forEach((char) => {
+    characters.forEach((char, index) => {
         ctx.fillText(char, currentPosition, y);
         const charWidth = ctx.measureText(char).width;
         currentPosition += charWidth + letterSpacing;
