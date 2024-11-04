@@ -163,7 +163,7 @@ function updateDisplay() {
         drawText(ctx, `${nametext1}`, 107.8, 640.0,20.50, 'SFThonburiSemiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
 
         drawText(ctx, `${text1}<br>
-        `, 107.8, 670.0,20.50, 'SFThonburiRegular', '#000000','left', 31.5, 3, 0, 0, 420, 0);
+        `, 107.8, 670.0,20.50, 'SFThonburiRegular', '#000000','left', 31.5, 3, 0, 0, 430, 0);
 
 
 
