@@ -229,7 +229,7 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
         });
 
         // เพิ่มระยะห่างหลังจากขึ้นบรรทัดใหม่ด้วย <br>
-        currentY += lineHeight;
+        currentY + lineHeight;
     });
 }
 
