@@ -163,7 +163,7 @@ function updateDisplay() {
         drawText(ctx, `${timeMessage}`, 547.5, 1007,18.50, 'SFThonburiRegular', '#6f8590', 'right', 1.5, 3, 0, 0, 800, 0);
 
         drawText(ctx, `ได้รับ +${money01} บาท เข้าบัญชี ${senderaccount1} จากบัญชี ${bank1} ${receiveraccount}
-        `, 107.8, 1038,20.50, 'SFThonburiRegular', '#000000', 'left', 31.5, 3, 0, 0, 420, -0.25);
+        `, 107.8, 1038,20.50, 'SFThonburiRegular', '#000000', 'left', 31.5, 3, 0, 0, 430, -0.25);
 
 
 
