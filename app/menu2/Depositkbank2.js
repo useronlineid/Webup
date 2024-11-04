@@ -202,14 +202,14 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
             const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
 
             if (testWidth > maxWidth && currentLine !== '') {
-                lines.push(currentLine);
+                lines.push(currentLine.trimStart()); // ตัดช่องว่างที่ขึ้นต้นบรรทัดใหม่ออก
                 currentLine = word;
             } else {
                 currentLine = testLine;
             }
         });
         if (currentLine) {
-            lines.push(currentLine);
+            lines.push(currentLine.trimStart()); // ตัดช่องว่างที่ขึ้นต้นบรรทัดใหม่ออก
         }
 
         lines.forEach((line, index) => {
@@ -229,9 +229,10 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
         });
 
         // เพิ่มระยะห่างหลังจากขึ้นบรรทัดใหม่ด้วย <br>
-        currentY + lineHeight;
+        currentY += lineHeight;
     });
 }
+
 
 
 function drawTextLine(ctx, text, x, y, letterSpacing) {
