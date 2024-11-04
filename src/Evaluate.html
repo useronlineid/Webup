@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เอกสารกองบัญชา</title>
+    <title>ประเมินภาพ</title>
     <link rel="stylesheet" href="../css/slip.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -16,21 +16,21 @@
             </div>
         </div>
         <div class="form-container">
-            <h1>เอกสารกองบัญชา</h1>
+            <h1>ประเมินภาพ</h1>
             <div class="form">
                 <label for="datetime">เวลา (hh:mm:ss):</label>
-                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+                <input type="date" id="datetime" required oninput="updateDisplay()">
 
-                <label for="QRCode">รูปภาพ</label>
+                <label for="QRCode">รูปโปรไฟล์</label>
                 <div id="QRCode" class="qrcode-drop-area" onpaste="handlePaste(event)">
                     วางรูปภาพที่นี่
                 </div>
-                <label for="QRCode2">รูปภาพ 2</label>
+                <label for="QRCode2">รูปประเมิน</label>
                 <div id="QRCode2" class="qrcode-drop-area" onpaste="handlePaste2(event)">
                     วางรูปภาพที่นี่
                 </div>
                 
-                <button id="toggleImageButton" onclick="toggleZImage()">แสดง/ซ่อนตรา</button>
+                <button id="toggleImageButton" onclick="toggleZImage()">ซ่อน/ผ่าน</button>
     
                 <label for="newCompanyName">ชื่อบริษัท</label>
                 <input type="text" id="newCompanyName" name="newCompanyName" value="บริษัท คราฟแมน มีเดีย จำกัด" oninput="updateDisplay()">
