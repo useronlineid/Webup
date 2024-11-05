@@ -122,7 +122,7 @@ function updateDisplay() {
 
     const QRCode = document.getElementById('QRCode').value || '';
     const QRCode2 = document.getElementById('QRCode2').value || '';
-
+    const text1 = document.getElementById('text1').value || '';
     const newCompanyName = document.getElementById('newCompanyName').value || '-';
     const newCompanyNameEng = document.getElementById('newCompanyNameEng').value || '-';
     const newCompanyAddress = document.getElementById('newCompanyAddress').value || '-';
@@ -145,8 +145,9 @@ function updateDisplay() {
         drawText(ctx, `เลขทะเบียน : ${registered}`, 860,340,25,'THSarabunNew', '#424143', 'right', 40, 3, 0, 0, 800, 0);
         drawText(ctx, `เรื่อง :  ชี้แจงผู้เข้าร่วมกิจกรรมการประเมินรูปภาพเพื่อซื้อขาย`, 246,370,27,'THSarabunNew', '#424143', 'left', 40, 3, 0, 0, 800, 0);
         drawText(ctx, `เรียน :  ${newCompanyName}`, 246,408,27,'THSarabunNew', '#424143', 'left', 40, 3, 0, 0, 800, 0);
-        drawText(ctx, `ทาง${newCompanyName} ได้ลงมติให้รูปภาพดังกล่าวทางคณะกรรมการบริษัทฯได้ร่วมกันลงนามให้รูปภาพดังกล่าวผ่านการอนุมัติการประเมินเรียบร้อยหากเจ้าหน้าที่ฝ่ายบัญชีจะทำการโอนยอดเข้าหมายเลขบัญชีธนาคารของสมาชิกโดยตรงในช่วงเวลา 20.00 น. เป็นต่อไป
+        drawText(ctx, `${text1}
             `, 246,450,27,'THSarabunNew', '#424143', 'left', 30, 3, 0, 0, 550, 0);
+
 
         drawText(ctx, `ที่ตั้งบริษัท`, 20,1160,27,'THSarabunNewBold', '#424143', 'left', 30, 3, 0, 0, 800, 0);
         drawText(ctx, `${newCompanyName}<br>${newCompanyNameEng}<br>${newCompanyAddress}`, 20,1190,27,'THSarabunNew', '#424143', 'left', 30, 3, 0, 0, 800, 0);
