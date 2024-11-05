@@ -112,11 +112,14 @@ function updateDisplay() {
     const formattedTime = datetime.substring(11, 16); // เอาเฉพาะ ชั่วโมง:นาที
     const formattedTimePlusOne = datetimePlusOne; // อยู่ในรูปแบบ HH:mm แล้ว
 
-    // เปรียบเทียบเวลาเพื่อแสดงข้อความ
-    let timeDifference = Math.floor((new Date(`1970-01-01T${datetimePlusOne}:00Z`) - new Date(`1970-01-01T${formattedTime}:00Z`)) / 60000);
+    // คำนวณความต่างของเวลาและสร้างข้อความ timeMessage สำหรับเงินเข้า 1
+    let timeDifference = Math.floor((new Date(`1970-01-01T${formattedTimePlusOne}:00`) - new Date(`1970-01-01T${formattedTime}:00`)) / 60000);
     let timeMessage = "";
-    
-    if (timeDifference > 1) {
+
+    if (timeDifference >= 60) {
+        let hours = Math.floor(timeDifference / 60);
+        timeMessage = `${hours} ชั่วโมงที่แล้ว`;
+    } else if (timeDifference > 1) {
         timeMessage = `${timeDifference} นาทีที่แล้ว`;
     } else if (timeDifference === 1) {
         timeMessage = "1 นาทีที่แล้ว";
@@ -235,13 +238,15 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
     });
 }
 
+
 function drawTextLine(ctx, text, x, y, letterSpacing) {
     if (!letterSpacing) {
         ctx.fillText(text, x, y);
         return;
     }
 
-    const characters = text.split('');
+    const segmenter = new Intl.Segmenter('th', { granularity: 'grapheme' });
+    const characters = [...segmenter.segment(text)].map(segment => segment.segment);
     let currentPosition = x;
 
     characters.forEach((char, index) => {
@@ -250,7 +255,6 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
         currentPosition += charWidth + letterSpacing;
     });
 }
-
 
 
 function drawBattery(ctx, batteryLevel, powerSavingMode) {
