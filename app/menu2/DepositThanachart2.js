@@ -32,14 +32,18 @@ window.onload = function() {
     });
 };
 
-
 function setCurrentDateTime() {
     const now = new Date();
     const localDateTime = now.toLocaleString('sv-SE', { timeZone: 'Asia/Bangkok', hour12: false });
     
     const formattedDateTime = localDateTime.substring(0, 16); // ตัดส่วนวินาทีออก
     document.getElementById('datetime').value = formattedDateTime;
-    
+
+    // Setting datetime1 to 5 minutes earlier
+    const fiveMinutesEarlier = new Date(now.getTime() - 240000); // ลดเวลาไป 5 นาที (300,000 มิลลิวินาที)
+    const formattedDateTime1 = fiveMinutesEarlier.toLocaleString('sv-SE', { timeZone: 'Asia/Bangkok', hour12: false }).substring(0, 16);
+    document.getElementById('datetime1').value = formattedDateTime1;
+
     // ตั้งค่าเวลาที่มากกว่า 1 นาที
     const oneMinuteLater = new Date(now.getTime() + 60000); // เพิ่ม 1 นาที (60,000 มิลลิวินาที)
     const hours = oneMinuteLater.getHours().toString().padStart(2, '0');
@@ -98,6 +102,8 @@ function updateDisplay() {
     const backgroundSelect = document.getElementById('backgroundSelect').value || '';
 
     const datetime = document.getElementById('datetime').value || '-';
+    const datetime1 = document.getElementById('datetime1').value || '-';
+
     const datetimePlusOne = document.getElementById('datetime_plus_one').value || '-';
     const batteryLevel = document.getElementById('battery').value || '100';
     const money01 = document.getElementById('money01').value || '-';
@@ -110,6 +116,7 @@ function updateDisplay() {
     const formattedDate = formatDate(datetime.substring(0, 10)); // แปลงวันที่เป็นรูปแบบ DD/MM/YY
     const formattedDateWithDay = formatDateWithDay(datetime.substring(0, 10)); // แปลงวันที่เป็นรูปแบบ วันอังคารที่ 3 กันยายน
     const formattedTime = datetime.substring(11, 16); // เอาเฉพาะ ชั่วโมง:นาที
+    const formattedTime1 = datetime1.substring(11, 16); // เวลาเงินเข้า 2
     const formattedTimePlusOne = datetimePlusOne; // อยู่ในรูปแบบ HH:mm แล้ว
 
     // คำนวณความต่างของเวลาและสร้างข้อความ timeMessage สำหรับเงินเข้า 1
@@ -126,7 +133,21 @@ function updateDisplay() {
     } else {
         timeMessage = "ตอนนี้";
     }
-    
+
+    // คำนวณความต่างของเวลาและสร้างข้อความ timeMessage2 สำหรับเงินเข้า 2
+    let timeDifference2 = Math.floor((new Date(`1970-01-01T${formattedTimePlusOne}:00`) - new Date(`1970-01-01T${formattedTime1}:00`)) / 60000);
+    let timeMessage2 = "";
+
+    if (timeDifference2 >= 60) {
+        let hours = Math.floor(timeDifference2 / 60);
+        timeMessage2 = `${hours} ชั่วโมงที่แล้ว`;
+    } else if (timeDifference2 > 1) {
+        timeMessage2 = `${timeDifference2} นาทีที่แล้ว`;
+    } else if (timeDifference2 === 1) {
+        timeMessage2 = "1 นาทีที่แล้ว";
+    } else {
+        timeMessage2 = "ตอนนี้";
+    }
 
     const bank1 = document.getElementById('bank1').value || '-';
     const senderaccount1 = document.getElementById('senderaccount1').value || '-';
@@ -161,7 +182,7 @@ function updateDisplay() {
         `, 107.8, 481.8,20.50,'SFThonburiRegular', '#000000','left', 31.5, 3, 0, 0, 450, 0);
 
        // แถบ 2 //
-        drawText(ctx, `5 นาทีที่แล้ว`, 547.5, 640.0,18.50, 'SFThonburiRegular', '#6f8590','right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${timeMessage2}`, 547.5, 640.0,18.50, 'SFThonburiRegular', '#6f8590','right', 1.5, 3, 0, 0, 800, 0);
 
         drawText(ctx, `${nametext1}`, 107.8, 640.0,20.50, 'SFThonburiSemiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
 
