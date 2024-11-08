@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สั่งซื้อผิดพลาด</title>
+    <link rel="stylesheet" href="/css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="1906" height="1200"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>สั่งซื้อผิดพลาด</h1>
+            <div class="form">
+
+                <!-- Add this select element to your form-container in the HTML -->
+                <label for="backgroundSelect">เลือกพื้นหลัง</label>
+                <select id="backgroundSelect" name="backgroundSelect" onchange="updateDisplay()">
+                  <option value="/assets/image/paper/Entryerror1.jpg">lorem ipsum</option>
+                  <option value="/assets/image/paper/Entryerror2.jpg">Investopedia</option>
+                  <option value="/assets/image/paper/Entryerror3.jpg">IBKR</option>
+                  <option value="/assets/image/paper/Entryerror4.jpg">PDAX</option>
+                  <option value="/assets/image/paper/Entryerror0.jpg">ไม่มี</option>
+
+                </select>
+
+                <label for="sendername">ชื่อ</label>
+                <input type="text" id="sendername" name="sendername" value="น.ส. จตุพร พันธ์อินทร์" oninput="updateDisplay()">
+                
+                <label for="datetime">เวลา (hh:mm:ss):</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="text8">จำนวนเงิน</label>
+                <input type="text" id="text8" name="text8" placeholder="จำนวนเงิน" oninput="updateDisplay()">
+                
+                <label for="text9">ค่าคอมมัชชั่น</label>
+                <input type="text" id="text9" name="text9" placeholder="ค่าคอมมัชชั่น" oninput="updateDisplay()">
+
+                <label for="text10">เนื้อหา</label>
+                <input type="text" id="text10" name="text10" placeholder="เนื้อหา" oninput="updateDisplay()">
+                
+                <label for="text11">หมายเหตุ</label>
+                <input type="text" id="text11" name="text11" placeholder="หมายเหตุ" oninput="updateDisplay()">
+                
+
+                <br>
+                <br>
+                
+                <label for="newCompanyName">ชื่อบริษัท</label>
+                <input type="text" id="newCompanyName" name="newCompanyName" value="บริษัท โกรท อินเตอร์เนชั่นแนล ไทย จำกัด" oninput="updateDisplay()">
+                
+                <label for="newCompanyNameEng">ชื่อบริษัทอังกฤษ</label>
+                <input type="text" id="newCompanyNameEng" name="newCompanyNameEng" value="GROWTH INTERNATIONAL THAI CO., LTD." oninput="updateDisplay()">
+                
+                <label for="newCompanyAddress">ที่อยู่</label>
+                <input type="text" id="newCompanyAddress" name="newCompanyAddress" value="16/26 ตำบลกะทู้ อำเภอกะทู้ จ.ภูเก็ต 83120" oninput="updateDisplay()">
+                
+            </div>
+        </div>
+    </div>
+    <script src="/app/menu4/Order-edit.js"></script>
+</body>
+</html>
