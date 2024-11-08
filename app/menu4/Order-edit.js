@@ -96,8 +96,8 @@ function updateDisplay() {
         drawText(ctx, `เรียนแจ้ง : ${sendername}`, 120.5, 380.5,40.68, 'THSarabunBold', '#000000', 'left',40,3,0,0,800,0);
 
         drawText(ctx, `ประกาศตั้งแต่ วันที่ ${formattedDate}`, 120.5, 429.0,40.68, 'THSarabunBold', '#000000', 'left',40,3,0,0,800,0);
-        drawText(ctx, `สั่งซื้อใหม่จำนวนเงิน ${text8} บาท`, 1784.8, 429.0,40.68, 'THSarabunBold', '#000000', 'right',40,3,0,0,1200,0);
-        drawText(ctx, `ได้รับปันผลค่าคอมมิชชั่น ${text9} บาท`, 1784.8, 380.5,40.68, 'THSarabunBold', '#000000', 'right',40,3,0,0,1200,0);
+        drawText(ctx, `ได้รับปันผลค่าคอมมิชชั่น ${text9} บาท`, 1784.8, 429.0,40.68, 'THSarabunBold', '#000000', 'right',40,3,0,0,1200,0);
+        drawText(ctx, `สั่งซื้อใหม่จำนวนเงิน ${text8} บาท`, 1784.8, 380.5,40.68, 'THSarabunBold', '#000000', 'right',40,3,0,0,1200,0);
         
 
         drawText(ctx, `${text10}`
