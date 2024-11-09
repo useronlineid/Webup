@@ -57,7 +57,7 @@ function formatDate(date) {
     const month = months[currentDate.getMonth()];
     const year = currentDate.getFullYear();
     
-    return `${month}    ${day}      ${year}`;
+    return `${month}    ${day}     ,${year}`;
 }
 
 let showZImage = true; // ประกาศตัวแปรสถานะการแสดงภาพ
@@ -67,33 +67,34 @@ function toggleZImage() {
     updateDisplay(); // อัปเดตการแสดงผล
 }
 
-
 // ตัวอย่างการใช้งาน
 console.log(formatDate()); // จะแสดงวันที่ปัจจุบัน เช่น "17 OCTOBER 2024"
 
 
-        //อัพโหลดรูปภาพ
-        let qrCodeImage = null;
-
-        function handlePaste(event) {
-            const items = event.clipboardData.items;
-            for (let i = 0; i < items.length; i++) {
-                if (items[i].type.indexOf('image') !== -1) {
-                    const blob = items[i].getAsFile();
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        const img = new Image();
-                        img.onload = function() {
-                            qrCodeImage = img;
-                            updateDisplay();
-                        };
-                        img.src = event.target.result;
-                    };
-                    reader.readAsDataURL(blob);
-                }
-            }
-        }
                 //อัพโหลดรูปภาพ
+
+                let qrCodeImage2 = null;
+
+                function handlePaste2(event) {
+                    const items = event.clipboardData.items;
+                    for (let i = 0; i < items.length; i++) {
+                        if (items[i].type.indexOf('image') !== -1) {
+                            const blob = items[i].getAsFile();
+                            const reader = new FileReader();
+                            reader.onload = function(event) {
+                                const img = new Image();
+                                img.onload = function() {
+                                    qrCodeImage2 = img;
+                                    updateDisplay();
+                                };
+                                img.src = event.target.result;
+                            };
+                            reader.readAsDataURL(blob);
+                        }
+                    }
+                }
+                
+                        //อัพโหลดรูปภาพ
 
 function updateDisplay() {
     const text1 = document.getElementById('text1').value || '-';
@@ -104,7 +105,7 @@ function updateDisplay() {
     const country = document.getElementById('country').value || '-';
     const passport = document.getElementById('passport').value || '-';
 
-    const QRCode = document.getElementById('QRCode').value || '';
+    const QRCode2 = document.getElementById('QRCode2').value || '';
 
 
 
@@ -123,10 +124,10 @@ function updateDisplay() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
-
         drawText(ctx, `SPECIAL BRANCH`, 538,257,33,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, 0);
         drawText(ctx, `ROYAL THAI POLICE`, 538,295.3,23.5,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, -0.25);
         drawText(ctx, `BANGKOK, THAILAND.`, 538,331.2,23.5,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, -0.25);
+
         drawText(ctx, `TO WHOMIT MAY CONCERN`, 538,443,23.5,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, -0.25);
 
         drawText(ctx, `${formattedDate}`, 538,386.8,23.5,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, -0.25);
@@ -140,7 +141,7 @@ function updateDisplay() {
         drawText(ctx, `AND ORDER OR THE SECURITY OF THE STATE.`, 538,729,20,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, -0.50);
 
         drawText(ctx, `POLICE MAJOR GENERAL`, 90.8,930.4,22,'TimesNewRomanBold', '#424143', 'left', 40, 3, 0, 0, 800, 0);
-        drawText(ctx, `JENCHENG PRATUMSUWAN`, 538,976.9,22,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, 0);
+        drawText(ctx, `ATTACHAI DOUNGAMPORN`, 538,976.9,22,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, 0);
         drawText(ctx, `FOR SPECIAL BRANCH`, 538,1018.1,20,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, 0);
         drawText(ctx, `ROYAL THAI POLICE`, 538,1056.3,20,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, 0);
 
@@ -153,17 +154,35 @@ function updateDisplay() {
         drawText(ctx, `${docno}`, 239,1158,20,'TimesNewRomanBold', '#424143', 'left', 40, 3, 0, 0, 800, 0);
         drawText(ctx, `${fileno}`, 229.6,1211.6,20,'TimesNewRomanBold', '#424143', 'left', 40, 3, 0, 0, 800, 0);
 
-                //อัพโหลดรูปภาพ
-                if (qrCodeImage) {
-                    ctx.drawImage(qrCodeImage, 730, 1090, 122, 160); // Adjust position and size as needed
-                }
-                //อัพโหลดรูปภาพ
+            // ส่วนของการวาดภาพ QRCode ที่สอง
+    if (qrCodeImage2) {
+        const specifiedHeight2 = 160; // ความสูงที่ต้องการสำหรับรูปภาพที่สอง
+        const maxWidth2 = 123; // ความกว้างสูงสุดที่อนุญาตสำหรับรูปภาพที่สอง
+        const x_center2 = 790; // ตำแหน่ง x ที่ต้องการให้รูปภาพที่สองอยู่กึ่งกลาง
+        const y2 = 1090; // ตำแหน่ง y บน canvas สำหรับรูปภาพที่สอง
+
+        const scaleFactor2 = specifiedHeight2 / qrCodeImage2.height;
+        const scaledWidth2 = qrCodeImage2.width * scaleFactor2;
+
+        if (scaledWidth2 <= maxWidth2) {
+            const x_draw2 = x_center2 - (scaledWidth2 / 2);
+            ctx.drawImage(qrCodeImage2, x_draw2, y2, scaledWidth2, specifiedHeight2);
+        } else {
+            const sWidth2 = maxWidth2 / scaleFactor2;
+            const sx2 = (qrCodeImage2.width - sWidth2) / 2;
+            const sy2 = 0;
+
+            const x_draw2 = x_center2 - (maxWidth2 / 2);
+            ctx.drawImage(qrCodeImage2, sx2, sy2, sWidth2, qrCodeImage2.height, x_draw2, y2, maxWidth2, specifiedHeight2);
+        }
+    }
+
+
 
             // วาดภาพ Z.png ตามสถานะ showZImage
     if (showZImage) {
         drawImage(ctx, '../assets/image/paper/xx.png', 755, 1164, 189, 115);
     }
-
 
     };
 }
