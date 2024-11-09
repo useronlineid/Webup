@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เงินเข้าBK (1)</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../assets/image/icon/D-BK.png" type="image/png">
+
+</head>
+<body>
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="656" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>เงินเข้าBK (1)</h1>
+            <div class="form">
+                <!-- Common Inputs -->
+                <label for="datetime_plus_one">เวลาแจ้งเตือน</label>
+                <input type="time" id="datetime_plus_one" required oninput="updateDisplay()">
+
+                <label for="battery">ระดับแบตเตอรี่: <span id="battery-level">100</span>%</label>
+                <input type="range" id="battery" name="battery" min="0" max="100" value="100" oninput="updateBatteryDisplay(); updateDisplay();">
+                
+                <button id="powerSavingMode" onclick="togglePowerSavingMode()">โหมดประหยัดพลังงาน</button>
+
+                <label for="senderaccount1">บัญชีที่เกี่ยวข้อง</label>
+                <input type="text" id="senderaccount1" name="senderaccount1" value="xxx-x-x5529-x" oninput="updateDisplay()">
+
+                <!-- Transaction 1 Inputs -->
+                <h2>รายการที่ 1</h2>
+                <label for="transactionType">ประเภทของรายการ</label>
+                <select id="transactionType" name="transactionType" onchange="updateDisplay()">
+                    <option value="incoming">รายการเงินเข้า</option>
+                    <option value="outgoing">รายการเงินออก</option>
+                </select>
+
+
+                <label for="money01">เงินเข้าจำนวนเงิน</label>
+                <input type="text" id="money01" name="money01" value="30,650.00" oninput="updateDisplay()">
+
+                <label for="remaining1">ยอดเงินคงเหลือ</label>
+                <input type="text" id="remaining1" name="remaining1" value="34,650.00" oninput="updateDisplay()">
+
+                <label for="datetime">เวลาเงินเข้า</label>
+                <input type="datetime-local" id="datetime" required oninput="updateDisplay()">
+
+                <!-- Transaction 2 Inputs -->
+                <h2>รายการที่ 2</h2>
+                <label for="transactionType2">ประเภทของรายการ</label>
+                <select id="transactionType2" name="transactionType2" onchange="updateDisplay()">
+                    <option value="incoming">รายการเงินเข้า</option>
+                    <option value="outgoing">รายการเงินออก</option>
+                </select>
+
+                <label for="money02">เงินเข้าจำนวนเงิน</label>
+                <input type="text" id="money02" name="money02" value="15,000.00" oninput="updateDisplay()">
+
+                <label for="remaining2">ยอดเงินคงเหลือ</label>
+                <input type="text" id="remaining2" name="remaining2" value="19,650.00" oninput="updateDisplay()">
+
+                <label for="datetime2">เวลาเงินเข้า</label>
+                <input type="datetime-local" id="datetime2" required oninput="updateDisplay()">
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu2/Depositkbank5.js"></script>
+</body>
+</html>
