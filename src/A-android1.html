@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android-( 1 )</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../assets/image/icon/1.png" type="image/png">
+</head>
+<body>
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="571" height="1200"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>Android-( 1 )</h1>
+            <div class="form">
+                <label for="coin">ผู้โอน</label>
+                <select id="coin" name="coin" onchange="updateDisplay()">
+                    <option value="BTC">BTC</option>
+                    <option value="BCH">BCH</option>
+                    <option value="ETC">ETC</option>
+                    <option value="XAUUSD">XAUUSD</option>
+                    <option value="XAUEUR">XAUEUR</option>
+                    <option value="ETH/USDC">ETH/USDC</option>
+                    <option value="ETH/USDT">ETH/USDT</option>
+                    <option value="My wallet">เช็คยอดเงิน</option>
+                    <option value="Withdraw">ถอนเงิน</option>
+                    <option value="Withdraw">ประวันการถอนเงิน</option>
+                    <option value="Orders">ส่งคำสั่ง</option>
+                    <option value="mine">ของฉัน</option>
+                    <option value="อัตราแลกเปลี่ยน">อัตราแลกเปลี่ยน</option>
+                </select>
+
+                <input type="text" id="website" name="website" value="https://loremllpsun.vip" oninput="updateDisplay()">
+
+                <label for="datetime">เวลา (hh:mm):</label>
+                <input type="time" id="datetime" required oninput="updateDisplay()">
+
+                <label for="QRCode">QRCode</label>
+                <div id="QRCode" class="qrcode-drop-area" onpaste="handlePaste(event)">
+                    วางรูปภาพที่นี่
+                </div>
+
+                <label for="battery">ระดับแบตเตอรี่: <span id="battery-level">100</span>%</label>
+                <input type="range" id="battery" name="battery" min="0" max="100" value="100" oninput="updateBatteryDisplay(); updateDisplay();">
+                
+
+
+                <button id="powerSavingMode" onclick="togglePowerSavingMode()">โหมดประหยัดพลังงาน</button>
+
+                <!-- Original checkboxes for images (Left to Right) -->
+                <label>รายการไอคอน</label>
+                <div id="image-checkboxes-left">
+                    <label><input type="checkbox" name="imagesLeft" value="Line" onchange="checkboxChangedLeft(this)"> Line</label>
+                    <label><input type="checkbox" name="imagesLeft" value="Messenger" onchange="checkboxChangedLeft(this)"> Messenger</label>
+                    <label><input type="checkbox" name="imagesLeft" value="Call in" onchange="checkboxChangedLeft(this)"> Call in</label>
+                    <label><input type="checkbox" name="imagesLeft" value="Kbank" onchange="checkboxChangedLeft(this)"> Kbank</label>
+                    <label><input type="checkbox" name="imagesLeft" value="Shopee" onchange="checkboxChangedLeft(this)"> Shopee</label>
+                    <label><input type="checkbox" name="imagesLeft" value="Instagram" onchange="checkboxChangedLeft(this)"> Instagram</label>
+                    <label><input type="checkbox" name="imagesLeft" value="Facebook" onchange="checkboxChangedLeft(this)"> Facebook</label>
+                    <label><input type="checkbox" name="imagesLeft" value="Youtube" onchange="checkboxChangedLeft(this)"> Youtube</label>
+                    <label><input type="checkbox" name="imagesLeft" value="Netflix" onchange="checkboxChangedLeft(this)"> Netflix</label>
+                    <label><input type="checkbox" name="imagesLeft" value="Amazon" onchange="checkboxChangedLeft(this)"> Amazon</label>
+                    <label><input type="checkbox" name="imagesLeft" value="X" onchange="checkboxChangedLeft(this)"> X</label>
+                    <label><input type="checkbox" name="imagesLeft" value="Telegram" onchange="checkboxChangedLeft(this)"> Telegram</label>
+                    <label><input type="checkbox" name="imagesLeft" value="Gmail" onchange="checkboxChangedLeft(this)"> Gmail</label>
+                    <label><input type="checkbox" name="imagesLeft" value="Nba" onchange="checkboxChangedLeft(this)"> NBA</label>
+                    <label><input type="checkbox" name="imagesLeft" value="Whatsapp" onchange="checkboxChangedLeft(this)"> Whatsapp</label>
+                
+                </div>
+
+                <!-- New checkboxes for additional images (Right to Left) -->
+                <label>โหมดมือถือ</label>
+                <div id="image-checkboxes-right">
+                    <label><input type="checkbox" name="imagesRight" value="Wifi" onchange="checkboxChangedRight(this)"> ไวไฟ</label>
+                    <label><input type="checkbox" name="imagesRight" value="Z-N" onchange="checkboxChangedRight(this)"> นาฬิกา</label>
+                    <label><input type="checkbox" name="imagesRight" value="Z-S" onchange="checkboxChangedRight(this)">โหมดสั่น</label>
+                    <label><input type="checkbox" name="imagesRight" value="Bluetooth" onchange="checkboxChangedRight(this)">บลูทูธ</label>
+                </div>
+                                
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu2/A-android1.js"></script>
+</body>
+</html>
