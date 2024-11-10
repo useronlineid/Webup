@@ -169,7 +169,7 @@ function updateDisplay() {
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
 
-        drawText(ctx, `${companyName}<br>${companyNameEng}  <br>${companyAddress}`, 880,21,18,'SukhumvitSetMedium', '#7d7d7d', 'right',10, 3, 0, 0, 800, -0.25);
+        drawText(ctx, `${companyName}<br>${companyNameEng}<br>${companyAddress}`, 880,21,18,'SukhumvitSetMedium', '#7d7d7d', 'right',10, 3, 0, 0, 800,0);
         drawText(ctx, `${original}`,804,120,20,'SukhumvitSetSemiBold', '#4f4f4f', 'center', 35, 3, 0, 0, 800, 0);
 
         drawText(ctx, `${sendername}`,130,177.4,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,320, 0);
