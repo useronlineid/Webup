@@ -177,6 +177,13 @@ const imagesLeft = [
         height: 17,
         y: 22
     },
+        {
+        name: 'Tiktok',
+        src: '../assets/image/icon/Z-Tiktok.png',
+        width: 17,
+        height: 17,
+        y: 22
+    },
     {
         name: 'Whatsapp',
         src: '../assets/image/icon/Z-Whatsapp.png',
