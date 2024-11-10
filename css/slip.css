@@ -657,3 +657,24 @@ select option:hover {
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgba(255, 255, 255, 0.2); /* เพิ่มความขาวอ่อนเมื่อ hover */
 }
+
+
+
+
+/* Add this to your existing CSS */
+
+#image-checkboxes-left, #image-checkboxes-right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+#image-checkboxes-left label, #image-checkboxes-right label {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+#image-checkboxes-left input[type="checkbox"], #image-checkboxes-right input[type="checkbox"] {
+    margin-right: 5px;
+}
