@@ -100,14 +100,9 @@ function updateDisplay() {
         drawText(ctx, `สั่งซื้อใหม่จำนวนเงิน ${text8} บาท`, 1784.8, 380.5,40.68, 'THSarabunBold', '#000000', 'right',40,3,0,0,1200,0);
         
 
-        drawText(ctx, `${text10}`
+        drawText(ctx, `${text10}<br> <br>${text11}`
         , 120.5, 523.0,40.68, 'THSarabunBold', '#000000', 'left',40,3,0,0,1660,0);
 
-
-
-        drawText(ctx, `${text11}`
-        , 120.5, 900.8,40.68, 'THSarabunBold', '#000000', 'left',40,3,0,0,1660,0);
-        
         
     };
 }
