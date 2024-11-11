@@ -180,7 +180,7 @@ function updateDisplay() {
         drawText(ctx, `${sendername}`,782,177.4,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0, 100, 0);
         drawText(ctx, `${code}`,782,253.2,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,100, -0.30);
 
-        drawText(ctx, `${ProjectName}`,598,291,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,100, 0);
+        drawText(ctx, `${ProjectName}`,598,291,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,500, 0);
 
         drawText(ctx, `${formattedDate}`,739,1181.5,14,'SukhumvitSetSemiBold', '#4f4f4f', 'left', 35, 3, 0, 0,100, 0);
 
