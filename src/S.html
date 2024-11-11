@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เช็คอาชญากรรม</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>เช็คอาชญากรรม</h1>
+            <div class="form">
+
+                <label for="datetime">วันที่ออก</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="sendername">ชื่อ-นามสกุล</label>
+                <input type="text" id="sendername" name="sendername" value="น.ส. จตุพร พันธ์อินทร์" oninput="updateDisplay()">
+                
+                <label for="money1">จำนวนเงิน</label>
+                <input type="text" id="money1" name="money1" placeholder="จำนวนเงิน" oninput="updateDisplay()">
+                
+                <label for="newCompanyName">ชื่อบริษัท</label>
+                <input type="text" id="newCompanyName" name="newCompanyName" value="บริษัท จัดหางาน ไทยอัศวเลิศ จำกัด" oninput="updateDisplay()">
+
+                <label for="QRCode">ลายเซ็นต์บริษัท</label>
+                <div id="QRCode" class="qrcode-drop-area" onpaste="handlePaste(event)">
+                    วางรูปภาพที่นี่
+                </div>
+                <label for="QRCode2">ลายเซ็นต์ต.ร</label>
+                <div id="QRCode2" class="qrcode-drop-area" onpaste="handlePaste2(event)">
+                    วางรูปภาพที่นี่
+                </div>
+
+                <label for="QRCode3">logo</label>
+                <div id="QRCode3" class="qrcode-drop-area" onpaste="handlePaste3(event)">
+                    วางรูปภาพที่นี่
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu5/S.js"></script>
+</body>
+</html>
