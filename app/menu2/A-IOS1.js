@@ -330,7 +330,7 @@ function drawBattery(ctx, batteryLevel, powerSavingMode) {
 
 
     // กำหนดสีแบตเตอรี่ตามระดับและโหมดประหยัดพลังงาน
-    let batteryColor = '#ffffff'; // สีเขียวสำหรับโหมดปกติ
+    let batteryColor = '#000000'; // สีเขียวสำหรับโหมดปกติ
     if (batteryLevel <= 20) {
         batteryColor = '#ff0000'; // สีแดงสำหรับแบตเตอรี่ต่ำ
     } else if (powerSavingMode) {
