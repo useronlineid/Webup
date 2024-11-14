@@ -123,7 +123,7 @@ function updateDisplay() {
             bankLogoUrl = '../assets/image/logo/K.png';
             break;
         case 'ธ.ซีไอเอ็มบีไทย':
-            bankLogoUrl = '../assets/image/logo/CIMB.png';
+            bankLogoUrl = '../assets/image/logo/C-CIMB.png';
             break;
         case 'ธ.ยูโอบี':
             bankLogoUrl = '../assets/image/logo/UOB.png';
