@@ -292,7 +292,7 @@ function updateDisplay() {
     // **เริ่มการวาดบนแคนวาส**
     
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/SCB1T.jpg';
+    backgroundImage.src = '../assets/image/bs/SCB3T.jpg';
     backgroundImage.onload = function() {
         // ล้างแคนวาส
         ctx.clearRect(0, 0, canvas.width, canvas.height);
