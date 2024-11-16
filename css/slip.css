@@ -327,6 +327,37 @@
     src: url('../assets/fonts/timesbi.woff') format('woff');
 }
 
+/* IBM Plex sans thai */
+@font-face {
+    font-family: 'IBMPlexsansthaiThin';
+    src: url('../assets/fonts/IBMPlexSansThai-Thin.woff') format('woff');
+}
+@font-face {
+    font-family: 'IBMPlexsansthaiExtraLight';
+    src: url('../assets/fonts/IBMPlexSansThai-ExtraLight.woff') format('woff');
+}
+@font-face {
+    font-family: 'IBMPlexsansthaiLight';
+    src: url('../assets/fonts/IBMPlexSansThai-Light.woff') format('woff');
+}
+@font-face {
+    font-family: 'IBMPlexsansthaiRegular';
+    src: url('../assets/fonts/IBMPlexSansThai-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'IBMPlexsansthaiMedium';
+    src: url('../assets/fonts/IBMPlexSansThai-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'IBMPlexsansthaiSemiBold';
+    src: url('../assets/fonts/IBMPlexSansThai-SemiBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'IBMPlexsansthaiBold';
+    src: url('../assets/fonts/IBMPlexSansThai-Bold.woff') format('woff');
+}
+
+
 /* Other*/
 @font-face {
     font-family: 'DXKrungthaiSemiBold';
