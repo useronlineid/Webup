@@ -9,6 +9,14 @@ function loadFonts() {
         new FontFace('SukhumvitSetSemiBold', 'url(../assets/fonts/SukhumvitSet-SemiBold.woff)'),
         new FontFace('SukhumvitSetBold', 'url(../assets/fonts/SukhumvitSet-Bold.woff)'),
         new FontFace('SukhumvitSetExtraBold', 'url(../assets/fonts/SukhumvitSet-Extra%20Bold.woff)'),
+        //IBM Plex sans thai
+        new FontFace('IBMPlexsansthaiThin', 'url(../assets/fonts/IBMPlexSansThai-Thin.woff)'),
+        new FontFace('IBMPlexsansthaiExtraLight', 'url(../assets/fonts/IBMPlexSansThai-ExtraLight.woff)'),
+        new FontFace('IBMPlexsansthaiLight', 'url(../assets/fonts/IBMPlexSansThai-Light.woff)'),
+        new FontFace('IBMPlexsansthaiRegular', 'url(../assets/fonts/IBMPlexSansThai-Regular.woff)'),
+        new FontFace('IBMPlexsansthaiMedium', 'url(../assets/fonts/IBMPlexSansThai-Medium.woff)'),
+        new FontFace('IBMPlexsansthaiSemiBold', 'url(../assets/fonts/IBMPlexSansThai-SemiBold.woff)'),
+        new FontFace('IBMPlexsansthaiBold', 'url(../assets/fonts/IBMPlexSansThai-Bold.woff)'),
     ];
 
     // โหลดฟอนต์ทั้งหมดและเพิ่มเข้าไปที่ document
@@ -76,6 +84,7 @@ function updateDisplay() {
     const bank = document.getElementById('bank').value || '-';
     const amount11 = document.getElementById('amount11').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
+    const AideMemoire = document.getElementById('AideMemoire').value || '-';
     const selectedImage = document.getElementById('imageSelect').value || '';
     const QRCode = document.getElementById('QRCode').value || '';
 
@@ -133,7 +142,7 @@ function updateDisplay() {
     
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/MAKE1.jpg';
+    backgroundImage.src = '../assets/image/bs/MAKE1T.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -145,27 +154,28 @@ function updateDisplay() {
         const bankLogo = new Image();
         bankLogo.src = bankLogoUrl;
         bankLogo.onload = function() {
-            ctx.drawImage(bankLogo, 37.5, 493, 118, 118); // Adjust position and size as needed
+            ctx.drawImage(bankLogo, 37, 493, 118, 118); // Adjust position and size as needed
             
             // Draw text with custom styles
-            drawText(ctx, `${formattedDate}  ${formattedTime}`, 50, 161.1,36, 'SukhumvitSetMedium', '#75859f', 'left', 1.5, 3, 0, 0, 500, 0);
+            drawText(ctx, `${formattedDate}  ${formattedTime}`, 50, 161.1,36, 'IBMPlexsansthaiRegular', '#75859f', 'left', 1.5, 3, 0, 0, 500, 0);
 
-            drawText(ctx, `${sendername}`, 170, 341.6,41, 'SukhumvitSetBold', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
-            drawText(ctx, `${senderaccount}`, 170, 389.9,36, 'SukhumvitSetMedium', '#75859f', 'left', 1.5, 1, 0, 0, 500, 0);
+            drawText(ctx, `${sendername}`, 170, 341.6,41, 'IBMPlexsansthaiSemiBold', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
+            drawText(ctx, `${senderaccount}`, 170, 389.9,36, 'IBMPlexsansthaiRegular', '#75859f', 'left', 1.5, 1, 0, 0, 500, 0);
             
-            drawText(ctx, `${receivername}`, 170, 546,41, 'SukhumvitSetBold', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
-            drawText(ctx, `${receiveraccount}`, 170, 594.1,36, 'SukhumvitSetMedium', '#75859f', 'left', 1.5, 1, 0, 0, 500, 0);
+            drawText(ctx, `${receivername}`, 170, 546,41, 'IBMPlexsansthaiSemiBold', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
+            drawText(ctx, `${receiveraccount}`, 170, 594.1,36, 'IBMPlexsansthaiRegular', '#75859f', 'left', 1.5, 1, 0, 0, 500, 0);
             
             // ปรับขนาดฟอนต์สำหรับ ${amount11}
-            drawText(ctx, `${amount11}`, 46, 810, 60, 'SukhumvitSetSemiBold', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
+            drawText(ctx, `${amount11}`, 46, 810, 60, 'IBMPlexsansthaiSemiBold', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
             // ปรับขนาดฟอนต์สำหรับ THB
-            drawText(ctx, `บาท`, 46 + ctx.measureText(`${amount11}`).width + 15, 811, 33, 'SukhumvitSetSemiBold', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
-            drawText(ctx, `0.00 บาท`, 46, 957.3,38.44, 'SukhumvitSetSemiBold', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
+            drawText(ctx, `บาท`, 46 + ctx.measureText(`${amount11}`).width + 15, 811, 38, 'IBMPlexsansthaiMedium', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
+            drawText(ctx, `0.00 บาท`, 46, 957.3,38.44, 'IBMPlexsansthaiMedium', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
 
-            
-            drawText(ctx, `${generateUniqueID()}`, 259, 1035.5,35.63, 'SukhumvitSetMedium', '#789099', 'left', 1.5, 3, 0, 0, 500, 0);
-            drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'SukhumvitSetMedium', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '../assets/image/logo/KBANK.png', 37.5, 289, 118, 118);  
+            drawText(ctx, `${AideMemoire}`, 74, 1155,37, 'IBMPlexsansthaiMedium', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
+
+            drawText(ctx, `${generateUniqueID()}`, 259, 1035.5,35.63, 'IBMPlexsansthaiRegular', '#789099', 'left', 1.5, 3, 0, 0, 500, 0);
+            drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'IBMPlexsansthaiRegular', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
+            drawImage(ctx, '../assets/image/logo/KBANK.png', 37, 289, 118, 118);  
         
           
             // Draw the selected image
@@ -184,76 +194,61 @@ function updateDisplay() {
 }
 
 function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeight, maxLines, shadowColor, shadowBlur, maxWidth, letterSpacing) {
-    
     ctx.font = `${fontSize}px ${fontFamily}`;
     ctx.fillStyle = color;
     ctx.textAlign = 'left';
     ctx.shadowColor = shadowColor;
     ctx.shadowBlur = shadowBlur;
 
-    
-    
+    // แยกข้อความตาม <br>
     const paragraphs = text.split('<br>');
     let currentY = y;
 
     paragraphs.forEach(paragraph => {
-        const lines = [];
+        // ใช้ Intl.Segmenter โดยไม่กำหนด locale เพื่อรองรับหลายภาษา
+        const segmenter = new Intl.Segmenter(undefined, { granularity: 'word' });
+        const words = [...segmenter.segment(paragraph)].map(segment => segment.segment);
+
+        let lines = [];
         let currentLine = '';
 
-        for (let i = 0; i < paragraph.length; i++) {
-            const char = paragraph[i];
-            const nextChar = i < paragraph.length - 1 ? paragraph[i + 1] : '';
-            const isThai = /[\u0E00-\u0E7F]/.test(char);
-            const isWhitespace = /\s/.test(char);
+        words.forEach((word) => {
+            const testLine = currentLine + word;
+            const metrics = ctx.measureText(testLine);
+            const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
 
-            // แยกข้อความตามพยางค์ไทยหรือคำอังกฤษและอักขระพิเศษ
-            if (isThai && !isWhitespace) {
-                const testLine = currentLine + char;
-                const metrics = ctx.measureText(testLine);
-                const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
-
-                if (testWidth > maxWidth) {
-                    lines.push(currentLine.trim());
-                    currentLine = char;
-                } else {
-                    currentLine = testLine;
-                }
+            if (testWidth > maxWidth && currentLine !== '') {
+                lines.push(currentLine);
+                currentLine = word;
             } else {
-                // กรณีภาษาอังกฤษ สัญลักษณ์ และช่องว่าง
-                const testLine = currentLine + char;
-                const metrics = ctx.measureText(testLine);
-                const testWidth = metrics.width + (testLine.length - 1) * letterSpacing;
-
-                if (testWidth > maxWidth) {
-                    lines.push(currentLine.trim());
-                    currentLine = char;
-                } else {
-                    currentLine = testLine;
-                }
+                currentLine = testLine;
             }
+        });
+        if (currentLine) {
+            lines.push(currentLine.trimStart()); // ตัดช่องว่างที่ขึ้นต้นบรรทัดใหม่ออก
         }
-
-        lines.push(currentLine.trim());
 
         lines.forEach((line, index) => {
             let currentX = x;
-            
+
             if (align === 'center') {
-                // ปรับการจัดกึ่งกลางตามค่าของ x ที่กำหนดเอง
                 currentX = x - (ctx.measureText(line).width / 2) - ((line.length - 1) * letterSpacing) / 2;
             } else if (align === 'right') {
-                // จัดให้อยู่ทางขวา โดยใช้ค่าของ x ที่กำหนดเองเป็นจุดอ้างอิง
                 currentX = x - ctx.measureText(line).width - ((line.length - 1) * letterSpacing);
             }
-        
+
             drawTextLine(ctx, line, currentX, currentY, letterSpacing);
             currentY += lineHeight;
             if (maxLines && index >= maxLines - 1) {
                 return;
             }
         });
+
+        // เพิ่มระยะห่างหลังจากขึ้นบรรทัดใหม่ด้วย <br>
+        currentY + lineHeight;
     });
 }
+
 
 function drawTextLine(ctx, text, x, y, letterSpacing) {
     if (!letterSpacing) {
@@ -261,57 +256,16 @@ function drawTextLine(ctx, text, x, y, letterSpacing) {
         return;
     }
 
-    const characters = text.split('');
+    const segmenter = new Intl.Segmenter('th', { granularity: 'grapheme' });
+    const characters = [...segmenter.segment(text)].map(segment => segment.segment);
     let currentPosition = x;
 
     characters.forEach((char, index) => {
-        const charCode = char.charCodeAt(0);
-        const prevChar = index > 0 ? characters[index - 1] : null;
-        const prevCharCode = prevChar ? prevChar.charCodeAt(0) : null;
-
-        const isUpperVowel = (charCode >= 0x0E34 && charCode <= 0x0E37);
-        const isToneMark = (charCode >= 0x0E48 && charCode <= 0x0E4C);
-        const isBeforeVowel = (charCode === 0x0E31);
-        const isBelowVowel = (charCode >= 0x0E38 && charCode <= 0x0E3A);
-
-        let yOffset = 0;
-        let xOffset = 0;
-
-        if (isUpperVowel) {
-            yOffset = -1;
-            xOffset = 0;
-        }
-
-        if (isToneMark) {
-            if (prevChar && ((prevChar.charCodeAt(0) >= 0x0E34 && prevChar.charCodeAt(0) <= 0x0E37) || prevChar.charCodeAt(0) === 0x0E31)) {
-                yOffset = -8;
-                xOffset = 0;
-            } else {
-                yOffset = 0;
-                xOffset = -7;
-            }
-        }
-
-        if (isBeforeVowel) {
-            yOffset = -1;
-            xOffset = 1;
-        }
-
-        if (isBelowVowel) {
-            yOffset = 0;
-            xOffset = -10;
-        }
-
-        ctx.fillText(char, currentPosition + xOffset, y + yOffset);
-
-        if (!isToneMark && !isBeforeVowel && !isBelowVowel) {
-            currentPosition += ctx.measureText(char).width + letterSpacing;
-        } else {
-            currentPosition += ctx.measureText(char).width;
-        }
+        ctx.fillText(char, currentPosition, y);
+        const charWidth = ctx.measureText(char).width;
+        currentPosition += charWidth + letterSpacing;
     });
 }
-
 
 function downloadImage() {
     const canvas = document.getElementById('canvas');
