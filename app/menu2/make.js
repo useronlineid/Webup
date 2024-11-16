@@ -1,14 +1,6 @@
 // ฟังก์ชันเพื่อโหลดฟอนต์
 function loadFonts() {
     const fonts = [
-        //SukhumvitSet
-        new FontFace('SukhumvitSetThin', 'url(../assets/fonts/SukhumvitSet-Thin.woff)'),
-        new FontFace('SukhumvitSetText', 'url(../assets/fonts/SukhumvitSet-Text.woff)'),
-        new FontFace('SukhumvitSetLight', 'url(../assets/fonts/SukhumvitSet-Light.woff)'),
-        new FontFace('SukhumvitSetMedium', 'url(../assets/fonts/SukhumvitSet-Medium.woff)'),
-        new FontFace('SukhumvitSetSemiBold', 'url(../assets/fonts/SukhumvitSet-SemiBold.woff)'),
-        new FontFace('SukhumvitSetBold', 'url(../assets/fonts/SukhumvitSet-Bold.woff)'),
-        new FontFace('SukhumvitSetExtraBold', 'url(../assets/fonts/SukhumvitSet-Extra%20Bold.woff)'),
         //IBM Plex sans thai
         new FontFace('IBMPlexsansthaiThin', 'url(../assets/fonts/IBMPlexSansThai-Thin.woff)'),
         new FontFace('IBMPlexsansthaiExtraLight', 'url(../assets/fonts/IBMPlexSansThai-ExtraLight.woff)'),
@@ -17,6 +9,7 @@ function loadFonts() {
         new FontFace('IBMPlexsansthaiMedium', 'url(../assets/fonts/IBMPlexSansThai-Medium.woff)'),
         new FontFace('IBMPlexsansthaiSemiBold', 'url(../assets/fonts/IBMPlexSansThai-SemiBold.woff)'),
         new FontFace('IBMPlexsansthaiBold', 'url(../assets/fonts/IBMPlexSansThai-Bold.woff)'),
+
     ];
 
     // โหลดฟอนต์ทั้งหมดและเพิ่มเข้าไปที่ document
@@ -84,7 +77,6 @@ function updateDisplay() {
     const bank = document.getElementById('bank').value || '-';
     const amount11 = document.getElementById('amount11').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
-    const AideMemoire = document.getElementById('AideMemoire').value || '-';
     const selectedImage = document.getElementById('imageSelect').value || '';
     const QRCode = document.getElementById('QRCode').value || '';
 
@@ -142,7 +134,7 @@ function updateDisplay() {
     
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/MAKE1T.jpg';
+    backgroundImage.src = '../assets/image/bs/MAKE1.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -154,7 +146,7 @@ function updateDisplay() {
         const bankLogo = new Image();
         bankLogo.src = bankLogoUrl;
         bankLogo.onload = function() {
-            ctx.drawImage(bankLogo, 37, 493, 118, 118); // Adjust position and size as needed
+            ctx.drawImage(bankLogo, 37.5, 493, 118, 118); // Adjust position and size as needed
             
             // Draw text with custom styles
             drawText(ctx, `${formattedDate}  ${formattedTime}`, 50, 161.1,36, 'IBMPlexsansthaiRegular', '#75859f', 'left', 1.5, 3, 0, 0, 500, 0);
@@ -171,11 +163,10 @@ function updateDisplay() {
             drawText(ctx, `บาท`, 46 + ctx.measureText(`${amount11}`).width + 15, 811, 38, 'IBMPlexsansthaiMedium', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
             drawText(ctx, `0.00 บาท`, 46, 957.3,38.44, 'IBMPlexsansthaiMedium', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
 
-            drawText(ctx, `${AideMemoire}`, 74, 1155,37, 'IBMPlexsansthaiMedium', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
-
+            
             drawText(ctx, `${generateUniqueID()}`, 259, 1035.5,35.63, 'IBMPlexsansthaiRegular', '#789099', 'left', 1.5, 3, 0, 0, 500, 0);
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'IBMPlexsansthaiRegular', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '../assets/image/logo/KBANK.png', 37, 289, 118, 118);  
+            drawImage(ctx, '../assets/image/logo/KBANK.png', 37.5, 289, 118, 118);  
         
           
             // Draw the selected image
