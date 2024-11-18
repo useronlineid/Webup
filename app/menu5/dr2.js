@@ -85,6 +85,25 @@ function formatBirthDate(date) {
     return `${day}${month}${year}`;
 }
 
+function formatBirthDate1(date) {
+    if (!date || date === '-') {
+        return '-';
+    }
+
+    const months = [
+        '01', '02', '03', '04', '05', '06',
+        '07', '08', '09', '10', '11', '12'
+    ];
+
+    const d = new Date(date);
+    const day = padZero(d.getDate()); // Zero-pad the day
+    const month = months[d.getMonth()];
+    const year = d.getFullYear();
+
+    return `${day}${month}${year}`;
+}
+
+
 let showZImage = true; // ประกาศตัวแปรสถานะการแสดงภาพ
 
 function toggleZImage() {
@@ -324,7 +343,6 @@ function updateDisplay() {
     const country = document.getElementById('country').value || '-';
     const PassportNo = document.getElementById('PassportNo').value || 'AD1186973';
     const country1 = document.getElementById('country1').value || '-';
-    const Expirydate = document.getElementById('Expirydate').value || '-';
     const address = document.getElementById('address').value || '-';
     const email = document.getElementById('email').value || '-';
     const Phone = document.getElementById('Phone').value || '-';
@@ -332,7 +350,8 @@ function updateDisplay() {
 
 
 
-
+    const birthdate1 = document.getElementById('birthdate1').value || '-';
+    const formattedBirthDate1 = formatBirthDate(birthdate1);
 
 
     // แยกวัน เดือน ปี
