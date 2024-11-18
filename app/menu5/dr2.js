@@ -391,7 +391,7 @@ function updateDisplay() {
         drawText(ctx, `${country}`, 220, 671, 16, 'arialRegular', '#000000', 'left', 35, 3, 0, 0, 800, 0);
         drawText(ctx, `${PassportNo}`, 160, 743, 16, 'arialRegular', '#000000', 'left', 35, 3, 0, 0, 800, 0);
         drawText(ctx, `${country1}`, 160, 778, 16, 'arialRegular', '#000000', 'left', 35, 3, 0, 0, 800, 0);
-        drawText(ctx, `${Expirydate}`, 720, 772, 16, 'arialRegular', '#000000', 'left', 35, 3, 0, 0, 800, 10);
+        drawText(ctx, `${formattedBirthDate1}`, 720, 772, 16, 'arialRegular', '#000000', 'left', 35, 3, 0, 0, 800, 10);
         drawText(ctx, `                 ${address}`, 80, 1000, 16, 'arialRegular', '#000000', 'left', 35, 3, 0, 0, 700, 0);
         drawText(ctx, `${Phone}`, 250, 1070, 16, 'arialRegular', '#000000', 'left', 35, 3, 0, 0, 700, 0);
         drawText(ctx, `${email}`, 140, 1105, 16, 'arialRegular', '#000000', 'left', 35, 3, 0, 0, 700, 0);
