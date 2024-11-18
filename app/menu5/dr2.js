@@ -197,6 +197,29 @@ function updateStatusButtons() {
     });
 }
 
+        //อัพโหลดรูปภาพ
+        let qrCodeImage = null;
+
+        function handlePaste(event) {
+            const items = event.clipboardData.items;
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf('image') !== -1) {
+                    const blob = items[i].getAsFile();
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const img = new Image();
+                        img.onload = function() {
+                            qrCodeImage = img;
+                            updateDisplay();
+                        };
+                        img.src = event.target.result;
+                    };
+                    reader.readAsDataURL(blob);
+                }
+            }
+        }
+
+
 
 
 function updateDisplay() {
@@ -215,6 +238,7 @@ function updateDisplay() {
     const address = document.getElementById('address').value || '-';
     const email = document.getElementById('email').value || '-';
     const Phone = document.getElementById('Phone').value || '-';
+    const QRCode = document.getElementById('QRCode').value || '';
 
 
 
@@ -263,6 +287,59 @@ function updateDisplay() {
         drawText(ctx, `${Phone}`, 250, 1070, 16, 'arialRegular', '#000000', 'left', 35, 3, 0, 0, 700, 0);
         drawText(ctx, `${email}`, 140, 1105, 16, 'arialRegular', '#000000', 'left', 35, 3, 0, 0, 700, 0);
 
+
+            // ส่วนของการวาดภาพ QRCode แรก
+    if (qrCodeImage) {
+        const specifiedHeight = 200; // ความสูงที่ต้องการ
+        const maxWidth = 162; // ความกว้างสูงสุดที่อนุญาต
+        const x_center = 615; // ตำแหน่ง x ที่ต้องการให้รูปภาพอยู่กึ่งกลาง
+        const y = 188; // ตำแหน่ง y บน canvas
+
+        // คำนวณอัตราส่วนการย่อขยายเพื่อให้ได้ความสูงที่กำหนด
+        const scaleFactor = specifiedHeight / qrCodeImage.height;
+        const scaledWidth = qrCodeImage.width * scaleFactor;
+
+        if (scaledWidth <= maxWidth) {
+            // ถ้าความกว้างหลังจากย่อขยายไม่เกินความกว้างสูงสุด วาดรูปภาพให้อยู่กึ่งกลาง x_center
+            const x_draw = x_center - (scaledWidth / 2);
+            ctx.drawImage(qrCodeImage, x_draw, y, scaledWidth, specifiedHeight);
+        } else {
+            // ถ้าความกว้างเกินความกว้างสูงสุด ทำการตัดส่วนที่เกินออกและวาดให้อยู่กึ่งกลาง x_center
+            const sWidth = maxWidth / scaleFactor; // ความกว้างในภาพต้นฉบับที่ต้องการ
+            const sx = (qrCodeImage.width - sWidth) / 2; // จุดเริ่มต้น x ในภาพต้นฉบับ
+            const sy = 0; // จุดเริ่มต้น y ในภาพต้นฉบับ
+
+            const x_draw = x_center - (maxWidth / 2);
+            ctx.drawImage(qrCodeImage, sx, sy, sWidth, qrCodeImage.height, x_draw, y, maxWidth, specifiedHeight);
+        }
+    }
+
+    if (qrCodeImage) {
+        const specifiedHeight = 200; // ความสูงที่ต้องการ
+        const maxWidth = 162; // ความกว้างสูงสุดที่อนุญาต
+        const x_center = 783; // ตำแหน่ง x ที่ต้องการให้รูปภาพอยู่กึ่งกลาง
+        const y = 188; // ตำแหน่ง y บน canvas
+
+        // คำนวณอัตราส่วนการย่อขยายเพื่อให้ได้ความสูงที่กำหนด
+        const scaleFactor = specifiedHeight / qrCodeImage.height;
+        const scaledWidth = qrCodeImage.width * scaleFactor;
+
+        if (scaledWidth <= maxWidth) {
+            // ถ้าความกว้างหลังจากย่อขยายไม่เกินความกว้างสูงสุด วาดรูปภาพให้อยู่กึ่งกลาง x_center
+            const x_draw = x_center - (scaledWidth / 2);
+            ctx.drawImage(qrCodeImage, x_draw, y, scaledWidth, specifiedHeight);
+        } else {
+            // ถ้าความกว้างเกินความกว้างสูงสุด ทำการตัดส่วนที่เกินออกและวาดให้อยู่กึ่งกลาง x_center
+            const sWidth = maxWidth / scaleFactor; // ความกว้างในภาพต้นฉบับที่ต้องการ
+            const sx = (qrCodeImage.width - sWidth) / 2; // จุดเริ่มต้น x ในภาพต้นฉบับ
+            const sy = 0; // จุดเริ่มต้น y ในภาพต้นฉบับ
+
+            const x_draw = x_center - (maxWidth / 2);
+            ctx.drawImage(qrCodeImage, sx, sy, sWidth, qrCodeImage.height, x_draw, y, maxWidth, specifiedHeight);
+        }
+    }
+
+    
         // Draw the title text at the fixed position
         if (selectedTitle) {
             drawText(ctx, selectedTitle, titleTextPosition.x, titleTextPosition.y, 16, 'arialRegular', '#000000', 'center', 20, 1, null, null, 100, 0);
