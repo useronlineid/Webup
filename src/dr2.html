@@ -24,6 +24,11 @@
                 <label for="datetime">วันที่:</label>
                 <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
 
+                <label for="QRCode">รูปโปรไฟล์</label>
+                <div id="QRCode" class="qrcode-drop-area" onpaste="handlePaste(event)">
+                    วางรูปภาพที่นี่
+                </div>
+                
                 <label for="Applicationno">Client no:</label>
                 <input type="text" id="Applicationno" name="Applicationno" value="0058/0476" oninput="updateDisplay()">
                 
