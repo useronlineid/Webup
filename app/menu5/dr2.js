@@ -78,7 +78,7 @@ function formatBirthDate(date) {
     ];
 
     const d = new Date(date);
-    const day = d.getDate();
+    const day = padZero(d.getDate()); // Zero-pad the day
     const month = months[d.getMonth()];
     const year = d.getFullYear();
 
