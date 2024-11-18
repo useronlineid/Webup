@@ -92,6 +92,96 @@ function toggleZImage() {
     updateDisplay(); // อัปเดตการแสดงผล
 }
 
+// ประกาศตัวแปรเพื่อเก็บแมปปิ้งจังหวัด
+const provinceMap = {
+    "กรุงเทพมหานคร": "BANGKOK",
+    "กระบี่": "KRABI",
+    "กาญจนบุรี": "KANCHANABURI",
+    "กาฬสินธุ์": "KALASIN",
+    "กำแพงเพชร": "KAMPHAENG PHET",
+    "ขอนแก่น": "KHON KAEN",
+    "จันทบุรี": "CHAN THABURI",
+    "ฉะเชิงเทรา": "CHACHOENGSAO",
+    "ชลบุรี": "CHON BURI",
+    "ชัยนาท": "CHAINAT",
+    "ชัยภูมิ": "CHAIYAPHUM",
+    "ชุมพร": "CHUMPHON",
+    "เชียงราย": "CHIANG RAI",
+    "เชียงใหม่": "CHIANG MAI",
+    "ตรัง": "TRANG",
+    "ตราด": "TRAT",
+    "ตาก": "TAK",
+    "นครนายก": "NAKHON NAYOK",
+    "นครปฐม": "NAKHON PATHOM",
+    "นครพนม": "NAKHON PHANOM",
+    "นครราชสีมา": "NAKHON RATCHASIMA",
+    "นครศรีธรรมราช": "NAKHON SI THAMMARAT",
+    "นครสวรรค์": "NAKHON SAWAN",
+    "นนทบุรี": "NONTHABURI",
+    "นราธิวาส": "NARATHIWAT",
+    "น่าน": "NAN",
+    "บึงกาฬ": "BUENG KAN",
+    "บุรีรัมย์": "BURIRAM",
+    "ปทุมธานี": "PATHUM THANI",
+    "ประจวบคีรีขันธ์": "PRACHUAP KHIRI KHAN",
+    "ปราจีนบุรี": "PRACHIN BURI",
+    "ปัตตานี": "PATTANI",
+    "พระนครศรีอยุธยา": "PHRA NAKHON SI AYUTTHAYA",
+    "พังงา": "PHANGNGA",
+    "พัทลุง": "PHATTHALUNG",
+    "พิจิตร": "PHICHIT",
+    "พิษณุโลก": "PHITSANULOK",
+    "เพชรบุรี": "PHETCHABURI",
+    "เพชรบูรณ์": "PHETCHABUN",
+    "แพร่": "PHRAE",
+    "พะเยา": "PHAYAO",
+    "ภูเก็ต": "PHUKET",
+    "มหาสารคาม": "MAHA SARAKHAM",
+    "มุกดาหาร": "MUKDAHAN",
+    "แม่ฮ่องสอน": "MAE HONG SON",
+    "ยโสธร": "YASOTHON",
+    "ยะลา": "YALA",
+    "ร้อยเอ็ด": "ROI ET",
+    "ระนอง": "RANONG",
+    "ระยอง": "RAYONG",
+    "ราชบุรี": "RATCHABURI",
+    "ลพบุรี": "LOP BURI",
+    "ลำปาง": "LAMPANG",
+    "ลำพูน": "LAM PHUN",
+    "เลย": "LOEI",
+    "ศรีสะเกษ": "SI SA KET",
+    "สกลนคร": "SAKON NAKHON",
+    "สงขลา": "SONGKHLA",
+    "สตูล": "SATUN",
+    "สมุทรปราการ": "SAMUT PRAKAN",
+    "สมุทรสงคราม": "SAMUT SONGKHRAM",
+    "สมุทรสาคร": "SAMUT SAKHON",
+    "สระแก้ว": "SA KAEO",
+    "สระบุรี": "SARABURI",
+    "สิงห์บุรี": "SING BURI",
+    "สุโขทัย": "SUKHOTHAI",
+    "สุพรรณบุรี": "SUPHAN BURI",
+    "สุราษฎร์ธานี": "SURAT THANI",
+    "สุรินทร์": "SURIN",
+    "หนองคาย": "NONG KHAI",
+    "หนองบัวลำภู": "NONG BUA LAM PHU",
+    "อ่างทอง": "ANG THONG",
+    "อำนาจเจริญ": "AMNAT CHAROEN",
+    "อุดรธานี": "UDON THANI",
+    "อุตรดิตถ์": "UTTARADIT",
+    "อุทัยธานี": "UTHAI THANI",
+    "อุบลราชธานี": "UBON RATCHATHANI"
+};
+
+// ฟังก์ชันเพื่ออัปเดตค่า province ที่ซ่อนอยู่
+function updateProvinceValue() {
+    const provinceInput = document.getElementById('provinceInput').value;
+    const provinceCode = provinceMap[provinceInput] || ''; // หากไม่พบ ให้ตั้งค่าเป็นค่าว่าง
+    document.getElementById('province').value = provinceCode;
+}
+
+
+
 // Positions for each title image
 const titleImagePositions = {
     'Mr': { x: 207, y: 472 },
