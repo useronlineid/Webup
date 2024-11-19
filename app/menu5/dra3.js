@@ -200,7 +200,7 @@ function updateDisplay() {
         drawText(ctx, `${Clientnumber}`, 618,633,17,'arialRegular', '#000000', 'left',37, 3, 0, 0, 800, 0);
 
         drawText(ctx, `${formattedCustomDate}`, 461,739.3,17,'arialRegular', '#000000', 'left',37, 3, 0, 0, 800, 0);
-        drawText(ctx, `${formattedCustomDate1}`, 461,800.3,17,'arialRegular', '#000000', 'left',37, 3, 0, 0, 800, 0);
+        drawText(ctx, `${formattedCustomDate1}`, 460,790.3,17,'arialRegular', '#000000', 'left',37, 3, 0, 0, 800, 0);
 
 
 
