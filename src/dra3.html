@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วีซ่านิวซีแลนด์</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>วีซ่านิวซีแลนด์</h1>
+            <div class="form">
+                <label for="Applicationnumber">Application number:</label>
+                <input type="text" id="Applicationnumber" name="Applicationnumber" placeholder="หมายเลขใบสมัคร" oninput="updateDisplay()">
+                
+                <label for="Clientnumber">Client Number:</label>
+                <input type="text" id="Clientnumber" name="Clientnumber" placeholder="หมายเลขลูกค้า" oninput="updateDisplay()">
+                
+
+                <label for="firstname">name:</label>
+                <input type="text" id="firstname" name="firstname" placeholder="ชื่อ-นามสกุล" oninput="updateDisplay()">
+                
+                <label for="title">เพศ (Gender):</label>
+                <div id="title-selection">
+                    <button type="button" class="title-btn" data-value="Male" onclick="selectTitle('Male')">Mr</button>
+                    <button type="button" class="title-btn" data-value="Female" onclick="selectTitle('Female')">Mrs</button>
+                </div>
+                <input type="hidden" id="selectedTitle" name="title">
+
+                <label for="country">สัญชาติ (Nationality)</label>
+                <input type="text" id="country" name="country" value="thailand" oninput="updateDisplay()">
+    
+                                
+                <!-- เพิ่มฟิลด์ใหม่สำหรับวัน/เดือน/ปีเกิด -->
+                <label for="birthdate">วัน/เดือน/ปีเกิด:</label>
+                <input type="date" id="birthdate" name="birthdate" oninput="updateDisplay()">
+
+                <label for="PassportNo">Passport number</label>
+                <input type="text" id="PassportNo" name="PassportNo" placeholder="หมายเลขหนังสือเดินทาง"  oninput="updateDisplay()">
+                
+                <label for="customDate">วันที่ออกวีซ่า</label>
+                <input type="date" id="customDate" name="customDate" oninput="updateDisplay()">
+
+                <label for="customDate1">วันหมดอายุ</label>
+                <input type="date" id="customDate1" name="customDate1" oninput="updateDisplay()">
+
+
+
+
+                
+
+                
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../app/menu5/dra3.js"></script>
+</body>
+</html>
