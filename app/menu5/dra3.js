@@ -212,13 +212,6 @@ function updateDisplay() {
             drawText(ctx, selectedTitle, titleTextPosition.x, titleTextPosition.y, 16, 'arialRegular', '#000000', 'left', 20, 1, null, null, 100, 0);
         }
 
-        // Display the image based on the selected title
-        if (selectedTitle) {
-            const position = titleImagePositions[selectedTitle];
-            // Draw the image at the specified position
-            drawImage(ctx, '../assets/image/paper/DD.png', position.x, position.y, 29, 29);
-        }
-
 
 
     };
