@@ -445,7 +445,7 @@ if (qrCodeImage) {
 
         // วาดกรอบรอบรูปภาพ
         ctx.lineWidth = 10;
-        ctx.strokeStyle = '#7a7a7a'; // เปลี่ยนสีตามต้องการ
+        ctx.strokeStyle = '#929699'; // เปลี่ยนสีตามต้องการ
         ctx.strokeRect(x_draw, y, scaledWidth, specifiedHeight);
     } else {
         // วาดรูปภาพ QRCode ที่ถูกตัดส่วนเกิน
@@ -457,7 +457,7 @@ if (qrCodeImage) {
 
         // วาดกรอบรอบรูปภาพ
         ctx.lineWidth = 10;
-        ctx.strokeStyle = '#7a7a7a'; // เปลี่ยนสีตามต้องการ
+        ctx.strokeStyle = '#929699'; // เปลี่ยนสีตามต้องการ
         ctx.strokeRect(x_draw, y, maxWidth, specifiedHeight);
     }
 }
@@ -478,7 +478,7 @@ if (qrCodeImage) {
 
         // วาดกรอบรอบรูปภาพ
         ctx.lineWidth = 10;
-        ctx.strokeStyle = '#7a7a7a';
+        ctx.strokeStyle = '#929699';
         ctx.strokeRect(x_draw, y, scaledWidth, specifiedHeight);
     } else {
         const sWidth = maxWidth / scaleFactor;
@@ -489,7 +489,7 @@ if (qrCodeImage) {
 
         // วาดกรอบรอบรูปภาพ
         ctx.lineWidth = 10;
-        ctx.strokeStyle = '#7a7a7a';
+        ctx.strokeStyle = '#929699';
         ctx.strokeRect(x_draw, y, maxWidth, specifiedHeight);
     }
 }
