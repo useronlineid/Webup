@@ -103,6 +103,32 @@ function formatBirthDate1(date) {
     return `${day}${month}${year}`;
 }
 
+function formatCustomDate(date) {
+    if (!date || date === '-') {
+        return '-';
+    }
+
+    const months = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+
+    const d = new Date(date);
+    const day = d.getDate();
+    const month = months[d.getMonth()];
+    const year = d.getFullYear();
+
+    // แสดงในรูปแบบ '24 January 2024'
+    return `${month} ${year} - ${day} `;
+}
+
+        // ตั้งค่าวันที่ปัจจุบันเป็นค่าเริ่มต้นใน input date
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('customDate').value = today;
+        });
+
+
 
 let showZImage = true; // ประกาศตัวแปรสถานะการแสดงภาพ
 
@@ -348,10 +374,13 @@ function updateDisplay() {
     const Phone = document.getElementById('Phone').value || '-';
     const QRCode = document.getElementById('QRCode').value || '';
 
-
-
     const birthdate1 = document.getElementById('birthdate1').value || '-';
     const formattedBirthDate1 = formatBirthDate(birthdate1);
+
+
+    const customDate = document.getElementById('customDate').value || '-';
+    const formattedCustomDate = formatCustomDate(customDate);
+
 
 
     // แยกวัน เดือน ปี
@@ -396,58 +425,74 @@ function updateDisplay() {
         drawText(ctx, `${Phone}`, 250, 1070, 16, 'arialRegular', '#000000', 'left', 35, 3, 0, 0, 700, 0);
         drawText(ctx, `${email}`, 140, 1105, 16, 'arialRegular', '#000000', 'left', 35, 3, 0, 0, 700, 0);
 
+        drawText(ctx, `Work visa application form - ${formattedCustomDate}`, 890, 1260, 16, 'arialRegular', '#000000', 'right', 35, 3, 0, 0, 800, 0);
 
-            // ส่วนของการวาดภาพ QRCode แรก
-    if (qrCodeImage) {
-        const specifiedHeight = 200; // ความสูงที่ต้องการ
-        const maxWidth = 162; // ความกว้างสูงสุดที่อนุญาต
-        const x_center = 615; // ตำแหน่ง x ที่ต้องการให้รูปภาพอยู่กึ่งกลาง
-        const y = 188; // ตำแหน่ง y บน canvas
+// ส่วนของการวาดภาพ QRCode แรก
+if (qrCodeImage) {
+    const specifiedHeight = 200; // ความสูงที่ต้องการ
+    const maxWidth = 162; // ความกว้างสูงสุดที่อนุญาต
+    const x_center = 610; // ตำแหน่ง x ที่ต้องการให้รูปภาพอยู่กึ่งกลาง
+    const y = 188; // ตำแหน่ง y บน canvas
 
-        // คำนวณอัตราส่วนการย่อขยายเพื่อให้ได้ความสูงที่กำหนด
-        const scaleFactor = specifiedHeight / qrCodeImage.height;
-        const scaledWidth = qrCodeImage.width * scaleFactor;
+    // คำนวณอัตราส่วนการย่อขยายเพื่อให้ได้ความสูงที่กำหนด
+    const scaleFactor = specifiedHeight / qrCodeImage.height;
+    const scaledWidth = qrCodeImage.width * scaleFactor;
 
-        if (scaledWidth <= maxWidth) {
-            // ถ้าความกว้างหลังจากย่อขยายไม่เกินความกว้างสูงสุด วาดรูปภาพให้อยู่กึ่งกลาง x_center
-            const x_draw = x_center - (scaledWidth / 2);
-            ctx.drawImage(qrCodeImage, x_draw, y, scaledWidth, specifiedHeight);
-        } else {
-            // ถ้าความกว้างเกินความกว้างสูงสุด ทำการตัดส่วนที่เกินออกและวาดให้อยู่กึ่งกลาง x_center
-            const sWidth = maxWidth / scaleFactor; // ความกว้างในภาพต้นฉบับที่ต้องการ
-            const sx = (qrCodeImage.width - sWidth) / 2; // จุดเริ่มต้น x ในภาพต้นฉบับ
-            const sy = 0; // จุดเริ่มต้น y ในภาพต้นฉบับ
+    if (scaledWidth <= maxWidth) {
+        // วาดรูปภาพ QRCode
+        const x_draw = x_center - (scaledWidth / 2);
+        ctx.drawImage(qrCodeImage, x_draw, y, scaledWidth, specifiedHeight);
 
-            const x_draw = x_center - (maxWidth / 2);
-            ctx.drawImage(qrCodeImage, sx, sy, sWidth, qrCodeImage.height, x_draw, y, maxWidth, specifiedHeight);
-        }
+        // วาดกรอบรอบรูปภาพ
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = '#7a7a7a'; // เปลี่ยนสีตามต้องการ
+        ctx.strokeRect(x_draw, y, scaledWidth, specifiedHeight);
+    } else {
+        // วาดรูปภาพ QRCode ที่ถูกตัดส่วนเกิน
+        const sWidth = maxWidth / scaleFactor;
+        const sx = (qrCodeImage.width - sWidth) / 2;
+        const sy = 0;
+        const x_draw = x_center - (maxWidth / 2);
+        ctx.drawImage(qrCodeImage, sx, sy, sWidth, qrCodeImage.height, x_draw, y, maxWidth, specifiedHeight);
+
+        // วาดกรอบรอบรูปภาพ
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = '#7a7a7a'; // เปลี่ยนสีตามต้องการ
+        ctx.strokeRect(x_draw, y, maxWidth, specifiedHeight);
     }
+}
 
-    if (qrCodeImage) {
-        const specifiedHeight = 200; // ความสูงที่ต้องการ
-        const maxWidth = 162; // ความกว้างสูงสุดที่อนุญาต
-        const x_center = 783; // ตำแหน่ง x ที่ต้องการให้รูปภาพอยู่กึ่งกลาง
-        const y = 188; // ตำแหน่ง y บน canvas
+// ส่วนของการวาดภาพ QRCode ที่สอง (ถ้ามี)
+if (qrCodeImage) {
+    const specifiedHeight = 200;
+    const maxWidth = 162;
+    const x_center = 783;
+    const y = 188;
 
-        // คำนวณอัตราส่วนการย่อขยายเพื่อให้ได้ความสูงที่กำหนด
-        const scaleFactor = specifiedHeight / qrCodeImage.height;
-        const scaledWidth = qrCodeImage.width * scaleFactor;
+    const scaleFactor = specifiedHeight / qrCodeImage.height;
+    const scaledWidth = qrCodeImage.width * scaleFactor;
 
-        if (scaledWidth <= maxWidth) {
-            // ถ้าความกว้างหลังจากย่อขยายไม่เกินความกว้างสูงสุด วาดรูปภาพให้อยู่กึ่งกลาง x_center
-            const x_draw = x_center - (scaledWidth / 2);
-            ctx.drawImage(qrCodeImage, x_draw, y, scaledWidth, specifiedHeight);
-        } else {
-            // ถ้าความกว้างเกินความกว้างสูงสุด ทำการตัดส่วนที่เกินออกและวาดให้อยู่กึ่งกลาง x_center
-            const sWidth = maxWidth / scaleFactor; // ความกว้างในภาพต้นฉบับที่ต้องการ
-            const sx = (qrCodeImage.width - sWidth) / 2; // จุดเริ่มต้น x ในภาพต้นฉบับ
-            const sy = 0; // จุดเริ่มต้น y ในภาพต้นฉบับ
+    if (scaledWidth <= maxWidth) {
+        const x_draw = x_center - (scaledWidth / 2);
+        ctx.drawImage(qrCodeImage, x_draw, y, scaledWidth, specifiedHeight);
 
-            const x_draw = x_center - (maxWidth / 2);
-            ctx.drawImage(qrCodeImage, sx, sy, sWidth, qrCodeImage.height, x_draw, y, maxWidth, specifiedHeight);
-        }
+        // วาดกรอบรอบรูปภาพ
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = '#7a7a7a';
+        ctx.strokeRect(x_draw, y, scaledWidth, specifiedHeight);
+    } else {
+        const sWidth = maxWidth / scaleFactor;
+        const sx = (qrCodeImage.width - sWidth) / 2;
+        const sy = 0;
+        const x_draw = x_center - (maxWidth / 2);
+        ctx.drawImage(qrCodeImage, sx, sy, sWidth, qrCodeImage.height, x_draw, y, maxWidth, specifiedHeight);
+
+        // วาดกรอบรอบรูปภาพ
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = '#7a7a7a';
+        ctx.strokeRect(x_draw, y, maxWidth, specifiedHeight);
     }
-
+}
     
         // Draw the title text at the fixed position
         if (selectedTitle) {
@@ -484,7 +529,6 @@ function updateDisplay() {
         drawImage(ctx, '../assets/image/paper/DD.png', position.x, position.y, 29, 29);
         }
         }
-
 
 
     };
