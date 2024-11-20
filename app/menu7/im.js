@@ -68,7 +68,7 @@ function updateDisplay() {
 
         // โหลดและวาดรูปภาพ
         const iconImage = new Image();
-        iconImage.src = '/assets/image/paper/icon-im.png';
+        iconImage.src = '../assets/image/paper/icon-im.png';
         iconImage.onload = function() {
             const iconWidth = iconImage.width;
             const iconHeight = iconImage.height;
