@@ -33,6 +33,9 @@ window.onload = function() {
 
 
 function updateDisplay() {
+    const name100 = document.getElementById('name100').value || '-';
+    const note100 = document.getElementById('note100').value || '-';
+
     const money100 = document.getElementById('money100').value || '-';
     const money98 = document.getElementById('money98').value || '-';
     const u98 = document.getElementById('u98').value || '-';
@@ -51,6 +54,26 @@ function updateDisplay() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
+        drawText(ctx, `${name100}`, 110,25,24,'SFThonburiRegular', '#5f636e', 'left', 40, 3, 0, 0, 800, 0);
+        // วาดข้อความ note100
+        drawText(ctx, `${note100}`, 70.5, 247, 24, 'SFThonburiRegular', '#8dc7ff', 'left', 40, 3, 0, 0, 800, 0);
+
+        // วัดความกว้างของข้อความ note100
+        ctx.font = `24px SFThonburiRegular`;
+        const textWidth = ctx.measureText(note100).width;
+
+        // คำนวณตำแหน่ง x ของรูปภาพ โดยให้ห่างจากข้อความ 10 หน่วย
+        const iconX = 70.5 + textWidth + 7;
+        const iconY = 227; // ปรับค่า y ตามต้องการ
+
+        // โหลดและวาดรูปภาพ
+        const iconImage = new Image();
+        iconImage.src = '/assets/image/paper/icon-im.png';
+        iconImage.onload = function() {
+            const iconWidth = iconImage.width;
+            const iconHeight = iconImage.height;
+            ctx.drawImage(iconImage, iconX, iconY, iconWidth, iconHeight);
+        };
 
         drawText(ctx, `$ ${money100}`, 70.5,177.5,48,'SFThonburiBold', '#ffffff', 'left', 40, 3, 0, 0, 800, 0);
 
