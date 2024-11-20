@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ปรับ imToken</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="741" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>ปรับ imToken</h1>
+            <div class="form">
+                
+                <label for="datetime">วันที่ออก</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="user1">จำนวนเงินทั้งหมด</label>
+                <input type="text" id="money100" name="money100" value="19.93" oninput="updateDisplay()">
+                
+                <label>รายการ 1 </label>
+                <input type="text" id="money98" name="money98" value="50" oninput="updateDisplay()">
+                <input type="text" id="u98" name="u98" value="9.92" oninput="updateDisplay()">
+                
+                <label>รายการ 2 </label>
+                <input type="text" id="money99" name="money99" value="10" oninput="updateDisplay()">
+                <input type="text" id="u99" name="u99" value="10.00" oninput="updateDisplay()">
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu7/im.js"></script>
+</body>
+</html>
