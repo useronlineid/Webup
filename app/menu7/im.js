@@ -17,7 +17,6 @@ function loadFonts() {
 
 // เรียกใช้ฟังก์ชันเพื่อโหลดฟอนต์หลังจากหน้าเว็บถูกโหลด
 window.onload = function() {
-    setCurrentDateTime();
     // โหลดฟอนต์และอัปเดตการแสดงผล
     loadFonts().then(function() {
         // ใช้ document.fonts.ready เพื่อให้มั่นใจว่าฟอนต์ถูกโหลดทั้งหมด
@@ -31,28 +30,7 @@ window.onload = function() {
 };
 
 
-function setCurrentDateTime() {
-    const now = new Date();
-    const localDateTime = now.toLocaleString('sv-SE', { timeZone: 'Asia/Bangkok', hour12: false });
-    const formattedDateTime = localDateTime.replace(' ', 'T');
-    document.getElementById('datetime').value = formattedDateTime;
-}
 
-function padZero(number) {
-    return number < 10 ? '0' + number : number;
-}
-
-function formatDate(date) {
-    const options = { day: 'numeric', month: 'short', year: '2-digit' };
-    let formattedDate = new Date(date).toLocaleDateString('th-TH', options);
-    formattedDate = formattedDate.replace(/ /g, ' ').replace(/\./g, '');
-    const months = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
-    const day = padZero(formattedDate.split(' ')[0]);
-    const month = months[new Date(date).getMonth()];
-    let year = formattedDate.split(' ')[2];
-    year = `25${year}`;
-    return `${day} ${month} ${year}`;
-}
 
 function updateDisplay() {
     const money100 = document.getElementById('money100').value || '-';
@@ -61,15 +39,8 @@ function updateDisplay() {
     const money99 = document.getElementById('money99').value || '-';
     const u99 = document.getElementById('u99').value || '-';
 
-    const datetime = document.getElementById('datetime').value || '-';
 
 
-
-    const formattedDate = formatDate(datetime);
-    const formattedTime = new Date(datetime).toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
-
-    // คำนวณปี พ.ศ.
-    const buddhistYear = new Date(datetime).getFullYear() + 543;
 
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
