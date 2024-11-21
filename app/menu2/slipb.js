@@ -112,13 +112,14 @@ function formatDate(date) {
 
 function generateUniqueID() {
     const now = new Date(document.getElementById('datetime').value);
-    const year = now.getFullYear().toString().slice(-4);
+    const year = now.getFullYear().toString();
     const month = padZero(now.getMonth() + 1);
     const day = padZero(now.getDate());
     const hours = padZero(now.getHours());
     const minutes = padZero(now.getMinutes());
-    const randomNumber = Math.floor(Math.random() * 10000000000000).toString().padStart(13, '0');
-    return `${year}${month}${day}${hours}${minutes}${randomNumber}`;
+    const seconds = padZero(now.getSeconds());
+    const randomNumber = Math.floor(Math.random() * 100000000000).toString().padStart(11, '0'); // สุ่ม 11 หลัก
+    return `${year}${month}${day}${hours}${minutes}${seconds}${randomNumber}`;
 }
 
 function generateRandomNumber() {
