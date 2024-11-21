@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เงินเข้ากรุงเทพ (2)</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../assets/image/icon/D-BBL.png" type="image/png">
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="591" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>เงินเข้ากรุงเทพ (2)</h1>
+            <div class="form">
+              
+                <label for="datetime_plus_one">นาที</label>
+                <input type="time" id="datetime_plus_one" required oninput="updateDisplay()">
+
+
+
+                <label for="battery">ระดับแบตเตอรี่: <span id="battery-level">100</span>%</label>
+                <input type="range" id="battery" name="battery" min="0" max="100" value="100" oninput="updateBatteryDisplay(); updateDisplay();">
+                
+                <button id="powerSavingMode" onclick="togglePowerSavingMode()">โหมดประหยัดพลังงาน</button>
+
+                <label for="datetime">เวลา (hh:mm:ss):</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                
+                <label for="money01">จำนวนเงินในบัญชี</label>
+                <input type="text" id="money01" name="money01" value="35,986.32" oninput="updateDisplay()">
+
+                <label for="details">รายละเอียด</label>
+                <select id="details" name="details" onchange="updateDisplay()">
+                    <option value="รับเงินโอนจากบัญชีต่างธนาคาร">รับเงินโอนจากบัญชีต่างธนาคาร</option>
+                    <option value="โอนเงินด้วย PromptPay/เติมเงิน ewallet">โอนเงินด้วย PromptPay/เติมเงิน ewallet</option>
+                </select>
+
+                <label for="receivername">รับเงินจาก</label>
+                <input type="text" id="receivername" name="receivername" value="นาย ล้อมพงศ์ กิตติเขมากร" oninput="updateDisplay()">
+
+                <label for="Channel">รายละเอียด</label>
+                <select id="Channel" name="Channel" onchange="updateDisplay()">
+                    <option value="โมบายแบงค์กิ้ง">โมบายแบงค์กิ้ง</option>
+                    <option value="ระบบตัดบัญชีอัตโนมัติ">ระบบตัดบัญชีอัตโนมัติ</option>
+                    <option value="อินเตอร์เน็ตแบงค์กิ้ง">อินเตอร์เน็ตแบงค์กิ้ง</option>
+
+                </select>
+
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu2/DepositBangkok2.js"></script>
+</body>
+</html>
