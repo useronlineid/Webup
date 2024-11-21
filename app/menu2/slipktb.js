@@ -201,7 +201,9 @@ function updateDisplay() {
             drawText(ctx, `${generateUniqueID()}`, 357.5, 357.3,34.5, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -1);
             
             
-            drawText(ctx, `${sendername}`, 188, 519,47, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800,-0.6);
+            drawText(ctx, `${sendername}`, 188, 519, 47, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.6);
+            drawText(ctx, `***`, 188 + ctx.measureText(`${sendername}`).width - 7, 519, 47, 'DXKrungthaiRegular', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.6);
+
             drawText(ctx, `กรุงไทย`, 188, 577,36.5, 'DXKrungthaiMedium', '#000000', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${senderaccount}`,188, 631,37, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500,-1.6);
             
