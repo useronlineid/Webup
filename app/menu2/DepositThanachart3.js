@@ -148,7 +148,7 @@ function updateDisplay() {
         `,49.2, 451.8,23,'DXTTBBold', '#0f326c', 'left', 1.5, 3, 0, 0, 800, -0.50);
 
         drawText(ctx, `มีเงิน${money01}บ.โอนเข้าบ/ช${senderaccount2} จาก ${bank1}<br>${senderaccount1} ${name1}<br>คงเหลือ${money02}บ.${formattedDate}@${formattedTime}<br>
-        `,49.2, 500.8,23,'DXTTBRegular', '#858a94','left', 35, 3, 0, 0, 470, 0);
+        `,49.2, 500.8,23,'DXTTBRegular', '#858a94','left', 35, 3, 0, 0, 800, 0);
 
 
 
