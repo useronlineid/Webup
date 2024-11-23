@@ -147,8 +147,8 @@ function updateDisplay() {
         drawText(ctx, `แจ้งรายการเงินข้าเข้าบัญชี-สำเร็จ
         `,49.2, 451.8,23,'DXTTBBold', '#0f326c', 'left', 1.5, 3, 0, 0, 800, -0.50);
 
-        drawText(ctx, `มีเงิน${money01}บ.โอนเข้าบ/ช${senderaccount2} จาก ${bank1}<br>${senderaccount1} ${name1}<br>คงเหลือ${money02}บ.${formattedDate}@${formattedTime}<br>
-        `,49.2, 500.8,23,'DXTTBRegular', '#858a94','left', 35, 3, 0, 0, 800, 0);
+        drawText(ctx, `มีเงิน${money01}บ.โอนเข้าบ/ช${senderaccount2} จาก ${bank1} ${senderaccount1} ${name1}<br>คงเหลือ${money02}บ.${formattedDate}@${formattedTime}<br>
+        `,49.2, 500.8,23,'DXTTBRegular', '#858a94','left', 35, 3, 0, 0, 490, 0);
 
 
 
@@ -176,8 +176,8 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
     let currentY = y;
 
     paragraphs.forEach(paragraph => {
-        // ใช้ Intl.Segmenter เพื่อแบ่งคำภาษาไทย
-        const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
+        // ใช้ Intl.Segmenter โดยไม่กำหนด locale เพื่อรองรับหลายภาษา
+        const segmenter = new Intl.Segmenter(undefined, { granularity: 'word' });
         const words = [...segmenter.segment(paragraph)].map(segment => segment.segment);
 
         let lines = [];
@@ -196,7 +196,7 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
             }
         });
         if (currentLine) {
-            lines.push(currentLine);
+            lines.push(currentLine.trimStart()); // ตัดช่องว่างที่ขึ้นต้นบรรทัดใหม่ออก
         }
 
         lines.forEach((line, index) => {
