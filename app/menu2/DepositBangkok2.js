@@ -9,6 +9,11 @@ function loadFonts() {
         new FontFace('SukhumvitSetSemiBold', 'url(../assets/fonts/SukhumvitSet-SemiBold.woff)'),
         new FontFace('SukhumvitSetBold', 'url(../assets/fonts/SukhumvitSet-Bold.woff)'),
         new FontFace('SukhumvitSetExtraBold', 'url(../assets/fonts/SukhumvitSet-Extra%20Bold.woff)'),
+        //SFThonburi
+        new FontFace('SFThonburiLight', 'url(../assets/fonts/SFThonburi.woff)'),
+        new FontFace('SFThonburiRegular', 'url(../assets/fonts/SFThonburi-Regular.woff)'),
+        new FontFace('SFThonburiSemiBold', 'url(../assets/fonts/SFThonburi-Semibold.woff)'),
+        new FontFace('SFThonburiBold', 'url(../assets/fonts/SFThonburi-Bold.woff)'),
         //Bangkok
         new FontFace('BangkokTime1', 'url(../assets/fonts/Bangkok-Time1.woff)'),
         new FontFace('BangkokTime2', 'url(../assets/fonts/Bangkok-Time2.woff)'),
