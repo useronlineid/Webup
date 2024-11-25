@@ -56,11 +56,12 @@ function formatBirthDate(date) {
     ];
 
     const d = new Date(date);
-    const day = padZero(d.getDate()); // Zero-pad the day
+    const day = String(d.getDate()).padStart(2, '0');
     const month = months[d.getMonth()];
     const year = d.getFullYear();
 
-    return `${day}${month}${year}`;
+    // แสดงในรูปแบบ '24 January 2024'
+    return `${day} ${month} ${year}`;
 }
 
 
@@ -75,7 +76,7 @@ function formatCustomDate(date) {
     ];
 
     const d = new Date(date);
-    const day = d.getDate();
+    const day = String(d.getDate()).padStart(2, '0');
     const month = months[d.getMonth()];
     const year = d.getFullYear();
 
@@ -103,7 +104,7 @@ function formatCustomDate(date) {
             ];
         
             const d = new Date(date);
-            const day = d.getDate();
+            const day = String(d.getDate()).padStart(2, '0');
             const month = months[d.getMonth()];
             const year = d.getFullYear();
         
@@ -211,6 +212,8 @@ function updateDisplay() {
         if (selectedTitle) {
             drawText(ctx, selectedTitle, titleTextPosition.x, titleTextPosition.y, 16, 'arialRegular', '#000000', 'left', 20, 1, null, null, 100, 0);
         }
+
+
 
 
 
