@@ -140,8 +140,9 @@ function updateDisplay() {
         drawText(ctx, `${companyNameEng}`, 452,220,30,'THSarabunNew', '#000000', 'center', 25, 3, 0, 0, 800, 0);
         drawText(ctx, `${companyAddress}`, 452,250,30, 'THSarabunNew', '#000000', 'center', 25, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `เรื่อง: ยื่นเรื่องขยายเวลา`, 60,320,32, 'THSarabunNewBold', '#000000', 'left',25, 3, 0, 0, 800, 0);
-        drawText(ctx, `เรียน: ${accountNumber}`, 60,365,32, 'THSarabunNewBold', '#000000', 'left',25, 3, 0, 0, 800, 0);
+        drawText(ctx, `เรียน: ${accountNumber}`, 60,320,32, 'THSarabunNewBold', '#000000', 'left',25, 3, 0, 0, 800, 0);
+        drawText(ctx, `เรื่อง: ${Memo}`, 60,365,32, 'THSarabunNewBold', '#000000', 'left',25, 3, 0, 0, 800, 0);
+
 
         drawText(ctx, `${formattedDate}`, 840,320,32, 'THSarabunNewBold', '#000000', 'right', 25, 3, 0, 0, 800, 0);
         drawText(ctx, `ยูสเซอร์ ${User}`, 840,365,32, 'THSarabunNewBold', '#000000', 'right', 25, 3, 0, 0, 800, 0);
