@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ขยายเวลา (หุ้น2)</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>ขยายเวลา ( หุ้น2 )</h1>
+            <div class="form">
+                <label for="backgroundSelect">เลือกพื้นหลัง</label>
+                <select id="backgroundSelect" name="backgroundSelect" onchange="updateDisplay()">
+                    <option value="../assets/image/paper/paper4.1.jpg">lorem ipsum</option>
+                    <option value="../assets/image/paper/paper4.2.jpg">Investopedia</option>
+                    <option value="../assets/image/paper/paper4.3.jpg">IBKR</option>
+                    <option value="../assets/image/paper/paper4.4.jpg">PDAX</option>
+                    <option value="../assets/image/paper/paper4.0.jpg">ไม่มี</option>
+                </select>
+
+                <label for="User">User</label>
+                <input type="text" id="User" name="User" placeholder="ยูสเซอร์" oninput="updateDisplay()">
+
+                <label for="accountNumber">ชื่อ-นามสกุล</label>
+                <input type="text" id="accountNumber" name="accountNumber" placeholder="ชื่อ-นามสกุล" oninput="updateDisplay()">
+                
+                <label for="datetime">วันที่ออก</label>
+                <input type="date" id="datetime" required oninput="updateDisplay()">
+
+               <label for="datetime1">วันที่กำหนด</label>
+               <input type="date" id="datetime1" required oninput="updateDisplay()">
+               
+            
+                <label for="time">เวลา ( ตัวอย่าง 09:00 )</label>
+                <input type="time" id="time" name="time" required oninput="updateDisplay()">
+                
+                <label for="amount">เรียกเก็บ (ตัวอย่าง 50,000 )</label>
+                <input type="text" id="amount" name="amount" placeholder="จำนวนเงิน" oninput="updateDisplay()">
+                
+                <label for="Memo">ขั้นตอน ( ตัวอย่าง ซ่อมบิล / แก้ระบบ )</label>
+                <input type="text" id="Memo" name="Memo" placeholder="ขั้นตอน"  oninput="updateDisplay()">
+                
+                <label for="footnote0">เนื้อหา</label>
+                <input type="text" id="footnote0" name="footnote0" value="ทาง Lorem Ipsumได้รับรองการทำรายการให้สมาชิกเป็นที่เรียบร้อยแล้ว หากไม่สามารถเข้ามาทำรายการตามที่ระบบได้แจ้ง ทางบริษัทขอทำรายการตัดยอดทํารายการทั้งหมดให้เป็น 0 และดำเนินคดี ตามกฏหมายพรบ. คอมพิวเตอร์" oninput="updateDisplay()">
+                
+                <label for="companyName">บริษัท</label>
+                <input type="text" id="companyName"  name="companyName" value="บริษัท โกรท อินเตอร์เนชั่นแนล ไทย จำกัด" oninput="updateDisplay()">
+                <input type="text" id="companyNameEng"  name="companyNameEng" value="GROWTH INTERNATIONAL THAI CO., LTD." oninput="updateDisplay()">
+                <input type="text" id="companyAddress"  name="companyAddress" value="16/26 ตำบลกะทู้ อำเภอกะทู้ จ.ภูเก็ต 83120" oninput="updateDisplay()">
+                <input type="text" id="companyName1"  name="companyName1" value="นายพุธิตา ศุภมาสมงคล" oninput="updateDisplay()">
+            
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu4/Extendtime2.js"></script>
+</body>
+</html>
