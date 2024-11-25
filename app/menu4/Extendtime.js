@@ -21,8 +21,9 @@ function loadFonts() {
     });
 }
 
-// เรียกใช้ฟังก์ชันเพื่อโหลดฟอนต์หลังจากหน้าเว็บถูกโหลด
-window.onload = function() {
+// ฟังก์ชันเริ่มต้นเมื่อโหลดหน้าเว็บ
+function initialize() {
+    setCurrentDateTime();
     // โหลดฟอนต์และอัปเดตการแสดงผล
     loadFonts().then(function() {
         // ใช้ document.fonts.ready เพื่อให้มั่นใจว่าฟอนต์ถูกโหลดทั้งหมด
@@ -33,14 +34,24 @@ window.onload = function() {
         // หากฟอนต์โหลดไม่สำเร็จ จะยังคงแสดงผลได้
         updateDisplay();
     });
-};
 
+    // เพิ่ม Event Listener สำหรับการ paste รูปภาพ
+    document.addEventListener('paste', handlePaste);
+}
 
 function setCurrentDateTime() {
     const now = new Date();
-    const hours = padZero(now.getHours());
-    const minutes = padZero(now.getMinutes());
-    document.getElementById('datetime').value = `${hours}:${minutes}`;
+    const localDate = now.toISOString().split('T')[0]; // YYYY-MM-DD
+    document.getElementById('datetime').value = localDate;
+
+    //const localTime = now.toLocaleTimeString('th-TH', { hour12: false, hour: '2-digit', minute: '2-digit' });
+    //document.getElementById('time').value = localTime;
+
+    // ตั้งค่า datetime1 เป็นวันถัดไปโดยอัตโนมัติ
+    const nextDay = new Date(now);
+    nextDay.setDate(nextDay.getDate() + 1);
+    const localDate1 = nextDay.toISOString().split('T')[0];
+    document.getElementById('datetime1').value = localDate1;
 }
 
 function padZero(number) {
@@ -48,19 +59,23 @@ function padZero(number) {
 }
 
 function formatDate(date) {
-    const options = { day: 'numeric', month: 'short', year: '2-digit' };
+    if (date === '-') return '-';
+    const options = { day: 'numeric', month: 'long', year: '2-digit' };
     let formattedDate = new Date(date).toLocaleDateString('th-TH', options);
     formattedDate = formattedDate.replace(/ /g, ' ').replace(/\./g, '');
-    const months = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+    const months = [
+        'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+        'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+    ];
     const day = padZero(formattedDate.split(' ')[0]);
     const month = months[new Date(date).getMonth()];
-    const year = formattedDate.split(' ')[2];
+    let year = formattedDate.split(' ')[2];
+    year = `25${year}`;
     return `${day} ${month} ${year}`;
 }
 
 let qrCodeImage = null;
 let powerSavingMode = false;
-
 
 function handlePaste(event) {
     const items = event.clipboardData.items;
@@ -82,11 +97,12 @@ function handlePaste(event) {
 }
 
 function updateDisplay() {
+    const date = document.getElementById('datetime').value || '-';
+    const date1 = document.getElementById('datetime1').value || '-'; // เพิ่มการดึงค่า datetime1
+
+    const time = document.getElementById('time').value || '-';
     const User = document.getElementById('User').value || '-';
     const accountNumber = document.getElementById('accountNumber').value || '-';
-    const transactionDate = document.getElementById('transactionDate').value || '-';
-    const transactionDate1 = document.getElementById('transactionDate1').value || '-';
-    const time = document.getElementById('time').value || '-';
     const amount = document.getElementById('amount').value || '-';
     const Memo = document.getElementById('Memo').value || '-';
     const footnote = document.getElementById('footnote').value || '-';
@@ -97,10 +113,18 @@ function updateDisplay() {
     const companyAddress = document.getElementById('companyAddress').value || '-';
     const companyName1 = document.getElementById('companyName1').value || '-';
     
-   
+    const formattedDate = formatDate(date);
+    const formattedDate1 = formatDate(date1); // ฟอร์แมต datetime1
+    const formattedTime = time; // เนื่องจากเวลาถูกจัดการแยกต่างหาก
+
+    // คำนวณปี พ.ศ.
+    const buddhistYear = date !== '-' ? new Date(date).getFullYear() + 543 : '-';
+    const buddhistYear1 = date1 !== '-' ? new Date(date1).getFullYear() + 543 : '-';
 
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
+
+
 
     // Load background image
     const backgroundImage = new Image();
@@ -117,7 +141,7 @@ function updateDisplay() {
         drawText(ctx, `${companyNameEng}`, 452,220,30,'THSarabunNew', '#000000', 'center', 25, 3, 0, 0, 800, 0);
         drawText(ctx, `${companyAddress}`, 452,250,30, 'THSarabunNew', '#000000', 'center', 25, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `${transactionDate}`, 844,300,30, 'THSarabunNew', '#000000', 'right', 25, 3, 0, 0, 800, 0);
+        drawText(ctx, `${formattedDate}`, 844,300,30, 'THSarabunNew', '#000000', 'right', 25, 3, 0, 0, 800, 0);
 
         drawText(ctx, `เรื่อง: ยื่นเรื่องขยายเวลา`, 60,350,30, 'THSarabunNew', '#000000', 'left',25, 3, 0, 0, 800, 0);
 
@@ -129,7 +153,7 @@ function updateDisplay() {
         <br>-ผู้ใช้งาน : ${User} 
         <br>-ชื่อ-นามสกุล : ${accountNumber}
         <br>-ยอดเงินที่ต้องดำเนินการ${Memo} : ${amount} บาท
-        <br>-กำหนดเวลาใหม่ : ${transactionDate1} ก่อนเวลา ${time} น.    
+        <br>-กำหนดเวลาใหม่ : ${formattedDate1} ก่อนเวลา ${formattedTime} น.    
         
         
             `, 60,450,30, 'THSarabunNew', '#000000', 'left', 30, 3, 0, 0, 800, 0);
@@ -143,7 +167,7 @@ function updateDisplay() {
         drawText(ctx, `หมายเหตุ: ${footnote}`, 60,730,30, 'THSarabunNew', '#000000', 'left', 30, 3, 0, 0, 800, 0);
 
       
-        drawText(ctx, `ขอแสดงความนับถือ<br> <br> <br>(${companyName1})<br>ผู้จัดการ ${companyName}<br>ออก ณ วันที่ ${transactionDate}`, 640,1037,30, 'THSarabunNew', '#000000', 'center', 35, 3, 0, 0, 490, 0);
+        drawText(ctx, `ขอแสดงความนับถือ<br> <br> <br>(${companyName1})<br>ผู้จัดการ ${companyName}<br>ออก ณ วันที่ ${formattedDate}`, 640,1037,30, 'THSarabunNew', '#000000', 'center', 35, 3, 0, 0, 490, 0);
 
     
         if (qrCodeImage) {
