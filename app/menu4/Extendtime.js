@@ -21,8 +21,8 @@ function loadFonts() {
     });
 }
 
-// ฟังก์ชันเริ่มต้นเมื่อโหลดหน้าเว็บ
-function initialize() {
+// เรียกใช้ฟังก์ชันเพื่อโหลดฟอนต์หลังจากหน้าเว็บถูกโหลด
+window.onload = function() {
     setCurrentDateTime();
     // โหลดฟอนต์และอัปเดตการแสดงผล
     loadFonts().then(function() {
@@ -34,10 +34,7 @@ function initialize() {
         // หากฟอนต์โหลดไม่สำเร็จ จะยังคงแสดงผลได้
         updateDisplay();
     });
-
-    // เพิ่ม Event Listener สำหรับการ paste รูปภาพ
-    document.addEventListener('paste', handlePaste);
-}
+};
 
 function setCurrentDateTime() {
     const now = new Date();
