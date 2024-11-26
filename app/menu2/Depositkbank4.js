@@ -180,14 +180,14 @@ function updateDisplay() {
         drawText(ctx, `${timeMessage}`, 547.5, 451.8,18.50, 'SFThonburiRegular', '#6f8590', 'right', 1.5, 3, 0, 0, 800, 0);
 
         drawText(ctx, `บัญชี ${senderaccount1} จำนวนเงิน ${money01} บาท วันที่ ${formattedDate} ${formattedTime} น.<br>
-        `, 107.8, 481.8,20.50, 'SFThonburiRegular', '#000000', 'left', 31.5, 3, 0, 0, 430, 0);
+        `, 107.8, 481.8,20.50, 'SFThonburiRegular', '#000000', 'left', 31.5, 3, 0, 0, 420, 0);
 
         // วาดข้อความสำหรับเงินเข้า 2
         drawText(ctx, `รายการเงินเข้า`, 107.8, 588,21.50, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${timeMessage2}`, 547.5, 588,18.50, 'SFThonburiRegular', '#6f8590', 'right', 1.5, 3, 0, 0, 800, 0);
 
         drawText(ctx, `บัญชี ${senderaccount1} จำนวนเงิน ${money02} บาท วันที่ ${formattedDate} ${formattedTime1} น.<br>
-        `, 107.8, 617.8,20.50, 'SFThonburiRegular', '#000000', 'left', 31.5, 3, 0, 0, 430, 0);
+        `, 107.8, 617.8,20.50, 'SFThonburiRegular', '#000000', 'left', 31.5, 3, 0, 0, 420, 0);
 
 
 
