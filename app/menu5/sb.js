@@ -119,7 +119,7 @@ function updateDisplay() {
     const ctx = canvas.getContext('2d');
     
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/paper/sb.jpg';
+    backgroundImage.src = '../assets/image/paper/sb1.jpg';
     backgroundImage.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
