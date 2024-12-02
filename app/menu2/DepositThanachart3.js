@@ -144,7 +144,7 @@ function updateDisplay() {
 
         drawText(ctx, `${formattedTimePlusOne}`, 98, 49.5,25,'SFThonburiBold', '#000000','center', 1.5, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `แจ้งรายการเงินข้าเข้าบัญชี-สำเร็จ
+        drawText(ctx, `แจ้งรายการเงินเข้าบัญชี-สำเร็จ
         `,49.2, 451.8,23,'DXTTBBold', '#0f326c', 'left', 1.5, 3, 0, 0, 800, -0.50);
 
         drawText(ctx, `มีเงิน${money01}บ.โอนเข้าบ/ช${senderaccount2} จาก ${bank1} ${senderaccount1} ${name1}<br>คงเหลือ${money02}บ.${formattedDate}@${formattedTime}<br>
