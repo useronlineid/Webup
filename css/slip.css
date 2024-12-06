@@ -61,6 +61,40 @@
     src: url('../assets/fonts/SFThonburi-Bold.woff') format('woff');
 }
 
+/* sarabun */
+@font-face {
+    font-family: 'SarabunThin';
+    src: url('../assets/fonts/Sarabun-Thin.woff') format('woff');
+}
+@font-face {
+    font-family: 'SarabunExtraLight';
+    src: url('../assets/fonts/Sarabun-ExtraLight.woff') format('woff');
+}
+@font-face {
+    font-family: 'SarabunLight';
+    src: url('../assets/fonts/Sarabun-Light.woff') format('woff');
+}
+@font-face {
+    font-family: 'SarabunRegular';
+    src: url('../assets/fonts/Sarabun-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'SarabunMedium';
+    src: url('../assets/fonts/Sarabun-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'SarabunSemiBold';
+    src: url('../assets/fonts/Sarabun-SemiBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'SarabunBold';
+    src: url('../assets/fonts/Sarabun-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'SarabunExtraBold';
+    src: url('../assets/fonts/Sarabun-ExtraBold.woff') format('woff');
+}
+
 /* Kanit */
 @font-face {
     font-family: 'KanitThin';
