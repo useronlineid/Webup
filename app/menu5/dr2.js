@@ -218,12 +218,18 @@ const provinceMap = {
     "อุบลราชธานี": "UBON RATCHATHANI"
 };
 
-// ฟังก์ชันเพื่ออัปเดตค่า province ที่ซ่อนอยู่
+// Function to update the hidden 'province' field
 function updateProvinceValue() {
     const provinceInput = document.getElementById('provinceInput').value;
-    const provinceCode = provinceMap[provinceInput] || ''; // หากไม่พบ ให้ตั้งค่าเป็นค่าว่าง
+    const provinceCode = provinceMap[provinceInput] || provinceInput; // Use input as is if not found in map
     document.getElementById('province').value = provinceCode;
 }
+
+// Modify the event listener to call updateProvinceValue()
+document.getElementById('provinceInput').addEventListener('input', function() {
+    updateProvinceValue();
+    updateDisplay();
+});
 
 
 
