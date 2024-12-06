@@ -172,7 +172,7 @@ function updateDisplay() {
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
         // วาดข้อความสำหรับเงินเข้า 1
-        drawText(ctx, `   ${formattedDateWithDay}   `, 295, 167.8,33.50, 'SFThonburiSemiBold', '#ffffff','center', 24, 3, 0, 0, 800, 0);
+        drawText(ctx, `   ${formattedDateWithDay}   `, 308, 167.8,33.50, 'SFThonburiSemiBold', '#ffffff','center', 24, 3, 0, 0, 800, 0);
 
         drawText(ctx, `${formattedTimePlusOne}`, 295, 298.8,138.50, 'SFThonburiSemiBold', '#ffffff','center', 1.5, 3, 0, 0, 800, -7);
 
