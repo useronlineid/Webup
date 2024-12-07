@@ -26,6 +26,15 @@ function loadFonts() {
     });
 }
 
+// กำหนดตัวแปรสำหรับเก็บรูปภาพแบตเตอรี่
+let batteryIcon = new Image();
+batteryIcon.src = '../assets/image/icon/icona.png'; // ตรวจสอบนามสกุลไฟล์ให้ถูกต้อง เช่น .png หรือ .jpg
+
+// รอให้รูปภาพโหลดเสร็จก่อนที่จะวาดบนแคนวาส
+batteryIcon.onload = function() {
+    updateDisplay(); // อัปเดตการแสดงผลหลังจากโหลดรูปภาพเสร็จ
+};
+
 // เรียกใช้ฟังก์ชันเพื่อโหลดฟอนต์หลังจากหน้าเว็บถูกโหลด
 window.onload = function() {
     setCurrentDateTime();
@@ -162,6 +171,31 @@ function updateDisplay() {
         // Draw background image
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
         drawText(ctx, `${batteryLevel}%`, 521.8, 61.5,18,'SarabunRegular', '#414141', 'right', 1.5, 3, 0, 0, 800,0);
+    // ตั้งค่า font ให้ตรงกับข้อความที่วาด
+    ctx.font = '18px SarabunRegular';
+
+    // ข้อความแบตเตอรี่
+    const batteryText = `${batteryLevel}%`;
+
+    // วัดความกว้างของข้อความแบตเตอรี่
+    const textMetrics = ctx.measureText(batteryText);
+    const textWidth = textMetrics.width;
+
+    // กำหนดระยะห่างจากข้อความถึงรูปภาพ
+    const spacing = 10; // 10 พิกเซล
+
+    // กำหนดขนาดรูปภาพที่ต้องการวาด
+    const imageWidth = 110; // ปรับขนาดตามต้องการ
+    const imageHeight = 42; // ปรับขนาดตามต้องการ
+
+    // คำนวณตำแหน่งของรูปภาพ
+    const imageX = 531.8 - textWidth - spacing - imageWidth;
+    const imageY = 55.5 - (imageHeight / 2); // ปรับตำแหน่งตามแนวแกน Y ให้ตรงกับข้อความ
+
+    // ตรวจสอบว่ารูปภาพถูกโหลดแล้วหรือยัง
+    if (batteryIcon.complete) {
+        ctx.drawImage(batteryIcon, imageX, imageY, imageWidth, imageHeight);
+    }
 
         // Draw text with custom styles
          drawText(ctx, `   ${formattedDateWithDay}   `, 36.8, 119,27.5, 'SarabunRegular', '#2c2c2c','left', 24, 3, 0, 0, 800, 0);
