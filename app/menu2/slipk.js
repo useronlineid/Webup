@@ -109,7 +109,7 @@ function generateUniqueID() {
     const now = new Date(document.getElementById('datetime').value);
     const startDate = new Date("2024-07-24");
     const dayDifference = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-    const uniqueDay = (14206 + dayDifference).toString().padStart(6, '0'); // Tambah jumlah hari sejak 24/07/2567
+    const uniqueDay = (14840 + dayDifference).toString().padStart(6, '0'); // Tambah jumlah hari sejak 24/07/2567
     const timePart = `${padZero(now.getHours())}${padZero(now.getMinutes())}${padZero(now.getSeconds())}`; // Tambah saat (seconds)
     const randomPart1 = Math.floor(Math.random() * 100000).toString().padStart(5, '0');
     return `${uniqueDay}${timePart}BOR${randomPart1}`;
