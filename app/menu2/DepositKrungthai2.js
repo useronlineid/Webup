@@ -173,7 +173,7 @@ function updateDisplay() {
 
         drawText(ctx, `${formattedDate} ${formattedTime}`, 669, 462.6,30, 'SFThonburiRegular', '#596163', 'right', 40, 3, 0, 0, 1250,-0.25);
 
-        drawText(ctx, `${formattedTimePlusOne}`, 677.6, 555,22, 'SFThonburiSemiBold', '#576d96', 'left', 40, 3, 0, 0, 1250,-0.50);
+        drawText(ctx, `${formattedTimePlusOne}`, 677.6, 558,22, 'SFThonburiSemiBold', '#576d96', 'left', 40, 3, 0, 0, 1250,-0.50);
 
         if (qrCodeImage) {
             ctx.drawImage(qrCodeImage, 0, 130.3, 555, 951); // Adjust position and size as needed
