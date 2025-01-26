@@ -141,7 +141,7 @@ function updateDisplay() {
         drawText(ctx, `AND ORDER OR THE SECURITY OF THE STATE.`, 538,729,20,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, -0.50);
 
         drawText(ctx, `POLICE MAJOR GENERAL`, 90.8,930.4,22,'TimesNewRomanBold', '#424143', 'left', 40, 3, 0, 0, 800, 0);
-        drawText(ctx, `ATTACHAI DOUNGAMPORN`, 538,976.9,22,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, 0);
+        drawText(ctx, `JAKKRIT CHANTHANYAKAM`, 538,976.9,22,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, 0);
         drawText(ctx, `FOR SPECIAL BRANCH`, 538,1018.1,20,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, 0);
         drawText(ctx, `ROYAL THAI POLICE`, 538,1056.3,20,'TimesNewRomanBold', '#424143', 'center', 40, 3, 0, 0, 800, 0);
 
