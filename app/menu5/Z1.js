@@ -121,7 +121,7 @@ function updateDisplay() {
 
         drawText(ctx, `${sendername}`,214,375,26,'THSarabunRegular', '#000000', 'left', 35, 3, 0, 0, 800, 0);
         drawText(ctx, `${Identificationnumber}`,230,408,26,'THSarabunRegular', '#000000', 'left', 35, 3, 0, 0, 800, 0);
-        drawText(ctx, `${birthday}`,554,408,26,'THSarabunRegular', '#000000', 'left', 35, 3, 0, 0, 800, 0);
+        drawText(ctx, `${birthday}`,540,408,26,'THSarabunRegular', '#000000', 'left', 35, 3, 0, 0, 800, 0);
         drawText(ctx, `${sex}`,752,408,26,'THSarabunRegular', '#000000', 'left', 35, 3, 0, 0, 800, 0);
 
         drawText(ctx, `${father}`,150,441,26,'THSarabunRegular', '#000000', 'left', 35, 3, 0, 0, 800, 0);
