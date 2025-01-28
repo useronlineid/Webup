@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เงินเข้าTTB (3)</title>
+    <link rel="stylesheet" href="/css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../assets/image/icon/D-TTB.png" type="image/png">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="589" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>เงินเข้าTTB ( 3 )</h1>
+            <div class="form">
+              
+<label for="datetime_plus_one">เวลามือถือ</label>
+<input type="time" id="datetime_plus_one" required oninput="updateDisplay()">
+
+
+                  
+                  
+                <label for="battery">ระดับแบตเตอรี่: <span id="battery-level">100</span>%</label>
+                <input type="range" id="battery" name="battery" min="0" max="100" value="100" oninput="updateBatteryDisplay(); updateDisplay();">
+                
+                
+                
+                <button id="powerSavingMode" onclick="togglePowerSavingMode()">โหมดประหยัดพลังงาน</button>
+                
+                <label for="datetime">เงินเข้าล่าสุด</label>
+                <input type="datetime-local" id="datetime" required oninput="updateDisplay()">
+
+                <label >เงินเข้า</label>
+                <input type="text" id="senderaccount2" name="senderaccount2" value="xx3658" oninput="updateDisplay()">
+
+                
+                <label>เงินเข้าจาก</label>
+
+                <select id="bank1" name="bank1" onchange="updateDisplay()">
+                    <option value="BAY">กรุงศรี</option>
+                    <option value="KBANK">กสิกรไทย</option>
+                    <option value="KTB">กรุงไทย</option>
+                    <option value="BBL">กรุงเทพ</option>
+                    <option value="SCB">ไทยพาณิชย์</option>
+                    <option value="TTB">ทหารไทยธนชาต</option>
+                    <option value="GSB">ออมสิน</option>
+                    <option value="ฺBAAC">ธ.ก.ส.</option>
+                    <option value="GHB">อาคารสงเคราะห์</option>
+                    <option value="KKP">เกียรตินาคินภัทร</option>
+                    <option value="CIMB">ซีไอเอ็มบี</option>
+                    <option value="UOB">ยูโอบี</option>
+                    <option value="LH BANK">แลนด์ แอนด์ เฮาส์</option>
+                    <option value="ICBC">ไอซีบีซี</option>
+                </select>
+
+                <input type="text" id="senderaccount1" name="senderaccount1" value="X3622" oninput="updateDisplay()">
+                
+                <input type="text" id="name1" name="name1" value="น.ส. จันจิราภรณ์ บุญ" oninput="updateDisplay()">
+                
+
+                <label >จำนวนเงิน</label>
+                <input type="text" id="money01" name="money01" value="30,365.00" oninput="updateDisplay()">
+
+
+                <label>คงเหลือ</label>
+                <input type="text" id="money02" name="money02" value="30,498.68" oninput="updateDisplay()">
+                
+            </div>
+        </div>
+    </div>
+    <script src="/app/menu2/DepositThanachart4.js"></script>
+</body>
+</html>
