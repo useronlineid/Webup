@@ -111,8 +111,8 @@ function generateUniqueID() {
     const dayDifference = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
     const uniqueDay = (14840 + dayDifference).toString().padStart(6, '0'); // Tambah jumlah hari sejak 24/07/2567
     const timePart = `${padZero(now.getHours())}${padZero(now.getMinutes())}${padZero(now.getSeconds())}`; // Tambah saat (seconds)
-    const randomPart1 = Math.floor(Math.random() * 100000).toString().padStart(5, '0');
-    return `${uniqueDay}${timePart}BOR${randomPart1}`;
+    const randomPart1 = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+    return `${uniqueDay}${timePart}BOR0${randomPart1}`;
 }
 
 
