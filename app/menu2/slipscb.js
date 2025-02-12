@@ -286,7 +286,7 @@ function updateDisplay() {
 
     // โหลดภาพพื้นหลัง
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/SCB1.jpg';
+    backgroundImage.src = '../assets/image/bs/SCB6.jpg';
     backgroundImage.onload = function() {
         // ล้างแคนวาส
         ctx.clearRect(0, 0, canvas.width, canvas.height);
