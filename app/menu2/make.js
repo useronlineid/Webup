@@ -124,6 +124,9 @@ function updateDisplay() {
         case 'ธ.ไอซีบีซี':
             bankLogoUrl = '../assets/image/logo/ICBC.png';
             break;
+        case 'พร้อมเพย์':
+            bankLogoUrl = '../assets/image/logo/P-Make.png';
+            break;
     }
 
     const formattedDate = formatDate(datetime);
