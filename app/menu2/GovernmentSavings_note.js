@@ -149,6 +149,9 @@ function updateDisplay() {
         case 'ธนาคารไอซีบีซี':
             bankLogoUrl = '../assets/image/logo/ICBC.png';
             break;
+        case 'เติมเงินพร้อมเพย์':
+            bankLogoUrl = '../assets/image/logo/P-savings.png';
+            break;
     }
     
 
