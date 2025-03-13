@@ -166,7 +166,7 @@ function updateDisplay() {
         case 'ธ.เกียรตินาคินภัทร':
             bankLogoUrl = '../assets/image/logo/K.png';
             break;
-        case 'ธ.ซีไอเอ็มบีไทย':
+        case 'ธ.ซีไอเอ็มบี':
             bankLogoUrl = '../assets/image/logo/CIMB.png';
             break;
         case 'ธ.ยูโอบี':
