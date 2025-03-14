@@ -208,10 +208,10 @@ function updateDisplay() {
             break;
         case 'รหัสพร้อมเพย์':
             bankText = 'รหัสพร้อมเพย์';
-            bankLogoUrl = '../assets/image/logo/KBANK-P.png';
+            bankLogoUrl = '../assets/image/logo/P-KBANK.png';
             break;
         case 'พร้อมเพย์วอลเล็ท':
-            bankLogoUrl = '../assets/image/logo/KBANK-P.png';
+            bankLogoUrl = '../assets/image/logo/P-KBANK.png';
             break;
     }
 
