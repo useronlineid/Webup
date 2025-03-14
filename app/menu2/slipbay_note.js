@@ -191,6 +191,9 @@ function updateDisplay() {
         case 'PromptPay':
             bankLogoUrl = '../assets/image/logo/P-Krungsri.png';
             break;
+        case 'PromptPay TrueMoney':
+            bankLogoUrl = '../assets/image/logo/P-Krungsri1.png';
+            break;
     }
 
     const formattedDate = formatDate(datetime);
