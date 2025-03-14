@@ -134,8 +134,8 @@ function updateDisplay() {
     const backgroundSelect = document.getElementById('backgroundSelect').value || '';
     const QRCode = document.getElementById('QRCode').value || '';
 
-    // Check if the selected bank is "พร้อมเพย์"
-    const isPromptPay = bank === 'รหัสพร้อมเพย์';
+    // Check if the selected bank is "พร้อมเพย์วอลเล็ท"
+    const isPromptPay = bank === 'พร้อมเพย์วอลเล็ท';
     
     let bankLogoUrl = '';
     let bankText = '';
@@ -153,51 +153,70 @@ function updateDisplay() {
 
     switch (bank) {
         case 'ธ.กสิกรไทย':
+            bankText = 'ธ.กสิกรไทย';
             bankLogoUrl = '../assets/image/logo/KBANK.png';
             break;
         case 'ธ.กรุงไทย':
+            bankText = 'ธ.กรุงไทย';
             bankLogoUrl = '../assets/image/logo/KTB.png';
             break;
         case 'ธ.กรุงเทพ':
+            bankText = 'ธ.กรุงเทพ';
             bankLogoUrl = '../assets/image/logo/BBL1.png';
             break;
         case 'ธ.ไทยพาณิชย์':
+            bankText = 'ธ.ไทยพาณิชย์';
             bankLogoUrl = '../assets/image/logo/SCB1.png';
             break;
         case 'ธ.กรุงศรีอยุธยา':
+            bankText = 'ธ.กรุงศรีอยุธยา';
             bankLogoUrl = '../assets/image/logo/BAY.png';
             break;
         case 'ธ.ทหารไทยธนชาต':
+            bankText = 'ธ.ทหารไทยธนชาต';
             bankLogoUrl = '../assets/image/logo/TTB1.png';
             break;
         case 'ธ.ออมสิน':
+            bankText = 'ธ.ออมสิน';
             bankLogoUrl = '../assets/image/logo/O.png';
             break;
         case 'ธ.ก.ส.':
+            bankText = 'ธ.ก.ส.';
             bankLogoUrl = '../assets/image/logo/T.png';
             break;
         case 'ธ.อาคารสงเคราะห์':
+            bankText = 'ธ.อาคารสงเคราะห์';
             bankLogoUrl = '../assets/image/logo/C.png';
             break;
         case 'ธ.เกียรตินาคินภัทร':
+            bankText = 'ธ.เกียรตินาคินภัทร';
             bankLogoUrl = '../assets/image/logo/K.png';
             break;
         case 'ธ.ซีไอเอ็มบีไทย':
+            bankText = 'ธ.ซีไอเอ็มบี';
             bankLogoUrl = '../assets/image/logo/CIMB.png';
             break;
         case 'ธ.ยูโอบี':
+            bankText = 'ธ.ยูโอบี';
             bankLogoUrl = '../assets/image/logo/UOB.png';
             break;
         case 'ธ.แลนด์ แอนด์ เฮาส์':
+            bankText = 'ธ.แลนด์ แอนด์ เฮาส์';
             bankLogoUrl = '../assets/image/logo/LHBANK.png';
             break;
         case 'ธ.ไอซีบีซี':
+            bankText = 'ธ.ไอซีบีซี';
             bankLogoUrl = '../assets/image/logo/ICBC.png';
             break;
         case 'รหัสพร้อมเพย์':
-            bankLogoUrl = '../assets/image/logo/P-KBANK.png';
+            bankText = 'รหัสพร้อมเพย์';
+            bankLogoUrl = '../assets/image/logo/KBANK-P.png';
+            break;
+        case 'พร้อมเพย์วอลเล็ท':
+            bankLogoUrl = '../assets/image/logo/KBANK-P.png';
             break;
     }
+
 
     const formattedDate = formatDate(datetime);
     const formattedTime = new Date(datetime).toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
