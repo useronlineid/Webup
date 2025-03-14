@@ -129,51 +129,72 @@ function updateDisplay() {
     const QRCode = document.getElementById('QRCode').value || '';
 
     let bankLogoUrl = '';
+    let bankText = '';
+
     switch (bank) {
         case 'กสิกรไทย':
+            bankText = 'กสิกรไทย';
             bankLogoUrl = '../assets/image/logo/KBANK1.png';
             break;
         case 'กรุงไทย':
+            bankText = 'กรุงไทย';
             bankLogoUrl = '../assets/image/logo/KTB3.png';
             break;
         case 'กรุงเทพ':
+            bankText = 'กรุงเทพ';
             bankLogoUrl = '../assets/image/logo/BBL1.png';
             break;
         case 'ไทยพาณิชย์':
+            bankText = 'ไทยพาณิชย์';
             bankLogoUrl = '../assets/image/logo/SCB.png';
             break;
         case 'กรุงศรี':
+            bankText = 'กรุงศรี';
             bankLogoUrl = '../assets/image/logo/BAY2.png';
             break;
         case 'ทีเอ็มบีธนชาต':
+            bankText = 'ทีเอ็มบีธนชาต';
             bankLogoUrl = '../assets/image/logo/TTB.png';
             break;
         case 'ออมสิน':
+            bankText = 'ออมสิน';
             bankLogoUrl = '../assets/image/logo/O2.png';
             break;
         case 'ธ.ก.ส.':
+            bankText = 'ธ.ก.ส.';
             bankLogoUrl = '../assets/image/logo/T1.png';
             break;
         case 'อาคารสงเคราะห์':
+            bankText = 'อาคารสงเคราะห์';
             bankLogoUrl = '../assets/image/logo/C.png';
             break;
         case 'เกียรตินาคินภัทร':
+            bankText = 'เกียรตินาคินภัทร';
             bankLogoUrl = '../assets/image/logo/K.png';
             break;
         case 'ซีไอเอ็มบีไทย':
+            bankText = 'ซีไอเอ็มบีไทย';
             bankLogoUrl = '../assets/image/logo/CIMB.png';
             break;
         case 'ยูโอบี':
+            bankText = 'ยูโอบี';
             bankLogoUrl = '../assets/image/logo/UOB2.png';
             break;
         case 'แลนด์ แอนด์ เฮาส์':
+            bankText = 'แลนด์ แอนด์ เฮาส์';
             bankLogoUrl = '../assets/image/logo/LHBANK.png';
             break;
         case 'ไอซีบีซี':
+            bankText = 'ไอซีบีซี';
             bankLogoUrl = '../assets/image/logo/ICBC.png';
             break;
         case 'พร้อมเพย์':
-            bankLogoUrl = '../assets/image/logo/P-Krungthai.png';
+            bankText = 'พร้อมเพย์';
+            bankLogoUrl = '../assets/image/logo/P-Krungthai1.png'; // Logo สำหรับพร้อมเพย์
+            break;
+        case 'พร้อมเพย์ ':
+            bankText = 'พร้อมเพย์';
+            bankLogoUrl = '../assets/image/logo/P-Krungthai.png'; // Logo สำหรับพร้อมเพย์วอลเล็ท
             break;
     }
 
