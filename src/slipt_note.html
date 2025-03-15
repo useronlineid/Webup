@@ -31,6 +31,7 @@ function _0x1364(_0xb336c0,_0x1c07f8){var _0x49fff7=_0x49ff();return _0x1364=fun
     <div class="container">
         <div class="display-container">
             <div class="display" id="display">
+                <!-- ปรับขนาดเริ่มต้นให้เป็น 752 x 1280 ตามปกติ (จะเปลี่ยนในโค้ด JS ตามเงื่อนไข) -->
                 <canvas id="canvas" width="714" height="1280"></canvas>
                 <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
             </div>
@@ -56,13 +57,15 @@ function _0x1364(_0xb336c0,_0x1c07f8){var _0x49fff7=_0x49ff();return _0x1364=fun
                     <option value="BAY">ธ.กรุงศรีอยุธยา</option>
                     <option value="ttb">ธ.ทหารไทยธนชาต</option>
                     <option value="GSB">ธ.ออมสิน</option>
-                    <option value="BAAC">ธ.ก.ส.</option>
+                    <option value="ฺBAAC">ธ.ก.ส.</option>
                     <option value="GHB">ธ.อาคารสงเคราะห์</option>
                     <option value="KKP">ธ.เกียรตินาคินภัทร</option>
                     <option value="CIMB">ธ.ซีไอเอ็มบี</option>
                     <option value="UOB">ธ.ยูโอบี</option>
                     <option value="LH BANK">ธ.แลนด์ แอนด์ เฮาส์</option>
                     <option value="ICBC">ธ.ไอซีบีซี</option>
+                    <option value="พร้อมเพย์">พร้อมเพย์</option>
+                    <option value="พร้อมเพย์ e-Wallet">พร้อมเพย์วอลเล็ท</option>
                 </select>
 
                 <label for="amount11">จำนวนเงิน</label>
@@ -71,54 +74,51 @@ function _0x1364(_0xb336c0,_0x1c07f8){var _0x49fff7=_0x49ff();return _0x1364=fun
                 <label for="amountDecimal">หน่วยทศนิยม:</label>
                 <input type="text" id="amountDecimal" name="amountDecimal" value=".00" oninput="updateDisplay()">
 
-                 
                 <label for="datetime">เวลา (hh:mm:ss):</label>
                 <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
 
                 <label for="AideMemoire">บันทึกช่วยจำ</label>
                 <input type="text" id="AideMemoire" name="AideMemoire" value="รายการงานสุดท้าย." oninput="updateDisplay()">
+                <!-- Add this select element to your form-container in the HTML -->
+
+                <label for="imageSelect">เลือกสติ๊กเกอร์</label>
+                <select id="imageSelect" name="imageSelect" onchange="updateDisplay()">
+                    <option value="../assets/image/st/NO.png?raw=true">เลือกสติ๊กเกอร์</option>
+                    <option value="../assets/image/st/StickerslipTTB1T.png?raw=true">การ์ด</option>
+                    <option value="../assets/image/st/StickerslipTTB2T.png?raw=true">มีอะไรให้</option>
+                    <option value="../assets/image/st/StickerslipTTB3T.png?raw=true">มินิฮาร์ท</option>
+                    <option value="../assets/image/st/StickerslipTTB4T.png?raw=true">สวัสดี</option>
+                    <option value="../assets/image/st/StickerslipTTB5T.png?raw=true">love</option>
+                    <option value="../assets/image/st/StickerslipTTB6T.png?raw=true">ฮัลโหล</option>
+                    <option value="../assets/image/st/StickerslipTTB7T.png?raw=true">มีความสุข</option>
+                    <option value="../assets/image/st/StickerslipTTB8T.png?raw=true">นอนแล้ว</option>
+                    <option value="../assets/image/st/StickerslipTTB9T.png?raw=true">เล่นดนตรี</option>
+                    <option value="../assets/image/st/StickerslipTTB10T.png?raw=true">เขิน</option>
+                    <option value="../assets/image/st/StickerslipTTB11T.png?raw=true">ฉลอง</option>
+                    <option value="../assets/image/st/StickerslipTTB12T.png?raw=true">วันเกิด</option>
+                    <option value="../assets/image/st/StickerslipTTB13T.png?raw=true">ฉลอง</option>
+                    <option value="../assets/image/st/StickerslipTTB14T.png?raw=true">มินิฮาร์ท</option>
+                    <option value="../assets/image/st/StickerslipTTB15T.png?raw=true">เบื่อ</option>
+                </select>
                 
                 <!-- Add this select element to your form-container in the HTML -->
-                 <label for="imageSelect">เลือกสติ๊กเกอร์</label>
-                   <select id="imageSelect" name="imageSelect" onchange="updateDisplay()">
-                        <option value="../assets/image/st/NO.png?raw=true">เลือกสติ๊กเกอร์</option>
-                        <option value="../assets/image/st/StickerslipTTB1T.png?raw=true">การ์ด</option>
-                        <option value="../assets/image/st/StickerslipTTB2T.png?raw=true">มีอะไรให้</option>
-                        <option value="../assets/image/st/StickerslipTTB3T.png?raw=true">มินิฮาร์ท</option>
-                        <option value="../assets/image/st/StickerslipTTB4T.png?raw=true">สวัสดี</option>
-                        <option value="../assets/image/st/StickerslipTTB5T.png?raw=true">love</option>
-                        <option value="../assets/image/st/StickerslipTTB6T.png?raw=true">ฮัลโหล</option>
-                        <option value="../assets/image/st/StickerslipTTB7T.png?raw=true">มีความสุข</option>
-                        <option value="../assets/image/st/StickerslipTTB8T.png?raw=true">นอนแล้ว</option>
-                        <option value="../assets/image/st/StickerslipTTB9T.png?raw=true">เล่นดนตรี</option>
-                        <option value="../assets/image/st/StickerslipTTB10T.png?raw=true">เขิน</option>
-                        <option value="../assets/image/st/StickerslipTTB11T.png?raw=true">ฉลอง</option>
-                        <option value="../assets/image/st/StickerslipTTB12T.png?raw=true">วันเกิด</option>
-                        <option value="../assets/image/st/StickerslipTTB13T.png?raw=true">ฉลอง</option>
-                        <option value="../assets/image/st/StickerslipTTB14T.png?raw=true">มินิฮาร์ท</option>
-                        <option value="../assets/image/st/StickerslipTTB15T.png?raw=true">เบื่อ</option>
-
-                    </select>
-
-                    <!-- Add this select element to your form-container in the HTML -->
-                 <label for="backgroundSelect">เลือกพื้นหลัง</label>
-                 <select id="backgroundSelect" name="backgroundSelect" onchange="updateDisplay()">
-                   <option value="../assets/image/bs/T1T.jpg">ต้นฉบับ</option>
-                   <option value="../assets/image/bs/T11T.jpg">Mutelu</option>
-                   <option value="../assets/image/bs/T12T.jpg">Yindee</option>
-                   <option value="../assets/image/bs/T13T.jpg">birthday</option>
-                   <option value="../assets/image/bs/T14T.jpg">Foods Land</option>
-                   <option value="../assets/image/bs/T15T.jpg">Hang Bao</option>
-                   <option value="../assets/image/bs/T16T.jpg">Father Day</option>
-                   <option value="../assets/image/bs/T17T.jpg">Marigold</option>
-
-                 </select>
-                    
-                    
+                <label for="backgroundSelect">เลือกพื้นหลัง</label>
+                <select id="backgroundSelect" name="backgroundSelect" onchange="updateDisplay()">
+                    <option value="../assets/image/bs/T1T.jpg">ต้นฉบับ</option>
+                    <option value="../assets/image/bs/T11T.jpg">Mutelu</option>
+                    <option value="../assets/image/bs/T12T.jpg">Yindee</option>
+                    <option value="../assets/image/bs/T13T.jpg">birthday</option>
+                    <option value="../assets/image/bs/T14T.jpg">Foods Land</option>
+                    <option value="../assets/image/bs/T15T.jpg">Hang Bao</option>
+                    <option value="../assets/image/bs/T16T.jpg">Father Day</option>
+                    <option value="../assets/image/bs/T17T.jpg">Marigold</option>
+                </select>
                 <label for="QRCode">QRCode</label>
                 <input type="file" id="QRCode" name="QRCode" accept="image/*" onchange="updateDisplay()">
                 <label>(10ตัว) XXX-X-XX000-0 </label>
                 <label>(12ตัว) XXXXXXXX0000 </label>
+                <label>(พร้อมเพย์) XXX-XXX-0000 </label>
+                <label>(พร้อมเพย์วอลเล็ท) <br>000-00000000-0000 </label>
             </div>
         </div>
     </div>
