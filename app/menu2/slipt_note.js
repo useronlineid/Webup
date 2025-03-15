@@ -130,55 +130,31 @@ function updateDisplay() {
     const amount11 = document.getElementById('amount11').value || '-';
     const amountDecimal = document.getElementById('amountDecimal').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
-    const AideMemoire = document.getElementById('AideMemoire').value || '-';
     const selectedImage = document.getElementById('imageSelect').value || '';
+    const AideMemoire = document.getElementById('AideMemoire').value || '-';
     const backgroundSelect = document.getElementById('backgroundSelect').value || '';
     const QRCode = document.getElementById('QRCode').value || '';
 
+    // เลือกโลโก้ตาม bank
     let bankLogoUrl = '';
     switch (bank) {
-        case 'KBANK':
-            bankLogoUrl = '../assets/image/logo/KBANK1.png';
-            break;
-        case 'KTB':
-            bankLogoUrl = '../assets/image/logo/KTB2.png';
-            break;
-        case 'BBL':
-            bankLogoUrl = '../assets/image/logo/BBL1.png';
-            break;
-        case 'SCB':
-            bankLogoUrl = '../assets/image/logo/SCB.png';
-            break;
-        case 'BAY':
-            bankLogoUrl = '../assets/image/logo/BAY2.1.png';
-            break;
-        case 'ttb':
-            bankLogoUrl = '../assets/image/logo/TTB2.png';
-            break;
-        case 'GSB':
-            bankLogoUrl = '../assets/image/logo/O2.png';
-            break;
-        case 'BAAC':
-            bankLogoUrl = '../assets/image/logo/T2.png';
-            break;
-        case 'GHB':
-            bankLogoUrl = '../assets/image/logo/C1.png';
-            break;
-        case 'KKP':
-            bankLogoUrl = '../assets/image/logo/K1.png';
-            break;
-        case 'CIMB':
-            bankLogoUrl = '../assets/image/logo/CIMB.png';
-            break;
-        case 'UOB':
-            bankLogoUrl = '../assets/image/logo/UOB4.png';
-            break;
-        case 'LH BANK':
-            bankLogoUrl = '../assets/image/logo/LHBANK1.png';
-            break;
-        case 'ICBC':
-            bankLogoUrl = '../assets/image/logo/ICBC.png';
-            break;
+        case 'KBANK': bankLogoUrl = '../assets/image/logo/KBANK1.png'; break;
+        case 'KTB': bankLogoUrl = '../assets/image/logo/KTB2.png'; break;
+        case 'BBL': bankLogoUrl = '../assets/image/logo/BBL1.png'; break;
+        case 'SCB': bankLogoUrl = '../assets/image/logo/SCB.png'; break;
+        case 'BAY': bankLogoUrl = '../assets/image/logo/BAY2.1.png'; break;
+        case 'ttb': bankLogoUrl = '../assets/image/logo/TTB2.png'; break;
+        case 'GSB': bankLogoUrl = '../assets/image/logo/O2.png'; break;
+        case 'ฺBAAC': bankLogoUrl = '../assets/image/logo/T2.png'; break;
+        case 'GHB': bankLogoUrl = '../assets/image/logo/C1.png'; break;
+        case 'KKP': bankLogoUrl = '../assets/image/logo/K1.png'; break;
+        case 'CIMB': bankLogoUrl = '../assets/image/logo/CIMB.png'; break;
+        case 'UOB': bankLogoUrl = '../assets/image/logo/UOB4.png'; break;
+        case 'LH BANK': bankLogoUrl = '../assets/image/logo/LHBANK1.png'; break;
+        case 'ICBC': bankLogoUrl = '../assets/image/logo/ICBC.png'; break;
+        case 'พร้อมเพย์': bankLogoUrl = '../assets/image/logo/P-TTB.png'; break;
+        case 'พร้อมเพย์ e-Wallet': bankLogoUrl = '../assets/image/logo/P-TTB1.png'; break;
+        default: bankLogoUrl = '';
     }
 
     const formattedDate = formatDate(datetime);
@@ -186,72 +162,123 @@ function updateDisplay() {
 
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    
-    // Load background image
+
+    // ถ้าเลือกพร้อมเพย์ e-Wallet (EW01) => ขยาย canvas + เปลี่ยนพื้นหลัง + ย้ายตำแหน่ง
+    let backgroundImageSrc = backgroundSelect;
+    if (bank === 'พร้อมเพย์ e-Wallet') {
+        // ขยายขนาด canvas เป็น 752 x 1321
+        canvas.width = 714;
+        canvas.height = 1320;
+        // พื้นหลังเฉพาะ e-Wallet
+        backgroundImageSrc = '../assets/image/bs/TT1T.jpg';
+    } else {
+        // ธนาคารอื่น => canvas ปกติ
+        canvas.width = 714;
+        canvas.height = 1280;
+        backgroundImageSrc = backgroundSelect; 
+    }
+
+    // โหลดภาพพื้นหลัง
     const backgroundImage = new Image();
-    backgroundImage.src = backgroundSelect;
+    backgroundImage.src = backgroundImageSrc;
     backgroundImage.onload = function() {
-        // Clear the canvas
+        // เคลียร์ canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Draw background image
+        // วาดพื้นหลัง
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-        
-        // Draw bank logo
+
+        // วาด bank logo
         const bankLogo = new Image();
         bankLogo.src = bankLogoUrl;
         bankLogo.onload = function() {
             ctx.drawImage(bankLogo, 49.5, 740.7, 80.0, 80.0); // Adjust position and size as needed
-            
-            // Draw text with custom styles
+                        
+          // ========== ข้อความต่าง ๆ ส่วนบน ========== //
+            // วันที่ + เวลา
             drawText(ctx, `${formattedDate}, ${formattedTime} น.`, 356, 400.8,21.33, 'DXTTBRegular', '#9099a2', 'center', 1.5, 3, 0, 0, 800, 0);
 
+            // --------- ข้อมูลผู้โอน --------- //
             drawText(ctx, `${sendername}`, 138.5, 598.5,24.3, 'DXTTBBold', '#0a2e6c', 'left', 1.5, 3, 0, 0, 800, 0);
             drawText(ctx, `${senderaccount}`, 138.5, 637.8,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 1, 0, 0, 500, 0);
             drawText(ctx, `ttb`, 138.5, 678.1,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 2, 0, 0, 500, 0);
             
-            drawText(ctx, `${receivername}`, 138.5, 772.7,24.3, 'DXTTBBold', '#0a2e6c', 'left', 1.5, 3, 0, 0, 800, 0);
-            drawText(ctx, `${receiveraccount}`, 138.5, 811.9,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 1, 0, 0, 500, 0);
-            drawText(ctx, `${bank}`, 138.5, 850.9,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 2, 0, 0, 500, 0);
+            // ========== เช็คว่าธนาคารเป็นพร้อมเพย์ e-Wallet หรือไม่ ========== //
+            if (bank === 'พร้อมเพย์ e-Wallet') {
+                // ย้ายตำแหน่ง bank
+                drawText(ctx, `${bank}`, 138.5, 772.7,24.3, 'DXTTBBold', '#0a2e6c', 'left', 1.5, 3, 0, 0, 800, 0);
+                // ย้ายตำแหน่ง receiveraccount
+                drawText(ctx, `${receiveraccount}`, 138.5, 850.9,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 1, 0, 0, 500, 0);
+                // ย้ายตำแหน่ง receivername
+                drawText(ctx, `${receivername}`, 138.5, 889.9,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 3, 0, 0, 800, 0);
+                // แสดง (EW01)
+                drawText(ctx, `(EW01)`, 138.5, 811.9,24.3, 'DXTTBRegular', '#0a2e6c', 'left', 1.5, 1, 0, 0, 500, 0);
+                // ย้าย generateUniqueID
+                drawText(ctx, `${generateUniqueID()}`, 166.9, 1032.7,21.33, 'DXTTBRegular', '#8e959d', 'left', 1.5, 3, 0, 0, 500, 0);
+                drawText(ctx, `${AideMemoire}`, 655, 970.9,24.3, 'DXTTBBold', '#0a2e6c', 'right', 1.5, 3, 0, 0, 800, 0);
 
-            drawText(ctx, `${AideMemoire}`, 655, 931.2,24.3, 'DXTTBBold', '#0a2e6c', 'right', 1.5, 3, 0, 0, 800, 0);
 
-            drawText(ctx, `${generateUniqueID()}`, 166.9, 993.0,21.33, 'DXTTBRegular', '#8e959d', 'left', 1.5, 3, 0, 0, 500, 0);
+                // *** ส่วนของจำนวนเงิน (amount11 / amountDecimal) ย้ายตำแหน่งใหม่ ***
+                // สมมุติให้ย้ายลงมาอีกประมาณ +40 px จากของเดิม เพื่อให้ขยับลง
+                const amountText = `${amount11}`;
+                const amountUnit = `${amountDecimal}`;
+                const totalText = amountText + ' ' + amountUnit;
 
-            const amountText = `${amount11}`;
-            const amountUnit = `${amountDecimal}`;
-            const totalText = amountText + ' ' + amountUnit;
-            const canvasWidth = canvas.width;
-            const centerX = canvasWidth / 2;
-          
-            const amountX = centerX - (ctx.measureText(totalText).width / 0.83);
-            const amountY = 483.5;
-            
-            drawText(ctx, amountText, amountX, amountY,58.00, 'DXTTBBold', '#00225c', 'left', 1.5, 3, 0, 0, 500, 0);
-            
-            const amountWidth = ctx.measureText(amountText).width;
-            drawText(ctx, amountUnit, amountX + amountWidth -1, amountY,42.50, 'DXTTBBold', '#00225c', 'left', 1.5, 0, 0, 0, 500, 0);
-            
-            
+                // จัดกึ่งกลางเหมือนเดิม แต่เปลี่ยน Y
+                const centerX = canvas.width / 1.90;
+                const amountY = 483.5;
+                
+                // วาดเลขจำนวนเงิน
+                const amountX = centerX - (ctx.measureText(totalText).width / 0.83);
+                drawText(ctx, amountText, amountX, amountY, 58.0, 'DXTTBBold', '#00225c', 'left', 1.5, 3, 0, 0, 500, 0);
+                const amountWidth = ctx.measureText(amountText).width;
+                // วาดทศนิยมต่อจาก amountText
+                drawText(ctx, amountUnit, amountX + amountWidth - 1, amountY, 42.50, 'DXTTBBold', '#00225c', 'left', 1.5, 0, 0, 0, 500, 0);
+
+
+
+            } else {
+                // ไม่ใช่พร้อมเพย์ e-Wallet => ตำแหน่งปกติ
+                drawText(ctx, `${receivername}`, 138.5, 772.7,24.3, 'DXTTBBold', '#0a2e6c', 'left', 1.5, 3, 0, 0, 800, 0);
+                drawText(ctx, `${receiveraccount}`, 138.5, 811.9,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `${bank}`, 138.5, 850.9,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 2, 0, 0, 500, 0);
+                // ซ่อน (EW01) => ไม่ต้องวาด
+                // generateUniqueID กลับตำแหน่งเดิม
+                drawText(ctx, `${generateUniqueID()}`, 166.9, 993.0,21.33, 'DXTTBRegular', '#8e959d', 'left', 1.5, 3, 0, 0, 500, 0);
+                drawText(ctx, `${AideMemoire}`, 655, 931.2,24.3, 'DXTTBBold', '#0a2e6c', 'right', 1.5, 3, 0, 0, 800, 0);
+
+
+                // *** ส่วนของจำนวนเงิน ตำแหน่งปกติ ***
+                const amountText = `${amount11}`;
+                const amountUnit = `${amountDecimal}`;
+                const totalText = amountText + ' ' + amountUnit;
+
+                const centerX = canvas.width / 1.90;
+                const amountY = 483.5;
+                
+                const amountX = centerX - (ctx.measureText(totalText).width / 0.83);
+                drawText(ctx, amountText, amountX, amountY, 58.0, 'DXTTBBold', '#00225c', 'left', 1.5, 3, 0, 0, 500, 0);
+                const amountWidth = ctx.measureText(amountText).width;
+                drawText(ctx, amountUnit, amountX + amountWidth - 1, amountY, 42.50, 'DXTTBBold', '#00225c', 'left', 1.5, 0, 0, 0, 500, 0);
+            }
+
+
+            // วาด QRCode Text (ถ้าต้องการเอาไปทำอย่างอื่น ก็ปรับใช้ตามต้องการ)
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'DXTTBRegular', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
+            // ตัวอย่างวาดโลโก้ TTB ซ้ำ (ถ้าต้องการ)
             drawImage(ctx, '../assets/image/logo/TTB2.png', 49.5, 565.1, 80.0, 80.0);  
-       
-               
-          
-            // Draw the selected image
+            // สุดท้ายวาดสติ๊กเกอร์ที่เลือก
             if (selectedImage) {
                 const customImage = new Image();
                 customImage.src = selectedImage;
                 customImage.onload = function() {
-                    ctx.drawImage(customImage, 0, 0, 714, 1280); // Adjust the position and size as needed
+                    // ปรับตำแหน่ง/ขนาดตามต้องการ
+                    ctx.drawImage(customImage, 0, 0, canvas.width, canvas.height);
                 }
             }
-            //ถึงที่นี่
-            
-            
         }
     }
 }
+
 
 function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeight, maxLines, shadowColor, shadowBlur, maxWidth, letterSpacing) {
     
