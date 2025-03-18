@@ -184,9 +184,10 @@ function updateDisplay() {
     const amount11 = document.getElementById('amount11').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
     const selectedImage = document.getElementById('imageSelect').value || '';
+    const backgroundSelect = document.getElementById('backgroundSelect').value || '';
     const QRCode = document.getElementById('QRCode').value || '';
 
-
+    // เลือกโลโก้ตาม bank
     let bankLogoUrl = '';
     switch (bank) {
         case 'กสิกรไทย':
@@ -231,6 +232,13 @@ function updateDisplay() {
         case 'ไอซีบีซี':
             bankLogoUrl = '../assets/image/logo/A-ICBC.png';
             break;
+        case 'พร้อมเพย์': 
+        bankLogoUrl = '../assets/image/logo/P-SCB.png'; 
+            break;
+        case 'พร้อมเพย์ e-Wallet': 
+        bankLogoUrl = '../assets/image/logo/P-SCB2.png'; 
+            break;
+        default: bankLogoUrl = '';
     }
 
     const formattedDate = formatDate(datetime);
@@ -247,6 +255,7 @@ function updateDisplay() {
     // คำนวณความกว้างของ sendername
     const senderNameWidth = ctx.measureText(sendername).width;
 
+    
     // กำหนดความกว้างของรูปภาพที่เชื่อมโยงกับ sendername
     const senderImageWidth = 55; // ปรับตามต้องการ
 
@@ -268,6 +277,7 @@ function updateDisplay() {
     // คำนวณความกว้างของ receivername
     const receiverNameWidth = ctx.measureText(receivername).width;
 
+    
     // กำหนดความกว้างของ bankLogo
     const bankLogoWidth = 55; // ปรับตามต้องการ
 
@@ -284,17 +294,31 @@ function updateDisplay() {
     const bankLogoX = receiverStartX;
     const receiverNameX = bankLogoX + bankLogoWidth + receiverSpacing;
 
+
+    // ถ้าเลือกพร้อมเพย์ e-Wallet (EW01) => ขยาย canvas + เปลี่ยนพื้นหลัง + ย้ายตำแหน่ง
+    let backgroundImageSrc = backgroundSelect;
+    if (bank === 'พร้อมเพย์ e-Wallet') {
+        // ขยายขนาด canvas เป็น 752 x 1321
+        canvas.width = 818;
+        canvas.height = 1413;
+        // พื้นหลังเฉพาะ e-Wallet
+        backgroundImageSrc = '../assets/image/bs/SCBB1.jpg';
+    } else {
+        // ธนาคารอื่น => canvas ปกติ
+        canvas.width = 818;
+        canvas.height = 1280;
+        backgroundImageSrc = backgroundSelect; 
+    }
+
     // โหลดภาพพื้นหลัง
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/SCB1.jpg';
+    backgroundImage.src = backgroundImageSrc;
     backgroundImage.onload = function() {
-        // ล้างแคนวาส
+        // เคลียร์ canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // วาดภาพพื้นหลัง
+        // วาดพื้นหลัง
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
-        // **วาดรูปภาพ /assets/image/logo/A-SCB.png และ sendername**
 
         const senderLogo = new Image();
         senderLogo.src = '../assets/image/logo/A-SCB.png';
@@ -302,10 +326,8 @@ function updateDisplay() {
             // วาดรูปภาพ sender
             ctx.drawImage(senderLogo, senderImageX, 449, senderImageWidth, 55);
 
-            // วาด sendername
+            // --------- ข้อมูลผู้โอน --------- //
             drawText(ctx, `${sendername}`, senderNameX, 488.4, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
-
-            // วาดหมายเลขบัญชีผู้ส่ง
             drawText(ctx, `${senderaccount}`, 769, 538, 38.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
 
             // **วาด bankLogo และ receivername**
@@ -316,17 +338,28 @@ function updateDisplay() {
                 // วาด bankLogo
                 ctx.drawImage(bankLogo, bankLogoX, 573.7, bankLogoWidth, 55);
 
-                // วาด receivername
-                drawText(ctx, `${receivername}`, receiverNameX, 613.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
-
-                // วาดหมายเลขบัญชีผู้รับ
-                drawText(ctx, `${receiveraccount}`, 769, 662.4, 38.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
 
                 // วาดจำนวนเงิน
                 drawText(ctx, `${amount11}`, 769, 791.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
 
                 // วาดวันที่และเวลาที่โอน
                 drawText(ctx, `${formattedDate} - ${formattedTime}`, 407, 332.4, 38.5, 'DXSCB', '#76737b', 'center', 1.5, 3, 0, 0, 800, 0);
+
+
+
+                            // ========== เช็คว่าธนาคารเป็นพร้อมเพย์ e-Wallet หรือไม่ ========== //
+            if (bank === 'พร้อมเพย์ e-Wallet') {
+                drawImage(ctx, '../assets/image/logo/P-SCB1.png', 486, 573.7, 55, 55);
+                drawText(ctx, `เติมเงินพร้อมเพย์`, 551, 613.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
+                drawText(ctx, `${receiveraccount}`, 769, 662.4, 38.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `${receivername} (TrueMoney)`, 47, 924.5, 35.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
+
+
+             } else {
+                drawText(ctx, `${receivername}`, receiverNameX, 613.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
+                drawText(ctx, `${receiveraccount}`, 769, 662.4, 38.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+
+             }
 
                 // วาดรหัสอ้างอิง
                 drawText(ctx, `รหัสอ้างอิง: ${generateUniqueID()}`, 407, 377.5, 38.5, 'DXSCB', '#76737b', 'center', 1.5, 1, 0, 0, 800, 0);
