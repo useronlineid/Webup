@@ -144,7 +144,7 @@ function updateDisplay() {
         case 'BAY': bankLogoUrl = '../assets/image/logo/BAY2.1.png'; break;
         case 'ttb': bankLogoUrl = '../assets/image/logo/TTB2.png'; break;
         case 'GSB': bankLogoUrl = '../assets/image/logo/O2.png'; break;
-        case 'ฺBAAC': bankLogoUrl = '../assets/image/logo/T2.png'; break;
+        case 'BAAC': bankLogoUrl = '../assets/image/logo/T2.png'; break;
         case 'GHB': bankLogoUrl = '../assets/image/logo/C1.png'; break;
         case 'KKP': bankLogoUrl = '../assets/image/logo/K1.png'; break;
         case 'CIMB': bankLogoUrl = '../assets/image/logo/CIMB.png'; break;
