@@ -180,8 +180,8 @@ function updateDisplay() {
             bankText = 'ยูโอบี';
             bankLogoUrl = '../assets/image/logo/UOB2.png';
             break;
-        case 'แลนด์ แอนด์ เฮาส์':
-            bankText = 'แลนด์ แอนด์ เฮาส์';
+        case 'แลนด์ แอนด์ เฮ้าส์':
+            bankText = 'แลนด์ แอนด์ เฮ้าส์';
             bankLogoUrl = '../assets/image/logo/LHBANK.png';
             break;
         case 'ไอซีบีซี':
