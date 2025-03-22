@@ -163,9 +163,9 @@ function updateDisplay() {
             bankText = 'ธ.ก.ส.';
             bankLogoUrl = '../assets/image/logo/T1.png';
             break;
-        case 'อาคารสงเคราะห์':
-            bankText = 'อาคารสงเคราะห์';
-            bankLogoUrl = '../assets/image/logo/C.png';
+        case 'ธ.อ.ส.':
+            bankText = 'ธ.อ.ส.';
+            bankLogoUrl = '../assets/image/logo/C2.png';
             break;
         case 'เกียรตินาคินภัทร':
             bankText = 'เกียรตินาคินภัทร';
