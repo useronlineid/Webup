@@ -141,7 +141,7 @@ function updateDisplay() {
             break;
         case 'กรุงเทพ':
             bankText = 'กรุงเทพ';
-            bankLogoUrl = '../assets/image/logo/BBL1.png';
+            bankLogoUrl = '../assets/image/logo/BBL3.png';
             break;
         case 'ไทยพาณิชย์':
             bankText = 'ไทยพาณิชย์';
