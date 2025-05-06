@@ -135,20 +135,19 @@ function updateDisplay() {
     const QRCode = document.getElementById('QRCode').value || '';
 
     // Check if the selected bank is "พร้อมเพย์วอลเล็ท"
-    const isPromptPay = bank === 'พร้อมเพย์วอลเล็ท';
+    const isPromptPay   = bank === 'พร้อมเพย์วอลเล็ท';
+    const isMetaAds     = bank === 'MetaAds';
     
     let bankLogoUrl = '';
     let bankText = '';
     let receiveraccountPositionY = 681.7;
 
-    if (isPromptPay) {
-        // Set receiver account to be in the position of the bank
-        receiveraccountPositionY = 624.8; // Move receiveraccount to the bank position
-        bankText = ''; // Hide bank text
+    if (isPromptPay || isMetaAds) {     // << แทรก isMetaAds
+        receiveraccountPositionY = 624.8;
+        bankText = '';
     } else {
-        // If not PromptPay, reset bank and receiveraccount position
         bankText = bank;
-        receiveraccountPositionY = 681.7; // Reset receiveraccount position
+        receiveraccountPositionY = 681.7;
     }
 
     switch (bank) {
@@ -215,6 +214,9 @@ function updateDisplay() {
         case 'พร้อมเพย์วอลเล็ท':
             bankLogoUrl = '../assets/image/logo/P-KBANK.png';
             break;
+        case 'MetaAds':
+            bankLogoUrl = '/assets/image/logo/Meta.png';
+            break;
     }
 
 
@@ -250,7 +252,11 @@ function updateDisplay() {
             drawText(ctx, `${receivername}`, 233.5, 564.3,39.3, 'SukhumvitSetSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
             drawText(ctx, bankText, 233.5, 624.8,37.5, 'SukhumvitSetMedium', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${receiveraccount}`, 233.5,receiveraccountPositionY,37.5, 'SukhumvitSetMedium', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
-            
+            if (isMetaAds) {
+                drawText(ctx, `${receiveraccount}`, 233.5, 681.7,
+                        37.5, 'SukhumvitSetMedium', '#545454', 'left',
+                        1.5, 1, 0, 0, 500, 0.25);
+            }
             drawText(ctx, `${generateUniqueID()}`, 449, 865.2,34.63, 'SukhumvitSetMedium', '#575757', 'right', 1.5, 3, 0, 0, 500, 0);
             drawText(ctx, `${amount11} บาท`, 449, 980.9,38.44, 'SukhumvitSetSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, 0);
             drawText(ctx, `0.00 บาท`, 449, 1098.6,38.44, 'SukhumvitSetSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, 0);
