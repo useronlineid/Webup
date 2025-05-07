@@ -145,7 +145,7 @@ function updateDisplay() {
     let bankLogoUrl = '';
     switch (bank) {
         case 'KBANK':
-            bankLogoUrl = '../assets/image/logo/KBANK.png';
+            bankLogoUrl = '../assets/image/logo/KBANK1.png';
             break;
         case 'KTB':
             bankLogoUrl = '../assets/image/logo/KTB2.png';
