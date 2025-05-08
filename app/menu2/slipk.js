@@ -109,10 +109,30 @@ function generateUniqueID() {
     const now = new Date(document.getElementById('datetime').value);
     const startDate = new Date("2024-07-24");
     const dayDifference = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-    const uniqueDay = (14840 + dayDifference).toString().padStart(6, '0'); // Tambah jumlah hari sejak 24/07/2567
-    const timePart = `${padZero(now.getHours())}${padZero(now.getMinutes())}${padZero(now.getSeconds())}`; // Tambah saat (seconds)
-    const randomPart1 = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-    return `${uniqueDay}${timePart}BOR0${randomPart1}`;
+    const uniqueDay = (14840 + dayDifference).toString().padStart(6, '0');
+    const timePart = `${padZero(now.getHours())}${padZero(now.getMinutes())}${padZero(now.getSeconds())}`;
+    const randomPart = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+
+    // ดึงค่าธนาคารที่เลือก
+    const bank = document.getElementById('bank').value;
+
+    let prefix = "BOR"; // ค่าดีฟอลต์
+
+    if (bank === "MetaAds") {
+        const prefixes = ["APM", "BPM", "CPM"];
+        prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+    } else if (bank === "รหัสพร้อมเพย์" || bank === "พร้อมเพย์วอลเล็ท") {
+        const prefixes = ["APP", "BPP", "CPP"];
+        prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+    } else if (bank === "ธ.กสิกรไทย") {
+        const prefixes = ["ATF", "BTF", "CTF"];
+        prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+    } else {
+        const prefixes = ["AOR", "BOR", "COR"];
+        prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+    }
+
+    return `${uniqueDay}${timePart}${prefix}0${randomPart}`;
 }
 
 
