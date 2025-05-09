@@ -130,6 +130,9 @@ function updateDisplay() {
         case 'ธ.ไอซีบีซี (ไทย) จำกัด (มหาชน)':
             bankLogoUrl = '../assets/image/logo/K-ICBC.png';
             break;
+        case 'เติมเงินพร้อมเพย์ วอลเล็ท':
+            bankLogoUrl = '../assets/image/logo/P-Kiatnakin.png';
+            break;
     }
 
     const formattedDate = formatDate(datetime);
