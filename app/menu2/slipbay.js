@@ -163,7 +163,7 @@ function updateDisplay() {
             bankLogoUrl = '../assets/image/logo/TTB.png';
             break;
         case 'GSB':
-            bankLogoUrl = '../assets/image/logo/O2.png';
+            bankLogoUrl = '../assets/image/logo/O.png';
             break;
         case 'ฺBAAC':
             bankLogoUrl = '../assets/image/logo/T.png';
