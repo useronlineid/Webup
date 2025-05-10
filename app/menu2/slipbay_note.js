@@ -159,7 +159,7 @@ function updateDisplay() {
             bankLogoUrl = '../assets/image/logo/SCB.png';
             break;
         case 'BAY':
-            bankLogoUrl = '../assets/image/logo/BAY3.png';
+            bankLogoUrl = '../assets/image/logo/BAY2.png';
             break;
         case 'ttb':
             bankLogoUrl = '../assets/image/logo/TTB.png';
@@ -240,7 +240,7 @@ function updateDisplay() {
 
 
             drawText(ctx, `${QRCode}`, 238.9, 520.0,33, 'krungsriRegular', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '../assets/image/logo/BAY3.png', 44.7, 184.5, 75.5, 75.5);  
+            drawImage(ctx, '../assets/image/logo/BAY2.png', 44.7, 184.5, 75.5, 75.5);  
        
                
           
