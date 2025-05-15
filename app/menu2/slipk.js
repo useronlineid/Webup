@@ -159,13 +159,20 @@ function updateDisplay() {
     let bankLogoUrl = '';
     let bankText = '';
     let receiveraccountPositionY = 697.7;
+    let receivernamePositionY = 577.0;
 
-    if (isPromptPay || isMetaAds) {     // << แทรก isMetaAds
+    if (isPromptPay) {     // << แทรก isMetaAds
         receiveraccountPositionY = 639.0;
+        receivernamePositionY = 577.0;
+        bankText = '';
+    } else if (isMetaAds) {     // << แทรก isMetaAds
+        receiveraccountPositionY = 639.0;
+        receivernamePositionY = 1300.0;
         bankText = '';
     } else {
         bankText = bank;
         receiveraccountPositionY = 697.7;
+        receivernamePositionY = 577.0;
     }
 
     switch (bank) {
@@ -209,7 +216,7 @@ function updateDisplay() {
             bankText = 'ธ.เกียรตินาคินภัทร';
             bankLogoUrl = '../assets/image/logo/K.png';
             break;
-        case 'ธ.ซีไอเอ็มบี':
+        case 'ธ.ซีไอเอ็มบีไทย':
             bankText = 'ธ.ซีไอเอ็มบี';
             bankLogoUrl = '../assets/image/logo/CIMB.png';
             break;
@@ -227,13 +234,13 @@ function updateDisplay() {
             break;
         case 'รหัสพร้อมเพย์':
             bankText = 'รหัสพร้อมเพย์';
-            bankLogoUrl = '../assets/image/logo/P-KBANK.png';
+            bankLogoUrl = '../assets/image/logo/KBANK-P.png';
             break;
         case 'พร้อมเพย์วอลเล็ท':
-            bankLogoUrl = '../assets/image/logo/P-KBANK.png';
+            bankLogoUrl = '../assets/image/logo/KBANK-P.png';
             break;
         case 'MetaAds':
-            bankLogoUrl = '/assets/image/logo/Meta.png';
+            bankLogoUrl = '../assets/image/logo/Meta.png';
             break;
     }
 
@@ -266,19 +273,20 @@ function updateDisplay() {
             drawText(ctx, `ธ.กสิกรไทย`, 238.9, 333.6, 37.5, 'SukhumvitSetMedium', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${senderaccount}`, 238.9, 392.5, 37.5, 'SukhumvitSetMedium', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
             
-            drawText(ctx, `${receivername}`, 238.9, 577.0, 39.3, 'SukhumvitSetSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `${receivername}`, 238.9, receivernamePositionY, 39.3, 'SukhumvitSetSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
             drawText(ctx, bankText, 238.9, 639.0, 37.5, 'SukhumvitSetMedium', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${receiveraccount}`, 238.9, receiveraccountPositionY, 37.5, 'SukhumvitSetMedium', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
             if (isMetaAds) {
                          drawText(ctx, `${receiveraccount}`, 238.9, 697.7,
                                  37.5, 'SukhumvitSetMedium', '#545454', 'left',
                                  1.5, 1, 0, 0, 500, 0.25);
+            drawText(ctx, `Meta Ads (KGP)`, 238.9, 577.00, 39.3, 'SukhumvitSetSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
                      }
             drawText(ctx, `${generateUniqueID()}`, 459, 885.4, 35.63, 'SukhumvitSetMedium', '#575757', 'right', 1.5, 3, 0, 0, 500, 0);
             drawText(ctx, `${amount11} บาท`, 459, 1003.6, 38.44, 'SukhumvitSetSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, 0);
             drawText(ctx, `0.00 บาท`, 459, 1124.2, 38.44, 'SukhumvitSetSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, 0);
             drawText(ctx, `${QRCode}`, 238.9, 599.0, 33, 'SukhumvitSetMedium', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '/assets/image/logo/KBANK.png', 34.6, 222, 157, 157);  
+            drawImage(ctx, '../assets/image/logo/KBANK.png', 34.6, 222, 157, 157);  
         
             // Draw the selected image
             if (selectedImage) {
