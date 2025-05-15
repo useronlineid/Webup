@@ -137,7 +137,7 @@ function updateDisplay() {
 
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/backgroundEnter-KT3.2.jpg';
+    backgroundImage.src = '../assets/image/bs/backgroundEnter-KT3.1.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -149,9 +149,8 @@ function updateDisplay() {
         drawText(ctx, `ประเภท`, 131.5,145,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
         drawText(ctx, `เข้าบัญชี`, 131.5,207,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
         drawText(ctx, `จากบัญชี`, 131.5,271.5,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
-        drawText(ctx, `ผู้โอน`, 131.5,335.4,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
-        drawText(ctx, `ยอดที่ใช้ได้`, 131.5,399,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
-        drawText(ctx, `วันที่ทำรายการ`, 131.5,462.6,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
+        drawText(ctx, `ยอดที่ใช้ได้`, 131.5,335.4,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
+        drawText(ctx, `วันที่ทำรายการ`, 131.5,399,30, 'SFThonburiRegular', '#596163', 'left', 1.5, 3, 0, 0, 1250,0);
 
         drawText(ctx, `บาท`, 669, 85, 30, 'SFThonburiRegular', '#596163', 'right', 40, 3, 0, 0, 1250, 0);
         const bathWidth = ctx.measureText(`-`).width;
@@ -163,17 +162,16 @@ function updateDisplay() {
         drawText(ctx, `${bank1} ${receiveraccount}`, 669,271.5,27, 'SFThonburiSemiBold', '#000000', 'right', 1.5, 3, 0, 0, 1250,-0.25);
 
 
-        drawText(ctx, `${receivername}`, 669, 335.4,30, 'SFThonburiRegular', '#596163', 'right', 40, 3, 0, 0, 1250,-0.25);
 
 
-        drawText(ctx, `บาท`, 669, 399, 30, 'SFThonburiRegular', '#596163', 'right', 40, 3, 0, 0, 1250, 0);
+        drawText(ctx, `บาท`, 669, 335.4, 30, 'SFThonburiRegular', '#596163', 'right', 40, 3, 0, 0, 1250, 0);
         const bath1Width = ctx.measureText(`-`).width;
-        drawText(ctx, `${money02}`, 669 - bath1Width - 55, 399, 30, 'SFThonburiRegular', '#596163', 'right', 40, 3, 0, 0, 1250, -1.5);
+        drawText(ctx, `${money02}`, 669 - bath1Width - 55, 335.4, 30, 'SFThonburiRegular', '#596163', 'right', 40, 3, 0, 0, 1250, -1.5);
 
 
-        drawText(ctx, `${formattedDate} ${formattedTime}`, 669, 462.6,30, 'SFThonburiRegular', '#596163', 'right', 40, 3, 0, 0, 1250,-0.25);
+        drawText(ctx, `${formattedDate} ${formattedTime}`, 669, 399,30, 'SFThonburiRegular', '#596163', 'right', 40, 3, 0, 0, 1250,-0.25);
 
-        drawText(ctx, `${formattedTimePlusOne}`, 677.6, 558,22, 'SFThonburiSemiBold', '#576d96', 'left', 40, 3, 0, 0, 1250,-0.50);
+        drawText(ctx, `${formattedTimePlusOne}`, 677.6, 500,22, 'SFThonburiSemiBold', '#576d96', 'left', 40, 3, 0, 0, 1250,-0.50);
 
         if (qrCodeImage) {
             ctx.drawImage(qrCodeImage, 0, 130.3, 555, 951); // Adjust position and size as needed
