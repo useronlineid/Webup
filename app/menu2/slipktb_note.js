@@ -174,7 +174,7 @@ function updateDisplay() {
             break;
         case 'ซีไอเอ็มบี':
             bankText = 'ซีไอเอ็มบี';
-            bankLogoUrl = '../assets/image/logo/CIMB.png';
+            bankLogoUrl = '../assets/image/logo/C-CIMB.png';
             break;
         case 'ยูโอบี':
             bankText = 'ยูโอบี';
