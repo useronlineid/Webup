@@ -171,8 +171,8 @@ function updateDisplay() {
             bankText = 'เกียรตินาคินภัทร';
             bankLogoUrl = '../assets/image/logo/K.png';
             break;
-        case 'ซีไอเอ็มบีไทย':
-            bankText = 'ซีไอเอ็มบีไทย';
+        case 'ซีไอเอ็มบี':
+            bankText = 'ซีไอเอ็มบี';
             bankLogoUrl = '../assets/image/logo/CIMB.png';
             break;
         case 'ยูโอบี':
