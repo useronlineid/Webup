@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วีซ่าอิสราเอล</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>วีซ่าอิสราเอล</h1>
+            <div class="form">
+                <label for="datetime">เวลา (hh:mm:ss):</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="sendername">Name</label>
+                <input type="text" id="sendername" name="sendername" placeholder="Name" oninput="updateDisplay()">
+                
+                <label for="passportnumber">passportnumber</label>
+                <input type="text" id="passportnumber" name="passportnumber" placeholder="passportnumber" oninput="updateDisplay()">
+                
+
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu5/visaIsrael.js"></script>
+</body>
+</html>

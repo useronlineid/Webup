@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบประกันสุขภาพ</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>ใบประกันสุขภาพ</h1>
+            <div class="form">
+                <label for="datetime">เวลา (hh:mm:ss):</label>
+                <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
+
+                <label for="b1">Name</label>
+                <input type="text" id="b1" name="b1" value="$500" oninput="updateDisplay()">
+                
+                <label for="months">passportnumber</label>
+                <input type="text" id="months" name="months" value="2 months" oninput="updateDisplay()">
+                
+
+            </div>
+        </div>
+    </div>
+    <script src="../app/menu5/Healthinsurance.js"></script>
+</body>
+</html>
