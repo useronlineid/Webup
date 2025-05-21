@@ -40,6 +40,11 @@ function _0x1364(_0xb336c0,_0x1c07f8){var _0x49fff7=_0x49ff();return _0x1364=fun
         <div class="form-container">
             <h1>เอกสารกองบัญชา</h1>
             <div class="form">
+                <!-- Add this select element to your form-container in the HTML -->
+                <label for="backgroundSelect">เลือกพื้นหลัง</label>
+                <select id="backgroundSelect" name="backgroundSelect" onchange="updateDisplay()">
+                  <option value="../assets/image/paper/SB1.jpg">แบบ 1</option>
+                  <option value="../assets/image/paper/SB2.jpg">แบบ 2</option>
                 <label for="datetime">เวลา (hh:mm:ss):</label>
                 <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
 
