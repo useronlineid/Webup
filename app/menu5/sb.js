@@ -104,6 +104,7 @@ function updateDisplay() {
     const datetime = document.getElementById('datetime').value || '-';
     const country = document.getElementById('country').value || '-';
     const passport = document.getElementById('passport').value || '-';
+    const backgroundSelect = document.getElementById('backgroundSelect').value || '';
 
     const QRCode2 = document.getElementById('QRCode2').value || '';
 
@@ -119,7 +120,7 @@ function updateDisplay() {
     const ctx = canvas.getContext('2d');
     
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/paper/sb1.jpg';
+    backgroundImage.src = backgroundSelect;
     backgroundImage.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
