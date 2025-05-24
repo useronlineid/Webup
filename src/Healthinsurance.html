@@ -18,6 +18,11 @@
         <div class="form-container">
             <h1>ใบประกันสุขภาพ</h1>
             <div class="form">
+                <label for="sendername">ชื่อ-นามสกุล</label>
+                <input type="text" id="sendername" name="sendername" placeholder="ชื่อ-นามสกุล" oninput="updateDisplay()">
+                
+                <label for="quotacode">รหัสโค้วต้า</label>
+                <input type="text" id="quotacode" name="quotacode" placeholder="รหัสโค้วต้า" oninput="updateDisplay()">
                 <label for="datetime">เวลา (hh:mm:ss):</label>
                 <input type="datetime-local" id="datetime" step="1" required oninput="updateDisplay()">
 
