@@ -76,6 +76,8 @@ function formatDate(dateString) {
 
 
 function updateDisplay() {
+    const quotacode = document.getElementById('quotacode').value  '-';
+    const sendername = document.getElementById('sendername').value  '-';
     const months = document.getElementById('months').value || '-';
     const b1 = document.getElementById('b1').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
@@ -91,7 +93,9 @@ function updateDisplay() {
     backgroundImage.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-
+        drawText(ctx, ${sendername}, 830,140,18, 'arialMedium', '#000000', 'right', 25, 3, 0, 0, 800, 0);
+        drawText(ctx, ${quotacode}, 830,170,17, 'arialMedium', '#000000', 'right', 25, 3, 0, 0, 800, 0);
+        drawText(ctx, ${formattedDate}, 830,200,17, 'arialMedium', '#000000', 'right', 25, 3, 0, 0, 800, 0);
 
 
         drawText(ctx, `${b1}`, 460,620,18, 'arialMedium', '#00563b', 'center', 25, 3, 0, 0, 800, 0);
