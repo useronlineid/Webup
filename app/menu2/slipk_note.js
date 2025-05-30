@@ -222,7 +222,7 @@ function updateDisplay() {
             break;
         case 'ธ.ซีไอเอ็มบี':
             bankText = 'ธ.ซีไอเอ็มบี';
-            bankLogoUrl = '../assets/image/logo/CIMB.png';
+            bankLogoUrl = '../assets/image/logo/CIMB2.png';
             break;
         case 'ธ.ยูโอบี':
             bankText = 'ธ.ยูโอบี';
