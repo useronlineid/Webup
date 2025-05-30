@@ -144,6 +144,9 @@ function updateDisplay() {
         case 'ไอซีบีซี':
             bankLogoUrl = '../assets/image/logo/ICBC.png';
             break;
+        case 'รหัส e-Wallet':
+            bankLogoUrl = '../assets/image/logo/P-LINE BK.png';
+            break;
     }
 
     const formattedDate = formatDate(datetime);
