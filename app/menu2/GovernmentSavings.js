@@ -6,6 +6,17 @@ function loadFonts() {
         new FontFace('SFThonburiRegular', 'url(../assets/fonts/SFThonburi-Regular.woff)'),
         new FontFace('SFThonburiSemiBold', 'url(../assets/fonts/SFThonburi-Semibold.woff)'),
         new FontFace('SFThonburiBold', 'url(../assets/fonts/SFThonburi-Bold.woff)'),
+        //Kanit
+        new FontFace('KanitThin', 'url(../assets/fonts/Kanit-Thin.woff)'),
+        new FontFace('KanitExtraLight', 'url(../assets/fonts/Kanit-ExtraLight.woff)'),
+        new FontFace('KanitLight', 'url(../assets/fonts/Kanit-Light.woff)'),
+        new FontFace('KanitRegular', 'url(../assets/fonts/Kanit-Regular.woff)'),
+        new FontFace('KanitMedium', 'url(../assets/fonts/Kanit-Medium.woff)'),
+        new FontFace('KanitSemiBold', 'url(../assets/fonts/Kanit-SemiBold.woff)'),
+        new FontFace('KanitBold', 'url(../assets/fonts/Kanit-Bold.woff)'),
+        new FontFace('KanitExtraBold', 'url(../assets/fonts/Kanit-ExtraBold.woff)'),
+        new FontFace('KanitBlack', 'url(../assets/fonts/Kanit-Black.woff)'),
+
     ];
 
     // โหลดฟอนต์ทั้งหมดและเพิ่มเข้าไปที่ document
@@ -103,6 +114,7 @@ function updateDisplay() {
     const amount11 = document.getElementById('amount11').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
     const selectedImage = document.getElementById('imageSelect').value || '';
+    const backgroundSelect = document.getElementById('backgroundSelect').value || '';
     const QRCode = document.getElementById('QRCode').value || '';
 
     let bankLogoUrl = '';
@@ -138,7 +150,7 @@ function updateDisplay() {
             bankLogoUrl = '../assets/image/logo/K.png';
             break;
         case 'ธนาคารซีไอเอ็มบีไทย':
-            bankLogoUrl = '../assets/image/logo/CIMB1.png';
+            bankLogoUrl = '../assets/image/logo/CIMB.png';
             break;
         case 'ธนาคารยูโอบี':
             bankLogoUrl = '../assets/image/logo/UOB3.png';
@@ -155,8 +167,11 @@ function updateDisplay() {
         case 'เติมเงินพร้อมเพย์':
             bankLogoUrl = '../assets/image/logo/P-savings1.png';
             break;
+        case 'MetaAds': 
+        bankLogoUrl = '../assets/image/logo/P-savings.png'; 
+            break;
+        default: bankLogoUrl = '';
     }
-    
     
 
     const formattedDate = formatDate(datetime);
@@ -164,10 +179,24 @@ function updateDisplay() {
 
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
+
+        let backgroundImageSrc = backgroundSelect;
+    if (bank === 'MetaAds') {
+        // ขยายขนาด canvas เป็น 752 x 1321
+        canvas.width = 617;
+        canvas.height = 1334;
+        // พื้นหลังเฉพาะ e-Wallet
+        backgroundImageSrc = '../assets/image/bs/OO1.jpg';
+    } else {
+        // ธนาคารอื่น => canvas ปกติ
+        canvas.width = 617;
+        canvas.height = 1280;
+        backgroundImageSrc = backgroundSelect; 
+    }
     
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/O1.jpg?raw=true';
+    backgroundImage.src = backgroundImageSrc;
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -193,12 +222,22 @@ function updateDisplay() {
             drawText(ctx, `ธนาคารออมสิน`, 163.4, 482.8,25, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${senderaccount}`, 163.4, 512.7, 25,'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
             
-            drawText(ctx, `${receivername}`,163.4, 637.7,33, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 500, -0.50);
-            drawText(ctx, `${bank}`, 163.4, 674.2,25, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${receiveraccount}`, 163.4, 705.2,25, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
             
             drawImage(ctx, '../assets/image/logo/O3.png', 71, 409.5, 78, 78);  
         
+            if (bank === 'MetaAds') {
+            drawText(ctx, `META ADS (KGP)`,163.4, 637.7,33, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 500, -0.50);
+            drawText(ctx, `หมายเลขอ้างอิง 1:`, 163.4, 674.2,25, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
+            drawText(ctx, `${receiveraccount}`, 163.4, 705.2,25, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
+            drawText(ctx, `หมายเลขอ้างอิง 2:`, 163.4, 735.2,25, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
+            drawText(ctx, `${receiveraccount}`, 163.4, 766.2,25, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
+
+             } else {
+            drawText(ctx, `${receivername}`,163.4, 637.7,33, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 500, -0.50);
+            drawText(ctx, `${bank}`, 163.4, 674.2,25, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${receiveraccount}`, 163.4, 705.2,25, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
+
+             }
           
             // Draw the selected image
             if (selectedImage) {
