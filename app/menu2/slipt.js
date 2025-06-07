@@ -116,8 +116,8 @@ function generateUniqueID() {
     const day = padZero(now.getDate());
     const hours = padZero(now.getHours());
     const minutes = padZero(now.getMinutes());
-    const randomNumber = Math.floor(Math.random() * 10000000000).toString().padStart(10, '0');
-    return `${year}${month}${day}${randomNumber}`;
+    const randomNumber = Math.floor(Math.random() * 100000000).toString().padStart(8, '0');
+    return `${year}${month}${day}${hours}${randomNumber}`;
 }
 
 
