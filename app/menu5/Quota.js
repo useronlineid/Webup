@@ -156,7 +156,7 @@ function updateDisplay() {
     
     
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/paper/Quota1.jpg';
+    backgroundImage.src = '../assets/image/paper/Quota2.jpg';
     backgroundImage.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
@@ -165,7 +165,7 @@ function updateDisplay() {
         drawText(ctx, `${companyName}`, 449,96,30,'SukhumvitSetSemiBold', '#000000', 'center',10, 3, 0, 0, 800, -0.25);
         drawText(ctx, `ที่ตั้งบริษัท: ${companyAddress}`, 449,156.8,22,'SukhumvitSetMedium', '#000000', 'center',25, 3, 0, 0, 700, -0.25);
         drawText(ctx, `เลขที่เสียภาษี: ${companytax}`, 449,220,22,'SukhumvitSetMedium', '#000000', 'center',10, 3, 0, 0, 800, -0.25);
-        drawText(ctx, `ใบจองโควต้า`, 449,297,40,'SukhumvitSetBold', '#000000', 'center',10, 3, 0, 0, 800, -0.25);
+        drawText(ctx, `ใบวางหลักประกัน`, 449,297,40,'SukhumvitSetBold', '#000000', 'center',10, 3, 0, 0, 800, -0.25);
         drawText(ctx, `รหัสโควต้า: ${code}`, 67,370,21,'SukhumvitSetMedium', '#000000', 'left',10, 3, 0, 0, 800, -0.25);
         drawText(ctx, `วันที่: ${formattedDate}`, 840,370,21,'SukhumvitSetMedium', '#000000', 'right',10, 3, 0, 0, 800, -0.25);
         drawText(ctx, `${ProjectName1}`, 230,445,22,'SukhumvitSetSemiBold', '#000000', 'center',10, 3, 0, 0, 800, -0.25);
