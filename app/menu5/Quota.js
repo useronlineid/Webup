@@ -156,7 +156,7 @@ function updateDisplay() {
     
     
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/paper/Quota2.jpg';
+    backgroundImage.src = '../assets/image/paper/Quota1.1.jpg';
     backgroundImage.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
