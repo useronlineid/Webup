@@ -183,16 +183,21 @@ function updateDisplay() {
     
     let backgroundImageSrc = backgroundSelect;
     if (bank === 'MetaAds') {
-        // ขยายขนาด canvas เป็น 752 x 1321
-        canvas.width = 567;
-        canvas.height = 1346;
-        // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = '../assets/image/bs/OO1T.jpg';
+    canvas.width = 567;
+    canvas.height = 1346;
+    backgroundImageSrc = '../assets/image/bs/OO1T.jpg';
+    } else if (bank === 'ธนาคารออมสิน') {
+    canvas.width = 567;
+    canvas.height = 1280;
+    backgroundImageSrc = '../assets/image/bs/O1.1T.jpg'; // ✅ เพิ่มพื้นหลังของธนาคารออมสิน
+    } else if (bank === 'เติมเงินพร้อมเพย์') {
+    canvas.width = 567;
+    canvas.height = 1280;
+    backgroundImageSrc = '../assets/image/bs/O1.2T.jpg'; // ✅ เพิ่มพื้นหลังของพร้อมเพย์วอลเล็ท
     } else {
-        // ธนาคารอื่น => canvas ปกติ
-        canvas.width = 567;
-        canvas.height = 1280;
-        backgroundImageSrc = backgroundSelect; 
+    canvas.width = 567;
+    canvas.height = 1280;
+    backgroundImageSrc = backgroundSelect;
     }
 
     // Load background image
