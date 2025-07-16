@@ -181,23 +181,23 @@ function updateDisplay() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     
-    let backgroundImageSrc = backgroundSelect;
+        let backgroundImageSrc = backgroundSelect;
     if (bank === 'MetaAds') {
-    canvas.width = 567;
-    canvas.height = 1346;
-    backgroundImageSrc = '../assets/image/bs/OO1T.jpg';
+        canvas.width = 567;
+        canvas.height = 1346;
+        backgroundImageSrc = '../assets/image/bs/OO1T.jpg';
     } else if (bank === 'ธนาคารออมสิน') {
-    canvas.width = 567;
-    canvas.height = 1280;
-    backgroundImageSrc = '../assets/image/bs/O1.1T.jpg'; // ✅ เพิ่มพื้นหลังของธนาคารออมสิน
+        canvas.width = 567;
+        canvas.height = 1280;
+        backgroundImageSrc = '../assets/image/bs/O1.1T.jpg'; // ✅ เพิ่มพื้นหลังของธนาคารออมสิน
     } else if (bank === 'เติมเงินพร้อมเพย์') {
-    canvas.width = 567;
-    canvas.height = 1280;
-    backgroundImageSrc = '../assets/image/bs/O1.2T.jpg'; // ✅ เพิ่มพื้นหลังของพร้อมเพย์วอลเล็ท
+        canvas.width = 567;
+        canvas.height = 1280;
+        backgroundImageSrc = '../assets/image/bs/O1.2T.jpg'; // ✅ เพิ่มพื้นหลังของพร้อมเพย์วอลเล็ท
     } else {
-    canvas.width = 567;
-    canvas.height = 1280;
-    backgroundImageSrc = backgroundSelect;
+        canvas.width = 567;
+        canvas.height = 1280;
+        backgroundImageSrc = backgroundSelect;
     }
 
     // Load background image
