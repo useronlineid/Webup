@@ -243,7 +243,7 @@ function updateDisplay() {
 
                 drawText(ctx, `${receivername}<br>เติมเงินพร้อมเพย์ / G-Wallet`, 210.5, 651.1,23.3, 'SukhumvitSetExtraBold', '#101011', 'left', 31, 3, 0, 0, 800, 0);
                 drawText(ctx, `ทรูมันนี่`, 210.5, 710.3,19, 'SukhumvitSetSemiBold', '#9d9da5', 'left', 1.5, 3, 0, 0, 800, 0);
-                drawText(ctx, `${receiveraccount}`, 210.5, 778.5,22.5, 'SukhumvitSetSemiBold', '#101011', 'left', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `${receiveraccount}`, 210.5, 778.5,22.5, 'BangkokTime2', '#101011', 'left', 1.5, 1, 0, 0, 500, 0);
                 
                 
                 drawText(ctx, `${AideMemoire}`, 159.3, 928.5,18.10, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, 0);
@@ -258,8 +258,8 @@ function updateDisplay() {
                 drawText(ctx, `META ADS (KGP)`, 210.5, 651.1,23.3, 'SukhumvitSetExtraBold', '#101011', 'left', 31, 3, 0, 0, 800, 0);
                 drawText(ctx, `Biller ID:${receivername}`, 210.5, 681,21, 'SukhumvitSetMedium', '#9d9da5', 'left', 1.5, 3, 0, 0, 800, 0);
 
-                drawText(ctx, `${receiveraccount}`, 210.5, 742,22.5, 'SukhumvitSetSemiBold', '#101011', 'left', 1.5, 1, 0, 0, 500, 0);
-                drawText(ctx, `${receiveraccount}`, 210.5, 802,22.5, 'SukhumvitSetSemiBold', '#101011', 'left', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `${receiveraccount}`, 210.5, 742,22.5, 'BangkokTime2', '#101011', 'left', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `${receiveraccount}`, 210.5, 802,22.5, 'BangkokTime2', '#101011', 'left', 1.5, 1, 0, 0, 500, 0);
                 
                 
                 drawText(ctx, `${AideMemoire}`, 159.3, 964,18.10, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, 0);
