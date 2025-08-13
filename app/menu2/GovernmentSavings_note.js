@@ -156,7 +156,7 @@ function updateDisplay() {
         case 'ธนาคารยูโอบี':
             bankLogoUrl = '../assets/image/logo/UOB3.png';
             break;
-        case 'ธนาคารแลนด์ แอนด์ เฮ้าส์':
+        case 'ธนาคารแลนด์แอนด์เฮ้าส์':
             bankLogoUrl = '../assets/image/logo/LHBANK.png';
             break;
         case 'ธนาคารไอซีบีซี':
