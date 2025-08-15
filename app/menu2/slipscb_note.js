@@ -313,7 +313,7 @@ function updateDisplay() {
         canvas.width = 743;
         canvas.height = 1399;
         // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = '../assets/image/bs/SCBB3T.jpg';
+        backgroundImageSrc = '../assets/image/bs/SCBB1T.jpg';
     } else if (bank === 'MetaAds') {
         canvas.width = 743;
         canvas.height = 1349;
