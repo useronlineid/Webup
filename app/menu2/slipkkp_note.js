@@ -55,12 +55,12 @@ function formatDate(date) {
 }
 
 function generateUniqueID() {
-    const prefix = "TRO";  // คง TRO ไว้เหมือนเดิม
-    const characters = "123456789abcdef";  // เลือกใช้ตัวเลข 1-9 และตัวอักษร a-e
+    const prefix = "522";  // คง TRO ไว้เหมือนเดิม
+    const characters = "123456789";  // เลือกใช้ตัวเลข 1-9 และตัวอักษร a-e
     let uniqueID = "";
 
     // สุ่มตัวอักษรและตัวเลขตามที่กำหนด (16 ตัวอักษร)
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 9; i++) {
         const randomIndex = Math.floor(Math.random() * characters.length);
         uniqueID += characters[randomIndex];
     }
