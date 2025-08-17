@@ -89,7 +89,7 @@ function updateDisplay() {
     let bankLogoUrl = '';
     switch (bank) {
         case 'ธ.กสิกรไทย จำกัด (มหาชน)':
-            bankLogoUrl = '../assets/image/logo/K-KBANK.png';
+            bankLogoUrl = '../assets/image/logo/K-KBANK1.png';
             break;
         case 'ธ.กรุงไทย จำกัด (มหาชน)':
             bankLogoUrl = '../assets/image/logo/K-KTB.png';
