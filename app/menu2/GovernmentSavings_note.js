@@ -136,7 +136,7 @@ function updateDisplay() {
             bankLogoUrl = '../assets/image/logo/BAY.png';
             break;
         case 'ธนาคารทหารไทยธนชาต':
-            bankLogoUrl = '../assets/image/logo/TTB1.png';
+            bankLogoUrl = '../assets/image/logo/TTB2.png';
             break;
         case 'ธนาคารออมสิน':
             bankLogoUrl = '../assets/image/logo/O3.png';
