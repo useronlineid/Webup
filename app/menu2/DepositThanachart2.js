@@ -173,7 +173,7 @@ function updateDisplay() {
        
         drawText(ctx, `${formattedTimePlusOne}`, 295, 298.8,138.50,'SFThonburiSemiBold', '#ffffff','center', 1.5, 3, 0, 0, 800, -7);
 
-        drawText(ctx, `ttb touch
+        drawText(ctx, `แจ้งรายการเงินเข้าบัญชี-สำเร็จ
         `, 107.8, 451.8,20.50,'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${timeMessage}`, 547.5, 451.8,18.50,'SFThonburiRegular', '#6f8590','right', 1.5, 3, 0, 0, 800, 0);
 
