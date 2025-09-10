@@ -13,7 +13,7 @@ function loadFonts() {
         new FontFace('SFThonburiLight', 'url(../assets/fonts/SFThonburi.woff)'),
         new FontFace('SFThonburiRegular', 'url(../assets/fonts/SFThonburi-Regular.woff)'),
         new FontFace('SFThonburiSemiBold', 'url(../assets/fonts/SFThonburi-Semibold.woff)'),
-        new FontFace('SFThonburiBold', 'url(../assets/fonts/SFThonburi-Bold.woff)'),
+        new FontFace('SFThonburiBold', 'url(/assets/fonts/SFThonburi-Bold.woff)'),
         //Kanit
         new FontFace('KanitThin', 'url(../assets/fonts/Kanit-Thin.woff)'),
         new FontFace('KanitExtraLight', 'url(../assets/fonts/Kanit-ExtraLight.woff)'),
@@ -64,6 +64,7 @@ function loadFonts() {
         new FontFace('THSarabun', 'url(../assets/fonts/THSarabun.woff)')
     ];
 
+
     // โหลดฟอนต์ทั้งหมดและเพิ่มเข้าไปที่ document
     return Promise.all(fonts.map(font => font.load())).then(function(loadedFonts) {
         loadedFonts.forEach(function(font) {
@@ -76,6 +77,8 @@ function loadFonts() {
 window.onload = function() {
     setCurrentDateTime();
     // โหลดฟอนต์และอัปเดตการแสดงผล
+    updateMonthAndYear(); // อัพเดทเดือนและปีทุกครั้งที่โหลดหน้าเว็บ
+
     loadFonts().then(function() {
         // ใช้ document.fonts.ready เพื่อให้มั่นใจว่าฟอนต์ถูกโหลดทั้งหมด
         document.fonts.ready.then(function() {
@@ -105,6 +108,24 @@ function setCurrentDateTime() {
 function padZero(number) {
     return number < 10 ? '0' + number : number;
 }
+
+//เปลี่ยน monthandyear และ monthmonthyear เป็นว/ด/ปี ปัจจุบัน
+function updateMonthAndYear() {
+    const today = new Date();
+    
+    // ชื่อเดือนแบบเต็มสำหรับ `monthandyear`
+    const shortThaiMonths = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+    
+
+    const shortMonth = shortThaiMonths[today.getMonth()]; // ชื่อเดือนย่อ
+    const year = today.getFullYear() + 543; // แปลงปีเป็น พ.ศ.
+
+    // อัพเดทสำหรับ `monthandyear` (รูปแบบ เดือนย่อ ปี)
+    const monthAndYear = `${shortMonth} ${year % 100}`; // ตัดปีให้เหลือแค่สองหลัก
+    document.getElementById('monthandyear').value = monthAndYear;
+
+}
+//
 
 function formatDate(date) {
     const options = { day: 'numeric', month: 'short', year: '2-digit' };
@@ -141,6 +162,7 @@ function handlePaste(event) {
 }
 
 function updateDisplay() {
+    const monthandyear = document.getElementById('monthandyear').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
     const datetimePlusOne = document.getElementById('datetime_plus_one').value || '-';
 
@@ -232,7 +254,7 @@ function updateDisplay() {
 
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/backgroundEnter-KT1.jpg';
+    backgroundImage.src = '../assets/image/bs/backgroundEnter-KT11.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -261,7 +283,8 @@ function updateDisplay() {
             textColor3 = '#da0000';
         }
         
-        
+        drawText(ctx, `${monthandyear}`, 45.4, 648.5,24.5, 'DXKrungthaiSemiBold', '#0098d2', 'right', 1.5, 3, 0, 0, 400, 0);
+
         drawText(ctx, `${sendername}`, 41.9, 171.4,25.49, 'DXKrungthaiSemiBold', '#ffffff','left', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${senderaccount}`, 41.9, 208.0,22.49, 'DXKrungthaiThin', '#d1f5fe', 'left', 1.5, 3, 0, 0, 800, 1);
         drawText(ctx, `${money01}`, 41.9, 295.5,40.49, 'DXKrungthaiSemiBold', '#ffffff','left', 1.5, 3, 0, 0, 800, -0.25);
