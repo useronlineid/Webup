@@ -134,12 +134,16 @@ function updateDisplay() {
         case 'ธนาคารยูโอบี':
             bankLogoUrl = '../assets/image/logo/UOB1.png';
             break;
-        case 'ธนาคารแลนด์ แอนด์ เฮ้าส์':
+        case 'ธนาคารแลนด์ แอนด์ เฮาส์':
             bankLogoUrl = '../assets/image/logo/LHBANK.png';
             break;
         case 'ธนาคารไอซีบีซี':
             bankLogoUrl = '../assets/image/logo/ICBC.png';
             break;
+        case 'พร้อมเพย์': bankLogoUrl = '../assets/image/logo/P-Bangkok.png'; break;
+        case 'พร้อมเพย์ e-Wallet': bankLogoUrl = '../assets/image/logo/P-Bangkok.png'; break;
+        case 'MetaAds': bankLogoUrl = '../assets/image/logo/Meta2.png'; break;
+        default: bankLogoUrl = '';
     }
 
     const formattedDate = formatDate(datetime);
@@ -148,9 +152,24 @@ function updateDisplay() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     
+    let backgroundImageSrc = '../assets/image/bs/B2.jpg';
+    if (bank === 'พร้อมเพย์ e-Wallet') {
+        canvas.width = 523;
+        canvas.height = 1326;
+        backgroundImageSrc = '../assets/image/bs/BB11.jpg';
+    } else if (bank === 'MetaAds') {
+        canvas.width = 523;
+        canvas.height = 1280;
+        backgroundImageSrc = '../assets/image/bs/B2.jpg'; // ภาพเฉพาะของ MetaAds
+    } else {
+        canvas.width = 523;
+        canvas.height = 1280;
+        backgroundImageSrc = '../assets/image/bs/B2.jpg';
+    }
+
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/B13.jpg';
+    backgroundImage.src = backgroundImageSrc;
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -171,6 +190,18 @@ function updateDisplay() {
             drawText(ctx, `ธนาคารกรุงเทพ`, 231.3, 765,23.0, 'SukhumvitSetSemiBold', '#101011', 'left', 1.5, 2, 0, 0, 500, -1);
             drawText(ctx, `${senderaccount}`, 231.3, 735.5,22.5, 'CoreSansBold', '#101011', 'left', 1.5, 1, 0, 0, 500, -1);
             
+
+
+            if (bank === 'พร้อมเพย์ e-Wallet') {
+            drawText(ctx, `${receivername}<br>เติมเงินพร้อมเพย์ / <br>G-Wallet`, 231.3, 830.4,23, 'SukhumvitSetExtraBold', '#101011', 'left', 31, 3, 0, 0, 800, -1);
+            drawText(ctx, `ทรูมันนี่`, 231.3, 920.4,20.0, 'SukhumvitSetSemiBold', '#9d9da5', 'left', 1.5, 2, 0, 0, 500, -1);
+            drawText(ctx, `${receiveraccount}`, 231.3, 980,22.5, 'SukhumvitSetSemiBold', '#101011', 'left', 1.5, 1, 0, 0, 500, -1);
+            
+            drawText(ctx, `${generateRandomNumber()}`, 44.5, 1166,19.63, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
+
+            drawText(ctx, `${generateUniqueID()}`, 44.5, 1227,19.63, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
+
+            } else if (bank === 'MetaAds') {
             drawText(ctx, `${receivername}`, 231.3, 830.4,23, 'SukhumvitSetExtraBold', '#101011', 'left', 1.5, 3, 0, 0, 800, -1);
             drawText(ctx, `${bank}`, 231.3, 890.4,23.0, 'SukhumvitSetSemiBold', '#101011', 'left', 1.5, 2, 0, 0, 500, -1);
             drawText(ctx, `${receiveraccount}`, 231.3, 861,22.5, 'CoreSansBold', '#101011', 'left', 1.5, 1, 0, 0, 500, -1);
@@ -178,6 +209,17 @@ function updateDisplay() {
             drawText(ctx, `${generateRandomNumber()}`, 44.5, 1108.8,19.63, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
 
             drawText(ctx, `${generateUniqueID()}`, 44.5, 1169,19.63, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
+
+            } else {
+            drawText(ctx, `${receivername}`, 231.3, 830.4,23, 'SukhumvitSetExtraBold', '#101011', 'left', 1.5, 3, 0, 0, 800, -1);
+            drawText(ctx, `${bank}`, 231.3, 890.4,23.0, 'SukhumvitSetSemiBold', '#101011', 'left', 1.5, 2, 0, 0, 500, -1);
+            drawText(ctx, `${receiveraccount}`, 231.3, 861,22.5, 'CoreSansBold', '#101011', 'left', 1.5, 1, 0, 0, 500, -1);
+            
+            drawText(ctx, `${generateRandomNumber()}`, 44.5, 1108.8,19.63, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
+
+            drawText(ctx, `${generateUniqueID()}`, 44.5, 1169,19.63, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
+
+            }
 
             const amountText = `${amount11}`;
             const amountUnit = 'THB';
