@@ -452,7 +452,23 @@
     src: url('../assets/fonts/Baac_Bold.woff') format('woff');
 }
 
-
+/* kurious*/
+@font-face {
+    font-family: 'kuriousRegular';
+    src: url('../assets/fonts/kurious-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'kuriousMedium';
+    src: url('../assets/fonts/kurious-medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'kuriousSemiBold';
+    src: url('../assets/fonts/kurious-semibold.woff') format('woff');
+}
+@font-face {
+    font-family: 'kuriousBold';
+    src: url('../assets/fonts/kurious-Bold.woff') format('woff');
+}
 
 body {
     font-family: 'KanitMedium', Arial, sans-serif;
