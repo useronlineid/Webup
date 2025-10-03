@@ -161,11 +161,11 @@ function updateDisplay() {
     } else if (bank === 'MetaAds') {
         canvas.width = 495;
         canvas.height = 1280;
-        backgroundImageSrc = '../assets/image/bs/B2T.jpg'; 
+        backgroundImageSrc = '../assets/image/bs/B14T.jpg'; 
     } else {
         canvas.width = 495;
         canvas.height = 1280;
-        backgroundImageSrc = '../assets/image/bs/B2T.jpg';
+        backgroundImageSrc = '../assets/image/bs/B14T.jpg';
     }
     
     // Load background image
