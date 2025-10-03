@@ -153,11 +153,11 @@ function updateDisplay() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     
-    let backgroundImageSrc = '../assets/image/bs/B2T.jpg';
+    let backgroundImageSrc = '../assets/image/bs/B14T.jpg';
     if (bank === 'พร้อมเพย์ e-Wallet') {
         canvas.width = 495;
         canvas.height = 1280;
-        backgroundImageSrc = '../assets/image/bs/BB11T.jpg';
+        backgroundImageSrc = '../assets/image/bs/BB14T.jpg';
     } else if (bank === 'MetaAds') {
         canvas.width = 495;
         canvas.height = 1280;
