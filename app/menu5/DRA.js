@@ -113,7 +113,7 @@ function updateDisplay() {
 
             drawText(ctx, `${Dateofgrant}
                 <br>${Mustnotarriveafter}
-                <br>2 Year from the date of each arrival
+                <br>3 Year from the date of each arrival
                 <br>Single entry
             `,362.7,564.5,17, 'arialRegular', '#000000', 'left',26,3,0,0,800,0);
 
