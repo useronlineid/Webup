@@ -280,21 +280,21 @@ function updateDisplay() {
 
             drawText(ctx, `${sendername}`, 233.5, 265.8,39.3,'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
             drawText(ctx, `ธ.กสิกรไทย`, 233.5, 326.0,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${senderaccount}`, 233.5, 384.0,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
+            drawText(ctx, `${senderaccount}`, 233.5, 384.0,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0);
             
             drawText(ctx, `${receivername}`, 233.5, receivernamePositionY,39.3, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
             drawText(ctx, bankText, 233.5, 624.8,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${receiveraccount}`, 233.5,receiveraccountPositionY,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
+            drawText(ctx, `${receiveraccount}`, 233.5,receiveraccountPositionY,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0);
             if (isMetaAds) {
                 drawText(ctx, `${receiveraccount}`, 233.5, 681.7,
                         37.5, 'kuriousRegular', '#545454', 'left',
-                        1.5, 1, 0, 0, 500, 0.25);
+                        1.5, 1, 0, 0, 500, 0);
             drawText(ctx, `Meta Ads (KGP)`, 233.5, 564.3,39.3, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
 
             }
-            drawText(ctx, `${generateUniqueID()}`, 449, 865.2,34.63, 'kuriousRegular', '#575757', 'right', 1.5, 3, 0, 0, 500, -1);
-            drawText(ctx, `${amount11} บาท`, 449, 980.9,38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
-            drawText(ctx, `0.00 บาท`, 449, 1098.6,38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+            drawText(ctx, `${generateUniqueID()}`, 449, 865.2,34.63, 'kuriousRegular', '#575757', 'right', 1.5, 3, 0, 0, 500, -2);
+            drawText(ctx, `${amount11} บาท`, 449, 980.9,38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -2);
+            drawText(ctx, `0.00 บาท`, 449, 1098.6,38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -2);
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
             drawImage(ctx, '/assets/image/logo/KBANK.png', 34.2, 217.5, 154, 154);  
             
