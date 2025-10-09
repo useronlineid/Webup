@@ -124,16 +124,16 @@ function generateUniqueID() {
     let prefix = "BOR"; // ค่าดีฟอลต์
 
     if (bank === "MetaAds") {
-        const prefixes = ["APM", "BPM", "CPM"];
+        const prefixes = ["APM", "BPM", "CPM", "DPM"];
         prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
     } else if (bank === "รหัสพร้อมเพย์" || bank === "พร้อมเพย์วอลเล็ท") {
-        const prefixes = ["APP", "BPP", "CPP"];
+        const prefixes = ["APP", "BPP", "CPP", "DPP"];
         prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
     } else if (bank === "ธ.กสิกรไทย") {
-        const prefixes = ["ATF", "BTF", "CTF"];
+        const prefixes = ["ATF", "BTF", "CTF", "DTF"];
         prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
     } else {
-        const prefixes = ["AOR", "BOR", "COR"];
+        const prefixes = ["AOR", "BOR", "COR", "DOR"];
         prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
     }
 
