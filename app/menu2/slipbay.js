@@ -202,7 +202,7 @@ function updateDisplay() {
     
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/BAY1.jpg';
+    backgroundImage.src = '../assets/image/bs/BAY1.1.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -217,7 +217,7 @@ function updateDisplay() {
             ctx.drawImage(bankLogo, 44.7, 313.2, 75.5, 75.5); // Adjust position and size as needed
             
             // Draw text with custom styles
-            drawText(ctx, `${formattedDate} ${formattedTime}`, 300, 115.1,18.50, 'krungsriRegular', '#727171', 'center', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `${formattedDate} ${formattedTime}`, 176, 115.1,18.50, 'krungsriRegular', '#727171', 'left', 1.5, 3, 0, 0, 800, 0);
 
             drawText(ctx, `${sendername}`, 544, 210.8,21.20, 'krungsriBold', '#000000', 'right', 1.5, 3, 0, 0, 800, 0);
             drawText(ctx, `${senderaccount}`, 544, 244.4,20.5, 'krungsriRegular', '#848583', 'right', 1.5, 1, 0, 0, 500, -0.50);
