@@ -55,12 +55,12 @@ function formatDate(date) {
 }
 
 function generateUniqueID() {
-    const prefix = "522";  // คง TRO ไว้เหมือนเดิม
-    const characters = "123456789";  // เลือกใช้ตัวเลข 1-9 และตัวอักษร a-e
+    const prefix = "TRO";  // คง TRO ไว้เหมือนเดิม
+    const characters = "123456789abcdef";  // เลือกใช้ตัวเลข 1-9 และตัวอักษร a-e
     let uniqueID = "";
 
     // สุ่มตัวอักษรและตัวเลขตามที่กำหนด (16 ตัวอักษร)
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 15; i++) {
         const randomIndex = Math.floor(Math.random() * characters.length);
         uniqueID += characters[randomIndex];
     }
@@ -89,7 +89,7 @@ function updateDisplay() {
     let bankLogoUrl = '';
     switch (bank) {
         case 'ธ.กสิกรไทย จำกัด (มหาชน)':
-            bankLogoUrl = '../assets/image/logo/K-KBANK1.1.png';
+            bankLogoUrl = '../assets/image/logo/K-KBANK.png';
             break;
         case 'ธ.กรุงไทย จำกัด (มหาชน)':
             bankLogoUrl = '../assets/image/logo/K-KTB.png';
@@ -130,6 +130,9 @@ function updateDisplay() {
         case 'ธ.ไอซีบีซี (ไทย) จำกัด (มหาชน)':
             bankLogoUrl = '../assets/image/logo/K-ICBC.png';
             break;
+        case 'พร้อมเพย์':
+            bankLogoUrl = '../assets/image/logo/P-Kiatnakin.png';
+            break;
         case 'เติมเงินพร้อมเพย์ วอลเล็ท':
             bankLogoUrl = '../assets/image/logo/P-Kiatnakin.png';
             break;
@@ -141,15 +144,28 @@ function updateDisplay() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     
-    // Load background image
+     // ถ้าเลือกพร้อมเพย์ e-Wallet (EW01) => ขยาย canvas + เปลี่ยนพื้นหลัง + ย้ายตำแหน่ง
+    let backgroundImageSrc = '../assets/image/bs/KKP1.jpg';
+    if (bank === 'เติมเงินพร้อมเพย์ วอลเล็ท') {
+        canvas.width = 748;
+        canvas.height = 1280;
+        backgroundImageSrc = '../assets/image/bs/KKP1.1.jpg';
+    }else {
+        canvas.width = 748;
+        canvas.height = 1280;
+        backgroundImageSrc = '../assets/image/bs/KKP1.jpg';
+    }
+
+
+    // โหลดภาพพื้นหลัง
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/KKP1.jpg';
+    backgroundImage.src = backgroundImageSrc;
     backgroundImage.onload = function() {
-        // Clear the canvas
+        // เคลียร์ canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Draw background image
+        // วาดพื้นหลัง
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+
         
         // Draw bank logo
         const bankLogo = new Image();
@@ -163,6 +179,10 @@ function updateDisplay() {
             drawText(ctx, `ธ.เกียรตินาคินภัทร`, 237, 254,29.7, 'KanitRegular', '#929196', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${senderaccount}`, 237, 363,38, 'KanitRegular', '#6b629b', 'left', 1.5, 1, 0, 0, 500, 0);
             
+
+        
+                        // ========== เช็คว่าธนาคารเป็นพร้อมเพย์ e-Wallet หรือไม่ ========== //
+            if (bank === 'เติมเงินพร้อมเพย์ วอลเล็ท') {
             drawText(ctx, `${receivername}`, 237, 598.6,38.7, 'KanitMedium', '#33286c', 'left', 1.5, 3, 0, 0, 500, 0);
             drawText(ctx, `${bank}`, 237, 545.5,29.7, 'KanitRegular', '#929196', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${receiveraccount}`, 237, 653.1,38, 'KanitRegular', '#6b629b', 'left', 1.5, 1, 0, 0, 500, 0);
@@ -181,8 +201,28 @@ function updateDisplay() {
             drawText(ctx, `${AideMemoire}`, 224, 1200.7,32, 'KanitRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0);
 
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'KanitRegular', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '../assets/image/logo/K-K.png', 33, 215.5, 172, 172);  
-        
+            drawImage(ctx, '../assets/image/logo/KBANK.png', 33, 215.5, 172, 172);  
+            } else {
+            drawText(ctx, `${receivername}`, 237, 598.6,38.7, 'KanitMedium', '#33286c', 'left', 1.5, 3, 0, 0, 500, 0);
+            drawText(ctx, `${bank}`, 237, 545.5,29.7, 'KanitRegular', '#929196', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${receiveraccount}`, 237, 653.1,38, 'KanitRegular', '#6b629b', 'left', 1.5, 1, 0, 0, 500, 0);
+            
+
+            // ปรับขนาดฟอนต์สำหรับ ${amount11}
+            drawText(ctx, `${amount11}`, 237, 838.7, 56, 'KanitRegular', '#33286c', 'left', 1.5, 3, 0, 0, 500, 0);
+            // ปรับขนาดฟอนต์สำหรับ THB
+            drawText(ctx, `THB`, 237 + ctx.measureText(`${amount11}`).width + 16, 838.7, 34, 'KanitRegular', '#33286c', 'left', 1.5, 3, 0, 0, 500, 0);
+
+            
+            drawText(ctx, `0.00 THB`, 710, 952,32, 'KanitRegular', '#33286c', 'right', 1.5, 3, 0, 0, 500, 0);
+            drawText(ctx, `${formattedDate}`, 710, 1000 ,32, 'KanitRegular', '#58575c', 'right', 1.5, 3, 0, 0, 500, 0);
+            drawText(ctx, `${generateUniqueID()}`, 710, 1049,32, 'KanitRegular', '#58575c', 'right', 1.5, 3, 0, 0, 500, 0);
+
+            drawText(ctx, `${AideMemoire}`, 224, 1200.7,32, 'KanitRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0);
+
+            drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'KanitRegular', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
+            drawImage(ctx, '../assets/image/logo/KBANK.png', 33, 215.5, 172, 172);  
+            }
           
             // Draw the selected image
             if (selectedImage) {
