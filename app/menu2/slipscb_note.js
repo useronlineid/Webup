@@ -234,8 +234,11 @@ function updateDisplay() {
         case 'ไอซีบีซี':
             bankLogoUrl = '../assets/image/logo/A-ICBC.png';
             break;
-        case 'พร้อมเพย์': 
+        case 'พร้อมเพย์เบอร์': 
         bankLogoUrl = '../assets/image/logo/P-SCB.png'; 
+            break;
+        case 'พร้อมเพย์บัตรประชาชน': 
+        bankLogoUrl = '../assets/image/logo/P-SCB1.1.png'; 
             break;
         case 'พร้อมเพย์ e-Wallet': 
         bankLogoUrl = '../assets/image/logo/P-SCB2.png'; 
