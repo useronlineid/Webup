@@ -3,7 +3,7 @@ function loadFonts() {
     const fonts = [
         //Kanit
         new FontFace('KanitThin', 'url(../assets/fonts/Kanit-Thin.woff)'),
-        new FontFace('KanitExtraLight', 'url(../assets/fonts/Kanit-ExtraLight.woff)'),
+        new FontFace('KanitExtraLight', 'url(/assets/fonts/Kanit-ExtraLight.woff)'),
         new FontFace('KanitLight', 'url(../assets/fonts/Kanit-Light.woff)'),
         new FontFace('KanitRegular', 'url(../assets/fonts/Kanit-Regular.woff)'),
         new FontFace('KanitMedium', 'url(../assets/fonts/Kanit-Medium.woff)'),
@@ -156,7 +156,6 @@ function updateDisplay() {
         backgroundImageSrc = '../assets/image/bs/KKP1.jpg';
     }
 
-
     // โหลดภาพพื้นหลัง
     const backgroundImage = new Image();
     backgroundImage.src = backgroundImageSrc;
@@ -165,7 +164,6 @@ function updateDisplay() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         // วาดพื้นหลัง
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-
         
         // Draw bank logo
         const bankLogo = new Image();
@@ -223,7 +221,6 @@ function updateDisplay() {
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'KanitRegular', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
             drawImage(ctx, '../assets/image/logo/KBANK.png', 33, 215.5, 172, 172);  
             }
-          
             // Draw the selected image
             if (selectedImage) {
                 const customImage = new Image();
