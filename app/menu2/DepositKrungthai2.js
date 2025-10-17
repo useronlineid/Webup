@@ -137,7 +137,7 @@ function updateDisplay() {
 
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/backgroundEnter-KT3.4.jpg';
+    backgroundImage.src = '../assets/image/bs/backgroundEnter-KT3.5.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -276,4 +276,5 @@ function drawImage(ctx, imageUrl, x, y, width, height) {
         ctx.drawImage(image, x, y, width, height);
     };
 }
+
 
