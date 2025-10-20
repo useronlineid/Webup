@@ -152,19 +152,19 @@ function updateDisplay() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     
-    let backgroundImageSrc = '../assets/image/bs/B14.jpg';
+    let backgroundImageSrc = '../assets/image/bs/B15.jpg';
     if (bank === 'พร้อมเพย์ e-Wallet') {
         canvas.width = 523;
         canvas.height = 1326;
-        backgroundImageSrc = '../assets/image/bs/BB14.jpg';
+        backgroundImageSrc = '../assets/image/bs/BB15.jpg';
     } else if (bank === 'MetaAds') {
         canvas.width = 523;
         canvas.height = 1280;
-        backgroundImageSrc = '../assets/image/bs/B14.jpg'; // ภาพเฉพาะของ MetaAds
+        backgroundImageSrc = '../assets/image/bs/B15.jpg'; // ภาพเฉพาะของ MetaAds
     } else {
         canvas.width = 523;
         canvas.height = 1280;
-        backgroundImageSrc = '../assets/image/bs/B14.jpg';
+        backgroundImageSrc = '../assets/image/bs/B15.jpg';
     }
 
     // Load background image
