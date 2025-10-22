@@ -237,7 +237,10 @@ function updateDisplay() {
         case 'พร้อมเพย์บัตรประชาชน': 
         bankLogoUrl = '../assets/image/logo/P-SCB1.1.png'; 
             break;
-        case 'พร้อมเพย์ e-Wallet': 
+        case 'พร้อมเพย์ e-Wallet TrueMoney': 
+        bankLogoUrl = '../assets/image/logo/P-SCB2.png'; 
+            break;
+        case 'พร้อมเพย์ e-Wallet Jaew': 
         bankLogoUrl = '../assets/image/logo/P-SCB2.png'; 
             break;
         case 'MetaAds': 
@@ -302,7 +305,13 @@ function updateDisplay() {
 
     // ถ้าเลือกพร้อมเพย์ e-Wallet (EW01) => ขยาย canvas + เปลี่ยนพื้นหลัง + ย้ายตำแหน่ง
     let backgroundImageSrc = backgroundSelect;
-    if (bank === 'พร้อมเพย์ e-Wallet') {
+    if (bank === 'พร้อมเพย์ e-Wallet TrueMoney') {
+        // ขยายขนาด canvas เป็น 752 x 1321
+        canvas.width = 818;
+        canvas.height = 1413;
+        // พื้นหลังเฉพาะ e-Wallet
+        backgroundImageSrc = '../assets/image/bs/SCBB1.jpg';
+    } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
         // ขยายขนาด canvas เป็น 752 x 1321
         canvas.width = 818;
         canvas.height = 1413;
@@ -354,11 +363,23 @@ function updateDisplay() {
 
 
                             // ========== เช็คว่าธนาคารเป็นพร้อมเพย์ e-Wallet หรือไม่ ========== //
-            if (bank === 'พร้อมเพย์ e-Wallet') {
+            if (bank === 'พร้อมเพย์ e-Wallet TrueMoney') {
                 drawImage(ctx, '../assets/image/logo/P-SCB1.png', 486, 573.7, 55, 55);
                 drawText(ctx, `เติมเงินพร้อมเพย์`, 551, 613.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
                 drawText(ctx, `${receiveraccount}`, 769, 662.4, 38.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
                 drawText(ctx, `${receivername} (TrueMoney)`, 47, 924.5, 35.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
+                ctx.drawImage(bankLogo, bankLogoX, 573.7, bankLogoWidth, 55);
+                // วาดจำนวนเงิน
+                drawText(ctx, `${amount11}`, 769, 791.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
+
+                // วาดรหัสอ้างอิง
+                drawText(ctx, `รหัสอ้างอิง: ${generateUniqueID()}`, 407, 377.5, 38.5, 'DXSCB', '#76737b', 'center', 1.5, 1, 0, 0, 800, 0);
+            
+            } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
+                drawImage(ctx, '../assets/image/logo/P-SCB1.png', 486, 573.7, 55, 55);
+                drawText(ctx, `เติมเงินพร้อมเพย์`, 551, 613.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
+                drawText(ctx, `${receiveraccount}`, 769, 662.4, 38.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `${receivername} (Jaew)`, 47, 924.5, 35.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
                 ctx.drawImage(bankLogo, bankLogoX, 573.7, bankLogoWidth, 55);
                 // วาดจำนวนเงิน
                 drawText(ctx, `${amount11}`, 769, 791.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
