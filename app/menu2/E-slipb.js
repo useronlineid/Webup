@@ -140,9 +140,18 @@ function updateDisplay() {
         case 'ธนาคารไอซีบีซี':
             bankLogoUrl = '../assets/image/logo/ICBC.png';
             break;
-        case 'พร้อมเพย์': bankLogoUrl = '../assets/image/logo/P-Bangkok.png'; break;
-        case 'พร้อมเพย์ e-Wallet': bankLogoUrl = '../assets/image/logo/P-Bangkok.png'; break;
-        case 'MetaAds': bankLogoUrl = '../assets/image/logo/Meta2.png'; break;
+        case 'พร้อมเพย์': 
+            bankLogoUrl = '../assets/image/logo/P-Bangkok.png'; 
+            break;
+        case 'พร้อมเพย์ e-Wallet TrueMoney': 
+            bankLogoUrl = '../assets/image/logo/P-Bangkok.png'; 
+            break;
+        case 'พร้อมเพย์ e-Wallet Jaew': 
+            bankLogoUrl = '../assets/image/logo/P-Bangkok.png'; 
+            break;
+        case 'MetaAds': 
+            bankLogoUrl = '../assets/image/logo/Meta2.png'; 
+            break;
         default: bankLogoUrl = '';
     }
 
@@ -153,7 +162,11 @@ function updateDisplay() {
     const ctx = canvas.getContext('2d');
     
     let backgroundImageSrc = '../assets/image/bs/B15.jpg';
-    if (bank === 'พร้อมเพย์ e-Wallet') {
+    if (bank === 'พร้อมเพย์ e-Wallet TrueMoney') {
+        canvas.width = 523;
+        canvas.height = 1326;
+        backgroundImageSrc = '../assets/image/bs/BB15.jpg';
+    } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
         canvas.width = 523;
         canvas.height = 1326;
         backgroundImageSrc = '../assets/image/bs/BB15.jpg';
@@ -192,9 +205,17 @@ function updateDisplay() {
             
 
 
-            if (bank === 'พร้อมเพย์ e-Wallet') {
+            if (bank === 'พร้อมเพย์ e-Wallet TrueMoney') {
             drawText(ctx, `${receivername}<br>เติมเงินพร้อมเพย์ / <br>G-Wallet`, 231.3, 830.4,23, 'SukhumvitSetExtraBold', '#101011', 'left', 31, 3, 0, 0, 800, -1);
             drawText(ctx, `ทรูมันนี่`, 231.3, 920.4,20.0, 'SukhumvitSetSemiBold', '#9d9da5', 'left', 1.5, 2, 0, 0, 500, -1);
+            drawText(ctx, `${receiveraccount}`, 231.3, 980,22.5, 'SukhumvitSetSemiBold', '#101011', 'left', 1.5, 1, 0, 0, 500, -1);
+            
+            drawText(ctx, `${generateRandomNumber()}`, 44.5, 1166,19.63, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
+
+            drawText(ctx, `${generateUniqueID()}`, 44.5, 1227,19.63, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
+
+            } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
+            drawText(ctx, `${receivername}<br>เติมเงินพร้อมเพย์ / <br>G-Wallet`, 231.3, 830.4,23, 'SukhumvitSetExtraBold', '#101011', 'left', 31, 3, 0, 0, 800, -1);
             drawText(ctx, `${receiveraccount}`, 231.3, 980,22.5, 'SukhumvitSetSemiBold', '#101011', 'left', 1.5, 1, 0, 0, 500, -1);
             
             drawText(ctx, `${generateRandomNumber()}`, 44.5, 1166,19.63, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
