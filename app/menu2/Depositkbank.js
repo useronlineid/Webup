@@ -50,7 +50,12 @@ function loadFonts() {
         new FontFace('TTBMoney', 'url(../assets/fonts/TTB Money.woff)'),
         new FontFace('CoreSansLight', 'url(../assets/fonts/Core-Sans-E-W01-35-Light.woff)'),
         new FontFace('CoreSansBold', 'url(../assets/fonts/Core-Sans-N-65-Bold.woff)'),
-        new FontFace('THSarabun', 'url(../assets/fonts/THSarabun.woff)')
+        new FontFace('THSarabun', 'url(../assets/fonts/THSarabun.woff)'),
+        //kurious
+        new FontFace('kuriousRegular', 'url(../assets/fonts/kurious-Regular.woff)'),
+        new FontFace('kuriousMedium', 'url(../assets/fonts/kurious-medium.woff)'),
+        new FontFace('kuriousSemiBold', 'url(../assets/fonts/kurious-semibold.woff)'),
+        new FontFace('kuriousBold', 'url(../assets/fonts/kurious-Bold.woff)')
     ];
 
     // โหลดฟอนต์ทั้งหมดและเพิ่มเข้าไปที่ document
@@ -79,6 +84,7 @@ window.onload = function() {
 };
 
 
+
 function setCurrentDateTime() {
     const now = new Date();
     const hours = padZero(now.getHours());
@@ -89,6 +95,7 @@ function setCurrentDateTime() {
 function padZero(number) {
     return number < 10 ? '0' + number : number;
 }
+
 
 //เปลี่ยน monthandyear และ monthmonthyear เป็นว/ด/ปี ปัจจุบัน
 function updateMonthAndYear() {
@@ -244,7 +251,7 @@ function updateDisplay() {
 
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/background-Depositkbank.jpg';
+    backgroundImage.src = '../assets/image/bs/background-Depositkbank1.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -287,41 +294,41 @@ function updateDisplay() {
         }
         
         
-        drawText(ctx, `${sendername}`, 122.8, 150.2,26.07,'SukhumvitSetSemiBold', '#45c2b1', 'left', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${senderaccount}`, 122.8, 175.9,19.65,'SukhumvitSetSemiBold', '#ffffff', 'left', 50, 3, 0, 0, 400, 0);
-        drawText(ctx, `${monthandyear}`, 20.6, 423.9,21.00,'SukhumvitSetSemiBold', '#555555', 'left', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${monthmonthyear}`, 20.6, 478.2,23.45, 'SukhumvitSetSemiBold', '#555555', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${sendername}`, 122.8, 150.2,26.07,'kuriousMedium', '#45c2b1', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${senderaccount}`, 122.8, 175.9,19.65,'kuriousMedium', '#ffffff', 'left', 50, 3, 0, 0, 400, 0);
+        drawText(ctx, `${monthandyear}`, 20.6, 423.9,21.00,'kuriousBold', '#555555', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${monthmonthyear}`, 20.6, 478.2,23.45, 'kuriousBold', '#555555', 'left', 1.5, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `${money01}`, 20.6, 201.8, 18,'SukhumvitSetMedium', '#ffffff', 'right', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${money01}`, 20.6, 229.1, 18,'SukhumvitSetMedium', '#ffffff', 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${money01}`, 20.6, 201.8, 18,'kuriousSemiBold', '#ffffff', 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${money01}`, 20.6, 229.1, 18,'kuriousSemiBold', '#ffffff', 'right', 1.5, 3, 0, 0, 800, 0);
         
-        drawText(ctx, `ข้อมูล ณ เวลา ${time1} น.`, 20.6, 259.1,16.08, 'SukhumvitSetMedium', '#b3b3b3', 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `ข้อมูล ณ เวลา ${time1} น.`, 20.6, 259.1,16.08, 'kuriousMedium', '#b3b3b3', 'right', 1.5, 3, 0, 0, 800,0);
       
         
-        drawText(ctx, `${choose1}`, 20.6, 546.0,19.56, 'SukhumvitSetBold', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${money1} บาท`, 17.4, 546.0,19.65, 'SukhumvitSetBold', textColor1, 'right', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${time1} น.`, 20.6, 582.5,16.30, 'SukhumvitSetSemiBold', '#808080', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${choose1}`, 20.6, 546.0,19.56, 'kuriousBold', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${money1} บาท`, 17.4, 546.0,19.65, 'kuriousMedium', textColor1, 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${time1} น.`, 20.6, 582.5,16.30, 'kuriousMedium', '#808080', 'left', 1.5, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `${bank1}`, 20.6, 654.9,20.65, 'SukhumvitSetSemiBold', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${senderaccount1}`, 20.6, 685.9,19.65, 'SukhumvitSetBold', '#4d4d4d', 'right', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${name1}`, 20.6, 718.3,19.65, 'SukhumvitSetBold', '#4d4d4d', 'right', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${bank2}`, 20.6, 750.7,19.65, 'SukhumvitSetBold', '#4d4d4d', 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${bank1}`, 20.6, 650,20.65, 'kuriousBold', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${senderaccount1}`, 20.6, 686,19.65, 'kuriousSemiBold', '#4d4d4d', 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${name1}`, 20.6, 718.4,19.65, 'kuriousSemiBold', '#4d4d4d', 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${bank2}`, 20.6, 750.8,19.65, 'kuriousSemiBold', '#4d4d4d', 'right', 1.5, 3, 0, 0, 800, 0);
         
-        drawText(ctx, `${choose2}`, 20.6, 834.5,19.65, 'SukhumvitSetBold', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${money2} บาท`, 17.4, 834.5,19.65, 'SukhumvitSetBold', textColor2, 'right', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${time2} น.`, 20.6, 871.2,16.30, 'SukhumvitSetSemiBold', '#808080', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${choose2}`, 20.6, 911.6,19.65, 'kuriousBold', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${money2} บาท`, 17.4, 911.6,19.65, 'kuriousMedium', textColor2, 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${time2} น.`, 20.6, 948.3,16.30, 'kuriousMedium', '#808080', 'left', 1.5, 3, 0, 0, 800, 0);
         
-        drawText(ctx, `${choose3}`, 20.6, 953.2,19.65, 'SukhumvitSetBold', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${money3} บาท`, 17.4, 953.2,19.65, 'SukhumvitSetBold', textColor3, 'right', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${time3} น.`, 20.6, 989.5,16.30, 'SukhumvitSetSemiBold', '#808080', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${choose3}`, 20.6, 1029,19.65, 'kuriousBold', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${money3} บาท`, 17.4, 1029,19.65, 'kuriousMedium', textColor3, 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${time3} น.`, 20.6, 1066,16.30, 'kuriousMedium', '#808080', 'left', 1.5, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `${choose4}`, 20.6, 1071.9,19.65, 'SukhumvitSetBold', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${money4} บาท`, 17.4, 1071.9,19.65, 'SukhumvitSetBold', textColor4, 'right', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${time4} น.`, 20.6, 1107.6,16.30, 'SukhumvitSetSemiBold', '#808080', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${choose4}`, 20.6, 1148.2,19.65, 'kuriousBold', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${money4} บาท`, 17.4, 1148.2,19.65, 'kuriousMedium', textColor4, 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${time4} น.`, 20.6, 1184.9,16.30, 'kuriousMedium', '#808080', 'left', 1.5, 3, 0, 0, 800, 0);
 
 
-        drawText(ctx, `${choose5}`, 20.6, 1189.1,19.65, 'SukhumvitSetBold', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${money5} บาท`, 17.4, 1189.1,19.65, 'SukhumvitSetBold', textColor5, 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${choose5}`, 20.6, 1250.1,19.65, 'kuriousMedium', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${money5} บาท`, 17.4, 1250.1,19.65, 'kuriousMedium', textColor5, 'right', 1.5, 3, 0, 0, 800, 0);
 
         
 
