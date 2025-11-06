@@ -170,7 +170,7 @@ function updateDisplay() {
         canvas.width = 714;
         canvas.height = 1320;
         // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = '../assets/image/bs/TT29T.jpg';
+        backgroundImageSrc = '../assets/image/bs/TT28T.jpg';
     } else {
         // ธนาคารอื่น => canvas ปกติ
         canvas.width = 714;
