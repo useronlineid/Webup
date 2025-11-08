@@ -130,12 +130,12 @@ function handlePaste(event) {
                 drawText(ctx, `${identification1}`, 387,775.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,250,0);
                 drawText(ctx, `Nationality: ${nationality1}`, 596.3,775.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,250,0);
                 
-                drawText(ctx, `Name of Biological Father: ${father}`,83.7,815.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,200,0);
-                drawText(ctx, `${identification2}`, 387,815.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,250,0);
-                drawText(ctx, `Nationality: ${nationality2}`, 596.3,815.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,250,0);
+                drawText(ctx, `Name of Biological Father: ${father}`,83.7,830.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,200,0);
+                drawText(ctx, `${identification2}`, 387,830.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,250,0);
+                drawText(ctx, `Nationality: ${nationality2}`, 596.3,830.5,17.5, 'arialBold', '#000000', 'left',30,3,0,0,250,0);
                 
-                drawText(ctx, `* Transferred from:`,83.7, 866.3,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
-                drawText(ctx, `${transferredFrom}`, 221.6, 866.3,17.5, 'arialBold', '#000000', 'left',30,3,0,0,500,0);
+                drawText(ctx, `* Transferred from:`,83.7, 890.3,17.5, 'arialBold', '#000000', 'left',30,3,0,0,450,0);
+                drawText(ctx, `${transferredFrom}`, 221.6, 890.3,17.5, 'arialBold', '#000000', 'left',30,3,0,0,500,0);
         
                 drawText(ctx, `Registrar<br>Signed:    ${signed1}`, 680.5, 931.3,17.5, 'arialBold', '#000000', 'center',30,3,0,0,330,0);
         
