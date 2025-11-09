@@ -138,7 +138,7 @@ function updateDisplay() {
     // เลือกโลโก้ตาม bank
     let bankLogoUrl = '';
     switch (bank) {
-        case 'KBANK': bankLogoUrl = '../assets/image/logo/KBANK1.png'; break;
+        case 'KBANK': bankLogoUrl = '../assets/image/logo/KBANK1.1.png'; break;
         case 'KTB': bankLogoUrl = '../assets/image/logo/KTB2.png'; break;
         case 'BBL': bankLogoUrl = '../assets/image/logo/BBL4.png'; break;
         case 'SCB': bankLogoUrl = '../assets/image/logo/SCB.png'; break;
