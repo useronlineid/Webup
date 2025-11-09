@@ -141,20 +141,25 @@ function updateDisplay() {
     const itemName1 = document.getElementById('itemName1').value || '-';
     const itemQuantity1 = parseInt(document.getElementById('itemQuantity1').value) || 0;
     const itemPrice1 = parseFloat(document.getElementById('itemPrice1').value) || 0.00;
-    const totalPrice1 = itemQuantity1 * itemPrice1;
+    const discount1 = parseFloat(document.getElementById('discount1').value) || 0.00;
+    const totalPrice1 = itemQuantity1 * itemPrice1 - discount1;
 
     // ข้อมูลรายการที่ 2
     const itemName2 = document.getElementById('itemName2').value || '-';
     const itemQuantity2 = parseInt(document.getElementById('itemQuantity2').value) || 0;
     const itemPrice2 = parseFloat(document.getElementById('itemPrice2').value) || 0.00;
-    const totalPrice2 = itemQuantity2 * itemPrice2;
+    const discount2 = parseFloat(document.getElementById('discount2').value) || 0.00;
+    const totalPrice2 = itemQuantity2 * itemPrice2 - discount2;
 
     // ข้อมูลรายการที่ 3
     const itemName3 = document.getElementById('itemName3').value || '-';
     const itemQuantity3 = parseInt(document.getElementById('itemQuantity3').value) || 0;
     const itemPrice3 = parseFloat(document.getElementById('itemPrice3').value) || 0.00;
-    const totalPrice3 = itemQuantity3 * itemPrice3;
+    const discount3 = parseFloat(document.getElementById('discount3').value) || 0.00;
+    const totalPrice3 = itemQuantity3 * itemPrice3 - discount3;
 
+const notesRaw = (document.getElementById('notes')?.value || '').trim();
+const notes = notesRaw ? notesRaw.replace(/\n/g, '<br>') : '';
 
 
     const canvas = document.getElementById('canvas');
@@ -171,6 +176,7 @@ function updateDisplay() {
 
 
         drawText(ctx, `${companyName}<br>${companyNameEng}<br>${companyAddress}`, 880,21,18,'SukhumvitSetMedium', '#7d7d7d', 'right',10, 3, 0, 0, 800,0);
+
         drawText(ctx, `${original}`,804,120,20,'SukhumvitSetSemiBold', '#4f4f4f', 'center', 35, 3, 0, 0, 800, 0);
 
         drawText(ctx, `${sendername}`,130,177.4,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,320, 0);
@@ -178,38 +184,41 @@ function updateDisplay() {
         drawText(ctx, `${formattedDate}`,598,177.4,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,100, 0);
         drawText(ctx, `-`,598,215.8,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0, 100, 0);
         drawText(ctx, `${Phone}`,598,253.2,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,100, 0);
-        drawText(ctx, `${sendername}`,782,177.4,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0, 100, 0);
-        drawText(ctx, `${code}`,782,253.2,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,100, -0.30);
+        drawText(ctx, `${sendername}`,782,177.4,14,'SukhumvitSetSemiBold', '#000000', 'left', 30, 3, 0, 0, 100, 0);
+        drawText(ctx, `${code}`,782,253.2,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,100, -0.25);
 
         drawText(ctx, `${ProjectName}`,598,291,14,'SukhumvitSetSemiBold', '#000000', 'left', 35, 3, 0, 0,500, 0);
 
         drawText(ctx, `${formattedDate}`,739,1181.5,14,'SukhumvitSetSemiBold', '#4f4f4f', 'left', 35, 3, 0, 0,100, 0);
 
+// วาดหมายเหตุ/เงื่อนไข ถ้ามีข้อความ
+if (notes) {
+    // x=60, y=1085 ปรับได้ตามดีไซน์นาย
+    drawText(ctx, notes, 32, 990, 16, 'SukhumvitSetExtraBold', '#2b2b2b', 'left', 10, 8, 0, 0, 470, 0);
+}
 
 
         let currentY = 410; // ตำแหน่ง Y เริ่มต้นสำหรับรายการ
         let itemNumber = 1;
 
-        // วาดข้อมูลรายการที่ 1 ถ้ามีการกรอกข้อมูลครบ
-        if (itemName1 !== '-' && itemQuantity1 > 0 && itemPrice1 > 0) {
-            drawItem(ctx, itemNumber, itemName1, itemQuantity1, itemPrice1, totalPrice1, currentY);
-            currentY += 40; // เพิ่มค่า Y สำหรับรายการถัดไป
-            itemNumber++;
-        }
+// โชว์เมื่อกรอกชื่อ + จำนวน > 0 + ราคา > 0 และ "ส่วนลด >= 0" (รวม 0.00 ด้วย)
+if (itemName1 !== '-' && itemQuantity1 > 0 && itemPrice1 > 0 && discount1 >= 0) {
+    drawItem(ctx, itemNumber, itemName1, itemQuantity1, itemPrice1, discount1, totalPrice1, currentY);
+    currentY += 40;
+    itemNumber++;
+}
 
-        // วาดข้อมูลรายการที่ 2 ถ้ามีการกรอกข้อมูลครบ
-        if (itemName2 !== '-' && itemQuantity2 > 0 && itemPrice2 > 0) {
-            drawItem(ctx, itemNumber, itemName2, itemQuantity2, itemPrice2, totalPrice2, currentY);
-            currentY += 40;
-            itemNumber++;
-        }
+if (itemName2 !== '-' && itemQuantity2 > 0 && itemPrice2 > 0 && discount2 >= 0) {
+    drawItem(ctx, itemNumber, itemName2, itemQuantity2, itemPrice2, discount2, totalPrice2, currentY);
+    currentY += 40;
+    itemNumber++;
+}
 
-        // วาดข้อมูลรายการที่ 3 ถ้ามีการกรอกข้อมูลครบ
-        if (itemName3 !== '-' && itemQuantity3 > 0 && itemPrice3 > 0) {
-            drawItem(ctx, itemNumber, itemName3, itemQuantity3, itemPrice3, totalPrice3, currentY);
-            currentY += 40;
-            itemNumber++;
-        }
+if (itemName3 !== '-' && itemQuantity3 > 0 && itemPrice3 > 0 && discount3 >= 0) {
+    drawItem(ctx, itemNumber, itemName3, itemQuantity3, itemPrice3, discount3, totalPrice3, currentY);
+    currentY += 40;
+    itemNumber++;
+}
 
         // รวมยอดเงินทั้งหมด
         const grandTotal = totalPrice1 + totalPrice2 + totalPrice3;
@@ -228,11 +237,12 @@ function updateDisplay() {
 }
 
 
-function drawItem(ctx, itemNumber, itemName, quantity, pricePerItem, totalPrice, yPosition) {
+function drawItem(ctx, itemNumber, itemName, quantity,pricePerItem,discount, totalPrice, yPosition) {
     // แปลงตัวเลขให้มีลูกน้ำ
     const pricePerItemFormatted = numberWithCommas(pricePerItem.toFixed(2));
     const totalPriceFormatted = numberWithCommas(totalPrice.toFixed(2));
     const quantityFormatted = numberWithCommas(quantity);
+    const discountFormatted = numberWithCommas(discount.toFixed(2));
 
     // วาดหมายเลขรายการ
     drawText(ctx, `${itemNumber}`, 50.7, yPosition, 18, 'SukhumvitSetBold', '#000000', 'center', 35, 3, 0, 0, 30, 0);
@@ -244,7 +254,7 @@ function drawItem(ctx, itemNumber, itemName, quantity, pricePerItem, totalPrice,
     drawText(ctx, `${quantityFormatted}`, 514, yPosition, 18, 'SukhumvitSetBold', '#000000', 'center', 35, 3, 0, 0, 80, 0);
 
     // วาด "0.00" ในแต่ละรายการ
-    drawText(ctx, `0.00`, 748, yPosition, 18, 'SukhumvitSetBold', '#000000', 'right', 35, 3, 0, 0, 60, 0);
+    drawText(ctx, `${discountFormatted}`, 748, yPosition, 18, 'SukhumvitSetBold', '#000000', 'right', 35, 3, 0, 0, 60, 0);
 
     // วาดราคาต่อชิ้น
     drawText(ctx, `${pricePerItemFormatted}`, 670, yPosition, 18, 'SukhumvitSetBold', '#000000', 'right', 35, 3, 0, 0, 150, 0);
