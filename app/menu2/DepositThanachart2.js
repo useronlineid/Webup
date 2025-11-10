@@ -178,7 +178,7 @@ function updateDisplay() {
         drawText(ctx, `${timeMessage}`, 547.5, 451.8,18.50,'SFThonburiRegular', '#6f8590','right', 1.5, 3, 0, 0, 800, 0);
 
 
-        drawText(ctx, `มีเงิน${money01}บ.โอนเข้าบ/ช${senderaccount2} จาก<br>${bank1} ${senderaccount1} ${name1}<br>คงเหลือ${money02}บ.${formattedDate}@${formattedTime}<br>
+        drawText(ctx, `มีเงิน${money01}บ.โอนเข้าบ/ช${senderaccount2} จาก<br>${bank1} ${senderaccount1} ${name1}<br>เหลือ${money02}บ.${formattedDate}@${formattedTime}<br>
         `, 107.8, 481.8,20.50,'SFThonburiRegular', '#000000','left', 31.5, 3, 0, 0, 450, 0);
 
        // แถบ 2 //
