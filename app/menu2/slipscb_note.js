@@ -246,6 +246,9 @@ function updateDisplay() {
         case 'พร้อมเพย์ e-Wallet Jaew': 
         bankLogoUrl = '../assets/image/logo/P-SCB2.png'; 
             break;
+        case 'พร้อมเพย์ e-Wallet K Plus W': 
+        bankLogoUrl = '../assets/image/logo/P-SCB2.png'; 
+            break;
         case 'MetaAds': 
         bankLogoUrl = '../assets/image/logo/Meta3.png'; 
             break;
@@ -326,6 +329,12 @@ function updateDisplay() {
         canvas.height = 1399;
         // พื้นหลังเฉพาะ e-Wallet
         backgroundImageSrc = '../assets/image/bs/SCBB1T.jpg';
+    } else if (bank === 'พร้อมเพย์ e-Wallet K Plus W') {
+        // ขยายขนาด canvas เป็น 752 x 1321
+        canvas.width = 743;
+        canvas.height = 1413;
+        // พื้นหลังเฉพาะ e-Wallet
+        backgroundImageSrc = '../assets/image/bs/SCBB1T.jpg';
     } else if (bank === 'MetaAds') {
         canvas.width = 743;
         canvas.height = 1349;
@@ -393,6 +402,19 @@ function updateDisplay() {
                 drawText(ctx, `เติมเงินพร้อมเพย์`, 490, 557., 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
                 drawText(ctx, `${receiveraccount}`, 698, 602.3, 35.0, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
                 drawText(ctx, `${receivername} (Jaew)`, 42.3, 836.4, 32.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
+                drawText(ctx, `${AideMemoire}`, 42.3, 953, 32.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
+                // วาดจำนวนเงิน
+                drawText(ctx, `${amount11}`, 698, 717.2, 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
+                // วาดรหัสอ้างอิง
+                drawText(ctx, `รหัสอ้างอิง: ${generateUniqueID()}`, 370, 342.8, 35.0, 'DXSCB', '#76737b', 'center', 1.5, 1, 0, 0, 800, 0);
+
+            } else if (bank === 'พร้อมเพย์ e-Wallet K Plus W') {
+                // วาด bankLogo สำหรับผู้รับ
+                ctx.drawImage(bankLogo, bankLogoX, 520.7, bankLogoWidth, 55);
+                drawImage(ctx, '../assets/image/logo/P-SCB1.png', 424.5, 520.7, 55, 55);
+                drawText(ctx, `เติมเงินพร้อมเพย์`, 490, 557., 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
+                drawText(ctx, `${receiveraccount}`, 698, 602.3, 35.0, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `${receivername} (K Plus W)`, 42.3, 836.4, 32.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
                 drawText(ctx, `${AideMemoire}`, 42.3, 953, 32.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
                 // วาดจำนวนเงิน
                 drawText(ctx, `${amount11}`, 698, 717.2, 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
