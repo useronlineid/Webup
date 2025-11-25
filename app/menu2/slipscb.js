@@ -243,6 +243,9 @@ function updateDisplay() {
         case 'พร้อมเพย์ e-Wallet Jaew': 
         bankLogoUrl = '../assets/image/logo/P-SCB2.png'; 
             break;
+        case 'พร้อมเพย์ e-Wallet K Plus W': 
+        bankLogoUrl = '../assets/image/logo/P-SCB2.png'; 
+            break;
         case 'MetaAds': 
         bankLogoUrl = '../assets/image/logo/Meta3.png'; 
             break;
