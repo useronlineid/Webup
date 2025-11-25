@@ -86,6 +86,7 @@ function updateDisplay() {
     const datetime = document.getElementById('datetime').value || '-';
     const AideMemoire = document.getElementById('AideMemoire').value || '-';
     const selectedImage = document.getElementById('imageSelect').value || '';
+    const backgroundSelect = document.getElementById('backgroundSelect').value || '';
     const QRCode = document.getElementById('QRCode').value || '';
 
     let bankLogoUrl = '';
@@ -145,7 +146,7 @@ function updateDisplay() {
     
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/MAKE1T.jpg';
+    backgroundImage.src = backgroundSelect;
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -174,7 +175,7 @@ function updateDisplay() {
             drawText(ctx, `บาท`, 46 + ctx.measureText(`${amount11}`).width + 15, 811, 38, 'IBMPlexsansthaiMedium', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
             drawText(ctx, `0.00 บาท`, 46, 957.3,38.44, 'IBMPlexsansthaiMedium', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
 
-            drawText(ctx, `${AideMemoire}`, 74, 1155,37, 'IBMPlexsansthaiMedium', '#353e4f', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `${AideMemoire}`, 74, 1155,37, 'IBMPlexsansthaiMedium', '#353e4f', 'left', 1.5, 3, 0, 0, 500, 0);
 
             drawText(ctx, `${generateUniqueID()}`, 259, 1035.5,35.63, 'IBMPlexsansthaiRegular', '#789099', 'left', 1.5, 3, 0, 0, 500, 0);
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'IBMPlexsansthaiRegular', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
