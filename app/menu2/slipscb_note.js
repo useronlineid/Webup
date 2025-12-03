@@ -322,19 +322,19 @@ function updateDisplay() {
         canvas.width = 743;
         canvas.height = 1399;
         // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = '../assets/image/bs/SCBB1T.jpg';
+        backgroundImageSrc = '../assets/image/bs/SCBB10T.jpg';
     } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
         // ขยายขนาด canvas เป็น 743 x 1399
         canvas.width = 743;
         canvas.height = 1399;
         // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = '../assets/image/bs/SCBB1T.jpg';
+        backgroundImageSrc = '../assets/image/bs/SCBB10T.jpg';
     } else if (bank === 'พร้อมเพย์ e-Wallet K Plus W') {
         // ขยายขนาด canvas เป็น 752 x 1321
         canvas.width = 743;
         canvas.height = 1413;
         // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = '../assets/image/bs/SCBB1T.jpg';
+        backgroundImageSrc = '../assets/image/bs/SCBB10T.jpg';
     } else if (bank === 'MetaAds') {
         canvas.width = 743;
         canvas.height = 1349;
