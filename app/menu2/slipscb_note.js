@@ -332,7 +332,7 @@ function updateDisplay() {
     } else if (bank === 'พร้อมเพย์ e-Wallet K Plus W') {
         // ขยายขนาด canvas เป็น 752 x 1321
         canvas.width = 743;
-        canvas.height = 1413;
+        canvas.height = 1399;
         // พื้นหลังเฉพาะ e-Wallet
         backgroundImageSrc = '../assets/image/bs/SCBB10T.jpg';
     } else if (bank === 'MetaAds') {
