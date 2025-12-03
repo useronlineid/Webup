@@ -328,7 +328,7 @@ function updateDisplay() {
         backgroundImageSrc = '../assets/image/bs/SCBB10.jpg';
     } else if (bank === 'MetaAds') {
         canvas.width = 818;
-        canvas.height = 1356;
+        canvas.height = 1413;
         backgroundImageSrc = '../assets/image/bs/SSCB1.jpg'; // ภาพเฉพาะของ MetaAds
     } else {
         // ธนาคารอื่น => canvas ปกติ
