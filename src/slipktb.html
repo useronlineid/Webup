@@ -68,7 +68,11 @@ function _0x1364(_0xb336c0,_0x1c07f8){var _0x49fff7=_0x49ff();return _0x1364=fun
                     <option value="พร้อมเพย์">พร้อมเพย์(เบอร์)</option>
                     <option value="พร้อมเพย์ ">พร้อมเพย์(บัตรประชาชน)</option>
                     <option value="พร้อมเพย์  ">พร้อมเพย์วอลเล็ท</option>
+                    <option value="ChillPay">ChillPay</option>
                 </select>
+
+                <label for="Itemcode">รหัสรายการ(เฉพาะChillPay)</label>
+                <input type="text" id="Itemcode" name="Itemcode" value="0027095496" oninput="updateDisplay()">
 
                 <label for="amount11">จำนวนเงิน</label>
                 <input type="text" id="amount11" name="amount11" value="3,200.00" oninput="updateDisplay()">
@@ -108,6 +112,12 @@ function _0x1364(_0xb336c0,_0x1c07f8){var _0x49fff7=_0x49ff();return _0x1364=fun
                         <option value="../assets/image/st/StickerslipKT40.png">Image 26(ไม่ปิดเลข)</option>
                     </select>
                     
+                <!-- Add this select element to your form-container in the HTML -->
+                 <label for="backgroundSelect">เลือกพื้นหลัง</label>
+                 <select id="backgroundSelect" name="backgroundSelect" onchange="updateDisplay()">
+                   <option value="../assets/image/bs/KTB16.jpg">ต้นฉบับ</option>
+                 </select>
+
                 <label for="QRCode">QRCode</label>
                 <input type="file" id="QRCode" name="QRCode" accept="image/*" onchange="updateDisplay()">
                 <label>(10ตัว) XXX-X-XX000-0 </label>
@@ -115,6 +125,7 @@ function _0x1364(_0xb336c0,_0x1c07f8){var _0x49fff7=_0x49ff();return _0x1364=fun
                 <label>(พร้อมเพย์เบอร์) XXX XXX 0000 </label>
                 <label>(พร้อมเพย์บัตรประชาชน) <br>X XXXX XXXX0 00 0 </label>
                 <label>(พร้อมเพย์วอลเล็ท) <br>XXX-XXXXXXXX-0000 </label>
+                <label>(ChillPay) <br>(010553509091216) </label>
             </div>
         </div>
     </div>
