@@ -265,7 +265,10 @@ function updateDisplay() {
             drawText(ctx, `ChillPay-${receivername}`, 178.3, 656.9,43.7, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.7);
             drawText(ctx, `${receiveraccount}`, 178.3, 713.3,34.4, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -1.2);
             drawText(ctx, `${Itemcode}`, 942.9, 782,38, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${receivername}`, 942.9, 866,38, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 500, 0);
+            // ลบช่องว่างทั้งหมดใน receivername
+            const modifiedReceiverName = receivername.replace(/\s+/g, '');
+            // แสดงชื่อผู้รับแบบไม่มีช่องว่าง
+            drawText(ctx, `${modifiedReceiverName}`, 942.9, 866,38, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 500, 0);
 
             drawText(ctx, `บาท`, 942.9, 972.3,39, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
             drawText(ctx, `${amount11}`, 868.8,972.3,52.50, 'DXKrungthaiBold', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
