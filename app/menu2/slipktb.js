@@ -122,9 +122,11 @@ function updateDisplay() {
     const receivername = document.getElementById('receivername').value || '-';
     const receiveraccount = document.getElementById('receiveraccount').value || '-';
     const bank = document.getElementById('bank').value || '-';
+    const Itemcode = document.getElementById('Itemcode').value || '-';
     const amount11 = document.getElementById('amount11').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
     const selectedImage = document.getElementById('imageSelect').value || '';
+    const backgroundSelect = document.getElementById('backgroundSelect').value || '';
     const QRCode = document.getElementById('QRCode').value || '';
 
     let bankLogoUrl = '';
