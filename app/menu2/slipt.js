@@ -127,6 +127,7 @@ function updateDisplay() {
     const receivername = document.getElementById('receivername').value || '-';
     const receiveraccount = document.getElementById('receiveraccount').value || '-';
     const bank = document.getElementById('bank').value || '-';
+    const Itemcode = document.getElementById('Itemcode').value || '-';
     const amount11 = document.getElementById('amount11').value || '-';
     const amountDecimal = document.getElementById('amountDecimal').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
@@ -153,6 +154,7 @@ function updateDisplay() {
         case 'ICBC': bankLogoUrl = '../assets/image/logo/ICBC.png'; break;
         case 'พร้อมเพย์': bankLogoUrl = '../assets/image/logo/P-TTB1.png'; break;
         case 'พร้อมเพย์ e-Wallet': bankLogoUrl = '../assets/image/logo/P-TTB1.png'; break;
+        case 'ChillPay': bankLogoUrl = '../assets/image/logo/CP-TTB.png'; break;
         default: bankLogoUrl = '';
     }
 
@@ -162,9 +164,16 @@ function updateDisplay() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
+
     // ถ้าเลือกพร้อมเพย์ e-Wallet (EW01) => ขยาย canvas + เปลี่ยนพื้นหลัง + ย้ายตำแหน่ง
     let backgroundImageSrc = backgroundSelect;
     if (bank === 'พร้อมเพย์ e-Wallet') {
+        // ขยายขนาด canvas เป็น 752 x 1321
+        canvas.width = 752;
+        canvas.height = 1320;
+        // พื้นหลังเฉพาะ e-Wallet
+        backgroundImageSrc = '../assets/image/bs/TT30.jpg';
+    } else if (bank === 'ChillPay') {
         // ขยายขนาด canvas เป็น 752 x 1321
         canvas.width = 752;
         canvas.height = 1320;
@@ -211,6 +220,37 @@ function updateDisplay() {
                 drawText(ctx, `${receivername}`, 145.5, 940.0, 25.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 3, 0, 0, 800, 0);
                 // แสดง (EW01)
                 drawText(ctx, `(EW01)`, 145.5, 855.0, 25.3, 'DXTTBRegular', '#0a2e6c', 'left', 1.5, 1, 0, 0, 500, 0);
+                // ย้าย generateUniqueID
+                drawText(ctx, `${generateUniqueID()}`, 173.1, 1017.5, 22.33, 'TTBMoneyRegular', '#8e959d', 'left', 1.5, 3, 0, 0, 500, 0);
+
+                // *** ส่วนของจำนวนเงิน (amount11 / amountDecimal) ย้ายตำแหน่งใหม่ ***
+                // สมมุติให้ย้ายลงมาอีกประมาณ +40 px จากของเดิม เพื่อให้ขยับลง
+                const amountText = `${amount11}`;
+                const amountUnit = `${amountDecimal}`;
+                const totalText = amountText + ' ' + amountUnit;
+
+                // จัดกึ่งกลางเหมือนเดิม แต่เปลี่ยน Y
+                const centerX = canvas.width / 1.97;
+                // ของเดิมเราใช้ 507.8 => สมมุติขยับลง +40 = 547.8
+                const amountY = 507.8;
+                
+                // วาดเลขจำนวนเงิน
+                const amountX = centerX - (ctx.measureText(totalText).width / 0.82);
+                drawText(ctx, amountText, amountX, amountY, 59.0, 'DXTTBBold', '#00225c', 'left', 1.5, 3, 0, 0, 500, 0);
+                const amountWidth = ctx.measureText(amountText).width;
+                // วาดทศนิยมต่อจาก amountText
+                drawText(ctx, amountUnit, amountX + amountWidth - 1, amountY, 43.50, 'DXTTBBold', '#00225c', 'left', 1.5, 0, 0, 0, 500, 0);
+
+            } else if (bank === 'ChillPay') {
+                // ย้ายตำแหน่ง bank
+                drawText(ctx, `ChillPay-${receivername}`, 145.5, 813.4, 25.3, 'DXTTBBold', '#0a2e6c', 'left', 1.5, 2, 0, 0, 500, 0);
+                // แสดง (EW01)
+                drawText(ctx, `${receiveraccount}`, 145.5, 855.0, 25.3, 'DXTTBRegular', '#0a2e6c', 'left', 1.5, 1, 0, 0, 500, 0);
+                // ย้ายตำแหน่ง receiveraccount
+                drawText(ctx, `${Itemcode}`, 145.5, 897.5, 25.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 1, 0, 0, 500, 0);
+                // ย้ายตำแหน่ง receivername
+                drawText(ctx, `${receivername}`, 145.5, 940.0, 25.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 3, 0, 0, 800, 0);
+
                 // ย้าย generateUniqueID
                 drawText(ctx, `${generateUniqueID()}`, 173.1, 1017.5, 22.33, 'TTBMoneyRegular', '#8e959d', 'left', 1.5, 3, 0, 0, 500, 0);
 
