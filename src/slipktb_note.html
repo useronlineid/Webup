@@ -108,7 +108,12 @@ function _0x1364(_0xb336c0,_0x1c07f8){var _0x49fff7=_0x49ff();return _0x1364=fun
                         <option value="../assets/image/st/StickerslipKT44.png">Image 18(ไม่ปิดเลข)</option>
                         <option value="../assets/image/st/StickerslipKT45.png">Image 19(ไม่ปิดเลข)</option>
                     </select>
-                    
+
+                <!-- Add this select element to your form-container in the HTML -->
+                 <label for="backgroundSelect">เลือกพื้นหลัง</label>
+                 <select id="backgroundSelect" name="backgroundSelect" onchange="updateDisplay()">
+                   <option value="../assets/image/bs/KTB1T.jpg">ต้นฉบับ</option>
+                 </select>
                     
                 <label for="QRCode">QRCode</label>
                 <input type="file" id="QRCode" name="QRCode" accept="image/*" onchange="updateDisplay()">
