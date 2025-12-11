@@ -122,10 +122,12 @@ function updateDisplay() {
     const receivername = document.getElementById('receivername').value || '-';
     const receiveraccount = document.getElementById('receiveraccount').value || '-';
     const bank = document.getElementById('bank').value || '-';
+    const Itemcode = document.getElementById('Itemcode').value || '-';
     const amount11 = document.getElementById('amount11').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
     const AideMemoire = document.getElementById('AideMemoire').value || '-';
     const selectedImage = document.getElementById('imageSelect').value || '';
+    const backgroundSelect = document.getElementById('backgroundSelect').value || '';
     const QRCode = document.getElementById('QRCode').value || '';
 
     let bankLogoUrl = '';
@@ -200,6 +202,10 @@ function updateDisplay() {
             bankText = 'พร้อมเพย์';
             bankLogoUrl = '../assets/image/logo/P-Krungthai.png'; // Logo สำหรับพร้อมเพย์วอลเล็ท
             break;
+        case 'ChillPay':
+            bankText = 'ChillPay';
+            bankLogoUrl = '/assets/image/logo/CP-KTB.png'; 
+            break;
     }
 
     const formattedDate = formatDate(datetime);
@@ -208,9 +214,25 @@ function updateDisplay() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     
+    // ถ้าเลือกพร้อมเพย์ e-Wallet (EW01) => ขยาย canvas + เปลี่ยนพื้นหลัง + ย้ายตำแหน่ง
+    let backgroundImageSrc = backgroundSelect;
+    if (bank === 'ChillPay') {
+        // ขยายขนาด canvas เป็น 752 x 1321
+        canvas.width = 986;
+        canvas.height = 1277;
+        // พื้นหลังเฉพาะ e-Wallet
+        backgroundImageSrc = '../assets/image/bs/CP-KTB16T.jpg';
+    } else {
+        // ธนาคารอื่น => canvas ปกติ
+        canvas.width = 986;
+        canvas.height = 1280;
+        backgroundImageSrc = backgroundSelect; 
+    }
+    
+
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/KTB16T.jpg';
+    backgroundImage.src = backgroundImageSrc;
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -222,6 +244,40 @@ function updateDisplay() {
         const bankLogo = new Image();
         bankLogo.src = bankLogoUrl;
         bankLogo.onload = function() {
+
+            
+            // ========== เช็คว่าChillPay หรือไม่ ========== //
+            if (bank === 'ChillPay') {
+
+            ctx.drawImage(bankLogo,31,597, 117.5, 117.5); // Adjust position and size as needed
+            
+            // Draw text with custom styles
+            drawText(ctx, `${formattedDate} - ${formattedTime}`,942.9,1114.0,39, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 800, -1.5);
+
+            drawText(ctx, `${generateUniqueID() }`, 337.7,342.2,32.5, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -0.5);
+            
+            drawText(ctx, `${sendername}`, 178.3, 445.3, 43.7, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.7);
+            drawText(ctx, `***`, 178.3 + ctx.measureText(`${sendername}`).width - 7, 445.3, 43.7, 'DXKrungthaiRegular', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.7);
+
+            drawText(ctx, `กรุงไทย`, 178.3, 502.3,34.4, 'DXKrungthaiMedium', '#000000', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${senderaccount}`, 178.3, 555.6,34.4, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -1.2);
+            
+            drawText(ctx, `ChillPay-${receivername}`, 178.3, 656.9,43.7, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.7);
+            drawText(ctx, `${receiveraccount}`, 178.3, 713.3,34.4, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -1.2);
+            drawText(ctx, `${Itemcode}`, 942.9, 782,38, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${receivername}`, 942.9, 866,38, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 500, 0);
+
+            drawText(ctx, `บาท`, 942.9, 972.3,39, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
+            drawText(ctx, `${amount11}`, 868.8,972.3,52.50, 'DXKrungthaiBold', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
+
+            drawText(ctx, `0.00 บาท`,942.9, 1046,39, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
+
+            drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'DXKrungthaiMedium', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
+            drawImage(ctx, '/assets/image/logo/ICBC.png', 31,389, 117.5, 117.5);  
+        
+            drawText(ctx, `${AideMemoire}`,942.9, 1183,39, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 1, 0, 0, 800, -1.5);
+            
+        } else {
             ctx.drawImage(bankLogo,31,651, 117.5, 117.5); // Adjust position and size as needed
             
             // Draw text with custom styles
