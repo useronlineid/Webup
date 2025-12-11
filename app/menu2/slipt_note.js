@@ -127,6 +127,7 @@ function updateDisplay() {
     const receivername = document.getElementById('receivername').value || '-';
     const receiveraccount = document.getElementById('receiveraccount').value || '-';
     const bank = document.getElementById('bank').value || '-';
+    const Itemcode = document.getElementById('Itemcode').value || '-';
     const amount11 = document.getElementById('amount11').value || '-';
     const amountDecimal = document.getElementById('amountDecimal').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
@@ -154,6 +155,7 @@ function updateDisplay() {
         case 'ICBC': bankLogoUrl = '../assets/image/logo/ICBC.png'; break;
         case 'พร้อมเพย์': bankLogoUrl = '../assets/image/logo/P-TTB1.png'; break;
         case 'พร้อมเพย์ e-Wallet': bankLogoUrl = '../assets/image/logo/P-TTB1.png'; break;
+        case 'ChillPay': bankLogoUrl = '../assets/image/logo/CP-TTB.png'; break;
         default: bankLogoUrl = '';
     }
 
@@ -170,7 +172,13 @@ function updateDisplay() {
         canvas.width = 714;
         canvas.height = 1320;
         // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = '../assets/image/bs/TT30T.jpg';
+        backgroundImageSrc = '../assets/image/bs/TT1T.jpg';
+    } else if (bank === 'ChillPay') {
+        // ขยายขนาด canvas เป็น 752 x 1321
+        canvas.width = 714;
+        canvas.height = 1320;
+        // พื้นหลังเฉพาะ e-Wallet
+        backgroundImageSrc = '../assets/image/bs/TT1T.jpg';
     } else {
         // ธนาคารอื่น => canvas ปกติ
         canvas.width = 714;
@@ -212,6 +220,40 @@ function updateDisplay() {
                 drawText(ctx, `${receivername}`, 138.5, 889.9,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 3, 0, 0, 800, 0);
                 // แสดง (EW01)
                 drawText(ctx, `(EW01)`, 138.5, 811.9,24.3, 'DXTTBRegular', '#0a2e6c', 'left', 1.5, 1, 0, 0, 500, 0);
+                // ย้าย generateUniqueID
+                drawText(ctx, `${generateUniqueID()}`, 166.9, 1032.7,21.33, 'DXTTBRegular', '#8e959d', 'left', 1.5, 3, 0, 0, 500, 0);
+                drawText(ctx, `${AideMemoire}`, 655, 970.9,24.3, 'DXTTBBold', '#0a2e6c', 'right', 1.5, 3, 0, 0, 800, 0);
+
+
+                // *** ส่วนของจำนวนเงิน (amount11 / amountDecimal) ย้ายตำแหน่งใหม่ ***
+                // สมมุติให้ย้ายลงมาอีกประมาณ +40 px จากของเดิม เพื่อให้ขยับลง
+                const amountText = `${amount11}`;
+                const amountUnit = `${amountDecimal}`;
+                const totalText = amountText + ' ' + amountUnit;
+
+                // จัดกึ่งกลางเหมือนเดิม แต่เปลี่ยน Y
+                const centerX = canvas.width / 1.90;
+                const amountY = 483.5;
+                
+                // วาดเลขจำนวนเงิน
+                const amountX = centerX - (ctx.measureText(totalText).width / 0.83);
+                drawText(ctx, amountText, amountX, amountY, 58.0, 'DXTTBBold', '#00225c', 'left', 1.5, 3, 0, 0, 500, 0);
+                const amountWidth = ctx.measureText(amountText).width;
+                // วาดทศนิยมต่อจาก amountText
+                drawText(ctx, amountUnit, amountX + amountWidth - 1, amountY, 42.50, 'DXTTBBold', '#00225c', 'left', 1.5, 0, 0, 0, 500, 0);
+
+
+
+            } else if (bank === 'ChillPay') {
+                // ย้ายตำแหน่ง bank
+                drawText(ctx, `ChillPay-${receivername}`, 138.5, 772.7,24.3, 'DXTTBBold', '#0a2e6c', 'left', 1.5, 3, 0, 0, 800, 0);
+                // แสดง (EW01)
+                drawText(ctx, `${receiveraccount}`, 138.5, 811.9,24.3, 'DXTTBRegular', '#0a2e6c', 'left', 1.5, 1, 0, 0, 500, 0);
+                // ย้ายตำแหน่ง receiveraccount
+                drawText(ctx, `${Itemcode}`, 138.5, 850.9,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 1, 0, 0, 500, 0);
+                // ย้ายตำแหน่ง receivername
+                drawText(ctx, `${receivername}`, 138.5, 889.9,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 3, 0, 0, 800, 0);
+
                 // ย้าย generateUniqueID
                 drawText(ctx, `${generateUniqueID()}`, 166.9, 1032.7,21.33, 'DXTTBRegular', '#8e959d', 'left', 1.5, 3, 0, 0, 500, 0);
                 drawText(ctx, `${AideMemoire}`, 655, 970.9,24.3, 'DXTTBBold', '#0a2e6c', 'right', 1.5, 3, 0, 0, 800, 0);
