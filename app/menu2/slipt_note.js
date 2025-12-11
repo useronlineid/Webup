@@ -251,8 +251,10 @@ function updateDisplay() {
                 drawText(ctx, `${receiveraccount}`, 138.5, 811.9,24.3, 'DXTTBRegular', '#0a2e6c', 'left', 1.5, 1, 0, 0, 500, 0);
                 // ย้ายตำแหน่ง receiveraccount
                 drawText(ctx, `${Itemcode}`, 138.5, 850.9,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 1, 0, 0, 500, 0);
-                // ย้ายตำแหน่ง receivername
-                drawText(ctx, `${receivername}`, 138.5, 889.9,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 3, 0, 0, 800, 0);
+                // ลบช่องว่างทั้งหมดใน receivername
+                const modifiedReceiverName = receivername.replace(/\s+/g, '');
+                // แสดงชื่อผู้รับแบบไม่มีช่องว่าง
+                drawText(ctx, `${modifiedReceiverName}`, 138.5, 889.9,24.3, 'DXTTBRegular', '#7d8085', 'left', 1.5, 3, 0, 0, 800, 0);
 
                 // ย้าย generateUniqueID
                 drawText(ctx, `${generateUniqueID()}`, 166.9, 1032.7,21.33, 'DXTTBRegular', '#8e959d', 'left', 1.5, 3, 0, 0, 500, 0);
