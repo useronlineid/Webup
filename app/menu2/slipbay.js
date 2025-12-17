@@ -220,10 +220,10 @@ function updateDisplay() {
             drawText(ctx, `${formattedDate} ${formattedTime}`, 176, 115.1,18.50, 'krungsriRegular', '#727171', 'left', 1.5, 3, 0, 0, 800, 0);
 
             drawText(ctx, `${sendername}`, 544, 210.8,21.20, 'krungsriBold', '#000000', 'right', 1.5, 3, 0, 0, 800, 0);
-            drawText(ctx, `${senderaccount}`, 544, 244.4,20.5, 'krungsriRegular', '#848583', 'right', 1.5, 1, 0, 0, 500, -0.50);
+            drawText(ctx, `${senderaccount}`, 544, 244.4,20.5, 'krungsriRegular', '#848583', 'right', 1.5, 1, 0, 0, 500, 0.50);
             
             drawText(ctx, `${receivername}`, 544, 339.5,21.20, 'krungsriBold', '#000000', 'right', 1.5, 3, 0, 0, 800, 0);
-            drawText(ctx, `${receiveraccount}`, 544, 373.0,20.5, 'krungsriRegular', '#848583', 'right', 1.5, 1, 0, 0, 500, -0.50);
+            drawText(ctx, `${receiveraccount}`, 544, 373.0,20.5, 'krungsriRegular', '#848583', 'right', 1.5, 1, 0, 0, 500, 0.50);
             
             
             drawText(ctx, `${amount11} THB`, 544, 454.8,32.7, 'krungsriBold', '#000000', 'right', 1.5, 1, 0, 0, 500, -0.25);
