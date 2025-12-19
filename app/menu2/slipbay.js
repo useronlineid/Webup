@@ -125,7 +125,7 @@ function generateUniqueID() {
     const uniqueDay = (334 + uniqueDayIncrement).toString().padStart(3, '0'); // เริ่มต้นที่ 334 และเพิ่มขึ้นทุก ๆ 3 วัน
     const timePart = `${padZero(now.getHours())}${padZero(now.getMinutes())}`;
     const randomPart = Math.floor(Math.random() * 100).toString().padStart(2, '0');
-    const randomPart1 = Math.floor(Math.random() * 10000000).toString().padStart(7, '0');
+    const randomPart1 = Math.floor(Math.random() * 10000000).toString().padStart(8, '0');
     return `KSA000000000${randomPart1}`;
 }
 
