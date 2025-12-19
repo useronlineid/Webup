@@ -172,13 +172,13 @@ function updateDisplay() {
         canvas.width = 752;
         canvas.height = 1320;
         // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = '../assets/image/bs/TT1.jpg';
+        backgroundImageSrc = '../assets/image/bs/TT31.jpg';
     } else if (bank === 'ChillPay') {
         // ขยายขนาด canvas เป็น 752 x 1321
         canvas.width = 752;
         canvas.height = 1320;
         // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = '../assets/image/bs/TT1.jpg';
+        backgroundImageSrc = '../assets/image/bs/TT31.jpg';
     } else {
         // ธนาคารอื่น => canvas ปกติ
         canvas.width = 752;
