@@ -114,7 +114,7 @@ function generateUniqueID() {
     const now = new Date(document.getElementById('datetime').value);
     const startDate = new Date("2024-07-24");
     const dayDifference = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-    const uniqueDay = (14840 + dayDifference).toString().padStart(6, '0');
+    const uniqueDay = (15475 + dayDifference).toString().padStart(6, '0');
     const timePart = `${padZero(now.getHours())}${padZero(now.getMinutes())}${padZero(now.getSeconds())}`;
     const randomPart = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
 
