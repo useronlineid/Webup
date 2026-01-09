@@ -128,7 +128,7 @@ function updateDisplay() {
     
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/A4T.jpg';
+    backgroundImage.src = '../assets/image/bs/A3T.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
