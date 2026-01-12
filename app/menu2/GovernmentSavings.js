@@ -140,7 +140,7 @@ function updateDisplay() {
         case 'ธนาคารออมสิน':
             bankLogoUrl = '../assets/image/logo/O3.png';
             break;
-        case 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร.':
+        case 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร':
             bankLogoUrl = '../assets/image/logo/T3.png';
             break;
         case 'ธนาคารอาคารสงเคราะห์':
