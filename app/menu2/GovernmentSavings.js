@@ -140,7 +140,7 @@ function updateDisplay() {
         case 'ธนาคารออมสิน':
             bankLogoUrl = '../assets/image/logo/O3.png';
             break;
-        case 'ธ.ก.ส.':
+        case 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร.':
             bankLogoUrl = '../assets/image/logo/T.png';
             break;
         case 'ธนาคารอาคารสงเคราะห์':
@@ -180,7 +180,7 @@ function updateDisplay() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
-        let backgroundImageSrc = backgroundSelect;
+let backgroundImageSrc = backgroundSelect;
 if (bank === 'MetaAds') {
     canvas.width = 617;
     canvas.height = 1334;
@@ -189,6 +189,10 @@ if (bank === 'MetaAds') {
     canvas.width = 617;
     canvas.height = 1280;
     backgroundImageSrc = '../assets/image/bs/O1.1.jpg'; // ✅ เพิ่มพื้นหลังของธนาคารออมสิน
+} else if (bank === 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร') {
+    canvas.width = 617;
+    canvas.height = 1334;
+    backgroundImageSrc = '../assets/image/bs/OO1.1.jpg'; // ✅ เพิ่มพื้นหลังของธนาคารออมสิน
 } else if (bank === 'เติมเงินพร้อมเพย์') {
     canvas.width = 617;
     canvas.height = 1280;
@@ -236,6 +240,11 @@ if (bank === 'MetaAds') {
             drawText(ctx, `${receiveraccount}`, 163.4, 705.2,25, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
             drawText(ctx, `หมายเลขอ้างอิง 2:`, 163.4, 735.2,25, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
             drawText(ctx, `${receiveraccount}`, 163.4, 766.2,25, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
+
+             }else if (bank === 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร') {
+            drawText(ctx, `${receivername}`,163.4, 637.7,33, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 500, -0.50);
+            drawText(ctx, `${bank}`, 163.4, 674.2,25, 'SFThonburiRegular', '#525252', 'left', 31, 2, 0, 0, 350, 0);
+            drawText(ctx, `${receiveraccount}`, 163.4, 736.2,25, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
 
              } else {
             drawText(ctx, `${receivername}`,163.4, 637.7,33, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 500, -0.50);
