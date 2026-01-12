@@ -141,8 +141,8 @@ function updateDisplay() {
         case 'ธนาคารออมสิน':
             bankLogoUrl = '../assets/image/logo/O3.png';
             break;
-        case 'ธ.ก.ส.':
-            bankLogoUrl = '../assets/image/logo/T.png';
+        case 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร':
+            bankLogoUrl = '../assets/image/logo/T3.png';
             break;
         case 'ธนาคารอาคารสงเคราะห์':
             bankLogoUrl = '../assets/image/logo/C.png';
@@ -181,24 +181,29 @@ function updateDisplay() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     
-        let backgroundImageSrc = backgroundSelect;
-    if (bank === 'MetaAds') {
-        canvas.width = 567;
-        canvas.height = 1346;
-        backgroundImageSrc = '../assets/image/bs/OO1T.jpg';
-    } else if (bank === 'ธนาคารออมสิน') {
-        canvas.width = 567;
-        canvas.height = 1280;
-        backgroundImageSrc = '../assets/image/bs/O1.1T.jpg'; // ✅ เพิ่มพื้นหลังของธนาคารออมสิน
-    } else if (bank === 'เติมเงินพร้อมเพย์') {
-        canvas.width = 567;
-        canvas.height = 1280;
-        backgroundImageSrc = '../assets/image/bs/O1.2T.jpg'; // ✅ เพิ่มพื้นหลังของพร้อมเพย์วอลเล็ท
-    } else {
-        canvas.width = 567;
-        canvas.height = 1280;
-        backgroundImageSrc = backgroundSelect;
-    }
+
+let backgroundImageSrc = backgroundSelect;
+if (bank === 'MetaAds') {
+    canvas.width = 567;
+    canvas.height = 1346;
+    backgroundImageSrc = '../assets/image/bs/OO1T.jpg';
+} else if (bank === 'ธนาคารออมสิน') {
+    canvas.width = 567;
+    canvas.height = 1280;
+    backgroundImageSrc = '../assets/image/bs/O1.1T.jpg'; // ✅ เพิ่มพื้นหลังของธนาคารออมสิน
+} else if (bank === 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร') {
+    canvas.width = 567;
+    canvas.height = 1346;
+    backgroundImageSrc = '../assets/image/bs/OO1.1T.jpg'; // ✅ เพิ่มพื้นหลังของธนาคารออมสิน
+}else if (bank === 'เติมเงินพร้อมเพย์') {
+    canvas.width = 567;
+    canvas.height = 1280;
+    backgroundImageSrc = '../assets/image/bs/O1.2T.jpg'; // ✅ เพิ่มพื้นหลังของพร้อมเพย์วอลเล็ท
+} else {
+    canvas.width = 567;
+    canvas.height = 1280;
+    backgroundImageSrc = backgroundSelect;
+}
 
     // Load background image
     const backgroundImage = new Image();
@@ -240,7 +245,13 @@ function updateDisplay() {
             drawText(ctx, `หมายเลขอ้างอิง 2:`, 149.2, 674.8,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${receiveraccount}`, 149.2, 702.7,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
 
-             } else {
+             } else if (bank === 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร') {
+            drawText(ctx, `${AideMemoire}`, 149.2, 791.1,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${receivername}`,149.2, 585.5,31, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 500, -0.50);
+            drawText(ctx, `${bank}`, 149.2, 619,23, 'SFThonburiRegular', '#525252', 'left', 28, 2, 0, 0, 350, 0);
+            drawText(ctx, `${receiveraccount}`, 149.2, 673.9,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
+
+            }else {
             drawText(ctx, `${AideMemoire}`, 149.2, 753.1,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${receivername}`,149.2, 585.5,31, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 500, -0.50);
             drawText(ctx, `${bank}`, 149.2, 619,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
