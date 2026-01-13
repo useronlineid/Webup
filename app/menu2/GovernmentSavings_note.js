@@ -194,7 +194,7 @@ if (bank === 'MetaAds') {
 } else if (bank === 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร') {
     canvas.width = 567;
     canvas.height = 1346;
-    backgroundImageSrc = '../assets/image/bs/OO1.1.1T.jpg'; // ✅ เพิ่มพื้นหลังของธนาคารออมสิน
+    backgroundImageSrc = '../assets/image/bs/OO1.1T.jpg'; // ✅ เพิ่มพื้นหลังของธนาคารออมสิน
 }else if (bank === 'เติมเงินพร้อมเพย์') {
     canvas.width = 567;
     canvas.height = 1280;
