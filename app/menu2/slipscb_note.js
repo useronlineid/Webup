@@ -315,36 +315,57 @@ function updateDisplay() {
     
     // **เริ่มการวาดบนแคนวาส**
 
-        // ถ้าเลือกพร้อมเพย์ e-Wallet (EW01) => ขยาย canvas + เปลี่ยนพื้นหลัง + ย้ายตำแหน่ง
-    let backgroundImageSrc = backgroundSelect;
+
+    // ================== ส่วนแก้ไขใหม่ เริ่มต้น ==================
+    
+    let backgroundImageSrc = backgroundSelect; // ค่าเริ่มต้น (SCB...)
+
+    // ตรวจสอบ Bank เพื่อเปลี่ยน Canvas Size และ ชื่อไฟล์พื้นหลัง
     if (bank === 'พร้อมเพย์ e-Wallet TrueMoney') {
-        // ขยายขนาด canvas เป็น 743 x 1399
+        // ขยายขนาด canvas
         canvas.width = 743;
         canvas.height = 1399;
-        // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = '../assets/image/bs/SCBB1T.jpg';
+        
+        // เทคนิค: แทนที่คำว่า "/SCB" ในชื่อไฟล์ด้วย "/SCBB"
+        // เช่น ../assets/image/bs/SCB1.1.jpg จะกลายเป็น ../assets/image/bs/SCBB1.1.jpg
+        backgroundImageSrc = backgroundSelect.replace('/SCB', '/SCBB'); 
+
     } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
-        // ขยายขนาด canvas เป็น 743 x 1399
+        // ขยายขนาด canvas
         canvas.width = 743;
         canvas.height = 1399;
-        // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = '../assets/image/bs/SCBB1T.jpg';
+        
+        // เทคนิค: แทนที่คำว่า "/SCB" ในชื่อไฟล์ด้วย "/SCBB"
+        // เช่น ../assets/image/bs/SCB1.1.jpg จะกลายเป็น ../assets/image/bs/SCBB1.1.jpg
+        backgroundImageSrc = backgroundSelect.replace('/SCB', '/SCBB');
+
     } else if (bank === 'พร้อมเพย์ e-Wallet K Plus W') {
-        // ขยายขนาด canvas เป็น 752 x 1321
+        // ขยายขนาด canvas
         canvas.width = 743;
         canvas.height = 1399;
-        // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = '../assets/image/bs/SCBB1T.jpg';
+        
+        // เทคนิค: แทนที่คำว่า "/SCB" ในชื่อไฟล์ด้วย "/SCBB"
+        // เช่น ../assets/image/bs/SCB1.1.jpg จะกลายเป็น ../assets/image/bs/SCBB1.1.jpg
+        backgroundImageSrc = backgroundSelect.replace('/SCB', '/SCBB');
+
     } else if (bank === 'MetaAds') {
+        // ขนาด canvas ของ MetaAds
         canvas.width = 743;
         canvas.height = 1349;
-        backgroundImageSrc = '../assets/image/bs/SSCB1T.jpg'; // ภาพเฉพาะของ MetaAds
+
+        // เทคนิค: แทนที่คำว่า "/SCB" ในชื่อไฟล์ด้วย "/SSCB"
+        // เช่น ../assets/image/bs/SCB1.4.jpg จะกลายเป็น ../assets/image/bs/SSCB1.4.jpg
+        backgroundImageSrc = backgroundSelect.replace('/SCB', '/SSCB'); 
+
     } else {
         // ธนาคารอื่น => canvas ปกติ
         canvas.width = 743;
         canvas.height = 1280;
+        // ใช้รูปตามที่เลือกใน Dropdown เลย (ตระกูล SCB)
         backgroundImageSrc = backgroundSelect; 
     }
+
+    // ================== ส่วนแก้ไขใหม่ สิ้นสุด ==================
     
     const backgroundImage = new Image();
     backgroundImage.src = backgroundImageSrc;
