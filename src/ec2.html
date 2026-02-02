@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ขอวีซ่านิวซีแลนด์</title>
+    <link rel="stylesheet" href="../css/slip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="updateDisplay()">
+    <div class="container">
+        <div class="display-container">
+            <div class="display" id="display">
+                <canvas id="canvas" width="904" height="1280"></canvas>
+                <button onclick="downloadImage()">คัดลอกเป็นรูปภาพ</button>
+            </div>
+        </div>
+        <div class="form-container">
+            <h1>หนังสือรับรองการจ้าง</h1>
+            <div class="form">
+                <label for="QRCode">LOGO</label>
+                <div id="QRCode" class="qrcode-drop-area" onpaste="handlePaste(event)">
+                    วางรูปภาพที่นี่
+                </div>
+                <label for="registered">นิติบุคคลไทยจดทะเบียนเมื่อ:</label>
+                <input type="text" id="registered" name="registered" placeholder="นิติบุคคลไทยจดทะเบียน" oninput="updateDisplay()">
+                
+                <label for="number1">เลขที่:</label>
+                <input type="text" id="number1" name="number1" placeholder="เลขที่" oninput="updateDisplay()">
+                
+                <label for="capital">ทุนชำระแล้ว:</label>
+                <input type="text" id="capital" name="capital" value="1,000,000" oninput="updateDisplay()">
+                
+                <label for="registered1">นิติบุคคลต่างด้าวจดทะเบียนเมื่อ:</label>
+                <input type="text" id="registered1" name="registered1" placeholder="นิติบุคคลต่างด้าวจดทะเบียน" oninput="updateDisplay()">
+                
+                <label for="Importedmoney1">จำนวนเงินที่นำเข้ามาจากต่างประเทศ:</label>
+                <input type="text" id="Importedmoney1" name="Importedmoney1" placeholder="จำนวนเงิน" oninput="updateDisplay()">
+                
+                <label for="employ">บริษัทดำเนินการจ้าง:</label>
+                <input type="text" id="employ" name="employ" placeholder="บริษัทดำเนินการจ้าง" oninput="updateDisplay()">
+                
+                <label for="License">ใบอนุมัติทำงานเลขที่:</label>
+                <input type="text" id="License" name="License" placeholder="ใบอนุมัติทำงานเลขที่" oninput="updateDisplay()">
+                
+                <!-- Separator -->
+                <hr style="margin: 20px 0;">
+
+                <label for="Years">ปี พ.ศ:</label>
+                <input type="text" id="Years" name="Years"value="2" oninput="updateDisplay()">
+                
+                <label for="Income">รายได้:</label>
+                <input type="text" id="Income" name="Income"value="127,209.00 บาท (6,000 NZD)" oninput="updateDisplay()">
+                
+                <label for="Tax1">ภาษีเงินได้หลังครบสัญญา:</label>
+                <input type="text" id="Tax1" name="Tax1"value="175,099.19 บาท (8,200 NZD)" oninput="updateDisplay()">
+                
+                <!-- Separator -->
+                <hr style="margin: 20px 0;">
+
+                <label for="Employer1">ชื่อนายจ้าง:</label>
+                <input type="text" id="Employer1" name="Employer1" placeholder="ชื่อนายจ้าง" oninput="updateDisplay()">
+                
+                <label for="Location1">ที่ตั้ง:</label>
+                <input type="text" id="Location1" name="Location1" placeholder="ที่ตั้ง" oninput="updateDisplay()">
+                
+                <label for="business1">ประเภทกิจการ:</label>
+                <input type="text" id="business1" name="business1" placeholder="ประเภทกิจการ" oninput="updateDisplay()">
+                
+                <label for="Income1">รายได้ปัจจุบัน:</label>
+                <input type="text" id="Income1" name="Income1" value="10,600,250.00" oninput="updateDisplay()">
+                
+                <label for="Duration1">ระยะเวลา:</label>
+                <input type="text" id="Duration1" name="Duration1" value="12" oninput="updateDisplay()">
+                
+                <!-- Separator -->
+                <hr style="margin: 20px 0;">
+
+                <label for="name1">ชื่อผู้ถูกจ้าง:</label>
+                <input type="text" id="name1" name="name1" placeholder="ชื่อผู้ถูกจ้าง" oninput="updateDisplay()">
+                
+                <label for="province">จังหวัด:</label>
+                <!-- เปลี่ยนจาก select เป็น input กับ datalist -->
+                <input list="provinceList" id="provinceInput" name="provinceInput" oninput="updateProvinceValue(); updateDisplay();" placeholder="เลือกจังหวัด">
+                <datalist id="provinceList">
+                    <option value="กรุงเทพมหานคร">
+                    <option value="กระบี่">
+                    <option value="กาญจนบุรี">
+                    <option value="กาฬสินธุ์">
+                    <option value="กำแพงเพชร">
+                    <option value="ขอนแก่น">
+                    <option value="จันทบุรี">
+                    <option value="ฉะเชิงเทรา">
+                    <option value="ชลบุรี">
+                    <option value="ชัยนาท">
+                    <option value="ชัยภูมิ">
+                    <option value="ชุมพร">
+                    <option value="เชียงราย">
+                    <option value="เชียงใหม่">
+                    <option value="ตรัง">
+                    <option value="ตราด">
+                    <option value="ตาก">
+                    <option value="นครนายก">
+                    <option value="นครปฐม">
+                    <option value="นครพนม">
+                    <option value="นครราชสีมา">
+                    <option value="นครศรีธรรมราช">
+                    <option value="นครสวรรค์">
+                    <option value="นนทบุรี">
+                    <option value="นราธิวาส">
+                    <option value="น่าน">
+                    <option value="บึงกาฬ">
+                    <option value="บุรีรัมย์">
+                    <option value="ปทุมธานี">
+                    <option value="ประจวบคีรีขันธ์">
+                    <option value="ปราจีนบุรี">
+                    <option value="ปัตตานี">
+                    <option value="พระนครศรีอยุธยา">
+                    <option value="พังงา">
+                    <option value="พัทลุง">
+                    <option value="พิจิตร">
+                    <option value="พิษณุโลก">
+                    <option value="เพชรบุรี">
+                    <option value="เพชรบูรณ์">
+                    <option value="แพร่">
+                    <option value="พะเยา">
+                    <option value="ภูเก็ต">
+                    <option value="มหาสารคาม">
+                    <option value="มุกดาหาร">
+                    <option value="แม่ฮ่องสอน">
+                    <option value="ยโสธร">
+                    <option value="ยะลา">
+                    <option value="ร้อยเอ็ด">
+                    <option value="ระนอง">
+                    <option value="ระยอง">
+                    <option value="ราชบุรี">
+                    <option value="ลพบุรี">
+                    <option value="ลำปาง">
+                    <option value="ลำพูน">
+                    <option value="เลย">
+                    <option value="ศรีสะเกษ">
+                    <option value="สกลนคร">
+                    <option value="สงขลา">
+                    <option value="สตูล">
+                    <option value="สมุทรปราการ">
+                    <option value="สมุทรสงคราม">
+                    <option value="สมุทรสาคร">
+                    <option value="สระแก้ว">
+                    <option value="สระบุรี">
+                    <option value="สิงห์บุรี">
+                    <option value="สุโขทัย">
+                    <option value="สุพรรณบุรี">
+                    <option value="สุราษฎร์ธานี">
+                    <option value="สุรินทร์">
+                    <option value="หนองคาย">
+                    <option value="หนองบัวลำภู">
+                    <option value="อ่างทอง">
+                    <option value="อำนาจเจริญ">
+                    <option value="อุดรธานี">
+                    <option value="อุตรดิตถ์">
+                    <option value="อุทัยธานี">
+                    <option value="อุบลราชธานี">
+                </datalist>
+                <input type="hidden" id="province" name="province">
+                
+                <label for="Passport1">หมายเลขหนังสือเดินทาง:</label>
+                <input type="text" id="Passport1" name="Passport1" placeholder="หมายเลขหนังสือเดินทาง" oninput="updateDisplay()">
+                
+                <label for="work1">ประเภทงาน:</label>
+                <input type="text" id="work1" name="work1" placeholder="ประเภทงาน" oninput="updateDisplay()">
+                
+                <label for="Job1">ลักษณะงาน:</label>
+                <input type="text" id="Job1" name="Job1" placeholder="ลักษณะงาน" oninput="updateDisplay()">
+                
+                <label for="Location2">สถานที่ทำงาน:</label>
+                <input type="text" id="Location2" name="Location2" placeholder="สถานที่ทำงาน" oninput="updateDisplay()">
+                
+                <label for="Years1">สถานที่ทำงาน:</label>
+                <input type="text" id="Years1" name="Years1" value="2" oninput="updateDisplay()">
+                
+                <label for="Income2">รายได้/เดือน:</label>
+                <input type="text" id="Income2" name="Income2" value="6,000" oninput="updateDisplay()">
+                
+
+                <label for="customDate">วัน/เดือน/ปี(คำร้องขอ)</label>
+                <input type="date" id="customDate" name="customDate" oninput="updateDisplay()">
+                
+                <label for="Status1">สถานภาพ:</label>
+                <input type="text" id="Status1" name="Status1" value="Single" oninput="updateDisplay()">
+                
+                <label for="customDate1">วัน/เดือน/ปี(คำร้องขอ)</label>
+                <input type="date" id="customDate1" name="customDate1" oninput="updateDisplay()">
+                
+
+                
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../app/menu5/ec2.js"></script>
+</body>
+</html>
