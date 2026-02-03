@@ -191,6 +191,9 @@ function updateDisplay() {
         case 'พร้อมเพย์ e-Wallet Jaew': 
             bankLogoUrl = '../assets/image/logo/P-Bangkok.png';
             break;
+        case 'พร้อมเพย์ e-Wallet K Plus Wallet': 
+            bankLogoUrl = '../assets/image/logo/P-Bangkok.png';
+            break;
         case 'MetaAds': 
             bankLogoUrl = '../assets/image/logo/Meta2.png';
             break;
@@ -212,6 +215,12 @@ function updateDisplay() {
         // พื้นหลังเฉพาะ e-Wallet
         backgroundImageSrc = '../assets/image/bs/BB1T.jpg';
     } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
+        // ขยายขนาด canvas เป็น 752 x 1321
+        canvas.width = 572;
+        canvas.height = 1262;
+        // พื้นหลังเฉพาะ e-Wallet
+        backgroundImageSrc = '../assets/image/bs/BB1T.jpg';
+    } else if (bank === 'พร้อมเพย์ e-Wallet K Plus Wallet') {
         // ขยายขนาด canvas เป็น 752 x 1321
         canvas.width = 572;
         canvas.height = 1262;
@@ -280,7 +289,20 @@ function updateDisplay() {
                 drawText(ctx, `${generateRandomNumber()}`, 44.8, 1066,19.80, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
     
                 drawText(ctx, `${generateUniqueID()}`, 44.8, 1126,19.80, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
+
+            } (bank === 'พร้อมเพย์ e-Wallet TrueMoney') {
+
+                drawText(ctx, `${receivername}<br>เติมเงินพร้อมเพย์ / G-Wallet`, 210.5, 651.1,23.3, 'SukhumvitSetExtraBold', '#101011', 'left', 31, 3, 0, 0, 800, 0);
+                drawText(ctx, `K Plus Wallet`, 210.5, 710.3,19, 'SukhumvitSetSemiBold', '#9d9da5', 'left', 1.5, 3, 0, 0, 800, 0);
+                drawText(ctx, `${receiveraccount}`, 210.5, 778.5,22.5, 'BangkokTime2', '#101011', 'left', 1.5, 1, 0, 0, 500, 0);
+                
+                
+                drawText(ctx, `${AideMemoire}`, 159.3, 928.5,18.10, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, 0);
     
+    
+                drawText(ctx, `${generateRandomNumber()}`, 44.8, 1066,19.80, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
+    
+                drawText(ctx, `${generateUniqueID()}`, 44.8, 1126,19.80, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
 
             } else if (bank === 'MetaAds') {
                 drawText(ctx, `META ADS (KGP)`, 210.5, 651.1,23.3, 'SukhumvitSetExtraBold', '#101011', 'left', 31, 3, 0, 0, 800, 0);
