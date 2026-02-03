@@ -437,7 +437,7 @@ function updateDisplay() {
     
     
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/paper/ec2.jpg';
+    backgroundImage.src = '../assets/image/paper/ec2.1.jpg';
     backgroundImage.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
@@ -646,3 +646,4 @@ function drawImage(ctx, imageUrl, x, y, width, height) {
         ctx.drawImage(image, x, y, width, height);
     };
 }
+
