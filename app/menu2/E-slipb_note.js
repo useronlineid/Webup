@@ -150,6 +150,9 @@ function updateDisplay() {
         case 'พร้อมเพย์ e-Wallet Jaew': 
             bankLogoUrl = '../assets/image/logo/P-Bangkok.png'; 
             break;
+        case 'พร้อมเพย์ e-Wallet K Plus Wallet': 
+            bankLogoUrl = '../assets/image/logo/P-Bangkok.png'; 
+            break;
         case 'MetaAds': 
             bankLogoUrl = '../assets/image/logo/Meta2.png'; 
             break;
@@ -168,6 +171,10 @@ function updateDisplay() {
         canvas.height = 1280;
         backgroundImageSrc = '../assets/image/bs/BB15T.jpg';
     } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
+        canvas.width = 495;
+        canvas.height = 1280;
+        backgroundImageSrc = '../assets/image/bs/BB15T.jpg';
+    } else if (bank === 'พร้อมเพย์ e-Wallet K Plus Wallet') {
         canvas.width = 495;
         canvas.height = 1280;
         backgroundImageSrc = '../assets/image/bs/BB15T.jpg';
@@ -219,6 +226,17 @@ function updateDisplay() {
 
             } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
             drawText(ctx, `${receivername}<br>เติมเงินพร้อมเพย์ / <br>G-Wallet`, 218.6, 784.9,22, 'SukhumvitSetExtraBold', '#101011', 'left', 29, 3, 0, 0, 800,-1);
+            drawText(ctx, `${receiveraccount}`, 218.6, 918.8,21, 'SukhumvitSetSemiBold', '#101011', 'left', 1.5, 1, 0, 0, 500,-1);
+            
+            
+            drawText(ctx, `${AideMemoire}`, 163.4, 1040.6,18, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, 0);
+            drawText(ctx, `${generateRandomNumber()}`, 41, 1137.7,18.30, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
+
+            drawText(ctx, `${generateUniqueID()}`, 41, 1191,18.30, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
+
+            } else if (bank === 'พร้อมเพย์ e-Wallet K Plus Wallet') {
+            drawText(ctx, `${receivername}<br>เติมเงินพร้อมเพย์ / <br>G-Wallet`, 218.6, 784.9,22, 'SukhumvitSetExtraBold', '#101011', 'left', 29, 3, 0, 0, 800,-1);
+            drawText(ctx, `K Plus Wallet`, 218.6, 869,19, 'SukhumvitSetSemiBold', '#9d9da5', 'left', 1.5, 2, 0, 0, 500,-1);
             drawText(ctx, `${receiveraccount}`, 218.6, 918.8,21, 'SukhumvitSetSemiBold', '#101011', 'left', 1.5, 1, 0, 0, 500,-1);
             
             
