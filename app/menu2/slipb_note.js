@@ -290,7 +290,7 @@ function updateDisplay() {
     
                 drawText(ctx, `${generateUniqueID()}`, 44.8, 1126,19.80, 'BangkokTime2', '#101011', 'left', 1.5, 3, 0, 0, 500, -1);
 
-            } (bank === 'พร้อมเพย์ e-Wallet TrueMoney') {
+            } (bank === 'พร้อมเพย์ e-Wallet K Plus Wallet') {
 
                 drawText(ctx, `${receivername}<br>เติมเงินพร้อมเพย์ / G-Wallet`, 210.5, 651.1,23.3, 'SukhumvitSetExtraBold', '#101011', 'left', 31, 3, 0, 0, 800, 0);
                 drawText(ctx, `K Plus Wallet`, 210.5, 710.3,19, 'SukhumvitSetSemiBold', '#9d9da5', 'left', 1.5, 3, 0, 0, 800, 0);
