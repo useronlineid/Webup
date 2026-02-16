@@ -79,6 +79,9 @@
                 <label for="name1">ชื่อผู้ถูกจ้าง:</label>
                 <input type="text" id="name1" name="name1" placeholder="ชื่อผู้ถูกจ้าง" oninput="updateDisplay()">
                 
+                <label for="Blood">หมู่โลหิต:</label>
+                <input type="text" id="Blood" name="Blood" value="None" oninput="updateDisplay()">
+                
                 <label for="province">จังหวัด:</label>
                 <!-- เปลี่ยนจาก select เป็น input กับ datalist -->
                 <input list="provinceList" id="provinceInput" name="provinceInput" oninput="updateProvinceValue(); updateDisplay();" placeholder="เลือกจังหวัด">
@@ -184,6 +187,12 @@
 
                 <label for="customDate">วัน/เดือน/ปี(คำร้องขอ)</label>
                 <input type="date" id="customDate" name="customDate" oninput="updateDisplay()">
+                
+                <label for="level">ระดับการศึกษา:</label>
+                <input type="text" id="level" name="level" value="None" oninput="updateDisplay()">
+                
+                <label for="work2">ประสบการณ์ทำงาน:</label>
+                <input type="text" id="work2" name="work2" value="None" oninput="updateDisplay()">
                 
                 <label for="Status1">สถานภาพ:</label>
                 <input type="text" id="Status1" name="Status1" value="Single" oninput="updateDisplay()">
