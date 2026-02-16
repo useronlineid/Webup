@@ -410,12 +410,15 @@ function updateDisplay() {
     const Duration1 = document.getElementById('Duration1').value || '-';
 
     const name1 = document.getElementById('name1').value || '-';
+    const Blood = document.getElementById('Blood').value || '-';
     const Passport1 = document.getElementById('Passport1').value || '-';
     const work1 = document.getElementById('work1').value || '-';
     const Job1 = document.getElementById('Job1').value || '-';
     const Location2 = document.getElementById('Location2').value || '-';
     const Years1 = document.getElementById('Years1').value || '-';
     const Income2 = document.getElementById('Income2').value || '-';
+    const level = document.getElementById('level').value || '-';
+    const work2 = document.getElementById('work2').value || '-';
     const Status1 = document.getElementById('Status1').value || '-';
     const province = document.getElementById('province').value || '-';
 
@@ -437,7 +440,7 @@ function updateDisplay() {
     
     
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/paper/ec2.1.jpg';
+    backgroundImage.src = '../assets/image/paper/ec2.jpg';
     backgroundImage.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
@@ -467,7 +470,7 @@ function updateDisplay() {
 
         drawText(ctx, `${name1}`, 662,663,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
         drawText(ctx, `thai`, 198,686.2,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
-        drawText(ctx, `None`, 600,686.2,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
+        drawText(ctx, `${Blood}`, 600,686.2,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
         drawText(ctx, `${province}`, 360,711,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
         drawText(ctx, `${Passport1}`, 762,711,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
         drawText(ctx, `${work1}`, 530,733,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
@@ -479,8 +482,8 @@ function updateDisplay() {
         drawText(ctx, `${formattedCustomDate}`, 685,805,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
         drawText(ctx, `${Income2}`,290,829,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
         drawText(ctx, `None`,633,829,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
-        drawText(ctx, `None`,230,875,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
-        drawText(ctx, `None`,465,875,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
+        drawText(ctx, `${level}`,230,875,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
+        drawText(ctx, `${work2}`,465,875,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
         drawText(ctx, `${Status1}`,650,875,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
         drawText(ctx, `Entrepreneur`,600,1068,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
         drawText(ctx, `${formattedCustomDate1}`,600,1091,14,'arialRegular', '#000000', 'center',37, 3, 0, 0, 800, 0);
@@ -646,4 +649,3 @@ function drawImage(ctx, imageUrl, x, y, width, height) {
         ctx.drawImage(image, x, y, width, height);
     };
 }
-
