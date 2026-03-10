@@ -210,7 +210,6 @@ function updateDisplay() {
             bankLogoUrl = '../assets/image/logo/CP-KTB.png'; 
             break;
     }
-    }
 
 
     const formattedDate = formatDate(datetime);
