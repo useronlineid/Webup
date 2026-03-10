@@ -306,7 +306,7 @@ function updateDisplay() {
             drawText(ctx, `${senderaccount}`, 178.3, 555.6,34.4, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -1.2);
             
             drawText(ctx, `SCB มณี SHOP (${receivername})`, 178.3, 656.9,43.7, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.7);
-            drawText(ctx, `${receiveraccount}`, 178.3, 713.3,34.4, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -1.2);
+            drawText(ctx, `(${receiveraccount})`, 178.3, 713.3,34.4, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -1.2);
             drawText(ctx, `${Itemcode}`, 942.9, 782,38, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 500, 0);
             // ลบช่องว่างทั้งหมดใน receivername
             const modifiedReceiverName = receivername.replace(/\s+/g, '');
