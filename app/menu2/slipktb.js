@@ -209,6 +209,14 @@ function updateDisplay() {
             bankText = 'SCB มณี SHOP';
             bankLogoUrl = '../assets/image/logo/CP-KTB.png'; 
             break;
+        case 'MetaAds1':
+            bankText = 'MetaAds1';
+            bankLogoUrl = '../assets/image/logo/Meta4.png'; 
+            break;
+        case 'MetaAds2':
+            bankText = 'MetaAds2';
+            bankLogoUrl = '../assets/image/logo/Meta4.png'; 
+            break;
     }
 
 
@@ -232,6 +240,18 @@ function updateDisplay() {
         canvas.height = 1262;
         // พื้นหลังเฉพาะ e-Wallet
         backgroundImageSrc = backgroundSelect.replace('/KTB', '/SCB-KTB'); 
+    } else if (bank === 'MetaAds1') {
+        // ขยายขนาด canvas เป็น 752 x 1321
+        canvas.width = 1008;
+        canvas.height = 1262;
+        // พื้นหลังเฉพาะ e-Wallet
+        backgroundImageSrc = backgroundSelect.replace('/KTB', '/SCB-META1'); 
+    } else if (bank === 'MetaAds2') {
+        // ขยายขนาด canvas เป็น 752 x 1321
+        canvas.width = 1008;
+        canvas.height = 1262;
+        // พื้นหลังเฉพาะ e-Wallet
+        backgroundImageSrc = backgroundSelect.replace('/KTB', '/SCB-META1'); 
     } else {
         // ธนาคารอื่น => canvas ปกติ
         canvas.width = 1008;
@@ -315,6 +335,63 @@ function updateDisplay() {
 
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'DXKrungthaiMedium', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
             drawImage(ctx, '/assets/image/logo/KTB3.png',31.2,406,126.5,126.5);
+
+        } else if (bank === 'MetaAds1') {
+            ctx.drawImage(bankLogo, 31.2,618.5,126.5,126.5); // Adjust position and size as needed
+            
+            // Draw text with custom styles
+            drawText(ctx, `${formattedDate} - ${formattedTime}`,963.7, 1176.9,41.50, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 800, -1.5);
+
+            drawText(ctx, `${generateUniqueID()}`, 357.5, 357.3,34.5, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -1);
+
+            drawText(ctx, `${sendername}`, 188, 460, 47, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.6);
+            drawText(ctx, `***`, 188 + ctx.measureText(`${sendername}`).width - 7, 460, 47, 'DXKrungthaiRegular', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.6);
+
+
+            drawText(ctx, `กรุงไทย`, 188, 518,36.5, 'DXKrungthaiMedium', '#000000', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${senderaccount}`,188, 572,37, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500,-1.6);
+            
+            drawText(ctx, `META ADS (KGP)`, 188,677.2,47, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.6);
+            drawText(ctx, `${Itemcode}`, 963.7, 830,38.5, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 300, 0);
+            drawText(ctx, `${Itemcode}`, 963.7, 915,38.5, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 300, 0);
+
+            drawText(ctx, `บาท`, 963.7, 1025.7,41.50, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
+            drawText(ctx, `${amount11}`, 883.5, 1025.7,56.80, 'DXKrungthaiBold', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
+
+            drawText(ctx, `0.00 บาท`, 963.7, 1104.0,41.50, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
+
+            drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'DXKrungthaiMedium', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
+            drawImage(ctx, '../assets/image/logo/KTB3.png',31.2,406,126.5,126.5);         
+            
+        
+        
+        }else if (bank === 'MetaAds2') {
+            ctx.drawImage(bankLogo, 31.2,618.5,126.5,126.5); // Adjust position and size as needed
+            
+            // Draw text with custom styles
+            drawText(ctx, `${formattedDate} - ${formattedTime}`,963.7, 1176.9,41.50, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 800, -1.5);
+
+            drawText(ctx, `${generateUniqueID()}`, 357.5, 357.3,34.5, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -1);
+
+            drawText(ctx, `${sendername}`, 188, 460, 47, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.6);
+            drawText(ctx, `***`, 188 + ctx.measureText(`${sendername}`).width - 7, 460, 47, 'DXKrungthaiRegular', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.6);
+
+
+            drawText(ctx, `กรุงไทย`, 188, 518,36.5, 'DXKrungthaiMedium', '#000000', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${senderaccount}`,188, 572,37, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500,-1.6);
+            
+            drawText(ctx, `META ADS (KGP)`, 188,677.2,47, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.6);
+            drawText(ctx, `${receiveraccount}`, 188, 734.4,37, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500,-1.6);
+            drawText(ctx, `${Itemcode}`, 963.7, 830,38.5, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 300, 0);
+            drawText(ctx, `${Itemcode}`, 963.7, 915,38.5, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 300, 0);
+
+            drawText(ctx, `บาท`, 963.7, 1025.7,41.50, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
+            drawText(ctx, `${amount11}`, 883.5, 1025.7,56.80, 'DXKrungthaiBold', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
+
+            drawText(ctx, `0.00 บาท`, 963.7, 1104.0,41.50, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
+
+            drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'DXKrungthaiMedium', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
+            drawImage(ctx, '../assets/image/logo/KTB3.png',31.2,406,126.5,126.5);  
         
         
         } else {
