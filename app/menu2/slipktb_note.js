@@ -205,6 +205,11 @@ function updateDisplay() {
             bankText = 'ChillPay';
             bankLogoUrl = '../assets/image/logo/CP-KTB.png'; 
             break;
+        case 'SCB มณี SHOP':
+            bankText = 'SCB มณี SHOP';
+            bankLogoUrl = '../assets/image/logo/CP-KTB.png'; 
+            break;
+    }
     }
 
 
@@ -222,6 +227,12 @@ function updateDisplay() {
         canvas.height = 1277;
         // พื้นหลังเฉพาะ e-Wallet
         backgroundImageSrc = backgroundSelect.replace('/KTB', '/CP-KTB'); 
+    } else if (bank === 'SCB มณี SHOP') {
+        // ขยายขนาด canvas เป็น 752 x 1321
+        canvas.width = 986;
+        canvas.height = 1277;
+        // พื้นหลังเฉพาะ e-Wallet
+        backgroundImageSrc = backgroundSelect.replace('/KTB', '/CP-SCB'); 
     } else {
         // ธนาคารอื่น => canvas ปกติ
         canvas.width = 986;
@@ -269,6 +280,39 @@ function updateDisplay() {
             const modifiedReceiverName = receivername.replace(/\s+/g, '');
             // แสดงชื่อผู้รับแบบไม่มีช่องว่าง
             drawText(ctx, `${modifiedReceiverName}`, 942.9, 866,38, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 500, 0);
+
+            drawText(ctx, `บาท`, 942.9, 972.3,39, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
+            drawText(ctx, `${amount11}`, 868.8,972.3,52.50, 'DXKrungthaiBold', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
+
+            drawText(ctx, `0.00 บาท`,942.9, 1046,39, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
+
+            drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'DXKrungthaiMedium', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
+            drawImage(ctx, '../assets/image/logo/KTB3.png', 31,389, 117.5, 117.5);  
+        
+            drawText(ctx, `${AideMemoire}`,942.9, 1183,39, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 1, 0, 0, 800, -1.5);
+
+            } else if (bank === 'SCB มณี SHOP') {
+
+            ctx.drawImage(bankLogo,31,597, 117.5, 117.5); // Adjust position and size as needed
+            
+            // Draw text with custom styles
+            drawText(ctx, `${formattedDate} - ${formattedTime}`,942.9,1114.0,39, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 800, -1.5);
+
+            drawText(ctx, `${generateUniqueID() }`, 337.7,342.2,32.5, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -0.5);
+            
+            drawText(ctx, `${sendername}`, 178.3, 445.3, 43.7, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.7);
+            drawText(ctx, `***`, 178.3 + ctx.measureText(`${sendername}`).width - 7, 445.3, 43.7, 'DXKrungthaiRegular', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.7);
+
+            drawText(ctx, `กรุงไทย`, 178.3, 502.3,34.4, 'DXKrungthaiMedium', '#000000', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${senderaccount}`, 178.3, 555.6,34.4, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -1.2);
+            
+            drawText(ctx, `SCB มณี SHOP (${receivername})`, 178.3, 656.9,43.7, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.7);
+            drawText(ctx, `${receiveraccount}`, 178.3, 713.3,34.4, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500, -1.2);
+            drawText(ctx, `${Itemcode}`, 942.9, 782,38, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 500, 0);
+            // ลบช่องว่างทั้งหมดใน receivername
+            const modifiedReceiverName = receivername.replace(/\s+/g, '');
+            // แสดงชื่อผู้รับแบบไม่มีช่องว่าง
+            drawText(ctx, `SCB`, 942.9, 866,38, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 500, 0);
 
             drawText(ctx, `บาท`, 942.9, 972.3,39, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
             drawText(ctx, `${amount11}`, 868.8,972.3,52.50, 'DXKrungthaiBold', '#000000', 'right', 1.5, 3, 0, 0, 500, -1.5);
