@@ -256,7 +256,7 @@ function updateDisplay() {
 
           
             // ========== เช็คว่าChillPay หรือไม่ ========== //
-            if (bank === 'ChillPay') {
+        if (bank === 'ChillPay') {
             ctx.drawImage(bankLogo, 31.2,618.5,126.5,126.5); // Adjust position and size as needed
             
             // Draw text with custom styles
@@ -286,7 +286,7 @@ function updateDisplay() {
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'DXKrungthaiMedium', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
             drawImage(ctx, '/assets/image/logo/KTB3.png',31.2,406,126.5,126.5);
                 
-            } else if (bank === 'SCB มณี SHOP') {
+        } else if (bank === 'SCB มณี SHOP') {
             ctx.drawImage(bankLogo, 31.2,618.5,126.5,126.5); // Adjust position and size as needed
             
             // Draw text with custom styles
