@@ -245,13 +245,13 @@ function updateDisplay() {
         canvas.width = 986;
         canvas.height = 1277;
         // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = backgroundSelect.replace('/KTB', '/META2-KTB');
+        backgroundImageSrc = backgroundSelect.replace('/KTB', '/META1-KTB');
     } else if (bank === 'SCB มณี SHOP') {
         // ขยายขนาด canvas เป็น 752 x 1321
         canvas.width = 986;
         canvas.height = 1277;
         // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = backgroundSelect.replace('/KTB', '/META2-KTB');
+        backgroundImageSrc = backgroundSelect.replace('/KTB', '/META1-KTB');
     } else {
         // ธนาคารอื่น => canvas ปกติ
         canvas.width = 986;
