@@ -231,7 +231,7 @@ function updateDisplay() {
         canvas.width = 986;
         canvas.height = 1277;
         // พื้นหลังเฉพาะ e-Wallet
-        backgroundImageSrc = backgroundSelect.replace('/KTB', '/SCB-SCB'); 
+        backgroundImageSrc = backgroundSelect.replace('/KTB', '/SCB-KTB'); 
     } else {
         // ธนาคารอื่น => canvas ปกติ
         canvas.width = 986;
