@@ -381,7 +381,7 @@ function updateDisplay() {
             drawText(ctx, `${senderaccount}`,188, 572,37, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500,-1.6);
             
             drawText(ctx, `META ADS (KGP)`, 188,677.2,47, 'DXKrungthaiBold', '#000000', 'left', 1.5, 3, 0, 0, 800, -0.6);
-            drawText(ctx, `${receiveraccount}`, 188, 734.4,37, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500,-1.6);
+            drawText(ctx, `(${receiveraccount})`, 188, 734.4,37, 'DXKrungthaiMedium', '#586970', 'left', 1.5, 1, 0, 0, 500,-1.6);
             drawText(ctx, `${Itemcode}`, 963.7, 830,38.5, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 300, 0);
             drawText(ctx, `${Itemcode}`, 963.7, 915,38.5, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 2, 0, 0, 300, 0);
 
