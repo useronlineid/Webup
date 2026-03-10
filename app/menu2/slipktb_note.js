@@ -257,7 +257,7 @@ function updateDisplay() {
 
             
             // ========== เช็คว่าChillPay หรือไม่ ========== //
-            if (bank === 'ChillPay') {
+        if (bank === 'ChillPay') {
 
             ctx.drawImage(bankLogo,31,597, 117.5, 117.5); // Adjust position and size as needed
             
@@ -290,7 +290,7 @@ function updateDisplay() {
         
             drawText(ctx, `${AideMemoire}`,942.9, 1183,39, 'DXKrungthaiMedium', '#000000', 'right', 1.5, 1, 0, 0, 800, -1.5);
 
-            } else if (bank === 'SCB มณี SHOP') {
+        } else if (bank === 'SCB มณี SHOP') {
 
             ctx.drawImage(bankLogo,31,597, 117.5, 117.5); // Adjust position and size as needed
             
