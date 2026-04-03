@@ -124,16 +124,19 @@ function generateUniqueID() {
     let prefix = "BOR"; // ค่าดีฟอลต์
 
     if (bank === "MetaAds") {
-        const prefixes = ["APM", "BPM", "CPM", "DPM"];
+        const prefixes = ["APM", "BPM", "CPM"];
+        prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+    } else if (bank === "ทูซีทูพี" || bank === "SCB มณี SHOP") {
+        const prefixes = ["APM", "BPM", "CPM"];
         prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
     } else if (bank === "รหัสพร้อมเพย์" || bank === "พร้อมเพย์วอลเล็ท") {
-        const prefixes = ["APP", "BPP", "CPP", "DPP"];
+        const prefixes = ["APP", "BPP", "CPP"];
         prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
     } else if (bank === "ธ.กสิกรไทย") {
-        const prefixes = ["ATF", "BTF", "CTF", "DTF"];
+        const prefixes = ["ATF", "BTF", "CTF"];
         prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
     } else {
-        const prefixes = ["AOR", "BOR", "COR", "DOR"];
+        const prefixes = ["AOR", "BOR", "COR"];
         prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
     }
 
@@ -149,6 +152,8 @@ function updateDisplay() {
     const sendername = document.getElementById('sendername').value || '-';
     const senderaccount = document.getElementById('senderaccount').value || '-';
     const receivername = document.getElementById('receivername').value || '-';
+    const number2 = document.getElementById('number2').value || '-';
+
     const receiveraccount = document.getElementById('receiveraccount').value || '-';
     const bank = document.getElementById('bank').value || '-';
     const amount11 = document.getElementById('amount11').value || '-';
@@ -156,6 +161,18 @@ function updateDisplay() {
     const selectedImage = document.getElementById('imageSelect').value || '';
     const backgroundSelect = document.getElementById('backgroundSelect').value || '';
     const QRCode = document.getElementById('QRCode').value || '';
+
+
+// ------------- ส่วนที่เพิ่มใหม่ -------------
+    const number2Input = document.getElementById('number2');
+    if (bank === 'ทูซีทูพี') {
+        // ล้างค่า style.display เพื่อให้กลับไปใช้ CSS เริ่มต้นของไฟล์ slip.css
+        number2Input.style.display = ''; 
+    } else {
+        // ซ่อนช่องกรอกข้อมูล
+        number2Input.style.display = 'none';
+    }
+    // ----------------------------------------
 
     // Check if the selected bank is "พร้อมเพย์วอลเล็ท"
     const isPromptPay   = bank === 'พร้อมเพย์วอลเล็ท';
@@ -221,9 +238,9 @@ function updateDisplay() {
             bankText = 'ธ.เกียรตินาคินภัทร';
             bankLogoUrl = '../assets/image/logo/K.png';
             break;
-        case 'ธ.ซีไอเอ็มบี':
+        case 'ธ.ซีไอเอ็มบีไทย':
             bankText = 'ธ.ซีไอเอ็มบี';
-            bankLogoUrl = '../assets/image/logo/CIMB2.png';
+            bankLogoUrl = '../assets/image/logo/CIMB.png';
             break;
         case 'ธ.ยูโอบี':
             bankText = 'ธ.ยูโอบี';
@@ -247,6 +264,14 @@ function updateDisplay() {
         case 'MetaAds':
             bankLogoUrl = '../assets/image/logo/Meta.png';
             break;
+        case 'ทูซีทูพี':
+            bankLogoUrl = '../assets/image/logo/Ptb-KBANK.png';
+            break;
+        case 'SCB มณี SHOP':
+            bankLogoUrl = '../assets/image/logo/Ptb-KBANK.png';
+            break;
+
+            
     }
 
     const formattedDate = formatDate(datetime);
@@ -255,9 +280,26 @@ function updateDisplay() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     
+    // ถ้าเลือกพร้อมเพย์ e-Wallet (EW01) => ขยาย canvas + เปลี่ยนพื้นหลัง + ย้ายตำแหน่ง
+    let backgroundImageSrc = backgroundSelect;
+    if (bank === 'ทูซีทูพี') {
+        // ขยายขนาด canvas เป็น 752 x 1321
+        canvas.width = 842;
+        canvas.height = 1200;
+    } else if (bank === 'SCB มณี SHOP') {
+        canvas.width = 842;
+        canvas.height = 1200;
+    } else {
+        // ธนาคารอื่น => canvas ปกติ
+        canvas.width = 842;
+        canvas.height = 1200;
+        backgroundImageSrc = backgroundSelect; 
+    }
+
+
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = backgroundSelect;
+    backgroundImage.src = backgroundImageSrc;
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -274,25 +316,66 @@ function updateDisplay() {
             // Draw text with custom styles
             drawText(ctx, `${formattedDate}  ${formattedTime} น.`, 68.9, 136.6, 37.5, 'kuriousRegular', '#4e4e4e', 'left', 1.5,0, 0, 0, 800, 0);
 
+
+            
+
+        
+            if (bank === 'ทูซีทูพี') {
             drawText(ctx, `${sendername}`, 238.9, 272.0, 39.3, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800,0);
             drawText(ctx, `ธ.กสิกรไทย`, 238.9, 333.6, 37.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${senderaccount}`, 238.9, 392.5, 37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0);
+            drawText(ctx, `${senderaccount}`, 238.9, 392.5, 37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
+
+
+            drawText(ctx, `ทูซีทูพี (ประเทศไทย)`, 238.9, receivernamePositionY, 39.3, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `${number2}`, 238.9, 639.0, 37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
+
+            drawText(ctx, `${receiveraccount}`, 238.9, receiveraccountPositionY, 37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
             
+            drawText(ctx, `${generateUniqueID()}`, 459, 885.4, 35.63, 'kuriousRegular', '#575757', 'right', 1.5, 3, 0, 0, 500, -1);
+            drawText(ctx, `${amount11} บาท`, 459, 1003.6, 38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+            drawText(ctx, `0.00 บาท`, 459, 1124.2, 38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+            drawText(ctx, `${QRCode}`, 238.9, 599.0, 33, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
+            drawImage(ctx, '../assets/image/logo/KBANK.png', 34.6, 222, 157, 157);  
+
+            } else if (bank === 'SCB มณี SHOP') {
+            drawText(ctx, `${sendername}`, 238.9, 272.0, 37.5, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800,0);
+            drawText(ctx, `ธ.กสิกรไทย`, 238.9, 333.6, 36.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${senderaccount}`, 238.9, 392.5, 36.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
+
+            drawText(ctx, `SCB มณี SHOP (${receivername})`, 238.9, receivernamePositionY, 37.5, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800,0);
+            drawText(ctx, `${receiveraccount}`, 238.9, 639.0, 36.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `SCB`, 238.9, receiveraccountPositionY, 36.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
+            
+            drawText(ctx, `${generateUniqueID()}`, 459, 885.4, 35.63, 'kuriousRegular', '#575757', 'right', 1.5, 3, 0, 0, 500, -1);
+            drawText(ctx, `${amount11} บาท`, 459, 1003.6, 38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+            drawText(ctx, `0.00 บาท`, 459, 1124.2, 38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+            drawText(ctx, `${QRCode}`, 238.9, 599.0, 33, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
+            drawImage(ctx, '../assets/image/logo/KBANK.png', 34.6, 222, 157, 157);  
+
+
+            } else {
+            drawText(ctx, `${sendername}`, 238.9, 272.0, 39.3, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800,0);
+            drawText(ctx, `ธ.กสิกรไทย`, 238.9, 333.6, 37.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${senderaccount}`, 238.9, 392.5, 37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
+
+
             drawText(ctx, `${receivername}`, 238.9, receivernamePositionY, 39.3, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
             drawText(ctx, bankText, 238.9, 639.0, 37.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${receiveraccount}`, 238.9, receiveraccountPositionY, 37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0);
+            drawText(ctx, `${receiveraccount}`, 238.9, receiveraccountPositionY, 37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
             if (isMetaAds) {
                          drawText(ctx, `${receiveraccount}`, 238.9, 697.7,
                                  37.5, 'kuriousRegular', '#545454', 'left',
-                                 1.5, 1, 0, 0, 500, 0);
+                                 1.5, 1, 0, 0, 500, 0.25);
             drawText(ctx, `Meta Ads (KGP)`, 238.9, 577.00, 39.3, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
                      }
-            drawText(ctx, `${generateUniqueID()}`, 459, 885.4, 35.63, 'kuriousRegular', '#575757', 'right', 1.5, 3, 0, 0, 500, -2);
-            drawText(ctx, `${amount11} บาท`, 459, 1003.6, 38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -2);
-            drawText(ctx, `0.00 บาท`, 459, 1124.2, 38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -2);
+            drawText(ctx, `${generateUniqueID()}`, 459, 885.4, 35.63, 'kuriousRegular', '#575757', 'right', 1.5, 3, 0, 0, 500, -1);
+            drawText(ctx, `${amount11} บาท`, 459, 1003.6, 38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+            drawText(ctx, `0.00 บาท`, 459, 1124.2, 38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
             drawText(ctx, `${QRCode}`, 238.9, 599.0, 33, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '/assets/image/logo/KBANK.png', 34.6, 222, 157, 157);  
-        
+            drawImage(ctx, '../assets/image/logo/KBANK.png', 34.6, 222, 157, 157);  
+
+            }
+
             // Draw the selected image
             if (selectedImage) {
                 const customImage = new Image();
