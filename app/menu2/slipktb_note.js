@@ -159,7 +159,7 @@ function updateDisplay() {
             break;
         case 'ออมสิน':
             bankText = 'ออมสิน';
-            bankLogoUrl = '../assets/image/logo/O2.png';
+            bankLogoUrl = '../assets/image/logo/O5.png';
             break;
         case 'ธ.ก.ส.':
             bankText = 'ธ.ก.ส.';
