@@ -235,7 +235,7 @@ function updateDisplay() {
         bankLogoUrl = '../assets/image/logo/P-SCB.png'; 
             break;
         case 'พร้อมเพย์บัตรประชาชน': 
-        bankLogoUrl = '../assets/image/logo/P-SCB1.1.png'; 
+        bankLogoUrl = '../assets/image/logo/P-SCB1.2.png'; 
             break;
         case 'พร้อมเพย์ e-Wallet TrueMoney': 
         bankLogoUrl = '../assets/image/logo/P-SCB2.png'; 
