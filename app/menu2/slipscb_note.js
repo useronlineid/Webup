@@ -2,80 +2,80 @@
 function loadFonts() {
     const fonts = [
         //SukhumvitSet
-        new FontFace('SukhumvitSetThin', 'url(/assets/fonts/SukhumvitSet-Thin.woff)'),
-        new FontFace('SukhumvitSetText', 'url(/assets/fonts/SukhumvitSet-Text.woff)'),
-        new FontFace('SukhumvitSetLight', 'url(/assets/fonts/SukhumvitSet-Light.woff)'),
-        new FontFace('SukhumvitSetMedium', 'url(/assets/fonts/SukhumvitSet-Medium.woff)'),
-        new FontFace('SukhumvitSetSemiBold', 'url(/assets/fonts/SukhumvitSet-SemiBold.woff)'),
-        new FontFace('SukhumvitSetBold', 'url(/assets/fonts/SukhumvitSet-Bold.woff)'),
-        new FontFace('SukhumvitSetExtraBold', 'url(/assets/fonts/SukhumvitSet-Extra%20Bold.woff)'),
+        new FontFace('SukhumvitSetThin', 'url(../assets/fonts/SukhumvitSet-Thin.woff)'),
+        new FontFace('SukhumvitSetText', 'url(../assets/fonts/SukhumvitSet-Text.woff)'),
+        new FontFace('SukhumvitSetLight', 'url(../assets/fonts/SukhumvitSet-Light.woff)'),
+        new FontFace('SukhumvitSetMedium', 'url(../assets/fonts/SukhumvitSet-Medium.woff)'),
+        new FontFace('SukhumvitSetSemiBold', 'url(../assets/fonts/SukhumvitSet-SemiBold.woff)'),
+        new FontFace('SukhumvitSetBold', 'url(../assets/fonts/SukhumvitSet-Bold.woff)'),
+        new FontFace('SukhumvitSetExtraBold', 'url(../assets/fonts/SukhumvitSet-Extra%20Bold.woff)'),
         //SFThonburi
-        new FontFace('SFThonburiLight', 'url(/assets/fonts/SFThonburi.woff)'),
-        new FontFace('SFThonburiRegular', 'url(/assets/fonts/SFThonburi-Regular.woff)'),
-        new FontFace('SFThonburiSemiBold', 'url(/assets/fonts/SFThonburi-Semibold.woff)'),
-        new FontFace('SFThonburiBold', 'url(/assets/fonts/SFThonburi-Bold.woff)'),
+        new FontFace('SFThonburiLight', 'url(../assets/fonts/SFThonburi.woff)'),
+        new FontFace('SFThonburiRegular', 'url(../assets/fonts/SFThonburi-Regular.woff)'),
+        new FontFace('SFThonburiSemiBold', 'url(../assets/fonts/SFThonburi-Semibold.woff)'),
+        new FontFace('SFThonburiBold', 'url(../assets/fonts/SFThonburi-Bold.woff)'),
         //Kanit
-        new FontFace('KanitThin', 'url(/assets/fonts/Kanit-Thin.woff)'),
-        new FontFace('KanitExtraLight', 'url(/assets/fonts/Kanit-ExtraLight.woff)'),
-        new FontFace('KanitLight', 'url(/assets/fonts/Kanit-Light.woff)'),
-        new FontFace('KanitRegular', 'url(/assets/fonts/Kanit-Regular.woff)'),
-        new FontFace('KanitMedium', 'url(/assets/fonts/Kanit-Medium.woff)'),
-        new FontFace('KanitSemiBold', 'url(/assets/fonts/Kanit-SemiBold.woff)'),
-        new FontFace('KanitBold', 'url(/assets/fonts/Kanit-Bold.woff)'),
-        new FontFace('KanitExtraBold', 'url(/assets/fonts/Kanit-ExtraBold.woff)'),
-        new FontFace('KanitBlack', 'url(/assets/fonts/Kanit-Black.woff)'),
+        new FontFace('KanitThin', 'url(../assets/fonts/Kanit-Thin.woff)'),
+        new FontFace('KanitExtraLight', 'url(../assets/fonts/Kanit-ExtraLight.woff)'),
+        new FontFace('KanitLight', 'url(../assets/fonts/Kanit-Light.woff)'),
+        new FontFace('KanitRegular', 'url(../assets/fonts/Kanit-Regular.woff)'),
+        new FontFace('KanitMedium', 'url(../assets/fonts/Kanit-Medium.woff)'),
+        new FontFace('KanitSemiBold', 'url(../assets/fonts/Kanit-SemiBold.woff)'),
+        new FontFace('KanitBold', 'url(../assets/fonts/Kanit-Bold.woff)'),
+        new FontFace('KanitExtraBold', 'url(../assets/fonts/Kanit-ExtraBold.woff)'),
+        new FontFace('KanitBlack', 'url(../assets/fonts/Kanit-Black.woff)'),
         //Bangkok
-        new FontFace('BangkokTime1', 'url(/assets/fonts/Bangkok-Time1.woff)'),
-        new FontFace('BangkokTime2', 'url(/assets/fonts/Bangkok-Time2.woff)'),
-        new FontFace('BangkokMoney', 'url(/assets/fonts/Bangkok-Money.woff)'),
-        new FontFace('BangkokTime', 'url(/assets/fonts/Bangkok-Time.woff)'),
+        new FontFace('BangkokTime1', 'url(../assets/fonts/Bangkok-Time1.woff)'),
+        new FontFace('BangkokTime2', 'url(../assets/fonts/Bangkok-Time2.woff)'),
+        new FontFace('BangkokMoney', 'url(../assets/fonts/Bangkok-Money.woff)'),
+        new FontFace('BangkokTime', 'url(../assets/fonts/Bangkok-Time.woff)'),
         //BangkokMoney
-        new FontFace('BangkokMoneyRegular', 'url(/assets/fonts/Bangkok-Money-Regular.woff)'),
-        new FontFace('BangkokMoneyMedium', 'url(/assets/fonts/Bangkok-Money-Medium.woff)'),
-        new FontFace('BangkokMoneySemiBold', 'url(/assets/fonts/Bangkok-Money-SemiBold.woff)'),
-        new FontFace('BangkokMoneyBold', 'url(/assets/fonts/Bangkok-Money-Bold.woff)'),
+        new FontFace('BangkokMoneyRegular', 'url(../assets/fonts/Bangkok-Money-Regular.woff)'),
+        new FontFace('BangkokMoneyMedium', 'url(../assets/fonts/Bangkok-Money-Medium.woff)'),
+        new FontFace('BangkokMoneySemiBold', 'url(../assets/fonts/Bangkok-Money-SemiBold.woff)'),
+        new FontFace('BangkokMoneyBold', 'url(../assets/fonts/Bangkok-Money-Bold.woff)'),
         //TTB-Money
-        new FontFace('TTBMoneyRegular', 'url(/assets/fonts/TTB-Money-Regular.woff)'),
-        new FontFace('TTBMoneyMedium', 'url(/assets/fonts/TTB-Money-Medium.woff)'),
-        new FontFace('TTBMoneySemiBold', 'url(/assets/fonts/TTB-Money-SemiBold.woff)'),
-        new FontFace('TTBMoneyBold', 'url(/assets/fonts/TTB-Money-Bold.woff)'),
-        new FontFace('TTBMoneyExtraBold', 'url(/assets/fonts/TTB-Money-ExtraBold.woff)'),
+        new FontFace('TTBMoneyRegular', 'url(../assets/fonts/TTB-Money-Regular.woff)'),
+        new FontFace('TTBMoneyMedium', 'url(../assets/fonts/TTB-Money-Medium.woff)'),
+        new FontFace('TTBMoneySemiBold', 'url(../assets/fonts/TTB-Money-SemiBold.woff)'),
+        new FontFace('TTBMoneyBold', 'url(../assets/fonts/TTB-Money-Bold.woff)'),
+        new FontFace('TTBMoneyExtraBold', 'url(../assets/fonts/TTB-Money-ExtraBold.woff)'),
         //krungsri
-        new FontFace('krungsriRegular', 'url(/assets/fonts/krungsri_con-webfont.woff)'),
-        new FontFace('krungsriMedium', 'url(/assets/fonts/krungsri_con_med-webfont.woff)'),
-        new FontFace('krungsriBold', 'url(/assets/fonts/krungsri_con_bol-webfont.woff)'),
+        new FontFace('krungsriRegular', 'url(../assets/fonts/krungsri_con-webfont.woff)'),
+        new FontFace('krungsriMedium', 'url(../assets/fonts/krungsri_con_med-webfont.woff)'),
+        new FontFace('krungsriBold', 'url(../assets/fonts/krungsri_con_bol-webfont.woff)'),
 
         //THSarabunNew
-        new FontFace('THSarabunRegular', 'url(/assets/fonts/THSarabun.woff)'),
-        new FontFace('THSarabunBold', 'url(/assets/fonts/THSarabun-Bold.woff)'),
-        new FontFace('THSarabunItalic', 'url(/assets/fonts/THSarabun-Italic.woff)'),
-        new FontFace('THSarabunBoldItalic', 'url(/assets/fonts/THSarabun-BoldItalic.woff)'),
-        new FontFace('THSarabunNew', 'url(/assets/fonts/THSarabunNew.woff)'),
-        new FontFace('THSarabunNewBold', 'url(/assets/fonts/THSarabunNew-Bold.woff)'),
-        new FontFace('THSarabunNewItalic', 'url(/assets/fonts/THSarabunNew-Italic.woff)'),
-        new FontFace('THSarabunNewBoldItalic', 'url(/assets/fonts/THSarabunNew-BoldItalic.woff)'),
+        new FontFace('THSarabunRegular', 'url(../assets/fonts/THSarabun.woff)'),
+        new FontFace('THSarabunBold', 'url(../assets/fonts/THSarabun-Bold.woff)'),
+        new FontFace('THSarabunItalic', 'url(../assets/fonts/THSarabun-Italic.woff)'),
+        new FontFace('THSarabunBoldItalic', 'url(../assets/fonts/THSarabun-BoldItalic.woff)'),
+        new FontFace('THSarabunNew', 'url(../assets/fonts/THSarabunNew.woff)'),
+        new FontFace('THSarabunNewBold', 'url(../assets/fonts/THSarabunNew-Bold.woff)'),
+        new FontFace('THSarabunNewItalic', 'url(../assets/fonts/THSarabunNew-Italic.woff)'),
+        new FontFace('THSarabunNewBoldItalic', 'url(../assets/fonts/THSarabunNew-BoldItalic.woff)'),
         
         //DBHelvethaicaMonX
-        new FontFace('DBHelvethaicaMonX', 'url(/assets/fonts/DBHelvethaicaMonX.woff)'),
-        new FontFace('DBHelvethaicaMonXCond', 'url(/assets/fonts/DBHelvethaicaMonXCond.woff)'),
-        new FontFace('DBHelvethaicaMonXMed', 'url(/assets/fonts/DBHelvethaicaMonXMed.woff)'),
-        new FontFace('DBHelvethaicaMonXMedCond', 'url(/assets/fonts/DBHelvethaicaMonXMedCond.woff)'),
-        new FontFace('DBHelvethaicaMonXBold', 'url(/assets/fonts/DBHelvethaicaMonXBd.woff)'),
-        new FontFace('DBHelvethaicaMonXBoldCond', 'url(/assets/fonts/DBHelvethaicaMonXBdCond.woff)'),
-        new FontFace('DBHelvethaicaMonXBlk', 'url(/assets/fonts/DBHelvethaicaMonXBlk.woff)'),
+        new FontFace('DBHelvethaicaMonX', 'url(../assets/fonts/DBHelvethaicaMonX.woff)'),
+        new FontFace('DBHelvethaicaMonXCond', 'url(../assets/fonts/DBHelvethaicaMonXCond.woff)'),
+        new FontFace('DBHelvethaicaMonXMed', 'url(../assets/fonts/DBHelvethaicaMonXMed.woff)'),
+        new FontFace('DBHelvethaicaMonXMedCond', 'url(../assets/fonts/DBHelvethaicaMonXMedCond.woff)'),
+        new FontFace('DBHelvethaicaMonXBold', 'url(../assets/fonts/DBHelvethaicaMonXBd.woff)'),
+        new FontFace('DBHelvethaicaMonXBoldCond', 'url(../assets/fonts/DBHelvethaicaMonXBdCond.woff)'),
+        new FontFace('DBHelvethaicaMonXBlk', 'url(../assets/fonts/DBHelvethaicaMonXBlk.woff)'),
         //other
-        new FontFace('DXKrungthaiSemiBold', 'url(/assets/fonts/DX-Krungthai-SemiBold.woff)'),
-        new FontFace('DXKrungthaiThin', 'url(/assets/fonts/DX-Krungthai-Thin.woff)'),
-        new FontFace('DXSCB', 'url(/assets/fonts/DX-SCB.woff)'),
-        new FontFace('DXTTBBold', 'url(/assets/fonts/DX-TTB-bold.woff)'),
-        new FontFace('DXTTBRegular', 'url(/assets/fonts/DX-TTB-regular.woff)'),
-        new FontFace('DXKrungthaiBold', 'url(/assets/fonts/DX-Krungthai-Bold.woff)'),
-        new FontFace('DXKrungthaiMedium', 'url(/assets/fonts/DX-Krungthai-Medium.woff)'),
-        new FontFace('DXKrungthaiRegular', 'url(/assets/fonts/DX-Krungthai-Regular.woff)'),
-        new FontFace('TTBMoney', 'url(/assets/fonts/TTB Money.woff)'),
-        new FontFace('CoreSansLight', 'url(/assets/fonts/Core-Sans-E-W01-35-Light.woff)'),
-        new FontFace('CoreSansBold', 'url(/assets/fonts/Core-Sans-N-65-Bold.woff)'),
-        new FontFace('THSarabun', 'url(/assets/fonts/THSarabun.woff)')
+        new FontFace('DXKrungthaiSemiBold', 'url(../assets/fonts/DX-Krungthai-SemiBold.woff)'),
+        new FontFace('DXKrungthaiThin', 'url(../assets/fonts/DX-Krungthai-Thin.woff)'),
+        new FontFace('DXSCB', 'url(../assets/fonts/DX-SCB.woff)'),
+        new FontFace('DXTTBBold', 'url(../assets/fonts/DX-TTB-bold.woff)'),
+        new FontFace('DXTTBRegular', 'url(../assets/fonts/DX-TTB-regular.woff)'),
+        new FontFace('DXKrungthaiBold', 'url(../assets/fonts/DX-Krungthai-Bold.woff)'),
+        new FontFace('DXKrungthaiMedium', 'url(../assets/fonts/DX-Krungthai-Medium.woff)'),
+        new FontFace('DXKrungthaiRegular', 'url(../assets/fonts/DX-Krungthai-Regular.woff)'),
+        new FontFace('TTBMoney', 'url(../assets/fonts/TTB Money.woff)'),
+        new FontFace('CoreSansLight', 'url(../assets/fonts/Core-Sans-E-W01-35-Light.woff)'),
+        new FontFace('CoreSansBold', 'url(../assets/fonts/Core-Sans-N-65-Bold.woff)'),
+        new FontFace('THSarabun', 'url(../assets/fonts/THSarabun.woff)')
     ];
 
     // โหลดฟอนต์ทั้งหมดและเพิ่มเข้าไปที่ document
@@ -181,6 +181,11 @@ function updateDisplay() {
     const senderaccount = document.getElementById('senderaccount').value || '-';
     const receivername = document.getElementById('receivername').value || '-';
     const receiveraccount = document.getElementById('receiveraccount').value || '-';
+    const BillerID = document.getElementById('BillerID').value || '-';
+    const number1 = document.getElementById('number1').value || '-';
+    const number2 = document.getElementById('number2').value || '-';
+    const number3 = document.getElementById('number3').value || '-';
+
     const bank = document.getElementById('bank').value || '-';
     const amount11 = document.getElementById('amount11').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
@@ -188,6 +193,49 @@ function updateDisplay() {
     const selectedImage = document.getElementById('imageSelect').value || '';
     const backgroundSelect = document.getElementById('backgroundSelect').value || '';
     const QRCode = document.getElementById('QRCode').value || '';
+
+    // ------------- ส่วนที่เพิ่มใหม่ -------------
+    const receivernameInput = document.getElementById('receivername');
+    const receiveraccountInput = document.getElementById('receiveraccount');
+
+    const BillerIDInput = document.getElementById('BillerID');
+    const number1Input = document.getElementById('number1');
+    const number2Input = document.getElementById('number2');
+    const number3Input = document.getElementById('number3');
+
+    if (bank === 'MetaAds') {
+        //ช่องที่แสดง
+        BillerIDInput.style.display = ''; 
+        number1Input.style.display = ''; 
+
+        
+        //ช่องที่ถูกซ่อนไว้
+        number2Input.style.display = 'none'; 
+        number3Input.style.display = 'none'; 
+        receivernameInput.style.display = 'none';
+        receiveraccountInput.style.display = 'none';
+    } else if (bank === 'ทูซีทูพี') {
+        //ช่องที่แสดง
+        BillerIDInput.style.display = ''; 
+        number1Input.style.display = ''; 
+        number2Input.style.display = ''; 
+        number3Input.style.display = ''; 
+        
+        //ช่องที่ถูกซ่อนไว้
+        receivernameInput.style.display = 'none';
+        receiveraccountInput.style.display = 'none';
+    } else {
+        // ช่องที่ถูกซ่อนไว้
+        BillerIDInput.style.display = 'none';
+        number1Input.style.display = 'none';
+        number2Input.style.display = 'none';
+        number3Input.style.display = 'none';
+
+        // ช่องที่แสดง
+        receivernameInput.style.display = '';
+        receiveraccountInput.style.display = '';
+    }
+    // ----------------------------------------
 
 
     let bankLogoUrl = '';
@@ -250,6 +298,9 @@ function updateDisplay() {
         bankLogoUrl = '../assets/image/logo/P-SCB2.png'; 
             break;
         case 'MetaAds': 
+        bankLogoUrl = '../assets/image/logo/Meta3.png'; 
+            break;
+        case 'ทูซีทูพี': 
         bankLogoUrl = '../assets/image/logo/Meta3.png'; 
             break;
         default: bankLogoUrl = '';
@@ -321,7 +372,7 @@ function updateDisplay() {
     let backgroundImageSrc = backgroundSelect; // ค่าเริ่มต้น (SCB...)
 
     // ตรวจสอบ Bank เพื่อเปลี่ยน Canvas Size และ ชื่อไฟล์พื้นหลัง
-    if (bank === 'พร้อมเพย์ e-Wallet TrueMoney') {
+    if (bank === 'พร้อมเพย์ e-Wallet') {
         // ขยายขนาด canvas
         canvas.width = 743;
         canvas.height = 1399;
@@ -330,23 +381,12 @@ function updateDisplay() {
         // เช่น ../assets/image/bs/SCB1.1.jpg จะกลายเป็น ../assets/image/bs/SCBB1.1.jpg
         backgroundImageSrc = backgroundSelect.replace('/SCB', '/SCBB'); 
 
-    } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
-        // ขยายขนาด canvas
+    } else if (bank === 'ทูซีทูพี') {
+        // ขนาด canvas ของ MetaAds
         canvas.width = 743;
-        canvas.height = 1399;
-        
-        // เทคนิค: แทนที่คำว่า "/SCB" ในชื่อไฟล์ด้วย "/SCBB"
-        // เช่น ../assets/image/bs/SCB1.1.jpg จะกลายเป็น ../assets/image/bs/SCBB1.1.jpg
-        backgroundImageSrc = backgroundSelect.replace('/SCB', '/SCBB');
+        canvas.height = 1383;
 
-    } else if (bank === 'พร้อมเพย์ e-Wallet K Plus W') {
-        // ขยายขนาด canvas
-        canvas.width = 743;
-        canvas.height = 1399;
-        
-        // เทคนิค: แทนที่คำว่า "/SCB" ในชื่อไฟล์ด้วย "/SCBB"
-        // เช่น ../assets/image/bs/SCB1.1.jpg จะกลายเป็น ../assets/image/bs/SCBB1.1.jpg
-        backgroundImageSrc = backgroundSelect.replace('/SCB', '/SCBB');
+        backgroundImageSrc = backgroundSelect.replace('/SCB', '/2C2P-SCB');
 
     } else if (bank === 'MetaAds') {
         // ขนาด canvas ของ MetaAds
@@ -403,7 +443,7 @@ function updateDisplay() {
 
 
                 // ========== เช็คว่าธนาคารเป็นพร้อมเพย์ e-Wallet หรือไม่ ========== //
-            if (bank === 'พร้อมเพย์ e-Wallet TrueMoney') {
+            if (bank === 'พร้อมเพย์ e-Wallet') {
                 // วาด bankLogo สำหรับผู้รับ
                 ctx.drawImage(bankLogo, bankLogoX, 520.7, bankLogoWidth, 55);
                 drawImage(ctx, '../assets/image/logo/P-SCB1.png', 424.5, 520.7, 55, 55);
@@ -415,39 +455,28 @@ function updateDisplay() {
                 drawText(ctx, `${amount11}`, 698, 717.2, 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
                 // วาดรหัสอ้างอิง
                 drawText(ctx, `รหัสอ้างอิง: ${generateUniqueID()}`, 370, 342.8, 35.0, 'DXSCB', '#76737b', 'center', 1.5, 1, 0, 0, 800, 0);
+    
+             } else if (bank === 'ทูซีทูพี') {
+                drawImage(ctx, '../assets/image/logo/Meta3.png', 438, 520.7, 53, 53);
+                drawText(ctx, `2c2p(Thailand)`, 502, 557., 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
+                drawText(ctx, `Biller ID : ${BillerID}`, 698, 602.3, 35.0, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `หมายเลขอ้างอิง 1 : ${number1}`, 698, 640, 35.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `หมายเลขอ้างอิง 2 : ${number2}`, 698, 674, 35.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `หมายเลขอ้างอิง 3 : ${number3}`, 698, 708, 35.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
 
-            } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
-                // วาด bankLogo สำหรับผู้รับ
-                ctx.drawImage(bankLogo, bankLogoX, 520.7, bankLogoWidth, 55);
-                drawImage(ctx, '../assets/image/logo/P-SCB1.png', 424.5, 520.7, 55, 55);
-                drawText(ctx, `เติมเงินพร้อมเพย์`, 490, 557., 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
-                drawText(ctx, `${receiveraccount}`, 698, 602.3, 35.0, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
-                drawText(ctx, `${receivername} (Jaew)`, 42.3, 836.4, 32.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
-                drawText(ctx, `${AideMemoire}`, 42.3, 953, 32.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
-                // วาดจำนวนเงิน
-                drawText(ctx, `${amount11}`, 698, 717.2, 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
-                // วาดรหัสอ้างอิง
-                drawText(ctx, `รหัสอ้างอิง: ${generateUniqueID()}`, 370, 342.8, 35.0, 'DXSCB', '#76737b', 'center', 1.5, 1, 0, 0, 800, 0);
+                drawText(ctx, `${AideMemoire}`, 42.3, 935, 32.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
 
-            } else if (bank === 'พร้อมเพย์ e-Wallet K Plus W') {
-                // วาด bankLogo สำหรับผู้รับ
-                ctx.drawImage(bankLogo, bankLogoX, 520.7, bankLogoWidth, 55);
-                drawImage(ctx, '../assets/image/logo/P-SCB1.png', 424.5, 520.7, 55, 55);
-                drawText(ctx, `เติมเงินพร้อมเพย์`, 490, 557., 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
-                drawText(ctx, `${receiveraccount}`, 698, 602.3, 35.0, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
-                drawText(ctx, `${receivername} (K Plus W)`, 42.3, 836.4, 32.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
-                drawText(ctx, `${AideMemoire}`, 42.3, 953, 32.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
                 // วาดจำนวนเงิน
-                drawText(ctx, `${amount11}`, 698, 717.2, 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
+                drawText(ctx, `${amount11}`, 698, 819, 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
                 // วาดรหัสอ้างอิง
                 drawText(ctx, `รหัสอ้างอิง: ${generateUniqueID()}`, 370, 342.8, 35.0, 'DXSCB', '#76737b', 'center', 1.5, 1, 0, 0, 800, 0);
     
-             } else if (bank === 'MetaAds') {
+            } else if (bank === 'MetaAds') {
                 drawImage(ctx, '../assets/image/logo/Meta3.png', 406, 520.7, 53, 53);
                 drawText(ctx, `META ADS (KGP)`, 471, 557., 42.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
-                drawText(ctx, `Biller ID : ${receivername}`, 698, 602.3, 35.0, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
-                drawText(ctx, `หมายเลขอ้างอิง 1 : ${receiveraccount}`, 698, 640, 35.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
-                drawText(ctx, `หมายเลขอ้างอิง 2 : ${receiveraccount}`, 698, 674, 35.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `Biller ID : ${BillerID}`, 698, 602.3, 35.0, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `หมายเลขอ้างอิง 1 : ${number1}`, 698, 640, 35.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `หมายเลขอ้างอิง 2 : ${number1}`, 698, 674, 35.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
 
                 drawText(ctx, `${AideMemoire}`, 42.3, 903, 32.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
 
