@@ -110,6 +110,9 @@ function updateDisplay() {
     const senderaccount = document.getElementById('senderaccount').value || '-';
     const receivername = document.getElementById('receivername').value || '-';
     const receiveraccount = document.getElementById('receiveraccount').value || '-';
+    const number2 = document.getElementById('number2').value || '-';
+    const number3 = document.getElementById('number3').value || '-';
+
     const bank = document.getElementById('bank').value || '-';
     const amount11 = document.getElementById('amount11').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
@@ -117,6 +120,47 @@ function updateDisplay() {
     const selectedImage = document.getElementById('imageSelect').value || '';
     const backgroundSelect = document.getElementById('backgroundSelect').value || '';
     const QRCode = document.getElementById('QRCode').value || '';
+
+    // ------------- ส่วนที่เพิ่มใหม่ -------------
+    // ดึง Element ที่ต้องการควบคุมการแสดงผล
+    //const receivernameLabel = document.getElementById('receivernameLabel');
+    const receivernameInput = document.getElementById('receivername');
+    const receiveraccountInput = document.getElementById('receiveraccount');
+
+    const number2Input = document.getElementById('number2');
+    const number3Input = document.getElementById('number3');
+    if (bank === 'MetaAds') {
+        // ล้างค่า style.display เพื่อให้กลับไปใช้ CSS เริ่มต้นของไฟล์ slip.css
+        number2Input.style.display = ''; 
+        number3Input.style.display = 'none';
+
+        // --- ส่วนที่เพิ่มใหม่: ซ่อนชื่อและเลขบัญชีผู้รับ ---
+        //if (receivernameLabel) receivernameLabel.style.display = 'none';
+        receivernameInput.style.display = 'none';
+        receiveraccountInput.style.display = 'none';
+
+    } else if (bank === 'ทูซีทูพี') {
+        // ล้างค่า style.display เพื่อให้กลับไปใช้ CSS เริ่มต้นของไฟล์ slip.css
+        number2Input.style.display = ''; 
+        number3Input.style.display = ''; 
+
+        // --- ส่วนที่เพิ่มใหม่: ซ่อนชื่อและเลขบัญชีผู้รับ ---
+        //if (receivernameLabel) receivernameLabel.style.display = 'none';
+        receivernameInput.style.display = 'none';
+        receiveraccountInput.style.display = 'none';
+
+    } else {
+        // ซ่อนช่องกรอกข้อมูล
+        number2Input.style.display = 'none';
+        number3Input.style.display = 'none';
+
+        // --- แสดงชื่อและเลขบัญชีผู้รับตามปกติ ---
+        //if (receivernameLabel) receivernameLabel.style.display = '';
+        receivernameInput.style.display = '';
+        receiveraccountInput.style.display = '';
+    }
+
+    // ----------------------------------------
 
     let bankLogoUrl = '';
     switch (bank) {
@@ -136,13 +180,13 @@ function updateDisplay() {
             bankLogoUrl = '../assets/image/logo/BAY.png';
             break;
         case 'ธนาคารทหารไทยธนชาต':
-            bankLogoUrl = '../assets/image/logo/TTB2.png';
+            bankLogoUrl = '../assets/image/logo/TTB1.png';
             break;
         case 'ธนาคารออมสิน':
             bankLogoUrl = '../assets/image/logo/O3.png';
             break;
         case 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร':
-            bankLogoUrl = '../assets/image/logo/T4.png';
+            bankLogoUrl = '../assets/image/logo/T3.png';
             break;
         case 'ธนาคารอาคารสงเคราะห์':
             bankLogoUrl = '../assets/image/logo/C.png';
@@ -151,12 +195,12 @@ function updateDisplay() {
             bankLogoUrl = '../assets/image/logo/K.png';
             break;
         case 'ธนาคารซีไอเอ็มบีไทย':
-            bankLogoUrl = '../assets/image/logo/CIMB1.png';
+            bankLogoUrl = '../assets/image/logo/CIMB.png';
             break;
         case 'ธนาคารยูโอบี':
             bankLogoUrl = '../assets/image/logo/UOB3.png';
             break;
-        case 'ธนาคารแลนด์แอนด์เฮ้าส์':
+        case 'ธนาคารแลนด์ แอนด์ เฮ้าส์':
             bankLogoUrl = '../assets/image/logo/LHBANK.png';
             break;
         case 'ธนาคารไอซีบีซี':
@@ -169,7 +213,10 @@ function updateDisplay() {
             bankLogoUrl = '../assets/image/logo/P-savings1.png';
             break;
         case 'MetaAds': 
-        bankLogoUrl = '../assets/image/logo/P-savings.png'; 
+            bankLogoUrl = '../assets/image/logo/P-savings.png'; 
+            break;
+        case 'ทูซีทูพี': 
+            bankLogoUrl = '../assets/image/logo/P-savings.png'; 
             break;
         default: bankLogoUrl = '';
     }
@@ -187,6 +234,10 @@ if (bank === 'MetaAds') {
     canvas.width = 567;
     canvas.height = 1346;
     backgroundImageSrc = '../assets/image/bs/OO1T.jpg';
+} else if (bank === 'ทูซีทูพี') {
+    canvas.width = 567;
+    canvas.height = 1280;
+    backgroundImageSrc = '../assets/image/bs/2C2P-O1T.jpg'; // 
 } else if (bank === 'ธนาคารออมสิน') {
     canvas.width = 567;
     canvas.height = 1280;
@@ -241,11 +292,17 @@ if (bank === 'MetaAds') {
             drawText(ctx, `${AideMemoire}`, 149.2, 819.1,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `META ADS (KGP)`,149.2, 585.5,31, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 500, -0.50);
             drawText(ctx, `หมายเลขอ้างอิง 1:`, 149.2, 619,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${receiveraccount}`, 149.2, 646.9,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
+            drawText(ctx, `${number2}`, 149.2, 646.9,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
             drawText(ctx, `หมายเลขอ้างอิง 2:`, 149.2, 674.8,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${receiveraccount}`, 149.2, 702.7,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
+            drawText(ctx, `${number2}`, 149.2, 702.7,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 1, 0, 0, 500,-1);
 
-             } else if (bank === 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร') {
+             } else if (bank === 'ทูซีทูพี') {
+            drawText(ctx, `${AideMemoire}`, 149.2, 753.1,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `ทูซีทูพี (ประเทศไทย)`,149.2, 585.5,31, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 500, -0.50);
+            drawText(ctx, `หมายเลขอ้างอิง 1: ${number2}`, 149.2, 619,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `หมายเลขอ้างอิง 2: ${number3}`, 149.2, 646.9,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
+
+            } else if (bank === 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร') {
             drawText(ctx, `${AideMemoire}`, 149.2, 791.1,23, 'SFThonburiRegular', '#525252', 'left', 1.5, 2, 0, 0, 500, 0);
             drawText(ctx, `${receivername}`,149.2, 585.5,31, 'SFThonburiBold', '#000000', 'left', 1.5, 3, 0, 0, 500, -0.50);
             drawText(ctx, `${bank}`, 149.2, 619,23, 'SFThonburiRegular', '#525252', 'left', 28, 2, 0, 0, 350, 0);
