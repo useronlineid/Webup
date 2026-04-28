@@ -30,8 +30,10 @@
 
                 <label for="receivername">ผู้รับโอน /Biller ID</label>
                 <input type="text" id="receivername" name="receivername" value="นาย ประสิทธิ์ ครองสุข" oninput="updateDisplay()">
-
                 <input type="text" id="receiveraccount" name="receiveraccount" value="00xxxx0914" oninput="updateDisplay()">
+
+                <input type="text" id="number2" name="number2" value="293115109" oninput="updateDisplay()" style="display: none;" placeholder="รหัสอ้างอิง ทูซีทูพี">
+                <input type="text" id="number3" name="number3" value="1063758113" oninput="updateDisplay()" style="display: none;" placeholder="รหัสอ้างอิง ทูซีทูพี">
 
                 <select id="bank" name="bank" onchange="updateDisplay()">
                     <option value="ธนาคารกสิกรไทย">ธ.กสิกรไทย</option>
@@ -51,6 +53,7 @@
                     <option value="พร้อมเพย์">พร้อมเพย์</option>
                     <option value="เติมเงินพร้อมเพย์">พร้อมเพย์วอลเล็ท</option>
                     <option value="MetaAds">MetaAds</option>
+                    <option value="ทูซีทูพี">ทูซีทูพี</option>
                 </select>
                 
 
