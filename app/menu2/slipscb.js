@@ -363,7 +363,7 @@ function updateDisplay() {
     let backgroundImageSrc = backgroundSelect; // ค่าเริ่มต้น (SCB...)
 
     // ตรวจสอบ Bank เพื่อเปลี่ยน Canvas Size และ ชื่อไฟล์พื้นหลัง
-    if (bank === 'พร้อมเพย์ e-Wallet') {
+    if (bank === 'พร้อมเพย์ e-Wallet TrueMoney') {
         // ขยายขนาด canvas
         canvas.width = 818;
         canvas.height = 1413;
@@ -372,6 +372,24 @@ function updateDisplay() {
         // เช่น ../assets/image/bs/SCB1.1.jpg จะกลายเป็น ../assets/image/bs/SCBB1.1.jpg
         backgroundImageSrc = backgroundSelect.replace('/SCB', '/SCBB'); 
 
+    } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
+        // ขยายขนาด canvas
+        canvas.width = 818;
+        canvas.height = 1413;
+        
+        // เทคนิค: แทนที่คำว่า "/SCB" ในชื่อไฟล์ด้วย "/SCBB"
+        // เช่น ../assets/image/bs/SCB1.1.jpg จะกลายเป็น ../assets/image/bs/SCBB1.1.jpg
+        backgroundImageSrc = backgroundSelect.replace('/SCB', '/SCBB'); 
+
+    } else if (bank === 'พร้อมเพย์ e-Wallet K Plus W') {
+        // ขยายขนาด canvas
+        canvas.width = 818;
+        canvas.height = 1413;
+        
+        // เทคนิค: แทนที่คำว่า "/SCB" ในชื่อไฟล์ด้วย "/SCBB"
+        // เช่น ../assets/image/bs/SCB1.1.jpg จะกลายเป็น ../assets/image/bs/SCBB1.1.jpg
+        backgroundImageSrc = backgroundSelect.replace('/SCB', '/SCBB');
+        
     } else if (bank === 'ทูซีทูพี') {
         // ขนาด canvas ของ MetaAds
         canvas.width = 818;
@@ -433,11 +451,35 @@ function updateDisplay() {
 
 
                             // ========== เช็คว่าธนาคารเป็นพร้อมเพย์ e-Wallet หรือไม่ ========== //
-            if (bank === 'พร้อมเพย์ e-Wallet') {
+            if (bank === 'พร้อมเพย์ e-Wallet TrueMoney') {
                 drawImage(ctx, '../assets/image/logo/P-SCB1.png', 486, 573.7, 55, 55);
                 drawText(ctx, `เติมเงินพร้อมเพย์`, 551, 613.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
                 drawText(ctx, `${receiveraccount}`, 769, 662.4, 38.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
                 drawText(ctx, `${receivername} (TrueMoney)`, 47, 924.5, 35.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
+                ctx.drawImage(bankLogo, bankLogoX, 573.7, bankLogoWidth, 55);
+                // วาดจำนวนเงิน
+                drawText(ctx, `${amount11}`, 769, 791.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
+
+                // วาดรหัสอ้างอิง
+                drawText(ctx, `รหัสอ้างอิง: ${generateUniqueID()}`, 407, 377.5, 38.5, 'DXSCB', '#76737b', 'center', 1.5, 1, 0, 0, 800, 0);
+
+            } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
+                drawImage(ctx, '../assets/image/logo/P-SCB1.png', 486, 573.7, 55, 55);
+                drawText(ctx, `เติมเงินพร้อมเพย์`, 551, 613.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
+                drawText(ctx, `${receiveraccount}`, 769, 662.4, 38.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `${receivername} (Jaew)`, 47, 924.5, 35.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
+                ctx.drawImage(bankLogo, bankLogoX, 573.7, bankLogoWidth, 55);
+                // วาดจำนวนเงิน
+                drawText(ctx, `${amount11}`, 769, 791.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
+
+                // วาดรหัสอ้างอิง
+                drawText(ctx, `รหัสอ้างอิง: ${generateUniqueID()}`, 407, 377.5, 38.5, 'DXSCB', '#76737b', 'center', 1.5, 1, 0, 0, 800, 0);
+
+            } else if (bank === 'พร้อมเพย์ e-Wallet K Plus W') {
+                drawImage(ctx, '../assets/image/logo/P-SCB1.png', 486, 573.7, 55, 55);
+                drawText(ctx, `เติมเงินพร้อมเพย์`, 551, 613.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'left', 1.5, 3, 0, 0, 1500, 0);
+                drawText(ctx, `${receiveraccount}`, 769, 662.4, 38.5, 'DXSCB', '#76737b', 'right', 1.5, 1, 0, 0, 500, 0);
+                drawText(ctx, `${receivername} (K Plus W)`, 47, 924.5, 35.5, 'DXSCB', '#76737b', 'left', 1.5, 3, 0, 0, 800, 0);
                 ctx.drawImage(bankLogo, bankLogoX, 573.7, bankLogoWidth, 55);
                 // วาดจำนวนเงิน
                 drawText(ctx, `${amount11}`, 769, 791.0, 44.3, 'DBHelvethaicaMonXMed', '#47424e', 'right', 1.5, 3, 0, 0, 500, 0);
