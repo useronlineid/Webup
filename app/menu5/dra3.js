@@ -161,6 +161,7 @@ function updateDisplay() {
     const Applicationnumber = document.getElementById('Applicationnumber').value || '-';
     const Clientnumber = document.getElementById('Clientnumber').value || '-';
     const firstname = document.getElementById('firstname').value || '-';
+    const Applicationnumber1 = document.getElementById('Applicationnumber1').value || '-';
     const country = document.getElementById('country').value || '-';
 
     const PassportNo = document.getElementById('PassportNo').value || 'AD1186973';
@@ -184,7 +185,7 @@ function updateDisplay() {
     
     
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/paper/dra3.jpg';
+    backgroundImage.src = '../assets/image/paper/dra3.1.jpg';
     backgroundImage.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
@@ -192,6 +193,9 @@ function updateDisplay() {
         drawText(ctx, `${Clientnumber}`, 200,124,17,'arialRegular', '#000000', 'left',37, 3, 0, 0, 800, 0);
         drawText(ctx, `${formattedCustomDate}`, 48,150,17,'arialRegular', '#000000', 'left',37, 3, 0, 0, 800, 0);
         drawText(ctx, `Kia ora ${firstname}`, 48,210,17,'arialRegular', '#000000', 'left',37, 3, 0, 0, 800, 0);
+
+        drawText(ctx, `Application number ${Applicationnumber1} for a New Zealand Work Visa - Accredited Employer Work Visa has been approved. If this application has been made through an immigration adviser, lawyer or other representative who is exempt from licensing, this entire document must be provided to the applicant.`, 48,330,19.3,'arialRegular', '#000000', 'left',24, 3, 0, 0, 800, 0);
+
 
         drawText(ctx, `${firstname}`, 112,537.5,17,'arialRegular', '#000000', 'left',37, 3, 0, 0, 800, 0);
         drawText(ctx, `${country}`, 146,633,17,'arialRegular', '#000000', 'left',37, 3, 0, 0, 800, 0);
