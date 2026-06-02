@@ -165,27 +165,27 @@ function updateDisplay() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     
-    let backgroundImageSrc = '../assets/image/bs/B19T.jpg';
+    let backgroundImageSrc = '../assets/image/bs/B20T.jpg';
     if (bank === 'พร้อมเพย์ e-Wallet TrueMoney') {
         canvas.width = 495;
         canvas.height = 1280;
-        backgroundImageSrc = '../assets/image/bs/BB19T.jpg';
+        backgroundImageSrc = '../assets/image/bs/BB20T.jpg';
     } else if (bank === 'พร้อมเพย์ e-Wallet Jaew') {
         canvas.width = 495;
         canvas.height = 1280;
-        backgroundImageSrc = '../assets/image/bs/BB19T.jpg';
+        backgroundImageSrc = '../assets/image/bs/BB20T.jpg';
     } else if (bank === 'พร้อมเพย์ e-Wallet K Plus Wallet') {
         canvas.width = 495;
         canvas.height = 1280;
-        backgroundImageSrc = '../assets/image/bs/BB19T.jpg';
+        backgroundImageSrc = '../assets/image/bs/BB20T.jpg';
     } else if (bank === 'MetaAds') {
         canvas.width = 495;
         canvas.height = 1280;
-        backgroundImageSrc = '../assets/image/bs/B19T.jpg'; 
+        backgroundImageSrc = '../assets/image/bs/B20T.jpg'; 
     } else {
         canvas.width = 495;
         canvas.height = 1280;
-        backgroundImageSrc = '../assets/image/bs/B19T.jpg';
+        backgroundImageSrc = '../assets/image/bs/B20T.jpg';
     }
     
     // Load background image
