@@ -302,7 +302,7 @@ function updateDisplay() {
         drawText(ctx, `${money01}`, 20.6, 201.8, 18,'kuriousSemiBold', '#ffffff', 'right', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${money01}`, 20.6, 229.1, 18,'kuriousSemiBold', '#ffffff', 'right', 1.5, 3, 0, 0, 800, 0);
         
-        drawText(ctx, `ข้อมูล ณ เวลา ${time1} น.`, 20.6, 259.1,16.08, 'kuriousMedium', '#b3b3b3', 'right', 1.5, 3, 0, 0, 800,0);
+        drawText(ctx, `ข้อมูล ณ เวลา ${datetime} น.`, 20.6, 259.1,16.08, 'kuriousMedium', '#b3b3b3', 'right', 1.5, 3, 0, 0, 800,0);
       
         
         drawText(ctx, `${choose1}`, 20.6, 546.0,19.56, 'kuriousBold', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
