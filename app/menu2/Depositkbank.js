@@ -201,7 +201,7 @@ function updateDisplay() {
    //1
     if (choose1 === 'โอนเงิน' && !money1.startsWith('-')) {
         money1 = '-' + money1;
-    } else if (choose1 === 'รับเงินโอน' && money1.startsWith('-')) {
+    } else if (choose1 === 'รับโอนเงิน' && money1.startsWith('-')) {
         money1 = money1.substring(1);
     }
 
@@ -211,7 +211,7 @@ function updateDisplay() {
    //2
     if (choose2 === 'โอนเงิน' && !money2.startsWith('-')) {
         money2 = '-' + money2;
-    } else if (choose2 === 'รับเงินโอน' && money2.startsWith('-')) {
+    } else if (choose2 === 'รับโอนเงิน' && money2.startsWith('-')) {
         money2 = money2.substring(1);
     }
 
@@ -220,7 +220,7 @@ function updateDisplay() {
    //3
     if (choose3 === 'โอนเงิน' && !money3.startsWith('-')) {
         money3 = '-' + money3;
-    } else if (choose3 === 'รับเงินโอน' && money3.startsWith('-')) {
+    } else if (choose3 === 'รับโอนเงิน' && money3.startsWith('-')) {
         money3 = money3.substring(1);
     }
 
@@ -230,7 +230,7 @@ function updateDisplay() {
    //4
     if (choose4 === 'โอนเงิน' && !money4.startsWith('-')) {
         money4 = '-' + money4;
-    } else if (choose4 === 'รับเงินโอน' && money4.startsWith('-')) {
+    } else if (choose4 === 'รับโอนเงิน' && money4.startsWith('-')) {
         money4 = money4.substring(1);
     }
 
@@ -240,7 +240,7 @@ function updateDisplay() {
    //5
     if (choose5 === 'โอนเงิน' && !money5.startsWith('-')) {
         money5 = '-' + money5;
-    } else if (choose5 === 'รับเงินโอน' && money5.startsWith('-')) {
+    } else if (choose5 === 'รับโอนเงิน' && money5.startsWith('-')) {
         money5 = money5.substring(1);
     }
 
