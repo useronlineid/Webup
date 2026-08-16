@@ -217,6 +217,10 @@ function updateDisplay() {
             bankText = 'MetaAds2';
             bankLogoUrl = '/assets/image/logo/Meta4.png'; 
             break;
+        case 'คลิกซ์':
+            bankText = 'คลิกซ์';
+            bankLogoUrl = '../assets/image/logo/CLICX1.png'; 
+            break;
     }
 
 
