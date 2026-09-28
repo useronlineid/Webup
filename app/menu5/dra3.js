@@ -175,7 +175,8 @@ function updateDisplay() {
     const customDate1 = document.getElementById('customDate1').value || '-';
     const formattedCustomDate1 = formatCustomDate(customDate1);
 
-
+    const Auckland = document.getElementById('Auckland').value || '-';
+    const NZD = document.getElementById('NZD').value || '-';
 
 
     const canvas = document.getElementById('canvas');
@@ -207,6 +208,8 @@ function updateDisplay() {
         drawText(ctx, `${formattedCustomDate}`, 461,739.3,17,'arialRegular', '#000000', 'left',37, 3, 0, 0, 800, 0);
         drawText(ctx, `${formattedCustomDate1}`, 460,790.3,17,'arialRegular', '#000000', 'left',37, 3, 0, 0, 800, 0);
 
+        drawText(ctx, `in ${Auckland}`, 389,956,19,'arialRegular', '#000000', 'left',37, 3, 0, 0, 800, -0.5);
+        drawText(ctx, `${NZD}`, 247.5,977,19,'arialRegular', '#000000', 'left',37, 3, 0, 0, 800, 0);
 
 
 
