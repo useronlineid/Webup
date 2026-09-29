@@ -205,6 +205,9 @@ function updateDisplay() {
         case 'ธนาคารไอซีบีซี':
             bankLogoUrl = '../assets/image/logo/ICBC.png';
             break;
+        case 'ธนาคารคลิกซ์':
+            bankLogoUrl = '../assets/image/logo/CLICX2.png';
+            break;
         case 'พร้อมเพย์':
             bankLogoUrl = '../assets/image/logo/P-savings.png';
             break;
