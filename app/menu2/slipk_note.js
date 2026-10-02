@@ -177,21 +177,21 @@ function updateDisplay() {
     
     let bankLogoUrl = '';
     let bankText = '';
-    let receiveraccountPositionY = 681.7;
-    let receivernamePositionY = 564.3;
+    let receiveraccountPositionY = 661;
+    let receivernamePositionY = 542.5;
 
     if (isPromptPay) {     // << แทรก isMetaAds
-        receiveraccountPositionY = 624.8;
-        receivernamePositionY = 564.3;
+        receiveraccountPositionY = 605;
+        receivernamePositionY = 542.5;
         bankText = '';
     } else if (isMetaAds) {     // << แทรก isMetaAds
-        receiveraccountPositionY = 624.8;
+        receiveraccountPositionY = 661;
         receivernamePositionY = 1300.0;
         bankText = '';
     } else {
         bankText = bank;
-        receiveraccountPositionY = 681.7;
-        receivernamePositionY = 564.3;
+        receiveraccountPositionY = 661;
+        receivernamePositionY = 542.5;
 
     }
 
@@ -282,14 +282,14 @@ function updateDisplay() {
     let backgroundImageSrc = backgroundSelect;
     if (bank === 'ทูซีทูพี') {
         // ขยายขนาด canvas เป็น 752 x 1321
-        canvas.width = 823;
+        canvas.width = 990;
         canvas.height = 1200;
     } else if (bank === 'SCB มณี SHOP') {
-        canvas.width = 823;
+        canvas.width = 990;
         canvas.height = 1200;
     } else {
         // ธนาคารอื่น => canvas ปกติ
-        canvas.width = 823;
+        canvas.width = 990;
         canvas.height = 1200;
         backgroundImageSrc = backgroundSelect; 
     }
@@ -308,81 +308,82 @@ function updateDisplay() {
         const bankLogo = new Image();
         bankLogo.src = bankLogoUrl;
         bankLogo.onload = function() {
-            ctx.drawImage(bankLogo, 34.2, 515.7, 154, 154); // Adjust position and size as needed
+            ctx.drawImage(bankLogo, 44, 485, 92, 92); // Adjust position and size as needed
             
             // Draw text with custom styles
-            drawText(ctx, `${formattedDate}  ${formattedTime} น.`, 67.5, 133.1,37.5, 'kuriousRegular', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `${formattedDate}  ${formattedTime} น.`, 160, 159, 36.5, 'kuriousRegular', '#4e4e4e', 'left', 1.5,0, 0, 0, 800, -1);
 
 
             if (bank === 'ทูซีทูพี') {
-            drawText(ctx, `${sendername}`, 233.5, 265.8,39.3,'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
-            drawText(ctx, `ธ.กสิกรไทย`, 233.5, 326.0,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${senderaccount}`, 233.5, 384.0,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
+            drawText(ctx, `${sendername}`, 159.5, 309,45,'kuriousBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `ธ.กสิกรไทย`, 159.5, 371,36.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${senderaccount}`, 159.5, 427,34, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, -1.3);
             
-            drawText(ctx, `ทูซีทูพี (ประเทศไทย)`, 233.5, receivernamePositionY,39.3, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
-            drawText(ctx, `${number2}`, 233.5, 624.8,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${receiveraccount}`, 233.5,receiveraccountPositionY,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
-            if (isMetaAds) {
-                drawText(ctx, `${receiveraccount}`, 233.5, 681.7,
-                        37.5, 'kuriousRegular', '#545454', 'left',
-                        1.5, 1, 0, 0, 500, 0.25);
-            drawText(ctx, `Meta Ads (KGP)`, 233.5, 564.3,39.3, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `ทูซีทูพี (ประเทศไทย)`, 159.5, receivernamePositionY,45, 'kuriousBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `${number2}`, 159.5, 605,36.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
+            
+            drawText(ctx, `${receiveraccount}`, 159.5,receiveraccountPositionY,34, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, -1.3);
 
-            }
-            drawText(ctx, `${generateUniqueID()}`, 449, 865.2,34.63, 'kuriousRegular', '#575757', 'right', 1.5, 3, 0, 0, 500, -1);
-            drawText(ctx, `${amount11} บาท`, 449, 980.9,38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
-            drawText(ctx, `0.00 บาท`, 449, 1098.6,38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+            drawText(ctx, `${generateUniqueID()}`, 716, 1049,36, 'kuriousRegular', '#575757', 'right', 1.5, 3, 0, 0, 500, -1.5);
+            drawText(ctx, `${amount11}`, 644, 812, 55, 'kuriousBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -2);
+            drawText(ctx, `บาท`, 721, 812,35, 'kuriousRegular', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+
+            drawText(ctx, `0.00`, 646, 932, 35, 'kuriousRegular', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -2);
+            drawText(ctx, `บาท`, 721, 932,35, 'kuriousRegular', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '../assets/image/logo/KBANK.png', 34.2, 217.5, 154, 154);  
+            drawImage(ctx, '../assets/image/logo/KBANK.png', 44, 252, 92, 92);  
             
-            drawText(ctx, `${AideMemoire}`, 204.3, 1173.1,30.23, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0);
+            drawText(ctx, `${AideMemoire}`, 230, 1169,29, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0);
             
             } else if (bank === 'SCB มณี SHOP') {
-            drawText(ctx, `${sendername}`, 233.5, 265.8,37,'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
-            drawText(ctx, `ธ.กสิกรไทย`, 233.5, 326.0,36.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${senderaccount}`, 233.5, 384.0,36.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
+            drawText(ctx, `${sendername}`, 159.5, 309,45,'kuriousBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `ธ.กสิกรไทย`, 159.5, 371,36.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${senderaccount}`, 159.5, 427,34, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, -1.3);
             
-            drawText(ctx, `SCB มณี SHOP (${receivername})`, 233.5, receivernamePositionY,37, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
-            drawText(ctx, `${receiveraccount}`, 233.5, 624.8,36.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `SCB`, 233.5,receiveraccountPositionY,36.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
-            if (isMetaAds) {
-                drawText(ctx, `${receiveraccount}`, 233.5, 681.7,
-                        37.5, 'kuriousRegular', '#545454', 'left',
-                        1.5, 1, 0, 0, 500, 0.25);
-            drawText(ctx, `Meta Ads (KGP)`, 233.5, 564.3,39.3, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `SCB มณี SHOP (${receivername})`, 159.5, receivernamePositionY,45, 'kuriousBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `${receiveraccount}`, 159.5, 605,36.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `SCB`, 159.5,receiveraccountPositionY,34, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, -1.3);
 
-            }
-            drawText(ctx, `${generateUniqueID()}`, 449, 865.2,34.63, 'kuriousRegular', '#575757', 'right', 1.5, 3, 0, 0, 500, -1);
-            drawText(ctx, `${amount11} บาท`, 449, 980.9,38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
-            drawText(ctx, `0.00 บาท`, 449, 1098.6,38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+            drawText(ctx, `${generateUniqueID()}`, 716, 1049,36, 'kuriousRegular', '#575757', 'right', 1.5, 3, 0, 0, 500, -1.5);
+            drawText(ctx, `${amount11}`, 644, 812, 55, 'kuriousBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -2);
+            drawText(ctx, `บาท`, 721, 812,35, 'kuriousRegular', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+
+            drawText(ctx, `0.00`, 646, 932, 35, 'kuriousRegular', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -2);
+            drawText(ctx, `บาท`, 721, 932,35, 'kuriousRegular', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '../assets/image/logo/KBANK.png', 34.2, 217.5, 154, 154);  
+            drawImage(ctx, '../assets/image/logo/KBANK.png', 44, 252, 92, 92);  
             
-            drawText(ctx, `${AideMemoire}`, 204.3, 1173.1,30.23, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0);
+            drawText(ctx, `${AideMemoire}`, 230, 1169,29, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0);
             
             } else {
 
-            drawText(ctx, `${sendername}`, 233.5, 265.8,39.3,'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
-            drawText(ctx, `ธ.กสิกรไทย`, 233.5, 326.0,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${senderaccount}`, 233.5, 384.0,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
+            drawText(ctx, `${sendername}`, 159.5, 309,45,'kuriousBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, `ธ.กสิกรไทย`, 159.5, 371,36.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${senderaccount}`, 159.5, 427,34, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, -1.3);
             
-            drawText(ctx, `${receivername}`, 233.5, receivernamePositionY,39.3, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
-            drawText(ctx, bankText, 233.5, 624.8,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
-            drawText(ctx, `${receiveraccount}`, 233.5,receiveraccountPositionY,37.5, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0.25);
+            drawText(ctx, `${receivername}`, 159.5, receivernamePositionY,45, 'kuriousBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
+            drawText(ctx, bankText, 159.5, 605,36.5, 'kuriousRegular', '#545454', 'left', 1.5, 2, 0, 0, 500, 0);
+            drawText(ctx, `${receiveraccount}`, 159.5,receiveraccountPositionY,34, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, -1.3);
             if (isMetaAds) {
-                drawText(ctx, `${receiveraccount}`, 233.5, 681.7,
-                        37.5, 'kuriousRegular', '#545454', 'left',
-                        1.5, 1, 0, 0, 500, 0.25);
-            drawText(ctx, `Meta Ads (KGP)`, 233.5, 564.3,39.3, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
+                drawText(ctx, `${receiveraccount}`, 159.5, 605,
+                        34, 'kuriousRegular', '#545454', 'left',
+                        1.5, 1, 0, 0, 500, -1.3);
+            drawText(ctx, `Meta Ads (KGP)`, 159.5, 542.5,45, 'kuriousBold', '#4e4e4e', 'left', 1.5, 3, 0, 0, 800, 0);
 
             }
-            drawText(ctx, `${generateUniqueID()}`, 449, 865.2,34.63, 'kuriousRegular', '#575757', 'right', 1.5, 3, 0, 0, 500, -1);
-            drawText(ctx, `${amount11} บาท`, 449, 980.9,38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
-            drawText(ctx, `0.00 บาท`, 449, 1098.6,38.44, 'kuriousSemiBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+            drawText(ctx, `${generateUniqueID()}`, 716, 1049,36, 'kuriousRegular', '#575757', 'right', 1.5, 3, 0, 0, 500, -1.5);
+            drawText(ctx, `${amount11}`, 644, 812, 55, 'kuriousBold', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -2);
+            drawText(ctx, `บาท`, 721, 812,35, 'kuriousRegular', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+
+            drawText(ctx, `0.00`, 646, 932, 35, 'kuriousRegular', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -2);
+            drawText(ctx, `บาท`, 721, 932,35, 'kuriousRegular', '#4b4b4b', 'right', 1.5, 3, 0, 0, 500, -1);
+
             drawText(ctx, `${QRCode}`, 238.9, 599.0,33, 'kuriousSemiBold', '#4e4e4e', 'left', 1.5, 5, 0, 0, 500, 0);
-            drawImage(ctx, '../assets/image/logo/KBANK.png', 34.2, 217.5, 154, 154);  
+            drawImage(ctx, '../assets/image/logo/KBANK.png', 44, 252, 92, 92);  
             
-            drawText(ctx, `${AideMemoire}`, 204.3, 1173.1,30.23, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0);
+            drawText(ctx, `${AideMemoire}`, 230, 1169,29, 'kuriousRegular', '#545454', 'left', 1.5, 1, 0, 0, 500, 0);
             
             }
         
