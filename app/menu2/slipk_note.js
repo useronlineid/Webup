@@ -256,10 +256,10 @@ function updateDisplay() {
             break;
         case 'รหัสพร้อมเพย์':
             bankText = 'รหัสพร้อมเพย์';
-            bankLogoUrl = '../assets/image/logo/P-KBANK.png';
+            bankLogoUrl = '../assets/image/logo/PromptPay-KBANK.png';
             break;
         case 'พร้อมเพย์วอลเล็ท':
-            bankLogoUrl = '../assets/image/logo/P-KBANK.png';
+            bankLogoUrl = '../assets/image/logo/PromptPay-KBANK.png';
             break;
         case 'MetaAds':
             bankLogoUrl = '../assets/image/logo/Meta.png';
