@@ -251,7 +251,7 @@ function updateDisplay() {
 
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/background-Depositkbank1.jpg';
+    backgroundImage.src = '../assets/image/bs/background-Depositkbank2.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -299,10 +299,10 @@ function updateDisplay() {
         drawText(ctx, `${monthandyear}`, 20.6, 423.9,21.00,'kuriousBold', '#555555', 'left', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${monthmonthyear}`, 20.6, 478.2,23.45, 'kuriousBold', '#555555', 'left', 1.5, 3, 0, 0, 800, 0);
 
-        drawText(ctx, `${money01}`, 20.6, 201.8, 18,'kuriousSemiBold', '#ffffff', 'right', 1.5, 3, 0, 0, 800, 0);
-        drawText(ctx, `${money01}`, 20.6, 229.1, 18,'kuriousSemiBold', '#ffffff', 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${money01} บาท`, 20.6, 201.8, 18,'kuriousSemiBold', '#ffffff', 'right', 1.5, 3, 0, 0, 800, 0);
+        drawText(ctx, `${money01} บาท`, 20.6, 229.1, 18,'kuriousSemiBold', '#ffffff', 'right', 1.5, 3, 0, 0, 800, 0);
         
-        drawText(ctx, `ข้อมูล ณ เวลา ${datetime} น.`, 20.6, 259.1,16.08, 'kuriousMedium', '#b3b3b3', 'right', 1.5, 3, 0, 0, 800,0);
+        drawText(ctx, `ข้อมูล ณ เวลา ${datetime} น.`, 60.6, 259.1,16.08, 'kuriousMedium', '#b3b3b3', 'left', 1.5, 3, 0, 0, 800,0);
       
         
         drawText(ctx, `${choose1}`, 20.6, 546.0,19.56, 'kuriousBold', '#4d4d4d', 'left', 1.5, 3, 0, 0, 800, 0);
