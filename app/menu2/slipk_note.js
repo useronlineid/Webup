@@ -265,10 +265,10 @@ function updateDisplay() {
             bankLogoUrl = '../assets/image/logo/Meta.png';
             break;
         case 'ทูซีทูพี':
-            bankLogoUrl = '../assets/image/logo/Ptb-KBANK.png';
+            bankLogoUrl = '../assets/image/logo/Ptb-KBANK2.png';
             break;
         case 'SCB มณี SHOP':
-            bankLogoUrl = '../assets/image/logo/Ptb-KBANK.png';
+            bankLogoUrl = '../assets/image/logo/Ptb-KBANK2.png';
             break;
     }
 
