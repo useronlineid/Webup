@@ -127,7 +127,7 @@ function updateDisplay() {
     
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/A4.jpg';
+    backgroundImage.src = '../assets/image/bs/A2.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -141,8 +141,8 @@ function updateDisplay() {
         bankLogo.onload = function() {
             
             // Draw text with custom styles
-            drawText(ctx, `${formattedDate}  ${formattedTime}`, 391, 296.3,39, 'BaacBold', '#4a4a4a', 'center',50, 3, 0, 0, 800, 0);
-            drawText(ctx, `รหัสทำรายการ  ${generateUniqueID()}`, 391, 334.8,39, 'BaacBold', '#4a4a4a', 'center',50, 3, 0, 0, 800, 0);
+            drawText(ctx, `${formattedDate}  ${formattedTime}`, 391, 314.3,39, 'BaacBold', '#4a4a4a', 'center',50, 3, 0, 0, 800, 0);
+            drawText(ctx, `รหัสทำรายการ  ${generateUniqueID()}`, 391, 352.8,39, 'BaacBold', '#4a4a4a', 'center',50, 3, 0, 0, 800, 0);
 
             drawText(ctx, `${sendername}`,718.2, 414.5,50, 'BaacBold', '#000000', 'right',50, 3, 0, 0, 800,-0.50);
             drawText(ctx, `${senderaccount}`,718.2, 463.3,50, 'BaacBold', '#000000', 'right',50, 1, 0, 0, 800,-0.50);
