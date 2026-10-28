@@ -286,7 +286,7 @@ function updateDisplay() {
         // Draw text with custom styles
         drawText(ctx, `${datetime} น.`, 26.6, 38.3,20, 'SFThonburiRegular', '#767676', 'left', 1.5, 3, 0, 0, 800, 0);
         
-        drawText(ctx, `${coin}`, 26.6,69.1,21.3, 'SFThonburiBold', '#101011', 'left', 1.5, 3, 0, 0, 800, -0.50);
+        drawText(ctx, `${coin}`, 26.6,69.1,21.3, 'SFThonburiBold', '#101011', 'left', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${website}`, 26.6, 88,16.0, 'SFThonburiRegular', '#929292', 'left', 1.5, 1, 0, 0, 800, 0);
         
 
