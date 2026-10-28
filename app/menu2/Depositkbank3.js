@@ -2,18 +2,60 @@
 function loadFonts() {
     const fonts = [
         //SukhumvitSet
-        new FontFace('SukhumvitSetThin', 'url(/assets/fonts/SukhumvitSet-Thin.woff)'),
-        new FontFace('SukhumvitSetText', 'url(/assets/fonts/SukhumvitSet-Text.woff)'),
-        new FontFace('SukhumvitSetLight', 'url(/assets/fonts/SukhumvitSet-Light.woff)'),
-        new FontFace('SukhumvitSetMedium', 'url(/assets/fonts/SukhumvitSet-Medium.woff)'),
-        new FontFace('SukhumvitSetSemiBold', 'url(/assets/fonts/SukhumvitSet-SemiBold.woff)'),
-        new FontFace('SukhumvitSetBold', 'url(/assets/fonts/SukhumvitSet-Bold.woff)'),
-        new FontFace('SukhumvitSetExtraBold', 'url(/assets/fonts/SukhumvitSet-Extra%20Bold.woff)'),
+        new FontFace('SukhumvitSetThin', 'url(../assets/fonts/SukhumvitSet-Thin.woff)'),
+        new FontFace('SukhumvitSetText', 'url(../assets/fonts/SukhumvitSet-Text.woff)'),
+        new FontFace('SukhumvitSetLight', 'url(../assets/fonts/SukhumvitSet-Light.woff)'),
+        new FontFace('SukhumvitSetMedium', 'url(../assets/fonts/SukhumvitSet-Medium.woff)'),
+        new FontFace('SukhumvitSetSemiBold', 'url(../assets/fonts/SukhumvitSet-SemiBold.woff)'),
+        new FontFace('SukhumvitSetBold', 'url(../assets/fonts/SukhumvitSet-Bold.woff)'),
+        new FontFace('SukhumvitSetExtraBold', 'url(../assets/fonts/SukhumvitSet-Extra%20Bold.woff)'),
         //SFThonburi
         new FontFace('SFThonburiLight', 'url(../assets/fonts/SFThonburi.woff)'),
         new FontFace('SFThonburiRegular', 'url(../assets/fonts/SFThonburi-Regular.woff)'),
         new FontFace('SFThonburiSemiBold', 'url(../assets/fonts/SFThonburi-Semibold.woff)'),
         new FontFace('SFThonburiBold', 'url(../assets/fonts/SFThonburi-Bold.woff)'),
+        //Kanit
+        new FontFace('KanitThin', 'url(../assets/fonts/Kanit-Thin.woff)'),
+        new FontFace('KanitExtraLight', 'url(../assets/fonts/Kanit-ExtraLight.woff)'),
+        new FontFace('KanitLight', 'url(../assets/fonts/Kanit-Light.woff)'),
+        new FontFace('KanitRegular', 'url(../assets/fonts/Kanit-Regular.woff)'),
+        new FontFace('KanitMedium', 'url(../assets/fonts/Kanit-Medium.woff)'),
+        new FontFace('KanitSemiBold', 'url(../assets/fonts/Kanit-SemiBold.woff)'),
+        new FontFace('KanitBold', 'url(../assets/fonts/Kanit-Bold.woff)'),
+        new FontFace('KanitExtraBold', 'url(../assets/fonts/Kanit-ExtraBold.woff)'),
+        new FontFace('KanitBlack', 'url(../assets/fonts/Kanit-Black.woff)'),
+        //Bangkok
+        new FontFace('BangkokTime1', 'url(../assets/fonts/Bangkok-Time1.woff)'),
+        new FontFace('BangkokTime2', 'url(../assets/fonts/Bangkok-Time2.woff)'),
+        new FontFace('BangkokMoney', 'url(../assets/fonts/Bangkok-Money.woff)'),
+        new FontFace('BangkokTime', 'url(../assets/fonts/Bangkok-Time.woff)'),
+        //THSarabunNew
+        new FontFace('THSarabunRegular', 'url(../assets/fonts/THSarabun.woff)'),
+        new FontFace('THSarabunBold', 'url(../assets/fonts/THSarabun-Bold.woff)'),
+        new FontFace('THSarabunItalic', 'url(../assets/fonts/THSarabun-Italic.woff)'),
+        new FontFace('THSarabunBoldItalic', 'url(../assets/fonts/THSarabun-BoldItalic.woff)'),
+        new FontFace('THSarabunNew', 'url(../assets/fonts/THSarabunNew.woff)'),
+        new FontFace('THSarabunNewBold', 'url(../assets/fonts/THSarabunNew-Bold.woff)'),
+        new FontFace('THSarabunNewItalic', 'url(../assets/fonts/THSarabunNew-Italic.woff)'),
+        new FontFace('THSarabunNewBoldItalic', 'url(../assets/fonts/THSarabunNew-BoldItalic.woff)'),
+        //other
+        new FontFace('DXKrungthaiSemiBold', 'url(../assets/fonts/DX-Krungthai-SemiBold.woff)'),
+        new FontFace('DXKrungthaiThin', 'url(../assets/fonts/DX-Krungthai-Thin.woff)'),
+        new FontFace('DXSCB', 'url(../assets/fonts/DX-SCB.woff)'),
+        new FontFace('DXTTBBold', 'url(../assets/fonts/DX-TTB-bold.woff)'),
+        new FontFace('DXTTBRegular', 'url(../assets/fonts/DX-TTB-regular.woff)'),
+        new FontFace('DXKrungthaiBold', 'url(../assets/fonts/DX-Krungthai-Bold.woff)'),
+        new FontFace('DXKrungthaiMedium', 'url(../assets/fonts/DX-Krungthai-Medium.woff)'),
+        new FontFace('DXKrungthaiRegular', 'url(../assets/fonts/DX-Krungthai-Regular.woff)'),
+        new FontFace('TTBMoney', 'url(../assets/fonts/TTB Money.woff)'),
+        new FontFace('CoreSansLight', 'url(../assets/fonts/Core-Sans-E-W01-35-Light.woff)'),
+        new FontFace('CoreSansBold', 'url(../assets/fonts/Core-Sans-N-65-Bold.woff)'),
+        new FontFace('THSarabun', 'url(../assets/fonts/THSarabun.woff)'),
+        //kurious
+        new FontFace('kuriousRegular', 'url(../assets/fonts/kurious-Regular.woff)'),
+        new FontFace('kuriousMedium', 'url(../assets/fonts/kurious-medium.woff)'),
+        new FontFace('kuriousSemiBold', 'url(../assets/fonts/kurious-semibold.woff)'),
+        new FontFace('kuriousBold', 'url(../assets/fonts/kurious-Bold.woff)')
     ];
 
     // โหลดฟอนต์ทั้งหมดและเพิ่มเข้าไปที่ document
@@ -104,6 +146,7 @@ function handlePaste(event) {
 }
 
 function updateDisplay() {
+    const sendername = document.getElementById('sendername').value || '-';
     const datetime = document.getElementById('datetime').value || '-';
     const batteryLevel = document.getElementById('battery').value || '100';
     const datetimePlusOne = document.getElementById('datetime_plus_one').value || '-';
@@ -141,7 +184,7 @@ function updateDisplay() {
 
     // Load background image
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/backgroundEnter-K3.jpg';
+    backgroundImage.src = '../assets/image/bs/backgroundEnter-K3.1.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -151,13 +194,22 @@ function updateDisplay() {
 
 
 
-        drawText(ctx, `${formattedTimePlusOne} น.`, 110,33,20, 'SFThonburiRegular', '#e5efee','right', 1.5, 3, 0, 0, 800, -0.25);
-        drawText(ctx, `บัญชีของฉัน`, 39,195,30, 'SukhumvitSetMedium', '#e5efee','left', 1.5, 3, 0, 0, 800,);
-        drawText(ctx, `${senderaccount1}`, 39,235,24, 'SukhumvitSetMedium', '#e5efee','left', 1.5, 3, 0, 0, 800, 0.25);
+        drawText(ctx, `${formattedTimePlusOne}`, 126,61,25, 'SFThonburiSemiBold', '#e5efee','right', 1.5, 3, 0, 0, 800, -0.25);
+        drawText(ctx, `${sendername}`, 114.8, 279,22.07,'kuriousMedium', '#e5efee', 'left', 1.5, 3, 0, 0, 800, -1);
 
-        drawText(ctx, `ข้อมูล ณ เวลา ${formattedTime} น.`, 221, 609,19.30, 'SukhumvitSetMedium', '#c2cacd','left', 1.5, 3, 0, 0, 800, 0.25);
+const icon = new Image();
+icon.src = '../assets/image/icon/K-check.png';
+icon.onload = () => {
+    const iconSize = 27; // ขนาดไอคอน
+    const iconGap = 1;   // ระยะห่างจากชื่อ
+    ctx.font = '22.07px kuriousMedium';
+    ctx.drawImage(icon, 114.8 + ctx.measureText(sendername).width + iconGap, 282 - iconSize + 3, iconSize, iconSize);
+};
+        drawText(ctx, `${senderaccount1}`, 114.8,310.2,18, 'kuriousMedium', '#e5efee','left', 1.5, 3, 0, 0, 800, 0.25);
 
-        drawText(ctx, `${money02}`, 295.5, 440,42, 'SukhumvitSetMedium', '#ffffff', 'center', 40, 3, 0, 0, 430,-0.25);
+        drawText(ctx, `ข้อมูล ณ เวลา ${formattedTime} น.`, 135.8, 599,16, 'kuriousMedium', '#c2cacd','left', 1.5, 3, 0, 0, 800, 0.25);
+
+        drawText(ctx, `${money02}`, 114.8, 428,30, 'kuriousMedium', '#ffffff', 'left', 40, 3, 0, 0, 430,-0.25);
 
 
         if (qrCodeImage) {
@@ -183,8 +235,8 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
     let currentY = y;
 
     paragraphs.forEach(paragraph => {
-        // ใช้ Intl.Segmenter เพื่อแบ่งคำภาษาไทย
-        const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
+        // ใช้ Intl.Segmenter โดยไม่กำหนด locale เพื่อรองรับหลายภาษา
+        const segmenter = new Intl.Segmenter(undefined, { granularity: 'word' });
         const words = [...segmenter.segment(paragraph)].map(segment => segment.segment);
 
         let lines = [];
@@ -203,7 +255,7 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
             }
         });
         if (currentLine) {
-            lines.push(currentLine);
+            lines.push(currentLine.trimStart()); // ตัดช่องว่างที่ขึ้นต้นบรรทัดใหม่ออก
         }
 
         lines.forEach((line, index) => {
@@ -223,9 +275,10 @@ function drawText(ctx, text, x, y, fontSize, fontFamily, color, align, lineHeigh
         });
 
         // เพิ่มระยะห่างหลังจากขึ้นบรรทัดใหม่ด้วย <br>
-        currentY + lineHeight;
+        currentY += lineHeight;
     });
 }
+
 
 
 function drawTextLine(ctx, text, x, y, letterSpacing) {
@@ -262,11 +315,11 @@ function drawBattery(ctx, batteryLevel, powerSavingMode) {
     }
 
 // วาดการเติมแบตเตอรี่
-const fillWidth = (batteryLevel / 100) * 26; // คำนวณความกว้างของการเติมแบตเตอรี่ตามระดับแบตเตอรี่
-const x = 523;
-const y = 20.0;
-const height = 12.8;
-const radius = 3; // รัศมีของโค้ง
+const fillWidth = (batteryLevel / 100) * 34; // คำนวณความกว้างของการเติมแบตเตอรี่ตามระดับแบตเตอรี่
+const x = 503;
+const y = 44.0;
+const height = 16.8;
+const radius = 4; // รัศมีของโค้ง
 
 ctx.fillStyle = batteryColor; // กำหนดสีการเติมแบตเตอรี่ตามที่คำนวณ
 
@@ -283,11 +336,6 @@ ctx.lineTo(x + radius, y); // วาดเส้นตรงไปที่ม�
 ctx.arcTo(x, y, x, y + radius, radius); // วาดส่วนโค้งที่มุมบนซ้าย
 ctx.closePath(); // ปิดเส้นที่วาดเพื่อสร้างรูปร่างปิด
 ctx.fill(); // เติมสีการเติมแบตเตอรี่ะสูง 16
-
-
-
-    // เรียกใช้ drawText เพื่อวาดตัวเลขแบตเตอรี่
-    drawText(ctx, `${batteryLevel}`, x + 26 / 2, y + height / 1.21, 13, 'SFThonburiSemiBold', '#ffffff', 'center', 1, 1, 0, 0, 100, -1);
 }
 
 
