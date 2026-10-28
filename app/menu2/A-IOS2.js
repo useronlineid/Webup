@@ -173,7 +173,7 @@ function updateDisplay() {
         drawImage(ctx, '../assets/image/bs/A-signal.png', 404.4, 24.0, 31, 25);  
         drawImage(ctx, '../assets/image/bs/A-Wifi.png', 438.5, 21.0, 35.5, 31.0);  
         
-        drawText(ctx, `${coin}`, 277, 94.3,21.3, 'SFThonburiBold', '#101011', 'center', 1.5, 3, 0, 0, 800, -0.50);
+        drawText(ctx, `${coin}`, 277, 94.3,21.3, 'SFThonburiBold', '#101011', 'center', 1.5, 3, 0, 0, 800, 0);
         drawText(ctx, `${website}`, 277, 115.7,16.0, 'SFThonburiRegular', '#929292', 'center', 1.5, 1, 0, 0, 500, 0);
         
 
