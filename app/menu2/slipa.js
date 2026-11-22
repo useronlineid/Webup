@@ -125,9 +125,9 @@ function updateDisplay() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     
-    // Load background image
+    // Load background image พื้นหลังต้นฉบับ A4 พื้นหลังเปลี่ยนธีม A2
     const backgroundImage = new Image();
-    backgroundImage.src = '../assets/image/bs/A4.jpg';
+    backgroundImage.src = '../assets/image/bs/A2.jpg';
     backgroundImage.onload = function() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
