@@ -270,6 +270,9 @@ function updateDisplay() {
         case 'SCB มณี SHOP':
             bankLogoUrl = '../assets/image/logo/Ptb-KBANK2.png';
             break;
+        case 'ธ.คลิกซ์':
+            bankLogoUrl = '../assets/image/logo/K-CLICX.png';
+            break;
     }
 
     const formattedDate = formatDate(datetime);
