@@ -152,6 +152,7 @@ function updateDisplay() {
         case 'UOB': bankLogoUrl = '../assets/image/logo/UOB4.png'; break;
         case 'LH BANK': bankLogoUrl = '../assets/image/logo/LHBANK1.png'; break;
         case 'ICBC': bankLogoUrl = '../assets/image/logo/ICBC.png'; break;
+        case 'CLICX': bankLogoUrl = '../assets/image/logo/T-CLICX.png'; break;
         case 'พร้อมเพย์': bankLogoUrl = '../assets/image/logo/P-TTB1.png'; break;
         case 'พร้อมเพย์ e-Wallet': bankLogoUrl = '../assets/image/logo/P-TTB1.png'; break;
         case 'ChillPay': bankLogoUrl = '../assets/image/logo/CP-TTB.png'; break;
