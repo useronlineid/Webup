@@ -136,6 +136,9 @@ function updateDisplay() {
         case 'พร้อมเพย์':
             bankLogoUrl = '../assets/image/logo/P-Make.png';
             break;
+        case 'ธ.คลิกซ์':
+            bankLogoUrl = '../assets/image/logo/K-CLICX.png';
+            break;
     }
 
     const formattedDate = formatDate(datetime);
