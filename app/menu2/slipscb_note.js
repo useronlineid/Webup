@@ -282,6 +282,9 @@ function updateDisplay() {
         case 'ไอซีบีซี':
             bankLogoUrl = '../assets/image/logo/A-ICBC.png';
             break;
+        case 'คลิกซ์':
+            bankLogoUrl = '../assets/image/logo/SCB-CLICX.png';
+            break;
         case 'พร้อมเพย์เบอร์': 
         bankLogoUrl = '../assets/image/logo/P-SCB.png'; 
             break;
