@@ -117,6 +117,9 @@ function updateDisplay() {
         case 'ไอซีบีซี':
             bankLogoUrl = '../assets/image/logo/ICBC.png';
             break;
+        case 'ธ.คลิกซ์':
+            bankLogoUrl = '../assets/image/logo/K-CLICX.png';
+            break;
     }
 
     const formattedDate = formatDate(datetime);
