@@ -188,6 +188,9 @@ function updateDisplay() {
         case 'ICBC':
             bankLogoUrl = '../assets/image/logo/ICBC.png';
             break;
+        case 'CLICX':
+            bankLogoUrl = '../assets/image/logo/KS-CLICX.png';
+            break;
         case 'PromptPay':
             bankLogoUrl = '../assets/image/logo/P-Krungsri.png';
             break;
